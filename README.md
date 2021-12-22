@@ -22,6 +22,8 @@ La dernière version publiée est l'originale expoactes-v3.2.3-rc5
 
 Veuillez signaler tous les problèmes que vous pouvez trouver.
 
+Si la version que vous utilisez n'a pas encore de release, veuillez creer une issue.
+
 ## Contribution
 
 Toute contribution est le bien venu.
