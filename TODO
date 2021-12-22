@@ -1,0 +1,4 @@
+Pistes d'améliorations techniques
+
+- Avoir un installateur Windows sans arborescence intégrée, mais avec une récupération d'une version précise sur le net
+- Au minimum, une fonction de contrôle pour savoir si une nouvelle version est disponible

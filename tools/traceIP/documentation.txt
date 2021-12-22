@@ -1,0 +1,79 @@
+ _____                              ___   ____  
+|_   _| _ __   __ _    ___   ___   |_ _| |  _ \ 
+  | |  | '__| / _` |  / __| / _ \   | |  | |_) |
+  | |  | |   | (_| | | (__ |  __/   | |  |  __/ 
+  |_|  |_|    \__,_|  \___| \___|  |___| |_|    v. 2.0
+
+Ce script a été initialement réalisé par Renard Rouge et adapté par Matthieu
+(http://www.php-astux.info/traceip-anti-aspirateur-site-web.php)
+Aide installation : http://www.php-astux.info/forum/index.php
+
+-------------------------------------------------------------------------------
+Adapté par : matthieu@php-astux.info		- http://www.php-astux.info
+Info: Renardrouge@rocketmail.com    		- http://www.1001bd.com
+-------------------------------------------------------------------------------
+
+Création: Janvier 2003
+	Ce script a été créé suite à une conversation stérile avec le
+	développeur d'un aspirateur de sites. Il refusait de reconnaître les
+	dégâts que peut entrainer son soft quand il est utilisé à tort
+	et à travers, ou contre l'avis des webmasters, en passant outre les
+	directives du robots.txt
+
+En pratique:
+	Les aspirateurs de site demandent un très grand nombre de pages dans des
+	intervalles de temps très courts provoquant une surcharge du serveur web,
+	un gène des utilisateurs légitimes et une consommation de bande passante
+	importante.
+	Ce script consomme lui aussi des ressources mais permet d'éviter le pic
+	de ressources généré par un aspirateur. Il comporte 3 requetes SQL et une
+	trentaine de lignes de code.
+
+Principe de fonctionnement:
+	Le nombre de page demandées par IP et par minute est enregistré. Si
+	une IP demande un nombre de pages PHP trop important, l'IP est interdite
+	et le script retourne le message "IP interdite pour abus"
+
+	Il n'est pas basé sur les user agent car les aspirateurs permettent de
+	les modifer sans difficulté.
+
+	Un htaccess bloquant les agents connus ne peut qu'aider.
+
+	Il ne bloque pas les robots comme Googlebot ou Scooter, car les moteurs
+	de recherche étalent les accès à une site dans le temps.
+
+	Un aspirateur va commencer par aspirer la 1ère page de votre site, puis
+	de plus en plus au fur et à mesure qu'il découvrira des nouvelles URL.
+	Il demandera à partir de ce moment plusieurs pages simultanément.
+	Au moment ou le script l'aura repéré, l'aspirateur ne trouvera plus de
+	nouvelles url. Il terminera l'aspiration des URL qu'il aura découvertes
+	mais aspirera des pages avec le message d'erreur. L'aspiration se
+	poursuivra donc quelques minutes encore.
+
+	Au final l'utilisateur de l'aspirateur n'aura que les 1ères page du site
+	et très rapidement tombera sur des pages blanches.
+
+Résultats:
+	Ce script a bloqué les aspirations réalisées avec
+	HTTrack, Memoweb, Offline explorer, Teleport
+	lors de tests menés avec les participants de la liste bar d'OVH
+	que je remercie au passage. :-)
+
+Contre-indications:
+	Si votre serveur est "lent" - met plus de quelques secondes à afficher
+	les pages PHP - le script ne sert à rien, ne l'installez pas !!!
+
+
+	Tous commentaires, idées d'amélioration, d'optimisation sont les bienvenus !!!!
+Si vous utilisez ce script, prévenez-nous :o)
+
+
+Ajouts Matthieu :
+	- compatibilité PHP4/PHP5
+	- documentation en plusieurs fichiers
+	- correction des fautes d'orthographe
+	- interface admin
+
+	Je tiens à préciser que j'ai laissé ce script dans l'état d'esprit du concepteur : léger,
+	peu gourmand en ressources SQL d'où l'intérêt de le simplifier au maximum.
+	

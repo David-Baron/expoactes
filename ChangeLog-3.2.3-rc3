@@ -1,0 +1,101 @@
+commit a4da5cea44ea23f2bb7100584eff9dfd8c1a3858
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 15 08:52:14 2021 +0100
+
+    Suppression message pour un rechargement demandé hors connection.
+
+commit 6f21b5dbe915713652d9bc1261061a9e79f3649e
+Author: Emmanuel Lethrosne <>
+Date:   Sat Nov 13 08:28:46 2021 +0100
+
+    Génération copyright et blindage appel émulation mysql_*.
+
+commit c2fdede56789d39cec9a76d5657ee0bf37803efa
+Author: Emmanuel Lethrosne <>
+Date:   Wed Nov 10 14:44:41 2021 +0100
+
+    Sortie de l'émulation mysql de connect.ins.php vers tools/function.php.
+
+commit 316343aa796f7fea014c2fa8ac833b4d15629dfe
+Author: Emmanuel Lethrosne <>
+Date:   Wed Nov 10 14:43:10 2021 +0100
+
+    Renommage des répertoires destinés à être spécifiques (préfixe _) à l'installation avant la première connection.
+
+commit d6a95936c6dec9d6d41832e2989c54a5559fb4d4
+Author: Emmanuel Lethrosne <>
+Date:   Wed Nov 10 14:38:16 2021 +0100
+
+    Renommage des répertoires destinés à être spécifiques (préfixe _) pour ne pas les toucher en cas de maj.
+
+commit ef441e436a392a053971638a4e79d00ead591f1f
+Author: Emmanuel Lethrosne <>
+Date:   Wed Nov 10 14:30:00 2021 +0100
+
+    Changement de la valeur par défaut de la date (valeur à 0000-00-00 plus valide).
+
+commit b38ba4adc1cb16a16e15b9d389d3b9430be6cb2c
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Tue Nov 9 09:34:02 2021 +0100
+
+    Ajout répertoire admin/_upload pour s'assurer qu'il est présent à l'installation
+
+commit 67ace2b9f2abde961c640764af73551413c29768
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Tue Nov 9 09:22:34 2021 +0100
+
+    Préparation kit 3.2.3-rc2 avec copie locale de cookieconsent
+
+commit 7b6138f199985428e8ee7a6f9c8d0195f2c43e0d
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Tue Nov 9 09:19:26 2021 +0100
+
+    Correction URLs
+
+commit 00961107ebf46c53193a4ecb8a112237cb516551
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Tue Nov 9 09:15:54 2021 +0100
+
+    D'autres classes avec mauvais nom de constructeur
+
+commit cd1a6b6e1b9bf7a78485a6813f6263478881ff9a
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 16:58:03 2021 +0100
+
+    Ajout des fichers standards LICENSE, README et TODO
+
+commit 61e55e5ad83c9a9fba936839bfc888d960efe494
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 11:43:07 2021 +0100
+
+    Ajout définition SITE_URL par défaut nécessaire à l'installation
+
+commit 2ea776a73af064e6d6cec3fe46f870fb164a947b
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 11:40:11 2021 +0100
+
+    Correction de la forme each obsolète depuis PHP 5.6
+
+commit 8ee5088fb5c8d242907fabdfc237f6be75b7dd02
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 11:01:09 2021 +0100
+
+    Correction des accolades qui ne sont plus acceptées comme indices tableaux depuis PHP 7.x
+
+commit 15d9863cf0801f432380727ec5e8980ee96a758b
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 10:57:45 2021 +0100
+
+    Forçage de valeurs par défaut pour les définitions de fonctions avec paramètres obligatoires après les optionnels pour PHP 8.x
+
+commit 91fddb417af225a54e0561d09621b57658d706a9
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 10:43:46 2021 +0100
+
+    Correction des constructeurs de classe pour PHP 8.x
+
+commit 31b523dadcd1cba127de46bcfd27b37bfac457ab
+Author: Bernard Giroud <bgiroud3@free.fr>
+Date:   Mon Nov 8 09:26:19 2021 +0100
+
+    Chargement initial pour la version 3.2.2-prod officiel, auteurs d'origine André Delacharlerie, puis Emmanuel Lethrosne

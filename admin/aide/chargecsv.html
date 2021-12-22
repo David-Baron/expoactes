@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
+    <title>
+      Aide : Charger des actes CSV
+    </title>
+    <link media="screen" rel="stylesheet" href="../../_config/actes.css" type="text/css" />
+
+  </head>
+  <body>
+    
+<h1 align="center"> Charger des actes CSV : Format libre</h1>
+<p align="center"><a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a></p>
+Cette option permet de <span style="font-weight: bold;">charger des actes encod&#233;s 
+dans MS-Excel</span> ou dans OpenOffice (Classeur) en s'adaptant de fa&ccedil;on 
+tr&egrave;s souple &agrave; la structure de votre fichier. 
+<p>En g&eacute;n&eacute;ral, les tableaux de d&eacute;pouillements comportent 
+  en premi&egrave;re ligne les noms des colonnes pr&eacute;cisant le type d' information 
+  qui peut y &ecirc;tre rang&eacute;e. Par exemple, Nom, Pr&eacute;nom, Sexe, 
+  Nom du p&egrave;re, Nom de la m&egrave;re, .... Ensuite dans les lignes suivantes 
+  se trouvent les informations d&eacute;pouill&eacute;es, un acte par ligne.</p>
+<p>Il convient de <strong>commencer par enregistrer la feuille au format CSV</strong> 
+  en prenant soin de choisir le point-virgule ou la tabulation pour s&eacute;parer 
+  les champs. Autant que possible, il vaut mieux faire encadrer les champs par 
+  des guillemets. Ce n'est pas obligatoire sauf si les textes encod&eacute;s comportent 
+  eux-m&ecirc;mes des points-virgules.</p>
+<p>Il n'y a par contre pas de contrainte sur le nombre ou l'ordre des colonnes. 
+</p>
+<p align="center"><img src="Extrait_csv.PNG" alt="Exemple de fichier &agrave; charger" width="686" height="84" border="1" /> 
+</p>
+<p align="center"><em>Exemple de fichier &agrave; charger</em></p>
+<p>Le premier &eacute;cran de chargement permet de s&eacute;lectionner le fichier CSV 
+  &agrave; charger et pr&eacute;ciser quelques param&egrave;tres de chargement. </p>
+<p align="center"><img src="chargeCSV_A.png" width="702" height="490" border="1" /></p>
+<p align="center"><em>Exemple d'&eacute;cran de chargement d'un fichier csv </em></p>
+<ul>
+  <li>S&#233;lectionner le type des actes;<br />
+  </li>
+  <li>Naviguer jusqu'au fichier CSV avec le bouton "Parcourir..." et le s&#233;lectionner;<br />
+  </li>
+  <li>Introduire les noms de la commune et du d&eacute;partement qui vont &ecirc;tre charg&eacute;. Si ces informations sont indiqu&eacute;s dans le fichier CSV lui-m&ecirc;me, il est aussi possible de cocher la case en regard puis de pr&eacute;ciser plus loin la colonne &agrave; utiliser pour ces donn&eacute;es. <br />
+  </li>
+  <li>Introduire les nom des personnes qui ont collabor&eacute; &agrave; la mise en ligne de ces actes. Pour cela trois zones sont disponibles. Il est possible d'en modifier la d&eacute;nomination et de d&eacute;terminer dans quelle mesure elles seront affich&eacute;es dans la fiche d&eacute;taill&eacute;e de l'acte en mode visiteur et/ou administrateur. Se reporter &agrave; la <a href="config.html#etiquettes">gestion des &eacute;tiquettes</a> pour cette gestion.<br />
+    Si les noms de ces personnes sont indiqu&eacute;s dans le fichier CSV lui-m&ecirc;me, il est aussi possible de cocher la case en regard puis de pr&eacute;ciser plus loin la colonne &agrave; utiliser pour ces donn&eacute;es.    <br />
+  </li>
+  <li>Cocher &#233;ventuellement une option de<strong> filtrage des donn&eacute;es</strong> : </li>
+  <li style="list-style: none"><ul><li> <span style="font-style: italic;">&#201;liminer les actes dont l'ann&#233;e est incompl&#232;te</span>&nbsp;: Ne&nbsp;charge&nbsp;pas les actes pour lesquels l'ann&#233;e de l'acte n'est pas compl&#232;te (exemple : 17?? ou 0000 ou 165x) ; </li>
+      <li> <span style="font-style: italic;">&#201;liminer les actes ayant m&ecirc;mes noms et pr&eacute;noms </span> : Elimine autant que possible les actes redondants c'est-&agrave;-dire ayant les m&ecirc;mes patronymes, les m&ecirc;me pr&eacute;noms et la m&ecirc;me date d'acte. </li>
+      <li> <span style="font-style: italic;">&#201;liminer les actes dont le patronyme est vide </span> : Elimine les actes qui n'ont aucune information dans la zone patronyme. <br />
+      </li>
+      </ul>
+  </li>
+  <li>Cocher selon les besoins les informations souhait&eacute;es pour le contr&ocirc;le du chargement. L'affichage de ces informations ralenti le chargement mais facilite la d&eacute;tection et la recherche des anomalies &eacute;ventuelles. Lorsqu'un n&deg; est affich&eacute; entre parenth&egrave;ses, il s'agit du n&deg; de la ligne du fichier NIMEGUE qui cause le soucis.<br />
+  </li>
+  <li>S&eacute;l&eacute;ctionner le <strong>d&eacute;posant</strong> : c'est en principe la personne qui effectue le chargement des actes. Cette option n'est disponible que pour les adminstrateurs qui peuvent charger des donn&eacute;es pour plusieurs d&eacute;posants. A partir de la version 3, cette mention est de moins d'importance car les trois zones Photographe, Transcripteur et V&eacute;rificateur offrent bien plus de facilit&eacute;s pour r&eacute;f&eacute;rencer les contributeurs. </li>
+  </ul>
+<p>En cliquant sur le bouton &quot; <strong>&gt;&gt; CHARGER &gt;&gt;</strong> &quot; le fichier est t&eacute;l&eacute;charg&eacute; sur le serveur et y est 
+  stock&eacute; en vue de son exploitation ult&eacute;rieure. </p>
+<p>L'&eacute;cran pr&eacute;sente alors un grand tableau permettant de d&eacute;crire 
+  la fa&ccedil;on d'associer les colonnes du fichier CSV (colonne de gauche du 
+  tableau) avec les zones de la base de donn&eacute;es (colonne du milieu) en 
+  appliquant le cas &eacute;ch&eacute;ant un &quot;traitement&quot; pr&eacute;alable 
+  (colonne de droite).</p>
+<p align="center"><img src="lecture_csv_1.PNG" alt="Exemple d'&eacute;cran d'affectation de zones" width="642" height="525" border="1" /></p>
+<p align="center"><em>Exemple d'&eacute;cran d'affectation de zones</em></p>
+<p>Dans la premi&egrave;re colonne, chaque bo&icirc;te de s&eacute;lection contient 
+  la liste de toutes les colonnes du fichier CSV (pr&eacute;sentes sur la premi&egrave;re 
+  ligne du fichier). Lorsque cette ligne contient les descriptions des colonnes 
+  ce sont elles qui sont affich&eacute;es (seulement les 13 premiers caract&egrave;res 
+  si cette description est plus longue que 15 caract&egrave;res). Si la premi&egrave;re 
+  ligne contient d&eacute;j&agrave; des donn&eacute;es, ce sont ces derni&egrave;res 
+  qui sont affich&eacute;es.</p>
+<p>Pour chaque ligne, il suffit de s&eacute;lectionner la colonne appropri&eacute;e 
+  &agrave; la zone de la base de donn&eacute;es ou de laisser le symbole tiret 
+  ( -- ) si rien ne doit &ecirc;tre charg&eacute;. Il est tout &agrave; fait possible 
+  d'associer une m&ecirc;me colonne avec plusieurs zones destination. Dans ce 
+  cas, un traitement appropri&eacute; permettra de d&eacute;composer le contenu 
+  de cette colonne de fa&ccedil;on ad&eacute;quate.</p>
+<p>Lorsque chaque colonne est associ&eacute;e avec la zone voulue, il est possible 
+  de pr&eacute;visualiser le r&eacute;sultat en cliquant que le bouton &quot; 
+  <strong>VOIR un exemple</strong> &quot;.</p>
+<p align="center"><img src="lecture_csv_2.PNG" alt="Affichage de la fiche exemple" width="637" height="357" border="1" /></p>
+<p align="center"><em>Affichage de la fiche exemple (seconde ligne du fichier 
+  pr&eacute;sent&eacute; plus haut)</em></p>
+<p>Chaque pression sur le bouton &quot; VOIR un exemple &quot; permet de pr&eacute;visualiser 
+  la fiche suivante. </p>
+<p>Le tableau d'affectation des zones &eacute;tant toujours affich&eacute;, il 
+  est possible de corriger ce qui est &eacute;ventuellement n&eacute;cessaire, 
+  puis de v&eacute;rifier en affichant la fiche suivante.</p>
+<p>Lorsque les affectations sont correctes, il ne reste qu'&agrave; charger effectivement 
+  le fichier en pressant le bouton &quot; <strong>CHARGER maintenant</strong> 
+  &quot;. Le syst&egrave;me passe le nombre de lignes annonc&eacute; en haut du 
+  tableau. Ordinairement, il faut passer une ligne pour ne pas charger les intitul&eacute;s 
+  des colonnes.</p>
+<p>Si le fichier est tr&egrave;s grand et/ou que le serveur est fort occup&eacute;, 
+  il se peut que le chargement ne puisse se terminer pendant le temps limite fix&eacute; 
+  par l'h&eacute;bergeur. Dans ce cas, 3 secondes avant la fin du temps limite, 
+  le programme stoppe le chargement et affiche un &eacute;cran permettant de continuer 
+  le travail sur la suite du fichier. De cette fa&ccedil;on, il est possible de 
+  charger un gros fichier en plusieurs &quot;passes&quot; en cliquant simplement 
+  plusieurs fois sur le bouton &quot;Charger maintenant&quot;.</p>
+<p>Les associations entre colonnes et zones ainsi que les traitements s&eacute;lectionn&eacute;s 
+  sont m&eacute;moris&eacute;s dans un cookie. De cette fa&ccedil;on, lorsque 
+  l'on charge souvent des fichiers de m&ecirc;me structure, l'association est 
+  imm&eacute;diate. </p>
+<p>Le bouton &quot; <strong>Remise &agrave; blanc</strong> &quot; annule toutes 
+  les associations. Cette option est pratique lorsque le fichier &agrave; charger 
+  a un format tr&egrave;s diff&eacute;rent du pr&eacute;c&eacute;dent.</p>
+<h3>Utilisation d'un filtre</h3>
+<p>Dans certains cas, il peut &ecirc;tre n&eacute;cessaire de traiter un fichier 
+  en plusieurs passages car les lignes ne sont pas toutes cod&eacute;es de la 
+  m&ecirc;me mani&egrave;re. Pour cela il convient de ne traiter que les lignes 
+  qui satisfont &agrave; une condition qui peut &ecirc;tre exprim&eacute;e avec 
+  le filtre. </p>
+<p align="center"><img src="filtre_csv.PNG" alt="Exemple de filtre pemettant de s&eacute;lectionner les actes avec ann&eacute;e r&eacute;volutionnaire" width="626" height="212" border="1" /></p>
+<p align="center"><em>Exemple de filtre permettant de s&eacute;lectionner les 
+  actes avec ann&eacute;e r&eacute;volutionnaire.</em></p>
+<p align="left">Pour qu'un filtre soit utilis&eacute;, il faut donc s&eacute;lectionner 
+  la colonne sur laquelle porte la condition. Choisir ensuite le mode de comparaison 
+  et enfin indiquer le texte auquel il faut comparer sauf pour les condition &quot;n'est 
+  pas vide&quot; et &quot;est vide&quot; qui teste seulement si a colonne contient 
+  ou non des informations.</p>
+<p align="left">Notons que la pr&eacute;visualisation de fiche utilise &eacute;galement 
+  le filtre pour rechercher l'acte &agrave; afficher.</p>
+<h3>Liste des &quot;traitements&quot; possibles</h3>
+<p>Quatre cat&eacute;gories de &quot;traitements&quot; ont &eacute;t&eacute; d&eacute;finies 
+  selon la nature de la zone destination. De fa&ccedil;on g&eacute;n&eacute;rale, 
+  chaque traitement permet de modifier le contenu de la colonne source en en extrayant 
+  une partie ou en regroupant son contenu avec celui d'une ou plusieurs colonnes 
+  suivantes. </p>
+  
+<p>Chaque traitement est identifi&eacute; dans la boite de s&eacute;lection par 
+  un titre qui r&eacute;sume son action. Le symbole &quot;=&quot; signifie qu'aucun 
+  traitement n'est ex&eacute;cut&eacute; : le contenu de la colonne est affect&eacute; 
+  tel quel &agrave; la zone.</p>
+
+<p><strong><em>Traitement applicables aux zones contenant du texte</em></strong> 
+  (Nom, pr&eacute;nom, profession, origine, ...) </p>
+<blockquote>
+  <dl>
+    <dt>&quot;N&quot; si vide</dt>
+    <dd>Ajoute le code &quot;N&quot; dans la zone si la colonne est vide. Ceci 
+      permet d'&eacute;viter d'avoir une zone vide pour le nom d'une personne.</dd>
+    <dt>en Majuscules</dt>
+    <dd>Transforme tout le texte de la colonne en majuscules. Utile pour les patronymes.</dd>
+    <dt>1er mot seulement</dt>
+    <dd>Ne garde que le premier mot (avant le premier espace)</dd>
+    <dt>Sauf 1er mot</dt>
+    <dd>Ne garde que ce qui suit le premier espace rencontr&eacute;</dd>
+    <dt>Dernier mot seulement</dt>
+    <dd>Ne garde que ce qui suit le dernier espace blanc (ou tout le contenu s'il 
+      n'y a qu'un mot)</dd>
+    <dt>Sauf dernier mot</dt>
+    <dd>D&eacute;but du texte jusqu'au dernier espace blanc (ou rien s'il n'y 
+      a qu'un mot)</dd>
+    <dt>D&eacute;but en majuscule</dt>
+    <dd>Premiers mots &eacute;crits compl&egrave;tement en majuscules. Si les 
+      premiers mots ne sont pas en majuscules, il sont inclus &eacute;galement 
+      de fa&ccedil;on &agrave; absorber les particules des patronymes. <br />
+      <em>Exemples</em> : &quot;DELARUE Andr&eacute; Marcel&quot; retourne &quot;DELARUE&quot;; 
+      &quot;de la RUE Andr&eacute;&quot; retourne &quot;de la RUE&quot;; &quot;DE 
+      VILLERS DE DION Emile&quot; retourne &quot;DE VILLERS DE DION&quot; mais 
+      &quot;de VILLERS de DION Emile&quot; retournera &quot;de VILLERS&quot; puisque 
+      le mot suivant n'est pas compl&egrave;tement en minuscule.</dd>
+    <dt>Fin en minuscule</dt>
+    <dd>Compl&eacute;mentaire au pr&eacute;c&eacute;dent, retourne la partie qui 
+      suit le &quot;d&eacute;but en majuscule&quot;.</dd>
+    <dt>Contenu parenth&egrave;ses</dt>
+    <dd>Recherche une parenth&egrave;se ouvrante et retourne le contenu jusqu'&agrave; 
+      la parenth&egrave;se fermante ou jusqu'&agrave; la fin s'il n'y en a pas. 
+      Les parenth&egrave;ses ne sont pas conserv&eacute;es.<br />
+      <em>Exemple</em> : &quot;Albert (Oncle)&quot; retourne &quot;Oncle&quot;.</dd>
+    <dt>Sauf parenth&egrave;ses </dt>
+    <dd>Compl&eacute;mentaire au pr&eacute;c&eacute;dent, retourne ce qui est 
+      en dehors de la parenth&egrave;se, c'est-&agrave;-dire avant la premi&egrave;re 
+      parenth&egrave;se ouvrante et apr&egrave;s la 1&egrave;re parenth&egrave;se 
+      fermante.</dd>
+    <dt>Avant la virgule</dt>
+    <dd>Retourne le texte pr&eacute;c&eacute;dant la DERNIERE virgule de la cha&icirc;ne.<br />
+      <em>Exemple</em> : &quot;Albert, Emile, de Houdremont&quot; retourne &quot;Albert, 
+      Emile&quot;.</dd>
+    <dt>Apr&egrave;s la virgule</dt>
+    <dd>Retourne le texte qui suit la DERNIERE virgule de la cha&icirc;ne.<br />
+      <em>Exemple</em> : &quot;Albert, Emile, de Houdremont&quot; retourne &quot;de 
+      Houdremont&quot;.</dd>
+    <dt>Patronyme si pas vide</dt>
+    <dd>Examine la colonne sp&eacute;cifi&eacute;e et lorsque celle-ci contient 
+      bien un texte, retourne le patronyme de la premi&egrave;re personne identifi&eacute;e 
+      (typiquement le NOM du nouveau-n&eacute; ou du d&eacute;funt). Ce traitement 
+      permet de reconstituer le nom du p&egrave;re en recopiant celui du fils 
+      ou de la fille lorsque ce nom n'a pas &eacute;t&eacute; encod&eacute;.</dd>
+    <dt>&quot;+&quot; si pas vide</dt>
+    <dd>Ce traitement produit une croix, abr&eacute;viation usuelle de &quot;d&eacute;c&eacute;d&eacute;&quot; 
+      lorsque la colonne contient un code quelconque. Cela permet de par exemple 
+      de transformer une colonne &quot;D&eacute;c&eacute;d&eacute;&quot; dans 
+      laquelle on a indiqu&eacute; des &quot;X&quot;.</dd>
+    <dt>+ (x) col. suivante(s)</dt>
+    <dd>Retourne le contenu complet de la colonne sp&eacute;cifi&eacute;e suivi 
+      par le contenu des x colonnes suivantes. Les contenu des diff&eacute;rentes 
+      colonnes sont s&eacute;par&eacute;s par des virgules. Ce traitement permet 
+      typiquement de regrouper plusieurs compl&eacute;ments d'informations dans 
+      une seule zone commentaire.</dd>
+  </dl>
+</blockquote>
+<p><strong><em>Traitements sp&eacute;cifiques pour les zones &quot;SEXE&quot;</em> 
+  </strong>(sexe du nouveau-n&eacute;, du d&eacute;funt ou des intervenant d'un 
+  acte divers)</p>
+<blockquote>
+  <dl>
+    <dt>Toujours Masculin</dt>
+    <dt>Toujours F&eacute;minin</dt>
+    <dt>Inconnu</dt>
+    <dd>Retourne selon le cas les valeurs constantes &quot;M&quot; , &quot;F&quot; 
+      ou &quot;?&quot;</dd>
+    <dt>Selon 1er pr&eacute;nom</dt>
+    <dd>D&eacute;tecte le sexe (probable) en se basant sur le premier pr&eacute;nom 
+      (il faut indiquer la colonne contenant le pr&eacute;nom &agrave; examiner). 
+      Le syst&egrave;me se base sur une liste de pr&egrave;s de 200 pr&eacute;noms 
+      f&eacute;minins usuels (anciens) pour d&eacute;cider si le pr&eacute;nom 
+      est celui d'une homme ou d'une femme. </dd>
+  </dl>
+</blockquote>
+<p><strong><em>Traitements sp&eacute;cifiques pour les zones &quot;AGE&quot;</em></strong> 
+  (&acirc;ge d'un d&eacute;funt ou des conjoints d'un mariage)</p>
+<blockquote>
+  <dl>
+    <dt>Chiffres seulement</dt>
+    <dd>Ne garde que les chiffres, points et virgules du texte pr&eacute;sent&eacute;.</dd>
+    <dt>Abr&eacute;g&eacute; a m j </dt>
+    <dd>Abr&egrave;ge le texte en rempla&ccedil;ant &quot;ans&quot; par &quot;a&quot;, 
+      &quot;mois&quot; par &quot;m&quot;, &quot;semaines&quot; par &quot;s&quot; 
+      et &quot;jours&quot; par &quot;j&quot;. Les blancs et virgules sont &eacute;galement 
+      supprim&eacute;s.<br />
+      <em>Exemple</em> : &quot;3 ans, 10 mois&quot; est remplac&eacute; par &quot;3a10m&quot;.</dd>
+  </dl>
+  </blockquote>
+  <p><strong><em>Traitements sp&eacute;cifiques pour les zones &quot;DATE&quot;</em></strong> 
+    (date de l'acte et dates de naissance des intervenants)</p>
+  <p>Le format &quot;naturel&quot; des dates est le format num&eacute;rique form&eacute; 
+    par le num&eacute;ro du jour, suivi du num&eacute;ro du mois puis de celui 
+    de l'ann&eacute;e. Ces num&eacute;ros peuvent &ecirc;tre s&eacute;par&eacute;s 
+    par un point, un tiret, un &quot;slash&quot; (/) ou encore un blanc. Exemple 
+    : 22.04.1619 ou 22-04-1619 ou 22/4/1619 ou encore 22 4 1619.<br />
+    Si la date n'est pas dans ce format dans la colonne du fichier CSV, il convient 
+    de lui appliquer l'une des traitements suivants :</p>
+ 
+<blockquote> 
+  <dl>
+    <dt>AAAA-MM-JJ</dt>
+    <dd>C'est le format invers&eacute; en pla&ccedil;ant l'ann&eacute;e d'abord, 
+      avant le mois puis le jour. En fait les s&eacute;parateurs peuvent aussi 
+      &ecirc;tre le point, le tiret, le slash ou le blanc et les num&eacute;ros 
+      de jours ou de mois inf&eacute;rieurs &agrave; 10 peuvent ne compter qu'un 
+      seul chiffre.<br />
+      <em>Exemple</em> : 1619-04-22 ou encore 1619/4/22</dd>
+    <dt>JJMMAAAA</dt>
+    <dd>Forme compacte de la date, il n'y a pas d'espace ou de signe s&eacute;parateur. 
+      Les num&eacute;ros de jours ou de mois inf&eacute;rieurs &agrave; 10 doivent 
+      &ecirc;tre pr&eacute;c&eacute;d&eacute;s d'un 0.<br />
+      <em>Exemple</em> : 22041619.</dd>
+    <dt>AAAAMMJJ</dt>
+    <dd>Version invers&eacute;e du format compact pr&eacute;c&eacute;dant.<br />
+      <em>Exemple</em> : 16190422.</dd>
+    <dt>JJMMMAAAA</dt>
+    <dd>Dans cette forme compacte, le num&eacute;ro du mois est remplac&eacute; 
+      par son abr&eacute;viation fran&ccedil;aise ou anglaise.<br />
+      <em>Exemple</em> : 22AVR1619 ou 22APR1619.</dd>
+    <dt>AAAAMMMJJ</dt>
+    <dd>Version invers&eacute;e du format pr&eacute;c&eacute;dant.<br />
+      <em>Exemple</em> : 1619AVR22.</dd>
+    <dt>3 col. JJ MM AAAA</dt>
+    <dd>La date est ici &eacute;clat&eacute;e en trois colonnes qui doivent &ecirc;tre 
+      contigu&euml;s, la premi&egrave;re indique le jour, la seconde le mois et 
+      la troisi&egrave;me l'ann&eacute;e. Les num&eacute;ros inf&eacute;rieurs 
+      &agrave; 10 peuvent comporter un seul chiffre ou &ecirc;tre pr&eacute;c&eacute;d&eacute;s 
+      du z&eacute;ro. Dans le tableau d'affectation des zones, c'est toujours 
+      la premi&egrave;re colonne qu'il faut indiquer.<br />
+      <em>Exemple</em> : colonne 4 = &quot;22&quot;, colonne 5 = &quot;4&quot;, 
+      colonne 6 = &quot;1619&quot;, pointer vers la colonne 4.</dd>
+    <dt>3 col. AAAA MM JJ</dt>
+    <dd>Version invers&eacute;e du format pr&eacute;c&eacute;dant.</dd>
+    <dt>Dt. r&eacute;pub. 1 col.</dt>
+    <dd>Date r&eacute;publicaine pr&eacute;sent&eacute;e dans une seule colonne. 
+      Le traitement retourne la date gr&eacute;gorienne correspondante. Le format 
+      de la date r&eacute;publicaine doit &ecirc;tre form&eacute; par trois parties 
+      : d'abord le num&eacute;ro du jour (de 1 &agrave; 30), ensuite le nom du 
+      mois (VEND&eacute;miaire, BRUmaire, ... FRUctidore et jours COMpl&eacute;mentaires), 
+      enfin l'ann&eacute;e qui peut &ecirc;tre pr&eacute;c&eacute;d&eacute;e du 
+      mot &quot;an&quot; et &ecirc;tre exprim&eacute;e en chiffres arabes ou romains.<br />
+      Les &eacute;l&eacute;ments doivent &ecirc;tre s&eacute;par&eacute;s par 
+      des blancs, des tirets, des points ou des slashs.<br />
+      <em>Exemples</em> : 3 fructdore an 7, 04 VEND XI, 3 COMP 6.</dd>
+    <dt>Dt. r&eacute;pub. 3 col.</dt>
+    <dd>Analogue au pr&eacute;c&eacute;dent mais avec les trois parties de la 
+      date dans trois colonnes cons&eacute;cutives.</dd>
+    <dt>&nbsp;</dt>
+  </dl>
+</blockquote>
+  
+<p>Cette large batterie de fonctions de (pr&eacute;-)traitement de l'information 
+  devrait faciliter la conversion de nombreuses donn&eacute;es sans n&eacute;cessit&eacute; 
+  aucune manipulation des le tableur (Excel ou Open Office). </p>
+<p>Parfois, un simple "Rechercher - Remplacer" permettra d'adapter lighrement 
+  le format du fichier pour qu'il puisse utiliser l'un des traitements pr&eacute;d&eacute;finis 
+  ici.</p>
+<p><em>Exemple</em> : Si la colonne pr&eacute;nom contient le lieu d'origine pr&eacute;c&eacute;d&eacute; 
+  du mot &quot;de&quot; (Albert de Montdru), il suffit de faire remplacer un remplacement 
+  automatique limit&eacute; &agrave; la colonne concern&eacute;e de &quot; de 
+  &quot; (pr&eacute;c&eacute;d&eacute; et suivi d'un blanc) par &quot; , &quot;.</p>
+<p><br />
+  <a href="aide.html">Sommaire de l'aide</a> </p>
+</body>
+</html>

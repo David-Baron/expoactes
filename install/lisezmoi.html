@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="fr-be">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>
+      Installation ExpoActes
+    </title>
+    <meta content="Delacharlerie Andre" name="author">
+<style type="text/css">
+p { font-family: Verdana;
+}
+body { font-family: Verdana;
+font-size: 12px;
+}
+.cadre { border: 1px dashed rgb(255, 153, 102);
+padding: 15px;
+}
+</style>
+  </head>
+  <body>
+
+    <h1>
+      Installation de ExpoActes
+    </h1>
+    Auteur : Andr&eacute; Delacharlerie<br>
+    Mail : andre.delacharlerie@gmail.com<br>
+    <h2>
+      Licence :
+    </h2>
+Copyright (C) : Andr&eacute; Delacharlerie, 2005-2015<br>
+
+    Ce programme est libre ("open source"), vous pouvez le redistribuer et/ou le modifier dans le
+    respect des termes de la Licence Publique G&eacute;n&eacute;rale GPL GNU publi&eacute;e par la
+    Free Software Foundation.<br>
+    Texte officiel de la licence : <a href=
+    "http://www.gnu.org/copyleft/gpl.html">http://www.gnu.org/copyleft/gpl.html</a> &nbsp;ou sa
+    <a href="http://fsffrance.org/gpl/gpl-fr.fr.html">traduction fran&ccedil;aise (non
+    officielle)</a>&nbsp;
+
+<p> <span style="font-weight: bold;">Un logiciel "open source" cela signifie aussi
+  - plus que jamais - que tous les utilisateurs (m&ecirc;me ceux qui n'ont aucune
+  pr&eacute;tention en mati&egrave;re de programmation) sont invit&eacute;s &agrave;
+  collaborer &agrave; l'&eacute;volution du logiciel. N'h&eacute;sitez donc pas
+  &agrave;</span> <span style=
+      "font-weight: bold;">m'adresser vos remarques et suggestions</span><span style=
+      "font-weight: bold;">pour faire profiter l'ensemble de la communaut&eacute;
+  des utilisateurs des am&eacute;liorations que vous avez imagin&eacute;es.&nbsp;</span>
+</p>
+    <p>
+      Pour toute question ou suggestion au sujet du logiciel ExpoActes :
+    </p>
+
+
+<ul>
+  <li>Consulter le <span style="font-weight: bold;">site de support</span> &nbsp;:
+    &nbsp;<a href="http://expoactes.monrezo.be">http://expoactes.monrezo.be<br>
+    </a> </li>
+  <li>Consulter le <strong>Wiki</strong> : <a href="http://sites.google.com/site/expoactes/">http://sites.google.com/site/expoactes/</a><a href="http://expoactes.monrezo.be"><br>
+    </a>  </li>
+  <li>Adressez <span style="font-weight: bold;">vos</span> <span style=
+      "font-weight: bold;">questions sur le groupe</span> : &nbsp;<a href="http://groups.google.be/group/expoactes?hl=fr">http://groups.google.be/group/expoactes?hl=fr</a></li>
+</ul>
+    <h2>
+      Installation :
+    </h2>
+    <h3>
+      Avant d'installer :
+    </h3>Le logiciel ne fonctionne que dans un environnement PHP + MySQL. &nbsp;<span style=
+    "font-weight: bold;">Vous devez donc disposer d'un h&eacute;bergement qui offre ces
+    fonctionnalit&eacute;s.</span> Certains h&eacute;bergements li&eacute;s &agrave; un abonnement
+    Internet fournissent cet environnement inclus dans le prix de votre connexion (par exemple
+    <a href="http://support.free.fr/web/">Free.fr</a>&nbsp;).<br>
+Il existe aussi de nombreux h&eacute;bergeurs payants qui, pour&nbsp;quelques
+euros par mois fournissent un h&eacute;bergement solide et exempt de toute publicit&eacute;.
+Par exemple&nbsp; : <a href="http://www.one.com/fr/">One.com</a>, &nbsp;<a href="http://www.nuxit.com/">Nuxit</a>, <a href=
+    "http://www.hosteur.com/">Hosteur</a>, <a href="http://www.phpnet.org">PhpNet</a>,
+<a href=
+    "http://www.yellis.net/">Yellis</a>, <a href="http://www.ovh.fr">OVH</a>,
+... proposent des h&eacute;bergements PHP + MySQL.<br>
+
+    <br>
+<strong>ATTENTION : Expoactes 3 n&eacute;cessite au moins les versions 5.0.1 de
+PHP et 4.0.1 de MySQL. </strong>
+<p>V&eacute;rifiez bien que votre h&eacute;bergeur propose ces versions ou des
+  versions sup&eacute;rieures (ce qui est assez courant car les versions les plus
+  r&eacute;centes sont actuellement des versions 5.x).<br>
+  <br>
+  Les explications donn&eacute;es ici font l'hypoth&egrave;se que votre ordinateur
+  fonctionne sous Windows. </p>
+<p>Si vous souhaitez pr&eacute;alablement tester ExpoActes sans disposer d'h&eacute;bergement,
+  il est possible de le faire fonctionner en mode local apr&egrave;s avoir install&eacute;
+  le logiciel gratuit <strong>EasyPHP </strong>ou<strong> WampServer</strong>, <a href="install_easyphp.html"><strong>lisez
+  alors les instructions sp&eacute;cifiques</strong></a>.<br>
+</p>
+<h3>
+      Pr&eacute;paration de l'installation :
+  </h3>
+<p>Le logiciel ExpoActes doit &ecirc;tre d&eacute;ploy&eacute; sur le serveur
+  de l'h&eacute;bergeur. Bien souvent, on ne dispose que de droits assez limit&eacute;s
+  pour travailler directement sur ce serveur. <strong>Il convient donc de pr&eacute;parer
+  l'installation sur votre ordinateur local puis ensuite de transf&eacute;rer
+  le site sur le serveur de l'h&eacute;bergeur. </strong></p>
+<p>Pour cela, nous allons proc&eacute;der comme suit :</p>
+<ol>
+  <li><a href="#maitre">Cr&eacute;er une "copie ma&icirc;tre" du site</a> sur
+    votre propre ordinateur; </li>
+  <li><a href="#transfert">Transf&eacute;rer avec FTP le site ma&icirc;tre sur
+    le serveur de l'h&eacute;bergeur</a>; </li>
+  <li><a href="#bd">Lancer l'installation de la base de donn&eacute;es sur le
+    serveur MySQL</a> de l'h&eacute;bergeur et y placer les premi&egrave;res donn&eacute;es.
+  </li>
+</ol>
+<p>Au terme de ces trois phases, l'application est pr&ecirc;te &agrave; recevoir
+  vos donn&eacute;es et bient&ocirc;t vos visiteurs.</p>
+<p>Il est aussi possible &agrave; ce moment de peaufiner les r&eacute;glages du
+  site en configurant d'autres param&egrave;tres facultatifs.</p>
+<p>Pour r&eacute;soudre les probl&egrave;mes qui pourraient se poser, consulter
+  la <strong><a href="../admin/aide/codeserreurs.html">liste des codes d'erreur
+  et des pistes de solution</a></strong>.<br>
+</p>
+<h3> <a name="maitre"></a>Cr&eacute;ation du "site ma&icirc;tre" </h3>
+<p>Le programme d'installation <span style="font-weight: bold;">expoactes_install_xxxx.exe</span>
+  cr&eacute;e automatiquement tous les fichiers n&eacute;cessaires. &nbsp;</p>
+<p>Vous devez d'abord pr&eacute;ciser le r&eacute;pertoire de votre ordinateur
+  dans lequel vous souhaitez installer la copie-ma&icirc;tre.<br>
+</p>
+<div class="cadre"> <strong>REMARQUE</strong> : Si vous avez d&eacute;j&agrave;
+  r&eacute;alis&eacute; l'installation mais que <span style=
+      "font-weight: bold;">vous souhaitez changer le r&eacute;pertoire de la copie-ma&icirc;tre</span>
+  du site, il est pr&eacute;f&eacute;rable de proc&eacute;der comme suit :
+  <ol>
+    <li>Faire une nouvelle installation en d&eacute;signant le r&eacute;pertoire
+      de votre choix; </li>
+    <li>Si votre copie ma&icirc;tre est d&eacute;j&agrave; configur&eacute;e,
+      copier tous les fichiers de l'ancien r&eacute;pertoire _config vers le nouveau;
+    </li>
+    <li>Supprimer l'ancien r&eacute;pertoire SANS utiliser le programme de d&eacute;sinstallation.
+      De cette fa&ccedil;on, &nbsp;l'ordinateur retrouvera automatiquement le
+      nouvel emplacement lors des mises &agrave; jour suivantes. </li>
+  </ol>
+  </div>
+<p><br>
+  Les diff&eacute;rents &eacute;l&eacute;ments du logiciel sont class&eacute;s
+  dans plusieurs sous-r&eacute;pertoires. <span style="font-weight: bold;"><br>
+  <br>
+  Parmi ceux-ci le r&eacute;pertoire _config est particulier car il contient les
+  &eacute;l&eacute;ments sp&eacute;cifiques &agrave; VOTRE site qui ne peuvent
+  &ecirc;tre stock&eacute;s dans la base de donn&eacute;es</span>. &nbsp;Les autres
+  r&eacute;pertoires contiennent essentiellement des programmes PHP. S'agissant
+  d'un logiciel "open source", vous avez la possibilit&eacute; de modifier ces
+  programmes &agrave; votre guise pour les adapter &agrave; vos besoins sp&eacute;cifiques.<br>
+  <br>
+  <span style="font-weight: bold;">Toutefois, si vous souhaitez b&eacute;n&eacute;ficier
+  des mises-&agrave;-jour du logiciel, il vaut mieux ne rien modifier dans ces
+  programmes car les mises-&agrave;-jour supprimeront irr&eacute;m&eacute;diablement
+  vos adaptations personnelles.</span> &nbsp;Elles ne remplaceront par contre
+  pas les fichiers situ&eacute;s dans le r&eacute;pertoire _config.</p>
+<p>Il faut alors choisir le type d'installation car le m&ecirc;me programme est
+  aussi capable de mettre &agrave; jour une version pr&eacute;c&eacute;dente du
+  logiciel. Il s'agit ici d'une &quot;<strong>Nouvelle installation</strong>&quot;.</p>
+<p>Vous devez ensuite pr&eacute;ciser les <span style=
+    "font-weight: bold;">codes d'acc&egrave;s &agrave; votre base MySQL</span>.&nbsp;Ces
+  valeurs doivent vous avoir &eacute;t&eacute; communiqu&eacute;es par votre h&eacute;bergeur.
+  Le cas &eacute;ch&eacute;ant vous devrez aussi pr&eacute;ciser l'identification
+  de votre base EasyPHP.</p>
+<p>Ces donn&eacute;es &eacute;tant pr&eacute;cis&eacute;es, le programme d'installation
+  cr&eacute;e les r&eacute;pertoires n&eacute;cessaires sur VOTRE ordinateur et
+  y copie les fichiers ad&eacute;quats.</p>
+<p>La &quot;copie ma&icirc;tre&quot; du site est &agrave; pr&eacute;sent pr&ecirc;te.
+  Elle pourra, par la suite, &ecirc;tre modifi&eacute;e par d'autres actions de
+  configuration mais dans un premier temps, il vaut mieux la laisser telle qu'elle
+  a &eacute;t&eacute; g&eacute;n&eacute;r&eacute;e. <br>
+</p>
+<h3> <a name="transfert"></a>Transfert du site ma&icirc;tre sur le serveur de
+  l'h&eacute;bergeur </h3>
+Pour ce transfert, vous devez utiliser un client FTP (si vous n'en avez pas, vous
+pouvez t&eacute;l&eacute;charger <a href="http://www.framasoft.net/article1011.html">FileZilla</a>
+qui est un logiciel libre). L'adresse du serveur FTP de l'h&eacute;bergement et
+les codes de login et mot de passe vous ont &eacute;t&eacute; transmis par l'h&eacute;bergeur.<br>
+
+    <br>
+Le module ExpoActes peut &ecirc;tre plac&eacute; n'importe o&ugrave; dans l'arborescence
+de votre site. Toutefois, nous vous conseillons de cr&eacute;er un r&eacute;pertoire
+"actes" d&egrave;s la racine du site et de transf&eacute;rer l'ensemble des r&eacute;pertoires
+et fichiers de votre "site ma&icirc;tre" dans ce r&eacute;pertoire "actes".<br>
+<h3> <a name="bd"></a>Cr&eacute;ation de la base de donn&eacute;es et initialisation
+  du site </h3>
+<p>Lorsque tout le site ma&icirc;tre a &eacute;t&eacute; transf&eacute;r&eacute;,
+  il faut parachever l'installation sur le serveur de l'h&eacute;bergeur en initialisant
+  la base de donn&eacute;es et en cr&eacute;ant le premier code d'acc&egrave;s.</p>
+<p>Si PHP fonctionne correctement, l'acc&egrave;s &agrave; la page principale
+  (<strong>http://</strong><span style=
+    "font-weight: bold;">&lt;URL DE VOTRE SITE&gt;/actes/index.php</span>) va
+  vous conduire automatiquement dans la proc&eacute;dure d'installation.<br>
+  Pour cela tapez dans le navigateur l'adresse de votre site suivie de <span style=
+    "font-weight: bold;">actes/index.php</span><br>
+  <br>
+  Le programme v&eacute;rifie d'abord que votre h&eacute;bergement est compatible
+  et qu'il fonctionne bien. Le cas &eacute;ch&eacute;ant des messages d'erreurs
+  sont affich&eacute;s et des propositions d'actions sont &eacute;num&eacute;r&eacute;es
+  dans une page d'aide sp&eacute;cifique.</p>
+<p>Si tout est &quot;OK&quot;, l'&eacute;cran demande de donner les informations
+  pour cr&eacute;er votre compte d'administrateur. &nbsp;Le nom est obligatoire
+  ainsi que le code de login et les deux copies du mot de passe. &nbsp;Ce dernier
+  doit comporter entre 6 et 15 caract&egrave;res et il est conseill&eacute; d'y
+  inclure au moins des lettres et des chiffres. &nbsp;<br>
+  <br>
+</p>
+<div class="cadre"> <cite>On ne saurait trop insister sur l'importance de ce mot
+  de passe car celui qui parviendrait &agrave; le deviner pourrait TOUT faire
+  sur la base de donn&eacute;es, y compris r&eacute;cup&eacute;rer toutes les
+  donn&eacute;es pour lui et/ou tout supprimer ! Il est donc sage de pr&eacute;voir
+  au moins 10 caract&egrave;res alternant lettres, chiffres et m&ecirc;me signes
+  particuliers (-=+?...).</cite> </div>
+<p>D&egrave;s que ces donn&eacute;es sont introduites, &nbsp;il suffit de presser
+  le bouton &quot;ENVOYER&quot; pour que la base se cr&eacute;e, que la liste
+  des pr&eacute;noms f&eacute;minins soit constitu&eacute;e (utile pour la lecture
+  des mariages au format CSV uniquement) et que votre compte d'administrateur
+  soit enregistr&eacute;.<br>
+  <br>
+  Cela fait, il ne reste plus qu'&agrave; charger des donn&eacute;es ... <br>
+  <br>
+  Pour plus de d&eacute;tails sur les fonctions du logiciel, consultez <a href=
+    "../admin/aide/aide.html"><strong>les fichiers d'aide</strong></a>.<br>
+  <br>
+  D&egrave;s que vous &ecirc;tes familier avec l'utilisation de ExpoActes, vous
+  pouvez aussi adapter certains comportements gr&acirc;ce &agrave; <a href="../admin/aide/config.html"><strong>
+  param&eacute;trage du logiciel</strong></a>.<br>
+</p>
+<div style="text-align: center;">
+      <div style="text-align: left;">
+        <dl style="font-weight: bold;">
+          <dd>
+
+            <br>
+          </dd>
+        </dl>
+      </div>-o-O-o-<br>
+  </div><br>
+  </body>
+</html>

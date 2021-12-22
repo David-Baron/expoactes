@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-be">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+  <title>Mise &agrave; jour de ExpoActes</title>
+  <meta content="Delacharlerie Andre" name="author" />
+
+
+  <style type="text/css">
+  p { font-family: Verdana;
+    }
+
+  body { font-family: Verdana;
+    font-size: 12px;
+    }
+
+  .cadre { border: 1px dashed rgb(255, 153, 102);
+    padding: 15px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<h1>Mise &agrave; jour de ExpoActes</h1>
+
+<div style="text-align: center;"> 
+  <div style="text-align: left;">
+    <p><br />
+      Vous venez de terminer la premi&egrave;re partie de la mise &agrave; jour 
+    en modifiant la "copie ma&icirc;tre" de ExpoActes qui est sur votre ordinateur.</p>
+    <p><br />
+      Il reste &agrave; appliquer les modifications INDISPENSABLES &agrave; votre 
+    base de donn&eacute;es h&eacute;berg&eacute;e :<br />
+    </p>
+    <ol>
+      <li>Vous devez d'abord <strong>copier l'ensemble des fichiers sur votre 
+        h&eacute;bergement &agrave; l'aide de votre logiciel FTP</strong>. (Cette 
+        op&eacute;ration est inutile si vous testez le logiciel en local avec 
+        EasyPHP ou WampServer)<br />
+        <br />
+      </li>
+      <li>Avec votre navigateur internet, &nbsp;<strong>visitez la page d'accueil 
+        du site</strong> qui vous renverra automatiquement vers la proc&eacute;dure 
+        de post-installation. <strong>Ce programme vous demandera un login et 
+        mot de passe de niveau "administrateur"</strong> (sauf si vous &ecirc;tres 
+        d&eacute;j&agrave; connect&eacute; ainsi). Il d&eacute;tectera ensuite 
+        les changements n&eacute;cessaires sur votre base de donn&eacute;es MySQL 
+        et les effectuera automatiquement lorsque cela est n&eacute;cessaire.<br /><br />
+      </li>
+      <li><b>A partir de la version 3.2</b>, le codage utilis&eacute; par ExpoActes est d&eacute;sormais UTF-8 
+      qui est le standard le plus courant aujourd'hui. Toutefois, il ne nous est pas possible de 
+      modifier quelques fichiers que vous avez peut-&ecirc;tre adapt&eacute; vous-même à vos besoins. 
+      C'est notamment le cas des fichiers pr&eacute;sents dans le r&eacute;pertoire _config et en particulier :
+      <ul>
+      <li>bandeau.htm</li>
+      <li>commentaire.htm</li>
+      </ul>
+      Aussi, si le bandeau sup&eacute;rieur du site comporte des lettres accentu&eacute;es mal affich&eacute;es 
+      (remplac&eacute;es par des symboles bizarres), vous devez modifier manuellement ces fichiers et remplacer les 
+      caract&egrave;res mal affich&eacute;s par des entit&eacute;s HTML. Par exemple, le lettre "&eacute;" sera remplac&eacute;e par "<code>&#38;eacute;</code>"<br /> 
+      Une liste des entit&eacute;s HTML est disponible <a href="entites-caracteres-speciaux-html.pdf">ici</a>. 
+      </li>
+    </ol>
+  </div>
+</div>
+<div style="text-align: center;">
+  <div style="text-align: left;">Bon travail avec ExpoActes.<br />
+    <br />
+    Andr&eacute; Delacharlerie</div>
+</div>
+<div style="text-align: center;">-o-O-o-<br />
+  <br />
+</div>
+<br />
+</body>
+</html>
