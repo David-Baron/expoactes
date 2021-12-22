@@ -1,10 +1,8 @@
 # ExpoActes
 
->
-> Dépot clone de l'application expoactes avec rectification de bugs et de problemes de sécurité.
->
-> La dernière version publiée est l'originale expoactes-v3.2.3-rc5
->
+Dépot clone de l'application expoactes avec rectification de bugs et de problemes de sécurité.
+
+La dernière version publiée est l'originale expoactes-v3.2.3-rc5
 
 ## Info
 
@@ -16,12 +14,19 @@
 
 ## Comment remplacer
 
-- Trouvez votre version installée.
-- Téléchargez la branche correspondante.
-- Décompressez et remplacez les fichiers sur votre serveur.
+1. Trouvez votre version installée.
+2. Téléchargez la branche correspondante.
+3. Décompressez et remplacez les fichiers sur votre serveur.
 
 ## Issue
 
->
-> Veuillez signaler tous les problèmes que vous pouvez trouver.
->
+Veuillez signaler tous les problèmes que vous pouvez trouver.
+
+## Contribution
+
+Toute contribution est le bien venu.
+
+Creer votre première issue.
+Modifier le code et creer une pull-request.
+
+Posez vos questions dans Discussions.
