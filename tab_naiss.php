@@ -1,13 +1,9 @@
 <?php
 
-define ("ADM",0); // Mode public;
+define("ADM", 0); // Mode public;
 $admtxt = '';
 
 include("_config/connect.inc.php");
 
 // --- module principal
 include("tools/tabnaiss.inc.php");
-
-
-?>
-
