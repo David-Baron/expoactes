@@ -12,7 +12,9 @@ Dernières versions :
 ## Liens utiles
 
 [Présentation](https://expocartes.monrezo.be/index.php)
+
 [Wiki ExpoActes](https://sites.google.com/site/expoactes)
+
 [Inventaire des sites utilisateurs](https://expoactes.monrezo.be/agregactes.php)
 
 ## Installation
