@@ -8,7 +8,7 @@
 /**
  * Recupère les arguments passés en mode chemin ou args suivant config
  */
-function pathroot(string &$root, string &$path, string &$arg1, string &$arg2, string &$arg3)
+function pathroot(&$root, &$path, &$arg1, &$arg2, &$arg3)
 {
 	$defarg1 = $arg1;
 	$defarg2 = $arg2;
@@ -139,7 +139,7 @@ function mkSiteUrl()
 /**
  * @return string
  */
-function nogetargs(string $chaine)
+function nogetargs($chaine)
 {
 	$x = strpos($chaine, "?");
 	if ($x > 0) {
@@ -238,7 +238,7 @@ function icone($action)
 /**
  * 
  */
-function execute_script_sql($filename, string $prefixe = "", $selecttxt = "")
+function execute_script_sql($filename, $prefixe = "", $selecttxt = "")
 {
 	if ($prefixe == "")
 		$prefixe = EA_DB;
@@ -332,7 +332,7 @@ function check_version($currentversion, $requiredversion)
  * Parser 
  * @return string
  */
-function edit_text(string $name, $size, $value, $caption)
+function edit_text($name, $size, $value, $caption)
 {
 	echo ' <tr class="row1">' . "\n";
 	echo "  <td align=right>" . $caption . " : </td>\n";

@@ -69,7 +69,7 @@ function load_params()
 /**
  * 
  */
-function open_page(string $titre, string $root = "", string $js = null, string $addbody = null, string $addhead = null, $index = null, string $rss = null)
+function open_page($titre, $root = "", $js = null, $addbody = null, $addhead = null, $index = null, $rss = null)
 {
 	$carcode = 'UTF-8';
 	//$carcode = 'ISO-8859-1';
@@ -161,7 +161,7 @@ function open_page(string $titre, string $root = "", string $js = null, string $
 /**
  * 
  */
-function close_page(int $complet = 0, string $root = null)
+function close_page($complet = 0, $root = null)
 {
 	echo '<div id="pied_page2" class="pied_page2">';
 	echo '<div id="totop2" class="totop2"><p class="totop2"><strong><a href="#top">Top</a></strong> &nbsp; </p></div>';
@@ -306,7 +306,7 @@ function default_rech_code()
  * Parser de préselection du mode de recherche par défaut selon le parametre RECH_DEF_TYP
  * @return string
  */
-function prechecked(string $typrech)
+function prechecked($typrech)
 {
 	$deftyp = default_rech_code();
 	if ($typrech == $deftyp)
@@ -318,7 +318,7 @@ function prechecked(string $typrech)
 /**
  * 
  */
-function statistiques(string $vue = "T")
+function statistiques($vue = "T")
 {
 	global $root, $xtyp, $show_alltypes;
 	echo '<div class="menu_zone">' . "\n";
@@ -409,7 +409,7 @@ function statistiques(string $vue = "T")
 /**
  * Parser du menu admin
  */
-function menu_admin(string $root, int $userlevel)
+function menu_admin($root, $userlevel)
 {
 	global $userlogin;
 	$login = '&nbsp; &nbsp;&lt;' . $userlogin . '&gt;';
@@ -502,7 +502,7 @@ function menu_software($current)
 /**
  * Parser d'un item d'un menu
  */
-function showmenu(string $texte, string $proc, int $id, int $current, bool $barre = true)
+function showmenu($texte, $proc, $id, $current, $barre = true)
 {
 	if ($barre)
 		echo ' | ';
@@ -591,7 +591,7 @@ function show_pub_menu()
  * Parser : affiche les menus standardisés
  * @return string
  */
-function zone_menu(int $admin, int $userlevel)
+function zone_menu($admin, $userlevel)
 {
 	global $root;
 	echo '<div id="col_menu">' . "\n";
@@ -608,7 +608,7 @@ function zone_menu(int $admin, int $userlevel)
  * Parser : affiche la navigation pour ???
  * @return string
  */
-function navigation(string $root = "", int $level = 1, string $type = "", $commune = null, $patronyme = null, $prenom = null)
+function navigation($root = "", $level = 1, $type = "", $commune = null, $patronyme = null, $prenom = null)
 {
 	$signe = "";
 	$s2 = "";
@@ -697,7 +697,7 @@ function navadmin($root = "", $current = '')
  * Parser : Utilisée pour remplir dynamiquement une listbox selon le type d'actes
  * @return array $options
  */
-function getCommunes(array $params)
+function getCommunes($params)
 {
 	$typact = $params[0];
 	$mode =   $params[1];
@@ -725,7 +725,7 @@ function getCommunes(array $params)
  * Parser : Tableau avec choix du type + choix d'une commune existante
  * @return string
  */
-function form_typeactes_communes(string $mode = '', int $alldiv = 1)
+function form_typeactes_communes($mode = '', $alldiv = 1)
 {
 	echo " <tr>\n";
 	echo '  <td align="right">Type des actes : &nbsp;</td>' . "\n";
@@ -804,7 +804,7 @@ function departementde($comdep)
 /**
  * 
  */
-function load_zlabels(string $table, $lg, string $ordre = "CSV")
+function load_zlabels($table, $lg, $ordre = "CSV")
 {
 	switch ($ordre) {
 		case "CSV":
@@ -906,7 +906,7 @@ function listbox_divers($fieldname, $default, $tous = 0)
 /**
  * 
  */
-function listbox_users(string $fieldname, $default, $levelmin, int $zero = 0, string $txtzero = '')
+function listbox_users($fieldname, $default, $levelmin, $zero = 0, $txtzero = '')
 {
 	global $u_db;
 	$request = "SELECT ID, NOM, PRENOM FROM " . EA_UDB . "_user3 WHERE LEVEL >= " . $levelmin . " ORDER BY NOM,PRENOM";
@@ -929,7 +929,7 @@ function listbox_users(string $fieldname, $default, $levelmin, int $zero = 0, st
  * format : somme de 1= label gras, 2 label italique, 4 info gras, 8 info italique
  * @return string
  */
-function show_simple_item(int $retrait, int $format, string $info, string $label, string $info2 = "", string $url = "")
+function show_simple_item($retrait, $format, $info, $label, $info2 = "", $url = "")
 {
 	$sp = "";
 	$url1 = "";
@@ -1074,7 +1074,7 @@ function show_item3($row, $retrait, $format, $zidinfo, $url = "", $zidinfo2 = ""
  * - format = 4 : info gras
  * - format = 8 : info italique
  */
-function show_deposant3(array $row, int $retrait, int $format, string $zidinfo, $xid, $tact)
+function show_deposant3($row, $retrait, $format, $zidinfo, $xid, $tact)
 {
 	global $u_db;
 	$lg = 'fr';
@@ -1122,7 +1122,7 @@ function show_deposant3(array $row, int $retrait, int $format, string $zidinfo, 
  * - ? : Non précisé
  * @return string
  */
-function sexe(string $code)
+function sexe($code)
 {
 	switch ($code) {
 		case "M":
@@ -1142,7 +1142,7 @@ function sexe(string $code)
  * liste_patro_1 Liste des patronymes pour les actes à UN intervenant (naissance et décès)
  * ("tabnaiss.php",$root,$xcomm,$xpatr,"Naissances / baptêmes",EA_DB."_nai");
  */
-function liste_patro_1($script, string $root, $xcomm, $xpatr, string $titre, string $table, $stype = "", $gid = "", string $note = "")
+function liste_patro_1($script, $root, $xcomm, $xpatr, $titre, $table, $stype = "", $gid = "", $note = "")
 {
 	$lgi = 1;
 	$initiale = "";
@@ -1247,7 +1247,7 @@ function liste_patro_1($script, string $root, $xcomm, $xpatr, string $titre, str
 /**
  * Liste des patronymes pour les actes à DEUX intervenants (mariages et divers)
  */
-function liste_patro_2(string $script, string $root, $xcomm, $xpatr, string $titre, string $table, string $stype = "", string $gid = "", string $note = "")
+function liste_patro_2($script, $root, $xcomm, $xpatr, $titre, $table, $stype = "", $gid = "", $note = "")
 {
 	$lgi = 1;
 	$initiale  = "";
@@ -1480,7 +1480,7 @@ function liste_patro_2(string $script, string $root, $xcomm, $xpatr, string $tit
 /**
  * 
  */
-function fourchette_dates(int $d1min = 0, int $d1max = 0, int $d2min = 0, int $d2max = 0)
+function fourchette_dates($d1min = 0, $d1max = 0, $d2min = 0, $d2max = 0)
 {
 	$min = 0;
 	$max = 0;
@@ -1505,7 +1505,7 @@ function fourchette_dates(int $d1min = 0, int $d1max = 0, int $d2min = 0, int $d
  * @param array $listpages : liste des n° de page avec lien (en résultat)
  * @param int $limit : clause LIMIT pour MySQL (résultat)
  */
-function pagination($nbtot, &$page, string $href, &$listpages, &$limit)
+function pagination($nbtot, &$page, $href, &$listpages, &$limit)
 {
 	$debut = 3;
 	$autour = 4;
@@ -1547,7 +1547,7 @@ function pagination($nbtot, &$page, string $href, &$listpages, &$limit)
  * Parser
  * @return string
  */
-function actions_deposant(int $userid, int $depid, int $actid, string $typact)
+function actions_deposant($userid, $depid, $actid, $typact)
 {
 	global $path, $userlevel, $u_db;
 	$req = "SELECT NOM,PRENOM FROM " . EA_UDB . "_user3 WHERE ID=$depid";
@@ -1620,7 +1620,7 @@ function typact_txt($typact)
  * Vérification du solde des points et décompte de la consommation ($cout)
  * modifié le 5-3-2007 pour gérer la consultation répétée du meme acte
  */
-function solde_ok(int $cout = 0, int $dep_id = null, string $typact = "", $xid = null)
+function solde_ok($cout = 0, $dep_id = null, $typact = "", $xid = null)
 {
 	global $userlogin, $avertissement, $u_db;
 
@@ -1781,7 +1781,7 @@ function show_solde()
  * affichage date simplifié à l'annee si droits limités
  * @return string
  */
-function annee_seulement(string $date_txt)
+function annee_seulement($date_txt)
 {
 	global $userid, $userlevel;
 
@@ -1797,7 +1797,7 @@ function annee_seulement(string $date_txt)
 /**
  * 
  */
-function lb_droits_user($lelevel, int $all = 0)
+function lb_droits_user($lelevel, $all = 0)
 {
 	echo '<select name="lelevel" size="1">';
 	echo '<option ' . selected_option(0, $lelevel) . '>0 : ** Aucun accès **</option>' . "\n";
@@ -1820,7 +1820,7 @@ function lb_droits_user($lelevel, int $all = 0)
 /**
  * 
  */
-function lb_statut_user($statut, int $vide = 0)
+function lb_statut_user($statut, $vide = 0)
 {
 	echo '<select name="statut" size="1">';
 	if (($vide % 2) == 1)
@@ -1941,7 +1941,7 @@ function stats_1_comm($xtyp, $lacom)
  * - mode : C = Commune unique
  * - mode : N  = Next commune (qd All pas terminé)
  */
-function maj_stats(string $xtyp, $T0, string $path, string $mode, $com = "", $dep = "")
+function maj_stats($xtyp, $T0, $path, $mode, $com = "", $dep = "")
 {
 	if ($mode == "C")
 		$tpsreserve = min(3, ini_get("max_execution_time") / 2);
@@ -2019,7 +2019,7 @@ function maj_stats(string $xtyp, $T0, string $path, string $mode, $com = "", $de
  * Interroge google pour pour connaitre les coordonnées d'une commune
  * @return string coordonées
  */
-function geocode_google(string $com, string $dep)
+function geocode_google($com, $dep)
 {
 	include_once("GoogleMap/GoogleMapV3.php");
 	include_once("GoogleMap/Jsmin.php");
