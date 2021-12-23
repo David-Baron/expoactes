@@ -68,7 +68,6 @@ echo '  <input type="radio" name="comp"' . prechecked("C") . '/>Est dans&nbsp;';
 echo '  <input type="radio" name="comp"' . prechecked("S") . '/>Sonore&nbsp;</p>';
 echo '</div>';
 
-
 echo '<div class="rech_zone">';
 echo '<div class="rech_titre">Seconde personne (éventuelle) :</div>';
 echo '<p>&nbsp;&nbsp;Patronyme : <input type="text" name="achercher2" />&nbsp; ';

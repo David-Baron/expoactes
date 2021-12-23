@@ -113,8 +113,5 @@ echo '<p align="center"><input type="submit" name="Submit" value="Chercher" /></
 echo '</form>';
 echo '</div>';
 
-
-echo '<p>&nbsp;</p>';
-
 echo '</div>';
 close_page(1, $root);

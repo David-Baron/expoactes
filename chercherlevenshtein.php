@@ -39,6 +39,7 @@ function makecritjlc($xmin, $xmax, $xcomm, $xdepa, $pre, $c_pre, $xpre, $xc_pre)
 
 	return $crit;
 }
+
 /*
 function makecritjlcOLD($xmin,$xmax,$xcomm,$xdepa,$pre,$c_pre,$xpre,$xc_pre) //
 {
@@ -68,8 +69,10 @@ $crit ="";
 return $crit;
 }
 */
-//---------------------------------------------------------
 
+/**
+ * 
+ */
 function cree_table_temp_sup($nom, $original)
 {
 
@@ -80,8 +83,6 @@ function cree_table_temp_sup($nom, $original)
 
 	return "ok";
 }
-
-//--------------------------------------------------------
 
 // récupération d l'adresse IP et substition de "_" aux "." pour créer les tables temporaires
 // Modifié pour tenir compte des adresses IPV6

@@ -26,6 +26,7 @@ open_page("ExpoActes : Login", $root, $script, null, null, '../index.htm');
 navigation($root, 2, 'A', "Connexion");
 ?>
 <script type="text/javascript">
+	// @Deprecated Use curent php hash instead
 	function protect() {
 		if (sha1_vm_test()) // si le codage marche alors on l'utilise 
 		{
