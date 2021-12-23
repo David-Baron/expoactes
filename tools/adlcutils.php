@@ -5,11 +5,11 @@
 // Licence Publique Générale GPL GNU publiée par la Free Software Foundation
 // Texte de la licence : http://www.gnu.org/copyleft/gpl.html
 
-//-------------------------------------------------------------------
-
-function pathroot(&$root, &$path, &$arg1, &$arg2, &$arg3)
+/**
+ * Recupère les arguments passés en mode chemin ou args suivant config
+ */
+function pathroot(string &$root, string &$path, string &$arg1, string &$arg2, string &$arg3)
 {
-	// Recupère les arguments passés en mode chemin ou args suivant config
 	$defarg1 = $arg1;
 	$defarg2 = $arg2;
 	global $scriptname; // pour pouvoir le récupérer
@@ -71,27 +71,32 @@ function pathroot(&$root, &$path, &$arg1, &$arg2, &$arg3)
   */
 }
 
-//-------------------------------------------------------------------
-
+/** 
+ * permet de passer des nom avec slash dans l'url (Alle s/Semois)
+ * TODO : Useless function and can't know who's the encoding
+ * @return string
+ */
 function encodemyslash($text)
 {
-	// permet de passer des nom avec slash dans l'url (Alle s/Semois)
 	$newslash = chr(190);  // 3/4
 	return str_replace('/', $newslash, $text);
 }
 
-//-------------------------------------------------------------------
-
+/**
+ * TODO : Useless function and can't know who's the encoding
+ * @return string
+ */
 function decodemyslash($text)
 {
 	$newslash = chr(190);  // 3/4
 	return str_replace($newslash, '/', $text);
 }
 
-//-------------------------------------------------------------------
-
+/**
+ * Compose une URL avec les arguments passés en mode chemin ou non suivant config.
+ * @return string Retourne l'url
+ */
 function mkurl($script, $arg1, $arg2 = "", $args = "")
-// Compose une URL avec les arguments passés en mode chemin ou non suivant config.
 {
 	$url = $script; // par défaut
 	if (FULL_URL == 1) {
@@ -106,10 +111,13 @@ function mkurl($script, $arg1, $arg2 = "", $args = "")
 	return $url;
 }
 
-//-------------------------------------------------------------------
-
-function mkSiteUrl() // Compose le nom du serveur http:// ou https:// etc....  On récupère l'URL (sans le / de fin)
-{
+/**
+ * TODO : Useless function.
+ * @return string Retourne l'url de la base du site.
+ */
+function mkSiteUrl()
+{ 	
+	//le nom du serveur http:// ou https:// etc....  On récupère l'URL (sans le / de fin)
 	// Utilisé dans :
 	// activer_compte.php, cree_compte.php, localite.php, renvoilogin.php, signal_erreur.php, rss.php
 	// admin/approuver_compte.php, admin/envoimail.php, admin/gestgeoloc.php, admin/gestuser.php, admin/loaduser.php
@@ -128,9 +136,10 @@ function mkSiteUrl() // Compose le nom du serveur http:// ou https:// etc....  O
 	return $url_du_site;
 }
 
-//-------------------------------------------------------------------
-
-function nogetargs($chaine)
+/**
+ * @return string
+ */
+function nogetargs(string $chaine)
 {
 	$x = strpos($chaine, "?");
 	if ($x > 0) {
@@ -141,8 +150,10 @@ function nogetargs($chaine)
 	return $result;
 }
 
-//-------------------------------------------------------------------
-
+/**
+ * Parser
+ * @return string
+ */
 function selected_option($valeur, $defaut)  // pour listbox
 {
 	$valeur = strval($valeur);
@@ -154,9 +165,10 @@ function selected_option($valeur, $defaut)  // pour listbox
 	}
 }
 
-//-------------------------------------------------------------------
-
-function checked($valeur, $defaut = 1)  // retourne le mot checked si $valeur=1 pour CkeckBox ou radiobutton
+/**
+ * @return string Retourne le mot checked si $valeur=1 pour CkeckBox ou radiobutton
+ */
+function checked($valeur, $defaut = 1)
 {
 	if ($valeur == $defaut)
 		return ' checked="checked"';
@@ -164,20 +176,22 @@ function checked($valeur, $defaut = 1)  // retourne le mot checked si $valeur=1 
 		return '';
 }
 
-//-------------------------------------------------------------------
-
-function ischecked($name)  // retourne 1 ou 0 suivant que le parmetres est checké ou pas
+/**
+ * @return bool Retourne 1 ou 0 suivant que le parmetres est checké ou pas
+ */
+function ischecked($name)
 {
 	if (!isset($_REQUEST[$name]))
 		return 0;
 	else
 		return $_REQUEST[$name];
 }
-//-------------------------------------------------------------------
 
+/**
+ * @return string Retourne la chaine la plus en avant par ordre alphabétique
+ */
 function strmin($str1, $str2)
 {
-	// Retourne la chaine la plus en avant par ordre alphabétique
 	if ($str1 > $str2) {
 		return $str2;
 	} else {
@@ -185,11 +199,11 @@ function strmin($str1, $str2)
 	}
 }
 
-//-------------------------------------------------------------------
-
+/**
+ * @return string Retourne la chaine la plus en arriere par ordre alphabétique
+ */
 function strmax($str1, $str2)
 {
-	// Retourne la chaine la plus en arriere par ordre alphabétique
 	if ($str1 < $str2) {
 		return $str2;
 	} else {
@@ -197,8 +211,10 @@ function strmax($str1, $str2)
 	}
 }
 
-//-------------------------------------------------------------------
-
+/**
+ * Parser 
+ * @return string Le tag image avec  l'icone pour affichage
+ */
 function icone($action)
 {
 	global $root;
@@ -219,10 +235,10 @@ function icone($action)
 	return '<img width="11" hspace="7" height="13" border="0" title="' . $alt . '" alt="' . $alt . '" src="' . $root . '/img/' . $ima . '" />';
 }
 
-//-------------------------------------------------------------------
-
-function execute_script_sql($filename, $prefixe = "", $selecttxt = "")
-
+/**
+ * 
+ */
+function execute_script_sql($filename, string $prefixe = "", $selecttxt = "")
 {
 	if ($prefixe == "")
 		$prefixe = EA_DB;
@@ -261,8 +277,9 @@ function execute_script_sql($filename, $prefixe = "", $selecttxt = "")
 	return $ok;
 }
 
-//-----------------------------------------------------------------
-
+/**
+ * @return string La version de expoactes
+ */
 function check_new_version($key, $urlsite)
 {
 	if (!isset($_COOKIE[$key])) {
@@ -278,16 +295,16 @@ function check_new_version($key, $urlsite)
 			}
 		} else
 			$lavaleur = EA_VERSION; // si impossible d'accéder au ficher version
-		setcookie($key, $lavaleur);  // session uniquement
+		setcookie($key, $lavaleur);  // session uniquement TODO : wtf this is doing here???
 		return $lavaleur;
 	} else
 		return EA_VERSION;
 }
 
-//-----------------------------------------------------------------
-
+/**
+ * @return bool Retourne VRAI si currentversion est superieur ou égal à requiredversion
+ */
 function check_version($currentversion, $requiredversion)
-// retourne VRAI si currentversion est superieur ou égal à requiredversion
 {
 	list($majorC, $minorC, $editC) = explode(".", $currentversion);
 	list($majorR, $minorR, $editR) = explode(".", $requiredversion);
@@ -311,9 +328,11 @@ function check_version($currentversion, $requiredversion)
 	return FALSE;
 }
 
-//-------------------------------------------------------------------
-
-function edit_text($name, $size, $value, $caption)
+/**
+ * Parser 
+ * @return string
+ */
+function edit_text(string $name, $size, $value, $caption)
 {
 	echo ' <tr class="row1">' . "\n";
 	echo "  <td align=right>" . $caption . " : </td>\n";
@@ -326,5 +345,3 @@ function edit_text($name, $size, $value, $caption)
 	echo '  </td>';
 	echo " </tr>\n";
 }
-
-//-------------------------------------------------------------------
