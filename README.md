@@ -13,8 +13,6 @@ La dernière version publiée est l'originale expoactes-v3.2.3-rc5
 >
 > Ajout des commentaires aux fonctions reconnues par les IDE pour les developpeurs.
 >
-> Un nouveau projet est en cours de développement en parallèle qui apporte beaucoup plus de fonctionnalité et de sécurité.
->
 
 ## Comment remplacer
 
