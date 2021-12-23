@@ -9,6 +9,7 @@ $Pour_Install = array('.htaccess_init' => '.htaccess', '_config_init' => '_confi
 foreach ($Pour_Install as $k => $v) {
 	if ((file_exists('../' . $k)) and !file_exists('../' . $v))  rename('../' . $k, '../' . $v);
 }
+
 $root = '..'; // Pour avoir un lien correct vers consultez code erreurs
 
 include("../_config/connect.inc.php");
@@ -28,7 +29,8 @@ if (!defined("EA_VERSION")) define("EA_VERSION", EA_VERSION_PRG);
 if (!defined("EA_MAINTENANCE")) define("EA_MAINTENANCE", 0);
 if (!defined("EXTERN_MAIL")) define("EXTERN_MAIL", 0);
 
-$root = "";
+// TODO : useless and brake itself defined in line 13
+// $root = "";
 $path = "";
 $xcomm = $xpatr = $page = "";
 pathroot($root, $path, $xcomm, $xpatr, $page);
