@@ -9,7 +9,7 @@ La dernière version publiée est l'originale expoactes-v3.2.3-rc5
 >
 > Ce dépôt n'a pas pour but de refaire le code.
 >
-> Corrections apportées au versions d'origines disponibles sur le dépôt d'ExpoActes.
+> Corrections apportées aux versions d'origines disponibles sur le dépôt d'ExpoActes.
 >
 > Ajout des commentaires aux fonctions reconnues par les IDE pour les developpeurs.
 >
