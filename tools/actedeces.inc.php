@@ -25,7 +25,7 @@ while ($userlevel < $lvl) {
 	login($root);
 }
 
-$request = "select * from " . EA_DB . "_dec3 where ID = " . $xid;
+$request = "SELECT * FROM " . EA_DB . "_dec3 WHERE ID = " . $xid;
 optimize($request);
 
 if ($result = EA_sql_query($request) and EA_sql_num_rows($result) != 0) {
