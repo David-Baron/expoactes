@@ -49,8 +49,9 @@ error_reporting($ea_error);  // definition du niveau d'erreur
 define('TOUJOURS', '2033-12-31');  // limite des comptes illimités
 $lg = 'fr';
 
-//---------------------------------------------------------
-
+/**
+ * 
+ */
 function load_params()
 {
 	$db  = con_db();
@@ -65,8 +66,9 @@ function load_params()
 	}
 }
 
-//---------------------------------------------------------
-
+/**
+ * 
+ */
 function open_page($titre, $root = "", $js = null, $addbody = null, $addhead = null, $index = null, $rss = null)
 {
 	$carcode = 'UTF-8';
@@ -156,8 +158,9 @@ function open_page($titre, $root = "", $js = null, $addbody = null, $addhead = n
 	echo "</div>\n";
 }
 
-//---------------------------------------------------------
-
+/**
+ * 
+ */
 function close_page($complet = 0, $root = null)
 {
 	echo '<div id="pied_page2" class="pied_page2">';
@@ -188,9 +191,10 @@ function close_page($complet = 0, $root = null)
 	echo "</html>\n";
 }
 
-//---------------------------------------------------------
-
-function explode_date($datetxt)  // transforme en date en un tableau en coupant sur / . - ou blanc
+/**
+ * transforme en date en un tableau en coupant sur / . - ou blanc
+ */
+function explode_date($datetxt)
 {
 	//echo "<p>".$datetxt;
 	if (strpos($datetxt, '/') > 0)  // couper sur / ou sur - ou sur un blanc
@@ -206,9 +210,10 @@ function explode_date($datetxt)  // transforme en date en un tableau en coupant 
 	return $elements;
 }
 
-//---------------------------------------------------------
-
-function ajuste_date($datetxt, &$datesql, &$badannee)  // remise en forme des dates incomplètes
+/**
+ * remise en forme des dates incomplètes
+ */
+function ajuste_date($datetxt, &$datesql, &$badannee)
 {
 	//echo '<br>'.$datetxt;
 	global $dateincomplete;
@@ -249,9 +254,9 @@ function ajuste_date($datetxt, &$datesql, &$badannee)  // remise en forme des da
 	return $datetxt;
 }
 
-
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function form_recherche()
 {
 	global $root, $userid;
@@ -285,10 +290,8 @@ function form_recherche()
 	}
 }
 
-
-//------------------------------------------------------------------------------
-
-/*** default_rech_code
+/**
+ * default_rech_code
  * retourne mode de recherche par défaut selon le parametre RECH_DEF_TYP sous forme de lettre
  */
 function default_rech_code()
@@ -297,9 +300,8 @@ function default_rech_code()
 	return $typs[RECH_DEF_TYP];
 }
 
-//------------------------------------------------------------------------------
-
-/*** prechecked
+/**
+ * prechecked
  * Préselectionne le mode de recherche par défaut selon le parametre RECH_DEF_TYP
  */
 function prechecked($typrech)
@@ -311,8 +313,9 @@ function prechecked($typrech)
 		return ' value="' . $typrech . '" ';
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function statistiques($vue = "T")
 {
 	global $root, $xtyp, $show_alltypes;
@@ -401,8 +404,9 @@ function statistiques($vue = "T")
 	return $menu_actes;
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function menu_admin($root, $userlevel)
 {
 	global $userlogin;
@@ -440,8 +444,9 @@ function menu_admin($root, $userlevel)
 	echo '</div>' . "\n";
 }
 
-//----------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function menu_users($current)
 {
 	global $udbname;
@@ -457,8 +462,9 @@ function menu_users($current)
 	echo '</p>';
 }
 
-//----------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function menu_datas($current)
 {
 	global $userlevel;
@@ -475,8 +481,9 @@ function menu_datas($current)
 	echo '</p>';
 }
 
-//----------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function menu_software($current)
 {
 	global $userlevel;
@@ -490,8 +497,9 @@ function menu_software($current)
 	echo '</p>';
 }
 
-//----------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function showmenu($texte, $proc, $id, $current, $barre = true)
 {
 	if ($barre)
@@ -502,8 +510,9 @@ function showmenu($texte, $proc, $id, $current, $barre = true)
 		echo '<a href="' . $proc . '">' . $texte . '</a>';
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function menu_public()
 {
 	global $userlogin, $root, $userlevel;
@@ -546,8 +555,9 @@ function menu_public()
 	echo '</div>' . "\n";
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function show_certifications()
 {
 	global $root;
@@ -560,8 +570,9 @@ function show_certifications()
 	echo '</a></div>' . "\n";
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function show_pub_menu()
 {
 	if (!defined('PUB_ZONE_MENU')) define('PUB_ZONE_MENU', "Zone info libre");
@@ -571,11 +582,11 @@ function show_pub_menu()
 	echo '</div>' . "\n";
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * affiche les menus standardises
+ */
 function zone_menu($admin, $userlevel)
 {
-	//affice les menus standardises
 	global $root;
 	echo '<div id="col_menu">' . "\n";
 	form_recherche($root);
@@ -587,8 +598,9 @@ function zone_menu($admin, $userlevel)
 	echo '</div>' . "\n";
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function navigation($root = "", $level = 1, $type = "", $commune = null, $patronyme = null, $prenom = null)
 {
 	$signe = "";
@@ -656,8 +668,9 @@ function navigation($root = "", $level = 1, $type = "", $commune = null, $patron
 	echo '</div>' . "\n";
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function navadmin($root = "", $current = '')
 {
 	echo '<div class="navigation">';
@@ -672,11 +685,13 @@ function navadmin($root = "", $current = '')
 	echo '</div>' . "\n";
 }
 
-//------------------------------------------------------------------------------
-
-function getCommunes($params)   // Utilisée pour remplir dynamiquement une listbox selon le type d'actes
+/**
+ * Utilisée pour remplir dynamiquement une listbox selon le type d'actes
+ * @param array $params
+ * @return array $options
+ */
+function getCommunes($params)
 {
-	// nécessité de passer les parmètres dans une seule variable
 	$typact = $params[0];
 	$mode =   $params[1];
 	$rs = EA_sql_query("select distinct COMMUNE,DEPART from " . EA_DB . "_sums where TYPACT = '$typact' order by COMMUNE, DEPART");
@@ -699,8 +714,9 @@ function getCommunes($params)   // Utilisée pour remplir dynamiquement une list
 	return $options;
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function form_typeactes_communes($mode = '', $alldiv = 1)
 {
 	// Tableau avec choix du type + choix d'une commune existante 
@@ -1517,7 +1533,7 @@ function pagination($nbtot, &$page, $href, &$listpages, &$limit)
 function actions_deposant($userid, $depid, $actid, $typact)  // version graphique
 {
 	global $path, $userlevel, $u_db;
-	$req = "select NOM,PRENOM from " . EA_UDB . "_user3 where (ID=" . $depid . ")";
+	$req = "SELECT NOM,PRENOM FROM " . EA_UDB . "_user3 WHERE (ID=" . $depid . ")";
 	$curs = EA_sql_query($req, $u_db);
 	if (EA_sql_num_rows($curs) == 1) {
 		$res = EA_sql_fetch_assoc($curs);
@@ -1580,11 +1596,10 @@ function typact_txt($typact)
 	return $typ;
 }
 
-//--------------------------------------------------------------------------
-
-// Vérification du solde des points et décompte de la consommation ($cout)
-//  modifié le 5-3-2007 pour gérer la consultation répétée du meme acte
-
+/**
+ * Vérification du solde des points et décompte de la consommation ($cout)
+ * modifié le 5-3-2007 pour gérer la consultation répétée du meme acte
+ */
 function solde_ok($cout = 0, $dep_id = "", $typact = "", $xid = "")
 {
 	global $userlogin, $avertissement, $u_db;

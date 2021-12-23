@@ -24,7 +24,7 @@ while ($userlevel < $lvl) {
 	login($root);
 }
 
-$request = "select * from " . EA_DB . "_nai3 where ID = " . $xid;
+$request = "SELECT * FROM " . EA_DB . "_nai3 WHERE ID = " . $xid;
 //echo $request;
 optimize($request);
 

@@ -25,7 +25,7 @@ $userlevel = logonok($lvl);
 while ($userlevel < $lvl) {
 	login($root);
 }
-$request = "select * from " . EA_DB . "_mar3 where ID = " . $xid;
+$request = "SELECT * FROM " . EA_DB . "_mar3 WHERE ID = " . $xid;
 
 
 optimize($request);
