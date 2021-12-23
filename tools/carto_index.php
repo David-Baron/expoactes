@@ -1,10 +1,12 @@
 <?php
-// Tableau en version cartographique pour la page d'accueil
 
+/**
+ * Tableau en version cartographique pour la page d'accueil
+ */
 function plot_commune($carto, $depart, $commune, $etiquette, $texte_html, $listTypes = "", $listSigles = "")
 {
 	global $imagePin;
-	$georeq = "select LON,LAT from " . EA_DB . "_geoloc where COMMUNE = '" . sql_quote($commune) . "' and DEPART = '" . sql_quote($depart) . "' and STATUT in ('A','M')";
+	$georeq = "SELECT LON, LAT FROM " . EA_DB . "_geoloc WHERE COMMUNE='" . sql_quote($commune) . "' AND DEPART='" . sql_quote($depart) . "' AND STATUT in ('A','M')";
 	$geores =  EA_sql_query($georeq);
 	if ($geo = EA_sql_fetch_array($geores)) {
 		if (strlen($listTypes) == 1) {
@@ -27,12 +29,10 @@ http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|FFCC66|000000
 if ($xtyp == "" or $xtyp == "A") {
 	$condit1 = "";
 } else {
-	$condit1 = " where TYPACT='" . $xtyp . "'";
+	$condit1 = " WHERE TYPACT='" . $xtyp . "'";
 }
 
-$request = "select *"
-	. " from " . EA_DB . "_sums " . $condit1
-	. " order by DEPART,COMMUNE,INSTR('NMDV',TYPACT),LIBELLE; ";
+$request = "SELECT * FROM " . EA_DB . "_sums " . $condit1 . " ORDER BY DEPART,COMMUNE,INSTR('NMDV',TYPACT),LIBELLE; ";
 
 optimize($request);
 //echo '<p>'.$request;

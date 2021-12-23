@@ -928,7 +928,7 @@ function adodb_date2($fmt, $d = false, $is_gmt = false)
 
 
 /**
-	Return formatted date based on timestamp $d
+ * Return formatted date based on timestamp $d
  */
 function adodb_date($fmt, $d = false, $is_gmt = false)
 {

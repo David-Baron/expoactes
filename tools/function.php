@@ -119,19 +119,6 @@ function isin($grand, $petit, $debut = 0)
 }
 
 /**
- * initialise proprement une variable avec le contenu d'un paramètre facultatif
- */
-/*
-function getparam($name)
-  {
-  if (isset($_REQUEST[$name])) 
-  	return $_REQUEST[$name];
-   else 
-    return "";
-  }
-*/
-
-/**
  * initialise proprement une variable avec le contenu d'un paramètre facultatif et filtrage anti injection de code
  */
 function getparam($name, $default = "", $allow_sql = 0)

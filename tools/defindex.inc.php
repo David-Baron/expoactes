@@ -43,5 +43,3 @@ $idx = array(
   array("div3", "ORI",     "ORI(12)",             "BT", "1", "0", "Origine du 1er intervanant"),
   array("div3", "C_ORI",   "C_ORI(12)",           "BT", "1", "0", "Origine du 2d intervanant"),
 );
-
-//------------------------------------------------------------------------------

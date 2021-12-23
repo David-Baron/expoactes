@@ -11,10 +11,10 @@ include("../tools/loginutils.php");
 include("../tools/traitements.inc.php");
 include("../tools/adodb-time.inc.php");
 
-
-//------------------------------------------------------------------------------
-
-function nomcolonne($i)  // noms des colonnes à la Excel
+/**
+ * noms des colonnes à la Excel
+ */
+function nomcolonne($i)
 {
 	if ($i <= 26)
 		return chr(64 + $i);
@@ -25,8 +25,9 @@ function nomcolonne($i)  // noms des colonnes à la Excel
 	}
 }
 
-//------------------------------------------------------------------------------
-
+/**
+ * 
+ */
 function listbox_cols($fieldname, $default)
 {
 	global $acte;

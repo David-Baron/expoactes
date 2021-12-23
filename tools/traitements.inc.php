@@ -578,12 +578,11 @@ function traitement($indice, $objet, $code)
 }
 
 /**
- * 
+ * Comparaison pour filtre PHP dans chargeCSV
  */
 function comparer($comp1, $comp2, $code)
 {
 	global $trait;
-	//----------- Comparaison pour filtre PHP dans chargeCSV-------------------
 	$lstrepub = array("VEN", "BRU", "FRI", "NIV", "GER", "FLO", "PRA", "MES", "TER", "THE", "FRU", "COM");
 	$reponse = "";
 	switch ($code) {
@@ -628,12 +627,11 @@ function comparer($comp1, $comp2, $code)
 }
 
 /**
- * 
+ * Comparaison pour filtre SQL
  */
 function comparerSQL($var, $comp, $code)
 {
 	global $trait;
-	//----------- Comparaison pour filtre SQL -------------------
 	$reponse = "";
 
 	switch ($code) {

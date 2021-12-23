@@ -11,17 +11,18 @@ include("../tools/loginutils.php");
 $autorise_autoload = true;  // Autorise le rechargement automatisé
 //$autorise_autoload=false;  //Bloque le rerchargement automatisé
 
-//---------------------------------------------------------
-
+/**
+ * ouvre la page si elle ne l'est pas encore
+ */
 function msgplus($msg)
-// ouvre la page si elle ne l'est pas encore
 {
 	init_page();
 	msg($msg);
 }
 
-//---------------------------------------------------------
-
+/**
+ * 
+ */
 function lienautoreload($msg)
 {
 	global $autoload;
@@ -33,8 +34,9 @@ function lienautoreload($msg)
 		echo '</p>';
 }
 
-//---------------------------------------------------------
-
+/**
+ * 
+ */
 function init_page($head = "")
 {
 	global $root, $userlevel, $titre, $moderestore, $pageinited;
@@ -76,9 +78,10 @@ function init_page($head = "")
 	}
 }
 
-//---------------------------------------------------------
-
-function quote_explode($sep, $qot, $line)  // découpe la ligne selon le separateur en tenant compte des quotes 
+/**
+ * découpe la ligne selon le separateur en tenant compte des quotes 
+ */
+function quote_explode($sep, $qot, $line)
 {
 	$ai = 0;
 	$part = "";
@@ -114,8 +117,9 @@ function quote_explode($sep, $qot, $line)  // découpe la ligne selon le separat
 	return $tabl;
 }
 
-//---------------------------------------------------------
-
+/**
+ * 
+ */
 function acte2data($acte, $moderestore)
 {
 	$data = array();
@@ -140,9 +144,10 @@ function acte2data($acte, $moderestore)
 	return $data;
 }
 
-//------------------------------------------------------------------------------
-
-function getBkFiles($typact)  // Utilisée pour remplir dynamiquement la listbox selon le type d'actes
+/**
+ * Utilisée pour remplir dynamiquement la listbox selon le type d'actes
+ */
+function getBkFiles($typact)
 {
 	$restfiles = mydir("../" . DIR_BACKUP, EXT_BACKUP);
 	$filterdfiles = array();

@@ -1,9 +1,11 @@
 <?php
 
-
-function table_temp($xacht, $xcomp, $table, $hf, $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time, $COLLATION = '') // remplissage table temporaire pour requete avec jointure
+/**
+ * Remplissage table temporaire pour requete avec jointure
+ */
+function table_temp($xacht, $xcomp, $table, $hf, $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time, $COLLATION = '')
 {
-
+	// TODO great useless code!
 	if ($COLLATION == '') $COLLATION = 'latin1_general_ci'; // latin1_swedish_ci latin1_general_ci
 	$COLLATION = 'latin1_swedish_ci';
 
