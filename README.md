@@ -1,13 +1,16 @@
 # ExpoActes
+
 (Répertoire destiné à recevoir les évolutions d'ExpoActes depuis la dernière version officielle 3.2.2)
 
 ExpoActes est une solution web PHP MySQL OpenSource qui permet de regrouper, de gérer et de diffuser sur internet des actes généalogiques.
 
 Dernières versions :
+
 - Stable mais non compatible PHP 7.x : ExpoActes version 3.2.2 (8 novembre 2015)
 - Développement : ExpoActes version 3.2.3 (22 novembre 2021)
 
 ## Liens utiles
+
     * [Présentation](https://expocartes.monrezo.be/index.php)
     * [Wiki ExpoActes](https://sites.google.com/site/expoactes)
     * [Inventaire des sites utilisateurs](https://expoactes.monrezo.be/agregactes.php)
@@ -17,15 +20,23 @@ Dernières versions :
 Voir fichier INSTALL.md
 
 ## Environnement
+
     * PHP de 5.x à 8.0.x 
     * MySQL x.x 
+
 ## Documentation
+
 À venir.
+
 ## Contributeurs
-André Delacharlerie 
-Emmanuel Lethrosne 
+
+André Delacharlerie
+Emmanuel Lethrosne
+
 ## Historique
+
 ## Versions
+
     * ExpoActes Version 3.2.3 (21 novembre 2021)
     * ExpoActes Version 3.2.2 (8 novembre 2015)
     * ExpoActes Version 3.2.0 (7 septembre 2015)
@@ -70,4 +81,3 @@ Emmanuel Lethrosne
     * ExpoActes Version 0.10
     * ExpoActes Version 0.9
     * ExpoActes Version 0.8 (26 décembre 2005)
-
