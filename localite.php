@@ -20,7 +20,7 @@ $JSheader = "";
 //print '<pre>';  print_r($_REQUEST); echo '</pre>';
 
 if ($id > 0)  // édition
-{  //
+{
 	$request = "select *"
 		. " from " . EA_DB . "_geoloc "
 		. " where ID =" . $id;

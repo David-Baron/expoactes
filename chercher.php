@@ -7,42 +7,48 @@ include("tools/loginutils.php");
 
 define("ADM", 0); // Mode public;
 
-//---------------------------------------------------------
-
+/**
+ * Filtre de recherche
+ * E : Exacte
+ * D : Débute par
+ * F : Fini par
+ * C : Contient
+ * S : Soundex
+ */
 function sqlcomp($lazone, $valeur)
 {
 	global $typ_compare, $txtcomp, $codecomp;
 	$valeur = sql_quote($valeur);
 	switch ($typ_compare) {
-		case "E"; // Exacte
+		case "E";
 			$sql = $lazone . " = '" . $valeur . "'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' est la';
 			else
 				$txtcomp = ' est le';
 			break;
-		case "D"; // Débute par
+		case "D";
 			$sql = $lazone . " like '" . $valeur . "%'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' au début de la';
 			else
 				$txtcomp = ' au debut du';
 			break;
-		case "F"; // Fini par
+		case "F";
 			$sql = $lazone . " like '%" . $valeur . "'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' à la fin de la';
 			else
 				$txtcomp = ' à la fin du';
 			break;
-		case "C"; // Contient
+		case "C";
 			$sql = $lazone . " like '%" . $valeur . "%'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' dans la';
 			else
 				$txtcomp = ' dans le';
 			break;
-		case "S"; // Soundex
+		case "S";
 			$sql = "soundex(" . $lazone . ") = soundex('" . $valeur . "')";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' sonne comme la';

@@ -13,8 +13,10 @@ include("tools/traite_tables_levenshtein.php");
 
 define("ADM", 0); // Mode public;
 
-//---------------------------------------------------------
-function makecritjlc($xmin, $xmax, $xcomm, $xdepa, $pre, $c_pre, $xpre, $xc_pre) //
+/**
+ * 
+ */
+function makecritjlc($xmin, $xmax, $xcomm, $xdepa, $pre, $c_pre, $xpre, $xc_pre)
 {
 	$crit = "";
 	if ($xmin != "") {
@@ -39,36 +41,6 @@ function makecritjlc($xmin, $xmax, $xcomm, $xdepa, $pre, $c_pre, $xpre, $xc_pre)
 
 	return $crit;
 }
-
-/*
-function makecritjlcOLD($xmin,$xmax,$xcomm,$xdepa,$pre,$c_pre,$xpre,$xc_pre) //
-{
-$crit ="";
-	if ($xmin!="")
-		{
-		$crit = " (year(LADATE)>= ".$xmin.")";
-		}
-	if ($xmax!="")
-		{
-		$critx = " (year(LADATE)<= ".$xmax.")";
-		$crit = sql_and($crit).$critx;
-		}
-	if (mb_substr($xcomm,0,2)!="**")
-		{
-		$critx = " (COMMUNE = '".sql_quote($xcomm)."' and DEPART= '".sql_quote($xdepa)."')";
-		$crit = sql_and($crit).$critx;
-		}
-	   $critx = "(".$pre."  like '".$xpre."%')  ";
-	   $crit = sql_and($crit).$critx;
-   if ($c_pre!="")
-     {
-     $critx = "(".$c_pre."  like '".$xc_pre."%')  ";
-     $crit = sql_and($crit).$critx;
-     }
-
-return $crit;
-}
-*/
 
 /**
  * 
