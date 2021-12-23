@@ -26,9 +26,10 @@ Si la version que vous utilisez n'a pas encore de release, veuillez creer une is
 
 ## Contribution
 
-Toute contribution est le bien venu.
+Toute contribution est le bienvenu.
 
 Creer votre première issue.
+
 Modifier le code et creer une pull-request.
 
 Posez vos questions dans Discussions.
