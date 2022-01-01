@@ -152,67 +152,57 @@ if ($id <> 0 and $missingargs) {
 	echo '<h2>' . $action . " d'une fiche de localité</h2> \n";
 	echo '<form method="post" id="fiche" name="eaform" action="gestgeoloc.php">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Localité : </td>\n";
-	echo '  <td colspan="2"><b>' . $commune . " [" . $depart . "]</b></td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Longitude : </td>\n";
-	echo '  <td><input type="text" name="lon" id="lon" size="10" value="' . $row['LON'] . '" />' . "</td>\n";
-	echo '  <td rowspan="4">';
+	echo "<tr>\n";
+	echo "<td align='right'>Localité : </td>\n";
+	echo '<td colspan="2"><b>' . $commune . " [" . $depart . "]</b></td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Longitude : </td>\n";
+	echo '<td><input type="text" name="lon" id="lon" size="10" value="' . $row['LON'] . '" />' . "</td>\n";
+	echo '<td rowspan="4">';
 	$carto->printMap();
 	echo "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Latitude : </td>\n";
-	echo '  <td><input type="text" name="lat" id="lat" size="10" value="' . $row['LAT'] . '" />' . "</td>\n";
-	echo " </tr>\n";
-
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Latitude : </td>\n";
+	echo '<td><input type="text" name="lat" id="lat" size="10" value="' . $row['LAT'] . '" />' . "</td>\n";
+	echo "</tr>\n";
 	$ast = array("M" => "Manuelle", "N" => "Non définie", "A" => "Automatique");
-	echo " <tr>\n";
-	echo "  <td align='right'>Géolocalisation : </td>\n";
-	echo '  <td>' . $ast[$statut] . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right' colspan='2'><b>Déplacer la punaise pour &nbsp; <br/ >corriger la localisation --> </b></td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Commentaire<br />Naissances : </td>\n";
-	echo '  <td colspan="2"><textarea name="noteN" cols="60" rows="2">' . html_entity_decode($noteN, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Commentaire<br />Mariages : </td>\n";
-	echo '  <td colspan="2"><textarea name="noteM" cols="60" rows="2">' . html_entity_decode($noteM, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Commentaire<br />Décès : </td>\n";
-	echo '  <td colspan="2"><textarea name="noteD" cols="60" rows="2">' . html_entity_decode($noteD, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Commentaire<br />Actes divers : </td>\n";
-	echo '  <td colspan="2"><textarea name="noteV" cols="60" rows="2">' . html_entity_decode($noteV, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
-	echo " </tr>\n";
-
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="hidden" name="id" value="' . $id . '" />';
-	echo '  <input type="hidden" name="commune" value="' . $commune . '" />';
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <a href="aide/geoloc.html" target="_blank">Aide</a>&nbsp;';
-	echo '  <input type="reset" value=" Effacer " />' . "\n";
-	echo " </td><td  colspan='2' align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" *** ENREGISTRER *** " />' . "\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Géolocalisation : </td>\n";
+	echo '<td>' . $ast[$statut] . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right' colspan='2'><b>Déplacer la punaise pour &nbsp; <br/ >corriger la localisation --> </b></td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Commentaire<br />Naissances : </td>\n";
+	echo '<td colspan="2"><textarea name="noteN" cols="60" rows="2">' . html_entity_decode($noteN, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Commentaire<br />Mariages : </td>\n";
+	echo '<td colspan="2"><textarea name="noteM" cols="60" rows="2">' . html_entity_decode($noteM, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Commentaire<br />Décès : </td>\n";
+	echo '<td colspan="2"><textarea name="noteD" cols="60" rows="2">' . html_entity_decode($noteD, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Commentaire<br />Actes divers : </td>\n";
+	echo '<td colspan="2"><textarea name="noteV" cols="60" rows="2">' . html_entity_decode($noteV, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea></td>';
+	echo "</tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="hidden" name="id" value="' . $id . '" />';
+	echo '<input type="hidden" name="commune" value="' . $commune . '" />';
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<a href="aide/geoloc.html" target="_blank">Aide</a>&nbsp;';
+	echo '<input type="reset" value=" Effacer " />' . "\n";
+	echo "</td><td  colspan='2' align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" *** ENREGISTRER *** " />' . "\n";
 	if ($id > 0) {
-		echo ' &nbsp; &nbsp; &nbsp; <a href="gestgeoloc.php?id=' . $id . '&amp;act=del">Supprimer cette localité</a>' . "\n";
+		echo '&nbsp; &nbsp; &nbsp; <a href="gestgeoloc.php?id=' . $id . '&amp;act=del">Supprimer cette localité</a>' . "\n";
 	}
-	echo " </td></tr>\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

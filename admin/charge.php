@@ -837,116 +837,115 @@ if ($missingargs) {
 	echo '<form method="post" enctype="multipart/form-data" action="">' . "\n";
 	echo '<h2 align="center">' . $titre . '</h2>';
 	echo '<table cellspacing="0" cellpadding="0" border="0" align="center" summary="Formulaire">' . "\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Type des actes : </td>' . "\n";
-	echo '  <td>';
-	echo '        <input type="radio" name="TypeActes" value="N"' . checked($TypeActes, 'N') . $ajaxbackup . ' />Naissances<br />';
-	echo '        <input type="radio" name="TypeActes" value="M"' . checked($TypeActes, 'M') . $ajaxbackup . ' />Mariages<br />';
-	echo '        <input type="radio" name="TypeActes" value="D"' . checked($TypeActes, 'D') . $ajaxbackup . ' />Décès<br />';
-	echo '        <input type="radio" name="TypeActes" value="V"' . checked($TypeActes, 'V') . $ajaxbackup . ' />Actes divers<br />';
-	echo '        <br />';
-	echo '  </td>';
-	echo " </tr>\n";
-	echo " <tr>\n";
-	echo "  <td>" . $lefich . " </td>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Type des actes : </td>' . "\n";
+	echo '<td>';
+	echo '<input type="radio" name="TypeActes" value="N"' . checked($TypeActes, 'N') . $ajaxbackup . ' />Naissances<br />';
+	echo '<input type="radio" name="TypeActes" value="M"' . checked($TypeActes, 'M') . $ajaxbackup . ' />Mariages<br />';
+	echo '<input type="radio" name="TypeActes" value="D"' . checked($TypeActes, 'D') . $ajaxbackup . ' />Décès<br />';
+	echo '<input type="radio" name="TypeActes" value="V"' . checked($TypeActes, 'V') . $ajaxbackup . ' />Actes divers<br />';
+	echo '<br />';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td>" . $lefich . " </td>\n";
 	if ($moderestore) {
 		echo '<td> <select id="bkfile" name="bkfile">';
-		echo '    <option value="">Choisir d\'abord le type d\'acte</option> ';
-		echo '  </select><img id="prl" src="../img/minispinner.gif" style="visibility:hidden;"></td>';
+		echo '<option value="">Choisir d\'abord le type d\'acte</option> ';
+		echo '</select><img id="prl" src="../img/minispinner.gif" style="visibility:hidden;"></td>';
 	} else {
-		echo '  <td><input type="file" size="62" name="Actes" />';
+		echo '<td><input type="file" size="62" name="Actes" />';
 		// MAX_FILE_SIZE doit précéder le champs input de type file
-		echo '  <input type="hidden" name="MAX_FILE_SIZE" value="' . $Max_size . '" />';
-		echo '  <input type="hidden" name="bkfile" value="NULL" />';
+		echo '<input type="hidden" name="MAX_FILE_SIZE" value="' . $Max_size . '" />';
+		echo '<input type="hidden" name="bkfile" value="NULL" />';
 		echo "</td>\n";
 	}
 	echo " </tr>\n";
 	if ($moderestore) {
-		echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-		echo " <tr>\n";
-		echo '  <td align="right">Migration de données : </td>' . "\n";
-		echo '  <td>';
-		echo '        <input type="checkbox" name="NewId" value="1" /> AJOUTER toutes ces données à la base SANS vérification <br />'; // jamais par défaut
-		echo '  </td>';
-		echo " </tr>\n";
+		echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">Migration de données : </td>' . "\n";
+		echo '<td>';
+		echo '<input type="checkbox" name="NewId" value="1" /> AJOUTER toutes ces données à la base SANS vérification <br />'; // jamais par défaut
+		echo '</td>';
+		echo "</tr>\n";
 	}
 
 	if (!$moderestore) {
 		if (isin('OFA', metadata('AFFICH', 'PHOTOGRA')) >= 0) {
-			echo " <tr>\n";
-			echo '  <td align="right">' . metadata('ETIQ', 'PHOTOGRA') . ' : </td>' . "\n";
-			echo '  <td><input type="text" size="40" name="photo" value="' . $photo . '" />';
+			echo "<tr>\n";
+			echo '<td align="right">' . metadata('ETIQ', 'PHOTOGRA') . ' : </td>' . "\n";
+			echo '<td><input type="text" size="40" name="photo" value="' . $photo . '" />';
 			//	 echo '   ou <input type="checkbox" name="photocsv" value="1" '.checked($photocsv).'/> Lu dans le CSV ';
-			echo "  </td>\n";
-			echo " </tr>\n";
-			echo " <tr>\n";
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "<tr>\n";
 		}
 		if (isin('OFA', metadata('AFFICH', 'RELEVEUR')) >= 0) {
-			echo " <tr>\n";
-			echo '  <td align="right">' . metadata('ETIQ', 'RELEVEUR') . ' : </td>' . "\n";
-			echo '  <td><input type="text" size="40" name="trans" value="' . $trans . '" />';
+			echo "<tr>\n";
+			echo '<td align="right">' . metadata('ETIQ', 'RELEVEUR') . ' : </td>' . "\n";
+			echo '<td><input type="text" size="40" name="trans" value="' . $trans . '" />';
 			// echo '   ou <input type="checkbox" name="transcsv" value="1" '.checked($transcsv).'/> Lu dans le CSV ';
-			echo "  </td>\n";
-			echo " </tr>\n";
-			echo " <tr>\n";
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "<tr>\n";
 		}
 		if (isin('OFA', metadata('AFFICH', 'VERIFIEU')) >= 0) {
-			echo " <tr>\n";
-			echo '  <td align="right">' . metadata('ETIQ', 'VERIFIEU') . ' : </td>' . "\n";
-			echo '  <td><input type="text" size="40" name="verif" value="' . $verif . '" />';
+			echo "<tr>\n";
+			echo '<td align="right">' . metadata('ETIQ', 'VERIFIEU') . ' : </td>' . "\n";
+			echo '<td><input type="text" size="40" name="verif" value="' . $verif . '" />';
 			// echo '   ou <input type="checkbox" name="verifcsv" value="1" '.checked($verifcsv).'/> Lu dans le CSV ';
-			echo "  </td>\n";
-			echo " </tr>\n";
-			echo " <tr>\n";
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "<tr>\n";
 		}
-		echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-		echo " <tr>\n";
-		echo '  <td align="right">Dédoublonnage : </td>' . "\n";
-		echo '  <td>';
-		echo '        <input type="radio" name="Dedoublon" value="N"' . checked($Dedoublon, 'N') . ' />Sur la combinaison date+nom+prenom<br />';
-		echo '        <input type="radio" name="Dedoublon" value="I"' . checked($Dedoublon, 'I') . ' />Sur le n° ID de NIMEGUE (Ignorer si existe déjà)<br />';
-		echo '        <input type="radio" name="Dedoublon" value="M"' . checked($Dedoublon, 'M') . ' />Sur le n° ID de NIMEGUE (Mettre à jour si existe déjà)<br />';
-		echo '        <input type="radio" name="Dedoublon" value="A"' . checked($Dedoublon, 'A') . ' />Aucune vérification<br />';
-		echo '        <br />';
-		echo '  </td>';
-		echo " </tr>\n";
-		echo " <tr>\n";
-		echo '  <td align="right">Filtrage des données : </td>' . "\n";
-		echo '  <td>';
-		echo '        <input type="checkbox" name="Filiation" value="1"' . checked($Filiation) . ' />Eliminer les actes sans filiation <br />';
-		echo '        <input type="checkbox" name="AnneeVide" value="1"' . checked($AnneeVide) . ' />Eliminer les actes dont l\'année est incomplète (ex. 17??)<br />';
-		echo '        <input type="checkbox" name="AVerifier" value="1"' . checked($AVerifier) . ' />Eliminer les actes "A VERIFIER" ("VERIF" dans zone Cote) <br />';
-		echo '  </td>';
-		echo " </tr>\n";
-		echo " <tr>\n";
-		echo '  <td align="right"> <br />Contrôle des résultats : </td>' . "\n";
-		echo '  <td>';
-
-		echo '    <br /><input type="checkbox" name="LogOk" value="1"' . checked($logOk) . ' />Actes chargés &nbsp; ';
-		echo '        <input type="checkbox" name="LogKo" value="1"' . checked($logKo) . ' />Actes erronés &nbsp; ';
-		echo '        <input type="checkbox" name="LogRed" value="1"' . checked($logRed) . ' />Actes redondants<br />';
-		echo '  </td>';
-		echo " </tr>\n";
+		echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">Dédoublonnage : </td>' . "\n";
+		echo '<td>';
+		echo '<input type="radio" name="Dedoublon" value="N"' . checked($Dedoublon, 'N') . ' />Sur la combinaison date+nom+prenom<br />';
+		echo '<input type="radio" name="Dedoublon" value="I"' . checked($Dedoublon, 'I') . ' />Sur le n° ID de NIMEGUE (Ignorer si existe déjà)<br />';
+		echo '<input type="radio" name="Dedoublon" value="M"' . checked($Dedoublon, 'M') . ' />Sur le n° ID de NIMEGUE (Mettre à jour si existe déjà)<br />';
+		echo '<input type="radio" name="Dedoublon" value="A"' . checked($Dedoublon, 'A') . ' />Aucune vérification<br />';
+		echo '<br />';
+		echo '</td>';
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">Filtrage des données : </td>' . "\n";
+		echo '<td>';
+		echo '<input type="checkbox" name="Filiation" value="1"' . checked($Filiation) . ' />Eliminer les actes sans filiation <br />';
+		echo '<input type="checkbox" name="AnneeVide" value="1"' . checked($AnneeVide) . ' />Eliminer les actes dont l\'année est incomplète (ex. 17??)<br />';
+		echo '<input type="checkbox" name="AVerifier" value="1"' . checked($AVerifier) . ' />Eliminer les actes "A VERIFIER" ("VERIF" dans zone Cote) <br />';
+		echo '</td>';
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right"> <br />Contrôle des résultats : </td>' . "\n";
+		echo '<td>';
+		echo '<br /><input type="checkbox" name="LogOk" value="1"' . checked($logOk) . ' />Actes chargés &nbsp; ';
+		echo '<input type="checkbox" name="LogKo" value="1"' . checked($logKo) . ' />Actes erronés &nbsp; ';
+		echo '<input type="checkbox" name="LogRed" value="1"' . checked($logRed) . ' />Actes redondants<br />';
+		echo '</td>';
+		echo "</tr>\n";
 		if ($userlevel >= 8) {
-			echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-			echo " <tr>\n";
-			echo '  <td align="right">Déposant : </td>' . "\n";
-			echo '  <td>';
+			echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+			echo "<tr>\n";
+			echo '<td align="right">Déposant : </td>' . "\n";
+			echo '<td>';
 			listbox_users("deposant", $userid, DEPOSANT_LEVEL);
-			echo '  </td>';
-			echo " </tr>\n";
+			echo '</td>';
+			echo "</tr>\n";
 		} else
-			echo '  <input type="hidden" name="deposant" value="' . $userid . '" />';
-		echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+			echo '<input type="hidden" name="deposant" value="' . $userid . '" />';
+		echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
 	}
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-	//	 echo '  <input type="hidden" name="uploadfile" value="NULL" />';
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	// echo '  <input type="hidden" name="autokey" value="" />';
-	echo '  <a href="aide/charge.html" target="_blank">Aide</a>&nbsp;';
-	echo '  <input type="reset" value="Effacer" />' . "\n";
-	echo '  <input type="submit" value=" >> CHARGER >> "  onclick="ShowSpinner();" />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+	//	 echo '<input type="hidden" name="uploadfile" value="NULL" />';
+	echo '<input type="hidden" name="action" value="submitted" />';
+	// echo '<input type="hidden" name="autokey" value="" />';
+	echo '<a href="aide/charge.html" target="_blank">Aide</a>&nbsp;';
+	echo '<input type="reset" value="Effacer" />' . "\n";
+	echo '<input type="submit" value=" >> CHARGER >> "  onclick="ShowSpinner();" />' . "\n";
+	echo "</td></tr>\n";
 	echo '<tr><td colspan="2" align="center"><span id="spinner" style="visibility:hidden"><img src="../img/spinner.gif"></span></td></tr>';
 	echo "</table>\n";
 	echo "</form>\n";

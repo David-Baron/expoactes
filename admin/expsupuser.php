@@ -250,76 +250,70 @@ if (!$missingargs) {
 	echo '<tr><td align="right">Dernier backup : &nbsp;</td><td>';
 	echo show_last_backup("U");
 	echo "</td></tr>";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo "  <td align=right>Droits d'accès : &nbsp;</td>\n";
-	echo '  <td>';
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align=right>Droits d'accès : &nbsp;</td>\n";
+	echo '<td>';
 	lb_droits_user($lelevel, 1); // avec All
-	echo '  </td>';
-	echo " </tr>\n";
+	echo '</td>';
+	echo "</tr>\n";
 	if (GEST_POINTS > 0) {
-		echo " <tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
-		echo " <tr>\n";
-		echo "  <td align=right>Régime (points) : &nbsp;</td>\n";
-		echo '  <td>';
+		echo "<tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
+		echo "<tr>\n";
+		echo "<td align=right>Régime (points) : &nbsp;</td>\n";
+		echo '<td>';
 		lb_regime_user($regime, 1);
-		echo '  </td>';
-		echo " </tr>\n";
+		echo '</td>';
+		echo "</tr>\n";
 	} else {
-		echo ' <tr><td colspan="2">';
+		echo '<tr><td colspan="2">';
 		echo '<input type="hidden" name="regime" value="-1" />';
 		echo "</td></tr>\n";
 	}
-
-	echo " <tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo "  <td align=right>Commentaire : &nbsp;</td>\n";
-	echo '  <td>';
+	echo "<tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align=right>Commentaire : &nbsp;</td>\n";
+	echo '<td>';
 	listbox_trait('condit', "TST", $condit);
-
-	echo ' <input type="text" name="rem" size="50" value="' . $rem . '" />';
+	echo '<input type="text" name="rem" size="50" value="' . $rem . '" />';
 	echo "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Statut : &nbsp;</td>' . "\n";
-	echo '  <td>';
+	echo "</tr>\n";
+	echo "<tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Statut : &nbsp;</td>' . "\n";
+	echo '<td>';
 	lb_statut_user($statut, 3);
-	echo '  </td>';
-	echo " </tr>\n";
-
-	echo " <tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo "  <td align='right'>Date expiration : &nbsp;</td>\n";
-	echo '  <td>';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Date expiration : &nbsp;</td>\n";
+	echo '<td>';
 	listbox_trait('conditexp', "NTS", $conditexp);
 	echo '<input type="text" name="dtexpir" size="10" value="' . $dtexpir . '" />' . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo "  <td align='right'>Points consommés : &nbsp;</td>\n";
-	echo '  <td>';
+	echo "</tr>\n";
+	echo "<tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Points consommés : &nbsp;</td>\n";
+	echo '<td>';
 	listbox_trait('conditpts', "NTS", $conditpts);
 	echo '<input type="text" name="ptscons" size="5" value="' . $ptscons . '" />' . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo '  <td align="right">Suppression : &nbsp;</td>' . "\n";
-	echo '  <td>';
-	echo '        <br />';
-	echo '        <input type="radio" name="suppr" value="N" checked="checked" />Non<br />';
-	echo '        <input type="radio" name="suppr" value="Y" />Supprimer les utilisateurs exportés<br />';
-	echo '        <br />';
-	echo '  </td>';
-	echo " </tr>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Suppression : &nbsp;</td>' . "\n";
+	echo '<td>';
+	echo '<br />';
+	echo '<input type="radio" name="suppr" value="N" checked="checked" />Non<br />';
+	echo '<input type="radio" name="suppr" value="Y" />Supprimer les utilisateurs exportés<br />';
+	echo '<br />';
+	echo '</td>';
+	echo "</tr>\n";
 	// echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <input type="reset" value="Annuler" />' . "\n";
-	echo '  <input type="submit" value=" >> SUITE >> " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<input type="reset" value="Annuler" />' . "\n";
+	echo '<input type="submit" value=" >> SUITE >> " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 }

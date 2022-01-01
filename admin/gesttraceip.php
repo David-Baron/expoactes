@@ -32,7 +32,6 @@ echo '<div id="col_menu">';
 form_recherche($root);
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
 $missingargs = true;
 $emailfound = false;
@@ -40,7 +39,6 @@ $cptok = 0;
 $cptko = 0;
 
 menu_software('F');
-
 admin_traceip();
 
 echo '</div>';

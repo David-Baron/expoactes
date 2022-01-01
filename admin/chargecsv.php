@@ -45,7 +45,7 @@ function listbox_cols($fieldname, $default)
 		echo '<option ' . selected_option($i, $default) . '>Col. ' . nomcolonne($i) . '-' . $i . ' (' . $exemple . ')</option>' . "\n";
 		$i++;
 	}
-	echo " </select>\n";
+	echo "</select>\n";
 }
 
 //------------------------------------------------------------------------------
@@ -729,23 +729,23 @@ if (!$missingargs) { // fichier d'actes
 			echo '</table>';
 			echo '</td></tr>';
 		}
-		echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-		echo '  <input type="hidden" name="photo" value="' . htmlentities($photo, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '" />';
-		echo '  <input type="hidden" name="trans" value="' . htmlentities($trans, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '" />';
-		echo '  <input type="hidden" name="verif" value="' . htmlentities($verif, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '" />';
-		echo '  <input type="hidden" name="photocsv" value="' . $photocsv . '" />';
-		echo '  <input type="hidden" name="transcsv" value="' . $transcsv . '" />';
-		echo '  <input type="hidden" name="verifcsv" value="' . $verifcsv . '" />';
-		echo '  <input type="hidden" name="action" value="phase_2" />';
+		echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+		echo '<input type="hidden" name="photo" value="' . htmlentities($photo, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '" />';
+		echo '<input type="hidden" name="trans" value="' . htmlentities($trans, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '" />';
+		echo '<input type="hidden" name="verif" value="' . htmlentities($verif, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '" />';
+		echo '<input type="hidden" name="photocsv" value="' . $photocsv . '" />';
+		echo '<input type="hidden" name="transcsv" value="' . $transcsv . '" />';
+		echo '<input type="hidden" name="verifcsv" value="' . $verifcsv . '" />';
+		echo '<input type="hidden" name="action" value="phase_2" />';
 
 		if ($submit == 'C') {
-			echo '  <input type="submit" name="submitC" value=" Relancer le chargement " />' . "\n";
+			echo '<input type="submit" name="submitC" value=" Relancer le chargement " />' . "\n";
 		} else {
-			echo '  <input type="submit" name="submitR" value=" Remise à blanc " />' . "\n";
-			echo '  <input type="submit" name="submitV" value=" VOIR un exemple " />' . "\n";
-			echo '  <input type="submit" name="submitC" value=" CHARGER maintenant " />' . "\n";
+			echo '<input type="submit" name="submitR" value=" Remise à blanc " />' . "\n";
+			echo '<input type="submit" name="submitV" value=" VOIR un exemple " />' . "\n";
+			echo '<input type="submit" name="submitC" value=" CHARGER maintenant " />' . "\n";
 		}
-		echo " </td></tr>\n";
+		echo "</td></tr>\n";
 		echo "</table>\n";
 		echo "</form>\n";
 	} // 1er chargement
@@ -771,96 +771,94 @@ if ($missingargs) {
 	echo '<form method="post" enctype="multipart/form-data" action="">' . "\n";
 	echo '<h2 align="center">Chargement de données CSV</h2>';
 	echo '<table cellspacing="2" cellpadding="0" border="0" align="center" summary="Formulaire">' . "\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Type des actes : </td>' . "\n";
-	echo '  <td>';
-	echo '        <input type="radio" name="TypeActes" value="N" />Naissances<br />';
-	echo '        <input type="radio" name="TypeActes" value="M" />Mariages<br />';
-	echo '        <input type="radio" name="TypeActes" value="D" />Décès<br />';
-	echo '        <input type="radio" name="TypeActes" value="V" />Actes divers <br />';
-	echo '  </td>';
-	echo " </tr>\n";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Fichier CSV : </td>' . "\n";
-	echo '  <td><input type="file" size="62" name="Actes" />' . "</td>\n";
-	echo " </tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">' . metadata('ETIQ', 'COMMUNE') . ' : </td>' . "\n";
-	echo '  <td><input type="text" size="40" name="Commune" value="' . $commune . '" />';
-	echo '   ou <input type="checkbox" name="CommuneCsv" value="1" ' . checked($communecsv) . '/> Lu dans le CSV ';
-	echo "  </td>\n";
-	echo " </tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">' . metadata('ETIQ', 'DEPART') . ' : </td>' . "\n";
-	echo '  <td><input type="text" size="40" name="Depart" value="' . $depart . '" />';
-	echo '   ou <input type="checkbox" name="DepartCsv" value="1" ' . checked($departcsv) . '/> Lu dans le CSV ';
-	echo "  </td>\n";
-	echo " </tr>\n";
-
+	echo "<tr>\n";
+	echo '<td align="right">Type des actes : </td>' . "\n";
+	echo '<td>';
+	echo '<input type="radio" name="TypeActes" value="N" />Naissances<br />';
+	echo '<input type="radio" name="TypeActes" value="M" />Mariages<br />';
+	echo '<input type="radio" name="TypeActes" value="D" />Décès<br />';
+	echo '<input type="radio" name="TypeActes" value="V" />Actes divers <br />';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Fichier CSV : </td>' . "\n";
+	echo '<td><input type="file" size="62" name="Actes" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . metadata('ETIQ', 'COMMUNE') . ' : </td>' . "\n";
+	echo '<td><input type="text" size="40" name="Commune" value="' . $commune . '" />';
+	echo ' ou <input type="checkbox" name="CommuneCsv" value="1" ' . checked($communecsv) . '/> Lu dans le CSV ';
+	echo "</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . metadata('ETIQ', 'DEPART') . ' : </td>' . "\n";
+	echo '<td><input type="text" size="40" name="Depart" value="' . $depart . '" />';
+	echo ' ou <input type="checkbox" name="DepartCsv" value="1" ' . checked($departcsv) . '/> Lu dans le CSV ';
+	echo "</td>\n";
+	echo "</tr>\n";
 	if (isin('OFA', metadata('AFFICH', 'PHOTOGRA')) >= 0) {
-		echo " <tr>\n";
-		echo '  <td align="right">' . metadata('ETIQ', 'PHOTOGRA') . ' : </td>' . "\n";
-		echo '  <td><input type="text" size="40" name="photo" value="' . $photo . '" />';
-		echo '   ou <input type="checkbox" name="photocsv" value="1" ' . checked($photocsv) . '/> Lu dans le CSV ';
-		echo "  </td>\n";
-		echo " </tr>\n";
-		echo " <tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">' . metadata('ETIQ', 'PHOTOGRA') . ' : </td>' . "\n";
+		echo '<td><input type="text" size="40" name="photo" value="' . $photo . '" />';
+		echo ' ou <input type="checkbox" name="photocsv" value="1" ' . checked($photocsv) . '/> Lu dans le CSV ';
+		echo "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
 	}
 	if (isin('OFA', metadata('AFFICH', 'RELEVEUR')) >= 0) {
-		echo " <tr>\n";
-		echo '  <td align="right">' . metadata('ETIQ', 'RELEVEUR') . ' : </td>' . "\n";
-		echo '  <td><input type="text" size="40" name="trans" value="' . $trans . '" />';
-		echo '   ou <input type="checkbox" name="transcsv" value="1" ' . checked($transcsv) . '/> Lu dans le CSV ';
-		echo "  </td>\n";
-		echo " </tr>\n";
-		echo " <tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">' . metadata('ETIQ', 'RELEVEUR') . ' : </td>' . "\n";
+		echo '<td><input type="text" size="40" name="trans" value="' . $trans . '" />';
+		echo ' ou <input type="checkbox" name="transcsv" value="1" ' . checked($transcsv) . '/> Lu dans le CSV ';
+		echo "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
 	}
 	if (isin('OFA', metadata('AFFICH', 'VERIFIEU')) >= 0) {
-		echo " <tr>\n";
-		echo '  <td align="right">' . metadata('ETIQ', 'VERIFIEU') . ' : </td>' . "\n";
-		echo '  <td><input type="text" size="40" name="verif" value="' . $verif . '" />';
-		echo '   ou <input type="checkbox" name="verifcsv" value="1" ' . checked($verifcsv) . '/> Lu dans le CSV ';
-		echo "  </td>\n";
-		echo " </tr>\n";
-		echo " <tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">' . metadata('ETIQ', 'VERIFIEU') . ' : </td>' . "\n";
+		echo '<td><input type="text" size="40" name="verif" value="' . $verif . '" />';
+		echo ' ou <input type="checkbox" name="verifcsv" value="1" ' . checked($verifcsv) . '/> Lu dans le CSV ';
+		echo "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
 	}
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Filtrage des données : </td>' . "\n";
-	echo '  <td>';
-	echo '        <input type="checkbox" name="AnneeVide" value="1"' . checked($AnneeVide) . ' />Eliminer les actes dont l\'année est incomplète (ex. 17??)<br />';
-	echo '        <input type="checkbox" name="SuprRedon" value="1"' . checked($SuprRedon) . ' />Eliminer les actes ayant mêmes noms et prénoms<br />';
-	echo '        <input type="checkbox" name="SuprPatVid" value="1"' . checked($SuprPatVid) . ' />Eliminer les actes dont le patronyme est vide<br />';
-	echo '  </td>';
-	echo " </tr>\n";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Contrôle des résultats : </td>' . "\n";
-	echo '  <td>';
-	echo '    <input type="checkbox" name="LogOk" value="1"' . checked($logOk) . ' />Actes chargés &nbsp; ';
-	echo '    <input type="checkbox" name="LogKo" value="1"' . checked($logKo) . ' />Actes erronés &nbsp; ';
-	echo '    <input type="checkbox" name="LogRed" value="1"' . checked($logRed) . ' />Actes redondants<br />';
-	echo '  </td>';
-	echo " </tr>\n";
-
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Filtrage des données : </td>' . "\n";
+	echo '<td>';
+	echo '<input type="checkbox" name="AnneeVide" value="1"' . checked($AnneeVide) . ' />Eliminer les actes dont l\'année est incomplète (ex. 17??)<br />';
+	echo '<input type="checkbox" name="SuprRedon" value="1"' . checked($SuprRedon) . ' />Eliminer les actes ayant mêmes noms et prénoms<br />';
+	echo '<input type="checkbox" name="SuprPatVid" value="1"' . checked($SuprPatVid) . ' />Eliminer les actes dont le patronyme est vide<br />';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Contrôle des résultats : </td>' . "\n";
+	echo '<td>';
+	echo '<input type="checkbox" name="LogOk" value="1"' . checked($logOk) . ' />Actes chargés &nbsp; ';
+	echo '<input type="checkbox" name="LogKo" value="1"' . checked($logKo) . ' />Actes erronés &nbsp; ';
+	echo '<input type="checkbox" name="LogRed" value="1"' . checked($logRed) . ' />Actes redondants<br />';
+	echo '</td>';
+	echo "</tr>\n";
 	if ($userlevel >= 8) {
-		echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-		echo " <tr>\n";
-		echo '  <td align="right">Déposant : </td>' . "\n";
-		echo '  <td>';
+		echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">Déposant : </td>' . "\n";
+		echo '<td>';
 		listbox_users("deposant", $userid, DEPOSANT_LEVEL);
-		echo '  </td>';
-		echo " </tr>\n";
+		echo '</td>';
+		echo "</tr>\n";
 	} else
-		echo '  <input type="hidden" name="deposant" value="' . $userid . '" />';
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-	echo '  <input type="hidden" name="action" value="phase_1" />';
-	echo '  <a href="aide/chargecsv.html" target="_blank">Aide</a>&nbsp;';
-	echo '  <input type="reset" value="Effacer" />' . "\n";
-	echo '  <input type="submit" name="submitD" value=" >> CHARGER >> " />' . "\n";
-	echo " </td></tr>\n";
+		echo '<input type="hidden" name="deposant" value="' . $userid . '" />';
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+	echo '<input type="hidden" name="action" value="phase_1" />';
+	echo '<a href="aide/chargecsv.html" target="_blank">Aide</a>&nbsp;';
+	echo '<input type="reset" value="Effacer" />' . "\n";
+	echo '<input type="submit" name="submitD" value=" >> CHARGER >> " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {
@@ -888,5 +886,4 @@ if ($missingargs) {
 	}
 }
 echo '</div>';
-
 close_page(1, $root);

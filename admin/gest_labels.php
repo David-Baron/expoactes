@@ -183,9 +183,9 @@ if ($xfile == "X") {
 	$j = 0;
 	$prog = "gest_labels.php?file=" . $xfile;
 
-	echo " <tr>\n";
-	echo '  <td align="right"><b>Sigle des actes divers : </b></td>' . "\n";
-	echo '  <td>';
+	echo "<tr>\n";
+	echo '<td align="right"><b>Sigle des actes divers : </b></td>' . "\n";
+	echo '<td>';
 
 	$request = "select distinct SIGLE from " . EA_DB . "_div3 where length(SIGLE)>0 order by SIGLE";
 	optimize($request);
@@ -200,11 +200,10 @@ if ($xfile == "X") {
 			$i++;
 		}
 	}
-	echo " </select>\n";
+	echo "</select>\n";
 	echo "</td></tr>\n";
-
 	echo "<tr>\n";
-	echo '  <td align="right"><b>Libellé concerné : </b></td>' . "\n";
+	echo '<td align="right"><b>Libellé concerné : </b></td>' . "\n";
 	echo '<td>';
 	$request = "select distinct LIBELLE from " . EA_DB . "_div3 where SIGLE='" . $lesigle . "' order by LIBELLE";
 	optimize($request);
@@ -217,19 +216,17 @@ if ($xfile == "X") {
 		}
 	}
 	echo "</td></tr>\n";
-
 	echo '<tr><th>Zone</th><th>Etiquette spécifique</th></tr>';
 	foreach ($gspec as $curgrp) {
 		$grptxt = grp_label($curgrp, 'V', $lg, $lesigle);
 		$j++;
 		echo '<tr class="row0">' . "\n";
-		echo ' <input type="hidden" name="grp_' . $j . '"  value="' . $curgrp . '" />' . "\n";
-		echo '  <td align="left"><i>&nbsp; ' . $grpes[$curgrp] . "</i> </td>\n";
-		echo ' <td><input type="text" name="group_' . $j . '" size="30" maxlength="50" value="' . $grptxt . '" /></td>';
+		echo '<input type="hidden" name="grp_' . $j . '"  value="' . $curgrp . '" />' . "\n";
+		echo '<td align="left"><i>&nbsp; ' . $grpes[$curgrp] . "</i> </td>\n";
+		echo '<td><input type="text" name="group_' . $j . '" size="30" maxlength="50" value="' . $grptxt . '" /></td>';
 		echo '</tr>';
 	}
-
-	echo ' <tr><td align="right">' . "\n";
+	echo '<tr><td align="right">' . "\n";
 	echo '<input type="hidden" name="grpnbr"  value="' . $j . '" />' . "\n";
 	echo '<input type="hidden" name="chsigle"  value="0" />' . "\n";
 	echo '<input type="hidden" name="file"  value="' . $xfile . '" />' . "\n";
@@ -260,14 +257,14 @@ else { // cas des etiquettes par défaut
 			$grptxt = grp_label($curgrp, $xfile, $lg);
 			$j++;
 			echo '<tr class="row0">' . "\n";
-			echo '  <td align="right"><b><i>Groupe : &nbsp;</i></b></td>' . "\n";
-			echo ' <input type="hidden" name="grp_' . $j . '"  value="' . $curgrp . '" />' . "\n";
-			echo '  <td align="left"><i>&nbsp; ' . $grpes[$curgrp] . "</i> </td>\n";
-			echo ' <td><input type="text"   name="group_' . $j . '" size="30" maxlength="50" value="' . $grptxt . '" /></td>';
+			echo '<td align="right"><b><i>Groupe : &nbsp;</i></b></td>' . "\n";
+			echo '<input type="hidden" name="grp_' . $j . '"  value="' . $curgrp . '" />' . "\n";
+			echo '<td align="left"><i>&nbsp; ' . $grpes[$curgrp] . "</i> </td>\n";
+			echo '<td><input type="text"   name="group_' . $j . '" size="30" maxlength="50" value="' . $grptxt . '" /></td>';
 			echo '</tr>';
 		}
-		echo ' <tr class="row1">' . "\n";
-		echo '  <td align="left"><b>' . $row["zone"] . "</b> : </td>\n";
+		echo '<tr class="row1">' . "\n";
+		echo '<td align="left"><b>' . $row["zone"] . "</b> : </td>\n";
 		echo '<td>';
 		if (mb_substr($row["zone"], -3) == "PRE") {
 			echo 'Avec le nom' . "\n";
@@ -276,16 +273,16 @@ else { // cas des etiquettes par défaut
 			foreach ($leschoix as $lechoix) {
 				echo '<option ' . selected_option(mb_substr($lechoix, 0, isin($lechoix, "-", 0) - 1), $row["affich"]) . '>' . mb_substr($lechoix, isin($lechoix, "-", 0) + 1) . '</option>' . "\n";
 			}
-			echo " </select>\n";
+			echo "</select>\n";
 		}
-		echo '  </td>';
-		echo '  <td>';
-		echo ' <input type="hidden" name="zid_' . $i . '"  value="' . $row["ZID"] . '" />' . "\n";
-		echo ' <input type="text"   name="etiq_' . $i . '" size="30" maxlength="50" value="' . $row["etiq"] . '" />';
-		echo '  </td>';
-		echo " </tr>\n";
+		echo '</td>';
+		echo '<td>';
+		echo '<input type="hidden" name="zid_' . $i . '"  value="' . $row["ZID"] . '" />' . "\n";
+		echo '<input type="text"   name="etiq_' . $i . '" size="30" maxlength="50" value="' . $row["etiq"] . '" />';
+		echo '</td>';
+		echo "</tr>\n";
 	}
-	echo ' <tr><td align="right">' . "\n";
+	echo '<tr><td align="right">' . "\n";
 	echo '<input type="hidden" name="grpnbr"  value="' . $j . '" />' . "\n";
 	echo '<input type="hidden" name="parnbr"  value="' . $i . '" />' . "\n";
 	echo '<input type="hidden" name="file"  value="' . $xfile . '" />' . "\n";
@@ -297,4 +294,3 @@ echo "</tr></table>\n";
 echo "</form>\n";
 echo '</div>';
 close_page(1, $root);
-?>

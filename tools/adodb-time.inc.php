@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  ** Dans expoactes, nécessaire à la gestion des dates républicaines.
 
 ADOdb Date Library, part of the ADOdb abstraction library

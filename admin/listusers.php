@@ -37,15 +37,11 @@ echo '<div id="col_menu">';
 form_recherche($root);
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
 
 // Lister les actes
-
 menu_users('L');
-
 echo '<h2>Utilisateurs enregistrés du site ' . SITENAME . '</h2>';
-
 if (isset($udbname)) {
 	msg('ATTENTION : Base des utilisateurs déportée sur ' . $udbaddr . "/" . $udbuser . "/" . $udbname . "/" . EA_UDB . "</p>", 'info');
 }
@@ -194,7 +190,5 @@ if ($nb > 0) {
 } else {
 	msg('Aucun utilisateur enregistré');
 }
-
 echo '</div>';
-
 close_page(1);

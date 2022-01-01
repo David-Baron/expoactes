@@ -122,42 +122,42 @@ if (!$ok) {
 	echo '<form method="post"  action="">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Candidat : </td>\n";
-	echo '  <td><b>' . $nomprenom . "</b></td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Candidat : </td>\n";
+	echo '<td><b>' . $nomprenom . "</b></td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Login : </td>\n";
-	echo '  <td>' . $login . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Login : </td>\n";
+	echo '<td>' . $login . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Action : </td>\n";
-	echo '  <td>';
-	echo '        <input type="radio" name="action" value="OK" ' . checked("OK", $_REQUEST['action']) . ' /> = Approuver';
-	echo '        <input type="radio" name="action" value="KO" ' . checked("KO", $_REQUEST['action']) . ' /> = REFUSER';
-	echo '        cet utilisateur';
-	echo '  </td>';
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Action : </td>\n";
+	echo '<td>';
+	echo '<input type="radio" name="action" value="OK" ' . checked("OK", $_REQUEST['action']) . ' /> = Approuver';
+	echo '<input type="radio" name="action" value="KO" ' . checked("KO", $_REQUEST['action']) . ' /> = REFUSER';
+	echo ' cet utilisateur';
+	echo '</td>';
+	echo "</tr>\n";
 
-	echo ' <tr>' . "\n";
-	echo "  <td align=right>Message : </td>\n";
-	echo '  <td>';
+	echo '<tr>' . "\n";
+	echo "<td align=right>Message : </td>\n";
+	echo '<td>';
 	echo '<textarea name="messageplus" cols=60 rows=10>' . $messageplus . '</textarea>';
-	echo '  </td>';
-	echo " </tr>\n";
+	echo '</td>';
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td colspan="2">&nbsp;</td>' . "\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">&nbsp;</td>' . "\n";
+	echo "</tr>\n";
 
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="reset" value=" Effacer " />' . "\n";
-	echo '  <input type="hidden" name="complet" value="OK" />';
-	echo " </td><td align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" *** ENVOYER *** " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="reset" value=" Effacer " />' . "\n";
+	echo '<input type="hidden" name="complet" value="OK" />';
+	echo "</td><td align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" *** ENVOYER *** " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

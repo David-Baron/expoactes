@@ -107,10 +107,8 @@ if ($error == 0) {
 		if ($row["DTDEPOT"] <> $row["DTMODIF"]) {
 			show_item3($row, 0, 2, 3046);  // Date modif
 		}
-
 		if (ADM <> 10)
 			show_signal_erreur('D', $xid, $ctrlcod);
-
 		echo '</table>';
 		if ($avertissement <> "")
 			echo '<p><b>' . $avertissement . '</b></p>' . "\n";

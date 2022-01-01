@@ -152,12 +152,12 @@ $i = 0;
 $prog = "gest_params.php?grp=" . $xgroupe;
 while ($row = EA_sql_fetch_array($result)) {
 	$i++;
-	echo ' <tr>' . "\n";
-	echo '  <td align="right"><b>' . $row["libelle"] . "</b>";
-	echo ' <a href="' . $prog . '" id="help' . $i . '" onclick="javascript:show(\'aide' . $i . '\');return false;"><b>(?)</b></a>';
+	echo '<tr>' . "\n";
+	echo '<td align="right"><b>' . $row["libelle"] . "</b>";
+	echo '<a href="' . $prog . '" id="help' . $i . '" onclick="javascript:show(\'aide' . $i . '\');return false;"><b>(?)</b></a>';
 	echo '<span id="aide' . $i . '" style="display: none" class="aide"><br />' . $row["param"] . " : " . alaligne($row["aide"]) . '</span>';
 	echo " : </td>\n";
-	echo '  <td>';
+	echo '<td>';
 	echo '<input type="hidden" name="parname' . $i . '"  value="' . $row["param"] . '" />' . "\n";
 	switch ($row["type"]) {
 		case "B":
@@ -185,7 +185,7 @@ while ($row = EA_sql_fetch_array($result)) {
 		foreach ($leschoix as $lechoix) {
 			echo '<option ' . selected_option(intval(mb_substr($lechoix, 0, isin($lechoix, "-", 0) - 1)), $row["valeur"]) . '>' . $lechoix . '</option>' . "\n";
 		}
-		echo " </select>\n";
+		echo "</select>\n";
 	} else {
 		if ($size <= 100) {
 			echo '<input type="text" name="parvalue' . $i . '" size="' . $size . '" maxlength="' . $maxsize . '" value="' . $row["valeur"] . '" />';
@@ -193,10 +193,10 @@ while ($row = EA_sql_fetch_array($result)) {
 			echo '<textarea name="parvalue' . $i . '" cols="40" rows="6">' . html_entity_decode($row["valeur"], ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . '</textarea>';
 		}
 	}
-	echo '  </td>';
-	echo " </tr>\n";
+	echo '</td>';
+	echo "</tr>\n";
 }
-echo ' <tr><td align="right">' . "\n";
+echo '<tr><td align="right">' . "\n";
 echo '<input type="hidden" name="parnbr"  value="' . $i . '" />' . "\n";
 echo '<input type="hidden" name="grp"  value="' . $xgroupe . '" />' . "\n";
 echo '<input type="hidden" name="xconfirm" value="confirmed" />' . "\n";

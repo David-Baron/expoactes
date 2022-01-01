@@ -727,27 +727,27 @@ function getCommunes($params)
  */
 function form_typeactes_communes($mode = '', $alldiv = 1)
 {
-	echo " <tr>\n";
-	echo '  <td align="right">Type des actes : &nbsp;</td>' . "\n";
-	echo '  <td>';
+	echo "<tr>\n";
+	echo '<td align="right">Type des actes : &nbsp;</td>' . "\n";
+	echo '<td>';
 	$ajaxcommune = ' onClick="' . "getCommunes(this.value, {'content_type': 'json', 'target': 'ComDep', 'preloader': 'prl'})" . '" ';
-	echo '  			<input type="hidden" name="TypeActes" value="X" />';
-	echo '        <input type="radio" name="TypeActes" value="N' . $mode . '" ' . $ajaxcommune . '/>Naissances<br />';
-	echo '        <input type="radio" name="TypeActes" value="M' . $mode . '" ' . $ajaxcommune . '/>Mariages<br />';
-	echo '        <input type="radio" name="TypeActes" value="D' . $mode . '" ' . $ajaxcommune . '/>Décès<br />';
-	echo '        <input type="radio" name="TypeActes" value="V' . $mode . '" ' . $ajaxcommune . '/>Actes divers : &nbsp;';
+	echo '<input type="hidden" name="TypeActes" value="X" />';
+	echo '<input type="radio" name="TypeActes" value="N' . $mode . '" ' . $ajaxcommune . '/>Naissances<br />';
+	echo '<input type="radio" name="TypeActes" value="M' . $mode . '" ' . $ajaxcommune . '/>Mariages<br />';
+	echo '<input type="radio" name="TypeActes" value="D' . $mode . '" ' . $ajaxcommune . '/>Décès<br />';
+	echo '<input type="radio" name="TypeActes" value="V' . $mode . '" ' . $ajaxcommune . '/>Actes divers : &nbsp;';
 	listbox_divers("typdivers", "***Tous***", $alldiv);
-	echo '        <br />&nbsp;<br />';
-	echo '  </td>';
-	echo " </tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Commune / Paroisse : &nbsp;</td>' . "\n";
-	echo '  <td>';
-	echo '  <select id="ComDep" name="ComDep">';
-	echo '    <option value="">Choisir d\'abord le type d\'acte</option> ';
-	echo '  </select><img id="prl" src="../img/minispinner.gif" style="visibility:hidden;">';
-	echo '  </td>';
-	echo " </tr>\n";
+	echo '<br />&nbsp;<br />';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Commune / Paroisse : &nbsp;</td>' . "\n";
+	echo '<td>';
+	echo '<select id="ComDep" name="ComDep">';
+	echo '<option value="">Choisir d\'abord le type d\'acte</option> ';
+	echo '</select><img id="prl" src="../img/minispinner.gif" style="visibility:hidden;">';
+	echo '</td>';
+	echo "</tr>\n";
 }
 
 /**
@@ -772,7 +772,7 @@ function listbox_communes($fieldname, $default, $vide = 0)
 			$i++;
 		}
 	}
-	echo " </select>\n";
+	echo "</select>\n";
 }
 
 /**
@@ -880,7 +880,7 @@ function listbox_types($fieldname, $default, int $vide = 0)
 			$i++;
 		}
 	}
-	echo " </select>\n";
+	echo "</select>\n";
 }
 
 /**
@@ -900,7 +900,7 @@ function listbox_divers($fieldname, $default, $tous = 0)
 			$i++;
 		}
 	}
-	echo " </select>\n";
+	echo "</select>\n";
 }
 
 /**
@@ -921,7 +921,7 @@ function listbox_users($fieldname, $default, $levelmin, $zero = 0, $txtzero = ''
 			$i++;
 		}
 	}
-	echo " </select>\n";
+	echo "</select>\n";
 }
 
 /**

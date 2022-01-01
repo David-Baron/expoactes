@@ -334,14 +334,14 @@ function check_version($currentversion, $requiredversion)
  */
 function edit_text($name, $size, $value, $caption)
 {
-	echo ' <tr class="row1">' . "\n";
-	echo "  <td align=right>" . $caption . " : </td>\n";
-	echo '  <td>';
+	echo '<tr class="row1">' . "\n";
+	echo "<td align=right>" . $caption . " : </td>\n";
+	echo '<td>';
 	if ($size <= 70) {
 		echo '<input type="text" name="' . $name . '" size=' . $size . '" maxlength=' . $size . ' value="' . $value . '">';
 	} else {
 		echo '<textarea name="' . $name . '" cols=70 rows=' . (min(4, $size / 70)) . '>' . $value . '</textarea>';
 	}
-	echo '  </td>';
-	echo " </tr>\n";
+	echo '</td>';
+	echo "</tr>\n";
 }

@@ -31,9 +31,7 @@ function writable($path)
 	return true;
 }
 
-
 echo '<h1>Test spécifiques</h1>';
-
 echo "<h2>Création d'un fichier</h2>";
 $path = "../admin/_upload/";
 

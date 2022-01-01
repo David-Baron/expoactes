@@ -110,7 +110,6 @@ if ($confirm<>'YES')
 	}
 } else {
 	echo '<h2>Index de la base MySQL</h2>';
-
 	echo '<table summary="Liste des index actifs ou à créer">';
 	echoln('<tr class="rowheader">');
 	echo '<th>Zone clé</th>';
@@ -154,6 +153,5 @@ if ($confirm<>'YES')
 	}
 	echoln('</table>');
 }
-
 echo '</div>';
 close_page(1, $root);

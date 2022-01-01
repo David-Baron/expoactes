@@ -34,12 +34,10 @@ open_page(SITENAME . " : Activité du site", $root);
 //{ print '<pre>';  print_r($_REQUEST); echo '</pre>'; }
 
 navadmin($root, "Activité du site");
-
 echo '<div id="col_menu">';
 form_recherche($root);
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
 menu_software('J');
 
@@ -53,7 +51,6 @@ if ($xdel > 31) {
 echo '<p><a href="?xdel=365">' . "Supprimer les événements âgés de plus d'un an</a></p>";
 // Lister les actions
 echo '<h2>Activité sur les données du site ' . SITENAME . '</h2>';
-
 echo '<center><form method="post" action="">' . "\n";
 echo '<input type="text" name="xfilter" value="" />' . "\n";
 echo '&nbsp; &nbsp;<input type="submit" value="FILTRER" /></td>' . "\n";
@@ -97,9 +94,7 @@ $request = "select NOM, PRENOM, ID, DATE, ACTION, COMMUNE, NB_ACTES"
 if ($xfilter <> "")
 	$request .= " where COMMUNE like '%" . $xfilter . "%' or ACTION like '%" . $xfilter . "%' or NOM like '%" . $xfilter . "%'";
 $request .= " order by " . $order;
-
 optimize($request);
-
 $result = EA_sql_query($request);
 $nbtot = EA_sql_num_rows($result);
 
@@ -127,7 +122,6 @@ if ($nb > 0) {
 	echo '<th>Action</th>';
 	echo '<th>Actes</th>';
 	echo '</tr>';
-
 	while ($ligne = EA_sql_fetch_row($result)) {
 		echo '<tr class="row' . (fmod($i, 2)) . '">';
 		//		echo '<td>'.$i.'. </td>';
@@ -144,7 +138,6 @@ if ($nb > 0) {
 } else {
 	msg('Aucune action enregistrée');
 }
-
 echo '</div>';
 echo '<p>Durée du traitement  : ' . round(microtime_float() - $MT0, 3) . ' sec.</p>' . "\n";
 close_page(1);

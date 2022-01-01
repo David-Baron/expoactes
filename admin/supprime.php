@@ -165,19 +165,19 @@ if (!$missingargs) {
 	echo '<table cellspacing="0" cellpadding="0" border="0" align="center" summary="Formulaire">' . "\n";
 
 	form_typeactes_communes();
-	echo " <tr>\n";
-	echo '  <td align="right">Années : </td>' . "\n";
-	echo '  <td>&nbsp;';
-	echo '        de <input type="text" name="AnneeDeb" size="4" maxlength="4" /> ';
-	echo '        à  <input type="text" name="AnneeFin" size="4" maxlength="4" /> (ces années comprises)';
-	echo '  </td>';
-	echo " </tr>\n";
-	// echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <input type="reset" value="Annuler" />' . "\n";
-	echo '  <input type="submit" value=" >> SUPPRIMER >> " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Années : </td>' . "\n";
+	echo '<td>&nbsp;';
+	echo ' de <input type="text" name="AnneeDeb" size="4" maxlength="4" /> ';
+	echo ' à  <input type="text" name="AnneeFin" size="4" maxlength="4" /> (ces années comprises)';
+	echo '</td>';
+	echo "</tr>\n";
+	// echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<input type="reset" value="Annuler" />' . "\n";
+	echo '<input type="submit" value=" >> SUPPRIMER >> " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 }

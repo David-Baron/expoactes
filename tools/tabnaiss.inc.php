@@ -56,9 +56,7 @@ if (($xpatr == "" or mb_substr($xpatr, 0, 1) == "_"))
 
 	echo '<div id="col_main">' . "\n";
 	echo '<h2>Actes de naissance/baptême</h2>';
-
 	echo '<p>';
-
 	echo 'Commune/Paroisse : <a href="' . mkurl($path . '/' . $program, $xcomm) . '"><b>' . $xcomm . '</b></a>' . geoUrl($gid) . '<br />';
 	if ($note <> '')
 		echo "</p><p>" . $note . "</p><p>";
@@ -71,9 +69,7 @@ if (($xpatr == "" or mb_substr($xpatr, 0, 1) == "_"))
 		$preorder = "PRE";
 		$nameorder = "Prénoms";
 	}
-
 	echo '</p>';
-
 	if ($xord == "N") {
 		$order = $preorder . ", LADATE";
 		$hdate = '<a href="' . mkurl($path . '/' . $program, $xcomm, $xpatr, 'xord=D') . '">Dates</a>';

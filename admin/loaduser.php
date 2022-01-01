@@ -324,62 +324,58 @@ if ($missingargs) {
 	msg("Veillez à vérifier que le fichier votre fichier CSV respecte le "
 		. '<a href="aide/gestuser.html">format</a> ad hoc !', "info");
 	echo '<table cellspacing="2" cellpadding="0" border="0" align="center" summary="Formulaire">' . "\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Fichier utilisateurs CSV : </td>' . "\n";
-	echo '  <td><input type="file" size="62" name="Users" />' . "</td>\n";
-	echo " </tr>\n";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align=right>Droits d'accès AUTO : </td>\n";
-	echo '  <td>';
+	echo "<tr>\n";
+	echo '<td align="right">Fichier utilisateurs CSV : </td>' . "\n";
+	echo '<td><input type="file" size="62" name="Users" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align=right>Droits d'accès AUTO : </td>\n";
+	echo '<td>';
 	lb_droits_user($xdroits);
-	echo '  </td>';
-	echo " </tr>\n";
-	echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
 
 	if (GEST_POINTS > 0) {
-		echo " <tr>\n";
-		echo "  <td align=right>Régime (points) AUTO : </td>\n";
-		echo '  <td>';
+		echo "<tr>\n";
+		echo "<td align=right>Régime (points) AUTO : </td>\n";
+		echo '<td>';
 		lb_regime_user($xregime);
-		echo '  </td>';
-		echo " </tr>\n";
+		echo '</td>';
+		echo "</tr>\n";
 
-		echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
+		echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
 	} else {
 		echo '<input type="hidden" name="regime" value="' . $xregime . '" />';
 	}
-
-	echo " <tr>\n";
-	echo '  <td align="right">Envoi des codes d\'accès : </td>' . "\n";
-	echo '  <td>';
-	echo '    <input type="checkbox" name="SendMail" value="1"' . checked($sendmail) . ' />Envoi automatique du mail ci-dessous&nbsp; ';
-	echo '  </td>';
-	echo " </tr>\n";
-
-	echo ' <tr>' . "\n";
-	echo "  <td align=right>Texte du mail : </td>\n";
-	echo '  <td>';
+	echo "<tr>\n";
+	echo '<td align="right">Envoi des codes d\'accès : </td>' . "\n";
+	echo '<td>';
+	echo '<input type="checkbox" name="SendMail" value="1"' . checked($sendmail) . ' />Envoi automatique du mail ci-dessous&nbsp; ';
+	echo '</td>';
+	echo "</tr>\n";
+	echo '<tr>' . "\n";
+	echo "<td align=right>Texte du mail : </td>\n";
+	echo '<td>';
 	echo '<textarea name="Message" cols=50 rows=6>' . $message . '</textarea>';
-	echo '  </td>';
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo '  <td align="right">Contrôle des résultats : </td>' . "\n";
-	echo '  <td>';
-	echo '    <input type="checkbox" name="LogOk"  value="1"' . checked($logOk) . ' />Comptes créés &nbsp; ';
-	echo '    <input type="checkbox" name="LogKo"  value="1"' . checked($logKo) . ' />Comptes erronés &nbsp; ';
-	echo '    <input type="checkbox" name="LogRed" value="1"' . checked($logRed) . ' />Comptes redondants<br />';
-	echo '  </td>';
-	echo " </tr>\n";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <a href="aide/gestuser.html" target="_blank">Aide</a>&nbsp;';
-	echo '  <input type="reset" value="Effacer" />' . "\n";
-	echo '  <input type="submit" value=" >> CHARGER >> " />' . "\n";
-	echo " </td></tr>\n";
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Contrôle des résultats : </td>' . "\n";
+	echo '<td>';
+	echo '<input type="checkbox" name="LogOk"  value="1"' . checked($logOk) . ' />Comptes créés &nbsp; ';
+	echo '<input type="checkbox" name="LogKo"  value="1"' . checked($logKo) . ' />Comptes erronés &nbsp; ';
+	echo '<input type="checkbox" name="LogRed" value="1"' . checked($logRed) . ' />Comptes redondants<br />';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<a href="aide/gestuser.html" target="_blank">Aide</a>&nbsp;';
+	echo '<input type="reset" value="Effacer" />' . "\n";
+	echo '<input type="submit" value=" >> CHARGER >> " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

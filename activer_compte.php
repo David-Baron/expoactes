@@ -109,25 +109,25 @@ if (!$ok) {
 	echo '<form method="post"  action="">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Login : </td>\n";
-	echo '  <td><input type="text" size="30" name="login" value="' . $login . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Login : </td>\n";
+	echo '<td><input type="text" size="30" name="login" value="' . $login . '" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Clé d'activation : </td>\n";
-	echo '  <td><input type="text" name="key" size="30" value="' . $key . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Clé d'activation : </td>\n";
+	echo '<td><input type="text" name="key" size="30" value="' . $key . '" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td colspan="2">&nbsp;</td>' . "\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">&nbsp;</td>' . "\n";
+	echo "</tr>\n";
 
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="reset" value=" Effacer " />' . "\n";
-	echo " </td><td align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" *** ACTIVER LE COMPTE *** " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="reset" value=" Effacer " />' . "\n";
+	echo "</td><td align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" *** ACTIVER LE COMPTE *** " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

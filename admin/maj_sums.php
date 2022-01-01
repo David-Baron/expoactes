@@ -43,22 +43,18 @@ echo '<div id="col_menu">';
 form_recherche($root);
 menu_admin($root, $userlevel);
 
-
 $menu_actes = "";
 $menu_actes .= '<a href="' . $root . '/admin/' . "maj_sums.php" . '?xtyp=N&amp;mode=A&amp;com=">' . "Naissances" . "</a> | ";
 $menu_actes .= '<a href="' . $root . '/admin/' . "maj_sums.php" . '?xtyp=M&amp;mode=A&amp;com=">' . "Mariages" . "</a> | ";
 $menu_actes .= '<a href="' . $root . '/admin/' . "maj_sums.php" . '?xtyp=D&amp;mode=A&amp;com=">' . "Décès" . "</a> | ";
 $menu_actes .= '<a href="' . $root . '/admin/' . "maj_sums.php" . '?xtyp=V&amp;mode=A&amp;com=">' . "Divers" . '</a>';
 echo '</div>';
-
 echo '<div id="col_main">';
 
 menu_datas('S');
 
 echo '<h2 align="center">Mise à jour des statistiques</h2>';
-
 echo '<p><b>' . $menu_actes . '</b></p>';
-
 
 if ($xtyp == "") {
 	$request = "select TYPACT, max(DER_MAJ) as DERMAJ, count(COMMUNE) as CPTCOM"
@@ -80,7 +76,5 @@ if ($xtyp == "") {
 } else {
 	maj_stats($xtyp, $T0, $path, $mode, $com);
 }
-
 echo '</div>';
-
 close_page(1, $root);

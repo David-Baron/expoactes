@@ -109,48 +109,48 @@ if (!$ok) {
 	echo '<form method="post"  action="">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
 
-	echo " <tr>\n";
-	echo '  <td colspan="2">' . "Description de l'erreur observée : <br />\n";
-	echo '  <textarea name="msgerreur" cols="80" rows="12">' . $msgerreur . '</textarea>' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">' . "Description de l'erreur observée : <br />\n";
+	echo '<textarea name="msgerreur" cols="80" rows="12">' . $msgerreur . '</textarea>' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Vos nom et prénom : </td>\n";
-	echo '  <td><input type="text" size="50" name="nompre" value="' . $nompre . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Vos nom et prénom : </td>\n";
+	echo '<td><input type="text" size="50" name="nompre" value="' . $nompre . '" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Votre e-mail : </td>\n";
-	echo '  <td><input type="text" name="email" size="50" value="' . $email . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Votre e-mail : </td>\n";
+	echo '<td><input type="text" name="email" size="50" value="' . $email . '" />' . "</td>\n";
+	echo "</tr>\n";
 
 	if (AUTO_CAPTCHA) {
 		echo " <tr>\n";
 		if (function_exists('imagettftext')) {
-			echo '  <td align="right"><img src="tools/captchas/image.php" alt="captcha" id="captcha" /></td>' . "\n";
+			echo '<td align="right"><img src="tools/captchas/image.php" alt="captcha" id="captcha" /></td>' . "\n";
 		} else {
 			msg('061 : Librairie GD indisponible');
-			echo '  <td align="right">Code captcha manquant</td>' . "\n";
+			echo '<td align="right">Code captcha manquant</td>' . "\n";
 		}
-		echo '  <td>Recopiez le code ci-contre : <br />';
+		echo '<td>Recopiez le code ci-contre : <br />';
 		echo '<input type="text" name="captcha" size="6" maxlength="5" value="" />' . "</td>\n";
-		echo " </tr>\n";
+		echo "</tr>\n";
 	}
 
-	echo " <tr>\n";
-	echo '  <td colspan="2">&nbsp;</td>' . "\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">&nbsp;</td>' . "\n";
+	echo "</tr>\n";
 
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="hidden" name="xid" value="' . $xid . '" />';
-	echo '  <input type="hidden" name="xty" value="' . $xty . '" />';
-	echo '  <input type="hidden" name="xct" value="' . $xct . '" />';
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo ' <a href="#" Onclick="javascript:window.close()">Fermer cette page</a></p>';
-	echo ' &nbsp; <input type="reset" value=" Effacer " />' . "\n";
-	echo " </td><td align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" >> Envoyer >> " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="hidden" name="xid" value="' . $xid . '" />';
+	echo '<input type="hidden" name="xty" value="' . $xty . '" />';
+	echo '<input type="hidden" name="xct" value="' . $xct . '" />';
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<a href="#" Onclick="javascript:window.close()">Fermer cette page</a></p>';
+	echo '&nbsp; <input type="reset" value=" Effacer " />' . "\n";
+	echo "</td><td align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" >> Envoyer >> " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

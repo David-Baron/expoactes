@@ -100,9 +100,5 @@ if ($nb_sum <> $nb_cnt and $nb_cnt > 0) {
 	msg("Attention : les statistiques doivent être recalculées");
 	echo '<p><a href="maj_sums.php"><b>Calcul des statistiques</b></a></p>';
 }
-
-
-
 echo '</div>';
-
 close_page(1, $root);

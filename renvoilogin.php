@@ -24,7 +24,6 @@ $ok = false;
 open_page("ExpoActes : Renvoi codes d'accès", $root, null, null, null, '../index.htm');
 navigation($root, 2, "R", "Renvoi des codes d'accès");
 
-
 echo '<div id="col_menu">' . "\n";
 menu_public();
 show_pub_menu();
@@ -104,16 +103,13 @@ if (!$ok) {
 
 	echo "<h2>Renvoi des codes d'accès au site</h2>" . "\n";
 	echo '<p>Vos codes d\'accès peuvent vous être renvoyés à l\'adresse mail associée à votre compte d\'utilisateur</p>' . "\n";
-
 	echo '<form id="log" method="post" action="">' . "\n";
 	echo '<table align="center" summary="Formulaire">' . "\n";
 	echo '<tr><td align="right">Adresse e-mail : </td><td><input name="email" /></td></tr>' . "\n";
 	echo '<tr><td colspan="2" align="center"><input type="submit" name="submit" value=" Envoyer " /></td></tr>' . "\n";
 	echo '</table>' . "\n";
 	echo '</form>' . "\n";
-
 	echoln('<p><a href="' . $root . '/acces.php">Voir les conditions d\'accès à la partie privée du site</a></p>' . "\n");
-
 	echoln('<p>&nbsp;</p>' . "\n");
 }
 echo '</div>' . "\n";

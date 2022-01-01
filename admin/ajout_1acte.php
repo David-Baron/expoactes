@@ -30,7 +30,6 @@ echo '<div id="col_menu">';
 form_recherche();
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
 menu_datas('A');
 
@@ -42,17 +41,14 @@ $today = today(); {
 	echo '<form method="post" action="edit_acte.php">' . "\n";
 	echo '<h2 align="center">' . $title . '</h2>';
 	echo '<table  align="center" cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
-
 	//echo " <tr><td colspan=\"2\"><h3>Acte à ajouter : </h3></td></tr>\n";
 	form_typeactes_communes('', 0);
-	echo " <tr>\n";
-
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-
-	echo ' <tr><td>' . "\n";
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <input type="hidden" name="xid" value="-1" />';
-	echo '  <input type="reset" value="Annuler" />' . "\n";
+	echo "<tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo '<tr><td>' . "\n";
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<input type="hidden" name="xid" value="-1" />';
+	echo '<input type="reset" value="Annuler" />' . "\n";
 	echo '</td><td><input type="submit" value=" >> AJOUTER >> " />' . "\n";
 	echo "</td></tr></table>\n";
 	echo "</form>\n";

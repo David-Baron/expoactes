@@ -46,7 +46,6 @@ echo '<div id="col_menu">';
 form_recherche();
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
 
 $ok = false;
@@ -193,10 +192,10 @@ if (!$missingargs) {
 			for ($i = 0; $i < count($mdb); $i++) {
 				if ($mdb[$i]['GROUPE'] <> $grp) {
 					$grp = $mdb[$i]['GROUPE'];
-					echo ' <tr class="row0">' . "\n";
-					echo '  <td align="left"><b>&nbsp; ' . $mdb[$i]['GETIQ'] . "  </b></td>\n";
-					echo '  <td> </td>' . "\n";
-					echo ' </tr>';
+					echo '<tr class="row0">' . "\n";
+					echo '<td align="left"><b>&nbsp; ' . $mdb[$i]['GETIQ'] . "  </b></td>\n";
+					echo '<td> </td>' . "\n";
+					echo '</tr>';
 				}
 				// parametres : $name,$size,$value,$caption	
 				$value = getparam($mdb[$i]['ZONE']);
@@ -224,7 +223,7 @@ if (!$missingargs) {
 				}
 				edit_text($mdb[$i]['ZONE'], $col[$mdb[$i]['ZONE']], $value, $mdb[$i]['ETIQ']);
 			}
-			echo ' <tr class="row0"><td>' . "\n";
+			echo '<tr class="row0"><td>' . "\n";
 			echo '<input type="hidden" name="xtyp" value="' . $xtyp . '" />' . "\n";
 			echo '<input type="hidden" name="xid"  value="' . $xid . '" />' . "\n";
 			echo '<input type="hidden" name="xconfirm" value="confirmed" />' . "\n";

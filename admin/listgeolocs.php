@@ -11,7 +11,6 @@ $xcomm = "";
 $xpatr = "";
 $page = 1;
 define("ADM", 10); // *** Mode administration ***
-
 pathroot($root, $path, $xcomm, $xpatr, $page);
 
 $xord  = getparam('xord');
@@ -20,7 +19,6 @@ if ($xord == "") {
 }   // N = Nom
 $page  = getparam('pg');
 $init  = getparam('init');
-
 
 $userlogin = "";
 $userlevel = logonok(9);
@@ -36,11 +34,8 @@ echo '<div id="col_menu">';
 form_recherche($root);
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
-
 // Lister les actes
-
 menu_datas('L');
 
 echo '<h2>Localités connues du site ' . SITENAME . '</h2>';
@@ -118,7 +113,6 @@ if ($nb > 0) {
 	echo '<th>' . $hgeoloc . '</th>';
 	echo '</tr>';
 
-
 	while ($ligne = EA_sql_fetch_array($result)) {
 		echo '<tr class="row' . (fmod($i, 2)) . '">';
 		echo '<td>' . $i . '. </td>';
@@ -137,7 +131,5 @@ if ($nb > 0) {
 } else {
 	msg('Aucune localité géocodée');
 }
-
 echo '</div>';
-
 close_page(1);

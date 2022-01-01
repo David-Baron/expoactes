@@ -56,19 +56,18 @@ if ($missingargs) {
 	echo '<form method="post"  action="">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0">' . "\n";
 
-	echo " <tr>\n";
-	echo "  <td align=right>Votre adresse email : </td>\n";
-	echo '  <td><input type="text" name="email" size=40 value="' . LOC_MAIL . '"></td>';
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo "<td align=right>Votre adresse email : </td>\n";
+	echo '<td><input type="text" name="email" size=40 value="' . LOC_MAIL . '"></td>';
+	echo "</tr>\n";
 
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br>";
-	echo '  <input type="hidden" name="action" value="submitted">';
-	echo '  <input type="reset" value="Effacer">' . "\n";
-	echo ' &nbsp; <input type="submit" value=" *** ENVOYER *** ">' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br>";
+	echo '<input type="hidden" name="action" value="submitted">';
+	echo '<input type="reset" value="Effacer">' . "\n";
+	echo '&nbsp; <input type="submit" value=" *** ENVOYER *** ">' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 }
 echo '</div>';
-
 close_page(0);

@@ -131,41 +131,41 @@ if ($missingargs) {
 	echo '<form method="post" name="eaform" action="" onsubmit="return  pwProtect();">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
 
-	echo " <tr>\n";
+	echo "<tr>\n";
 	$login = $userlogin;
-	echo '  <td align="right">Code utilisateur : </td>' . "\n";
-	echo '  <td>' . $login . "</td>\n";
-	echo " </tr>\n";
+	echo '<td align="right">Code utilisateur : </td>' . "\n";
+	echo '<td>' . $login . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">Ancien mot de passe : </td>' . "\n";
-	echo '  <td><input type="password" name="oldpassw" size="15" value="" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Ancien mot de passe : </td>' . "\n";
+	echo '<td><input type="password" name="oldpassw" size="15" value="" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">Nouveau mot de passe : </td>' . "\n";
-	echo '  <td><input type="password" name="passw" size="15" value="" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Nouveau mot de passe : </td>' . "\n";
+	echo '<td><input type="password" name="passw" size="15" value="" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">Nouveau mot de passe (vérif.) : </td>' . "\n";
-	echo '  <td><input type="password" name="passwverif" size="15" value="" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Nouveau mot de passe (vérif.) : </td>' . "\n";
+	echo '<td><input type="password" name="passwverif" size="15" value="" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td colspan="2">&nbsp;</td>' . "\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">&nbsp;</td>' . "\n";
+	echo "</tr>\n";
 
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="hidden" name="codedpass" value="" />';
-	echo '  <input type="hidden" name="codedoldpass" value="" />';
-	echo '  <input type="hidden" name="iscoded" value="N" />';
-	echo '  <input type="hidden" name="lelogin" value="' . $login . '" />';
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <input type="reset" value=" Effacer " />' . "\n";
-	echo " </td><td align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" *** MODIFIER *** " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="hidden" name="codedpass" value="" />';
+	echo '<input type="hidden" name="codedoldpass" value="" />';
+	echo '<input type="hidden" name="iscoded" value="N" />';
+	echo '<input type="hidden" name="lelogin" value="' . $login . '" />';
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<input type="reset" value=" Effacer " />' . "\n";
+	echo "</td><td align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" *** MODIFIER *** " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

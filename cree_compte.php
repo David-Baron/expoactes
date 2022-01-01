@@ -179,82 +179,82 @@ if (!$ok) {
 	echo '<form method="post"  action="">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Nom : </td>\n";
-	echo '  <td><input type="text" size="30" name="nom" value="' . $nom . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Nom : </td>\n";
+	echo '<td><input type="text" size="30" name="nom" value="' . $nom . '" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Prénom : </td>\n";
-	echo '  <td><input type="text" name="prenom" size="30" value="' . $prenom . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Prénom : </td>\n";
+	echo '<td><input type="text" name="prenom" size="30" value="' . $prenom . '" />' . "</td>\n";
+	echo "</tr>\n";
 
 	$zonelibre = USER_ZONE_LIBRE;
 	if (!empty($zonelibre)) {
-		echo " <tr>\n";
-		echo '  <td align="right">' . $zonelibre . ": </td>\n";
-		echo '  <td><input type="text" name="libre" size="50" value="' . $libre . '" />' . "</td>\n";
-		echo " </tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">' . $zonelibre . ": </td>\n";
+		echo '<td><input type="text" name="libre" size="50" value="' . $libre . '" />' . "</td>\n";
+		echo "</tr>\n";
 	}
-	echo " <tr>\n";
-	echo '  <td align="right">' . "E-mail : </td>\n";
-	echo '  <td><input type="text" name="email" size="50" value="' . $email . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "E-mail : </td>\n";
+	echo '<td><input type="text" name="email" size="50" value="' . $email . '" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "E-mail (vérification) : </td>\n";
-	echo '  <td><input type="text" name="emailverif" size="50" value="' . $emailverif . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "E-mail (vérification) : </td>\n";
+	echo '<td><input type="text" name="emailverif" size="50" value="' . $emailverif . '" />' . "</td>\n";
+	echo "</tr>\n";
 
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Login : </td>\n";
-	echo '  <td><input type="text" name="lelogin" size="15" maxlength="15" value="' . $lelogin . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Login : </td>\n";
+	echo '<td><input type="text" name="lelogin" size="15" maxlength="15" value="' . $lelogin . '" />' . "</td>\n";
+	echo "</tr>\n";
 
 	$lecture = "password";
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Mot de passe : </td>\n";
-	echo '  <td><input type="' . $lecture . '" name="lepassw" size="15" maxlength="15" value="' . $lepassw . '" />';
+	echo "<tr>\n";
+	echo '<td align="right">' . "Mot de passe : </td>\n";
+	echo '<td><input type="' . $lecture . '" name="lepassw" size="15" maxlength="15" value="' . $lepassw . '" />';
 	echo "</td>\n";
-	echo " </tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">' . "Mot de passe (vérification) : </td>\n";
-	echo '  <td><input type="' . $lecture . '" name="passwverif" size="15" maxlength="15" value="' . getparam('passwverif') . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">' . "Mot de passe (vérification) : </td>\n";
+	echo '<td><input type="' . $lecture . '" name="passwverif" size="15" maxlength="15" value="' . getparam('passwverif') . '" />' . "</td>\n";
+	echo "</tr>\n";
 
 	if (TXT_CONDIT_USAGE <> "") {
-		echo " <tr>\n";
-		echo ' <td align="right">' . "Conditions d'utilisation : </td>\n";
-		echo ' <td><textarea name="captcha" cols="60" rows="10" readonly>' . TXT_CONDIT_USAGE . "</textarea><br />\n";
-		echo ' <input type="checkbox" name="acceptcond">' . "J'ai lu et j'accepte les conditions ci-dessus.</input> <br />&nbsp;</td>\n";
-		echo " </tr>\n";
+		echo "<tr>\n";
+		echo '<td align="right">' . "Conditions d'utilisation : </td>\n";
+		echo '<td><textarea name="captcha" cols="60" rows="10" readonly>' . TXT_CONDIT_USAGE . "</textarea><br />\n";
+		echo '<input type="checkbox" name="acceptcond">' . "J'ai lu et j'accepte les conditions ci-dessus.</input> <br />&nbsp;</td>\n";
+		echo "</tr>\n";
 	}
 
 	if (AUTO_CAPTCHA) {
-		echo " <tr>\n";
+		echo "<tr>\n";
 		if (function_exists('imagettftext')) {
-			echo '  <td align="right"><img src="tools/captchas/image.php" alt="captcha" id="captcha" /></td>' . "\n";
+			echo '<td align="right"><img src="tools/captchas/image.php" alt="captcha" id="captcha" /></td>' . "\n";
 		} else {
 			msg('061 : Librairie GD indisponible');
-			echo '  <td align="right">Code captcha manquant</td>' . "\n";
+			echo '<td align="right">Code captcha manquant</td>' . "\n";
 		}
-		echo '  <td>Recopiez le code ci-contre : <br />';
+		echo '<td>Recopiez le code ci-contre : <br />';
 		echo '<input type="text" name="captcha" size="6" maxlength="5" value="" />' . "</td>\n";
-		echo " </tr>\n";
+		echo "</tr>\n";
 	}
 
-	echo " <tr>\n";
-	echo '  <td colspan="2">&nbsp;</td>' . "\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">&nbsp;</td>' . "\n";
+	echo "</tr>\n";
 
 
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="hidden" name="id" value="' . $id . '" />';
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <input type="reset" value=" Effacer " />' . "\n";
-	echo " </td><td align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" *** INSCRIVEZ-MOI *** " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="hidden" name="id" value="' . $id . '" />';
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<input type="reset" value=" Effacer " />' . "\n";
+	echo "</td><td align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" *** INSCRIVEZ-MOI *** " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {

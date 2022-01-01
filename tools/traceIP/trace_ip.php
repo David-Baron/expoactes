@@ -190,15 +190,15 @@ function admin_traceip()
 		echo '<p><a href="?act=admin&amp;do=cle&amp;ipid=25" title="Nettoyer"> Nettoyer les IP-autoaffranchies</a> (cpt < 25)' . "\n";
 		echo '<table width="100%" border="1" cellpadding="0" cellspacing="0" summary="" style="margin:auto;">' . "\n";
 		echo '<thead>' . "\n";
-		echo '	<tr style="background-color:#EFEFEF; text-align:center;">' . "\n";
-		echo '		<th>ID</th>' . "\n";
-		echo '		<th>User Agent</th>' . "\n";
-		echo '		<th>IP</th>' . "\n";
-		echo '		<th>Login</th>' . "\n";
-		echo '		<th>Date</th>' . "\n";
-		echo '		<th>Compte pages</th>' . "\n";
-		echo '		<th>Opérations</th>' . "\n";
-		echo '	</tr>' . "\n";
+		echo '<tr style="background-color:#EFEFEF; text-align:center;">' . "\n";
+		echo '<th>ID</th>' . "\n";
+		echo '<th>User Agent</th>' . "\n";
+		echo '<th>IP</th>' . "\n";
+		echo '<th>Login</th>' . "\n";
+		echo '<th>Date</th>' . "\n";
+		echo '<th>Compte pages</th>' . "\n";
+		echo '<th>Opérations</th>' . "\n";
+		echo '</tr>' . "\n";
 		echo '</thead>' . "\n";
 		echo '<tbody>' . "\n";
 
@@ -209,26 +209,23 @@ function admin_traceip()
 			echo ($ip['locked'] == 1) ? ' style="color:#CC0000;"' : '';
 			echo ($ip['locked'] == -1) ? ' style="color:#339900;"' : '';
 			echo '>' . "\n";
-			echo '    <td style="text-align:center;">' . $id . '</td>' . "\n";
-			echo '    <td>' . $ip['ua'] . '</td>' . "\n";
-			echo '    <td style="text-align:center;">' . $ip['ip'] . '</td>' . "\n";
-			echo '    <td style="text-align:center;">' . $ip['login'] . '</td>' . "\n";
-			echo '    <td style="text-align:center;">' . date("d/m/Y H:i:s", $ip['datetime']) . '</td>' . "\n";
-			echo '    <td style="text-align:center;">' . $ip['cpt'] . '</td>' . "\n";
-			echo '    <td style="text-align:center;"><a href="?act=admin&amp;do=del&amp;ipid=' . $id . '" title="Supprimer">[Supprimer]</a> <a href="?act=admin&amp;do=fre&amp;ipid=' . $id . '" title="Affranchir">[Affranchir]</a></td>' . "\n";
-			echo '	</tr>' . "\n";
+			echo '<td style="text-align:center;">' . $id . '</td>' . "\n";
+			echo '<td>' . $ip['ua'] . '</td>' . "\n";
+			echo '<td style="text-align:center;">' . $ip['ip'] . '</td>' . "\n";
+			echo '<td style="text-align:center;">' . $ip['login'] . '</td>' . "\n";
+			echo '<td style="text-align:center;">' . date("d/m/Y H:i:s", $ip['datetime']) . '</td>' . "\n";
+			echo '<td style="text-align:center;">' . $ip['cpt'] . '</td>' . "\n";
+			echo '<td style="text-align:center;"><a href="?act=admin&amp;do=del&amp;ipid=' . $id . '" title="Supprimer">[Supprimer]</a> <a href="?act=admin&amp;do=fre&amp;ipid=' . $id . '" title="Affranchir">[Affranchir]</a></td>' . "\n";
+			echo '</tr>' . "\n";
 		};
 		$dateInstant  = date("d M Y H:i:s", time());
 
 		echo $dateInstant . ' : Accès affranchis : ' . $tot[-1];
 		echo ' - Accès normaux : ' . $tot[0] . ' (Total de vus : ' . $totcpt . ')';
 		echo ' - Accès bloqués : ' . $tot[1];
-
 		echo '</tbody>' . "\n";
 		echo '</table>' . "\n";
 	}; // end of if (count($array_IP) == 0)
-
-
 	//footer
 	$tip_footer = '<div style="text-align:right; margin-top:2em;"><a href="http://www.php-astux.info">http://www.php-astux.info</a></div>';
 	echo $tip_footer;

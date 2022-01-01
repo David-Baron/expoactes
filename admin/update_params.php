@@ -29,11 +29,9 @@ echo '<div id="col_menu">';
 form_recherche($root);
 menu_admin($root, $userlevel);
 echo '</div>';
-
 echo '<div id="col_main_adm">';
 menu_software('P');
 echo '<h2>Backup / Restauration</h2>';
-
 echo '<p align="center"><strong>Actions sur les paramètres : </strong>';
 echo ' <a href="expparams.php"><b>Sauvegarder</b></a>';
 echo ' | Restaurer';
@@ -91,22 +89,21 @@ if ($missingargs) {
 	echo '<tr><td align="right">Dernier backup : &nbsp;</td><td>';
 	echo show_last_backup("P");
 	echo "</td></tr>";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr>\n";
-	echo '  <td align="right">Fichier XML de paramètres : &nbsp;</td>' . "\n";
-	echo '  <td><input type="file" size="62" name="params" />' . "</td>\n";
-	echo " </tr>\n";
-	echo " <tr><td colspan=\"2\">&nbsp;</td></tr>\n";
-	echo " <tr><td colspan=\"2\" align=\"center\">\n<br />";
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <input type="reset" value="Annuler" />' . "\n";
-	echo '  <input type="submit" value=" >> CHARGER >> " />' . "\n";
-	echo " </td></tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo '<td align="right">Fichier XML de paramètres : &nbsp;</td>' . "\n";
+	echo '<td><input type="file" size="62" name="params" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr><td colspan=\"2\">&nbsp;</td></tr>\n";
+	echo "<tr><td colspan=\"2\" align=\"center\">\n<br />";
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<input type="reset" value="Annuler" />' . "\n";
+	echo '<input type="submit" value=" >> CHARGER >> " />' . "\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 }
 echo '</div>';
-
 close_page(1, $root);
 //ob_flush();
 //close_page(0);

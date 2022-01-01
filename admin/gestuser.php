@@ -272,167 +272,148 @@ if ($id <> 0 and $missingargs) {
 	//  echo '<form method="post" id="fiche" name="eaform" action="gestuser.php" onsubmit="return  pwProtect();">'."\n";
 	echo '<form method="post" id="fiche" name="eaform" action="gestuser.php">' . "\n";
 	echo '<table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">' . "\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Nom : </td>\n";
-	echo '  <td><input type="text" size="30" name="nom" value="' . $nom . '" />' . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Prénom : </td>\n";
-	echo '  <td><input type="text" name="prenom" size="30" value="' . $prenom . '" />' . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>E-mail : </td>\n";
-	echo '  <td><input type="text" name="email" size="50" value="' . $email . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Nom : </td>\n";
+	echo '<td><input type="text" size="30" name="nom" value="' . $nom . '" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Prénom : </td>\n";
+	echo '<td><input type="text" name="prenom" size="30" value="' . $prenom . '" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>E-mail : </td>\n";
+	echo '<td><input type="text" name="email" size="50" value="' . $email . '" />' . "</td>\n";
+	echo "</tr>\n";
 
 	$zonelibre = USER_ZONE_LIBRE;
 	if (empty($zonelibre)) $zonelibre = "Zone libre (à définir)";
-	echo " <tr>\n";
-	echo "  <td align='right'>" . $zonelibre . " : </td>\n";
-	echo '  <td><input type="text" name="libre" size="50" value="' . $libre . '" />' . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Login : </td>\n";
-	echo '  <td><input type="text" name="lelogin" size="15" maxlength="15" value="' . $lelogin . '" />' . "</td>\n";
-	echo " </tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>" . $zonelibre . " : </td>\n";
+	echo '<td><input type="text" name="libre" size="50" value="' . $libre . '" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Login : </td>\n";
+	echo '<td><input type="text" name="lelogin" size="15" maxlength="15" value="' . $lelogin . '" />' . "</td>\n";
+	echo "</tr>\n";
 
 	if ($id == -1)
 		$lecture = "text";
 	else
 		$lecture = "password";
-	echo " <tr>\n";
-	echo "  <td align='right'>Mot de passe : </td>\n";
-	echo '  <td><input type="' . $lecture . '" name="lepassw" size="15" maxlength="15" />';
+	echo "<tr>\n";
+	echo "<td align='right'>Mot de passe : </td>\n";
+	echo '<td><input type="' . $lecture . '" name="lepassw" size="15" maxlength="15" />';
 	if ($id == -1) {
-		echo ' &nbsp; <input type="checkbox" name="autopw" value="1" /> Mot de passe automatique&nbsp; ';
+		echo '&nbsp; <input type="checkbox" name="autopw" value="1" /> Mot de passe automatique&nbsp; ';
 	}
 	echo "</td>\n";
-	echo " </tr>\n";
-	echo " <tr>\n";
-	echo "  <td align='right'>Mot de passe (vérif.) : </td>\n";
-	echo '  <td><input type="' . $lecture . '" name="passwverif" size="15" maxlength="15" />' . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Statut : </td>\n";
-	echo '  <td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Mot de passe (vérif.) : </td>\n";
+	echo '<td><input type="' . $lecture . '" name="passwverif" size="15" maxlength="15" />' . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Statut : </td>\n";
+	echo '<td>';
 	lb_statut_user($statut);
 	if (USER_AUTO_DEF == 1 and ($statut == "A" or $statut == "W")) {
 		$urlapp = "approuver_compte.php?id=" . $id . "&action=";
 		echo ' --> <a href="' . $urlapp . 'OK">Approuver</a> ou ';
 		echo ' <a href="' . $urlapp . 'KO">Refuser</a> ';
 	}
-	echo '  </td>';
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Date entrée : </td>\n";
-	echo '  <td>';
+	echo '</td>';
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Date entrée : </td>\n";
+	echo '<td>';
 	if ($dtcreation != null)
 		echo showdate($dtcreation, 'S');
 	else
 		echo '- Inconnue -';
 	echo "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Date expiration : </td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Date expiration : </td>\n";
 	if ($dtexpir < today())
 		$expiralert = '&nbsp; <b><span style="color:red">EXPIREE</span></b>';
 	else
 		$expiralert = "";
 	$dtexpir = showdate($dtexpir, 'S');
-	echo '  <td><input type="text" name="dtexpir" size="10" value="' . $dtexpir . '" />' . $expiralert . "</td>\n";
-	echo " </tr>\n";
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Droits d'accès : </td>\n";
-	echo '  <td>';
+	echo '<td><input type="text" name="dtexpir" size="10" value="' . $dtexpir . '" />' . $expiralert . "</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td align='right'>Droits d'accès : </td>\n";
+	echo '<td>';
 	lb_droits_user($level);
-	echo '  </td>';
-	echo " </tr>\n";
-
+	echo '</td>';
+	echo "</tr>\n";
 	if (GEST_POINTS > 0) {
-		echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
-		echo " <tr>\n";
-		echo "  <td align='right'>Régime (points) : </td>\n";
-		echo '  <td>';
+		echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
+		echo "<tr>\n";
+		echo "<td align='right'>Régime (points) : </td>\n";
+		echo '<td>';
 		lb_regime_user($regime);
-		echo '  </td>';
-		echo " </tr>\n";
-
-		echo " <tr>\n";
-		echo "  <td align='right'>Solde de points : </td>\n";
-		echo '  <td><input type="text" name="solde" size="5" value="' . $solde . '" />';
+		echo '</td>';
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<td align='right'>Solde de points : </td>\n";
+		echo '<td><input type="text" name="solde" size="5" value="' . $solde . '" />';
 		echo '<input type="hidden" name="soldepre" value="' . $solde . '" />';  // pour test si maj
 		echo "</td>\n";
-		echo " </tr>\n";
-
-		echo " <tr>\n";
-		echo "  <td align='right'>Dernière recharge : </td>\n";
-		echo '  <td>' . date("d-m-Y", strtotime($maj_solde)) . "</td>\n";
-		echo " </tr>\n";
-		echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
-
-		echo " <tr>\n";
-		echo "  <td align='right'>Points consommés : </td>\n";
-		echo '  <td>' . $pt_conso . "</td>\n";
-		echo " </tr>\n";
-		echo " <tr><td colspan=2>&nbsp;</td></tr>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<td align='right'>Dernière recharge : </td>\n";
+		echo '<td>' . date("d-m-Y", strtotime($maj_solde)) . "</td>\n";
+		echo "</tr>\n";
+		echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
+		echo "<tr>\n";
+		echo "<td align='right'>Points consommés : </td>\n";
+		echo '<td>' . $pt_conso . "</td>\n";
+		echo "</tr>\n";
+		echo "<tr><td colspan=2>&nbsp;</td></tr>\n";
 	} else {
-		echo ' <tr><td colspan="2">';
+		echo '<tr><td colspan="2">';
 		echo '<input type="hidden" name="regime" value="' . $regime . '" />';
 		echo '<input type="hidden" name="solde" value="' . $solde . '" />';
 		echo '<input type="hidden" name="soldepre" value="' . $solde . '" />';
 		echo "</td></tr>\n";
 	}
-
-	echo " <tr>\n";
-	echo "  <td align='right'>Commentaire : </td>\n";
-	echo '  <td><input type="text" name="rem" size="50" value="' . $rem . '" />';
+	echo "<tr>\n";
+	echo "<td align='right'>Commentaire : </td>\n";
+	echo '<td><input type="text" name="rem" size="50" value="' . $rem . '" />';
 	echo '<input type="hidden" name="maj_solde" value="' . $maj_solde . '" />';
 	echo "</td>\n";
-	echo " </tr>\n";
-
+	echo "</tr>\n";
 	if ($id == -1) {
-		echo " <tr>\n";
-		echo '  <td align="right">Envoi des codes d\'accès : </td>' . "\n";
-		echo '  <td>';
-		echo '    <input type="checkbox" name="SendMail" value="1"' . checked($sendmail) . ' />Envoi automatique du mail ci-dessous&nbsp; ';
-		echo '  </td>';
-		echo " </tr>\n";
-
-		echo ' <tr>' . "\n";
-		echo "  <td align='right'>Texte du mail : </td>\n";
-		echo '  <td>';
+		echo "<tr>\n";
+		echo '<td align="right">Envoi des codes d\'accès : </td>' . "\n";
+		echo '<td>';
+		echo '<input type="checkbox" name="SendMail" value="1"' . checked($sendmail) . ' />Envoi automatique du mail ci-dessous&nbsp; ';
+		echo '</td>';
+		echo "</tr>\n";
+		echo '<tr>' . "\n";
+		echo "<td align='right'>Texte du mail : </td>\n";
+		echo '<td>';
 		echo '<textarea name="Message" cols=50 rows=6>' . $message . '</textarea>';
-		echo '  </td>';
-		echo " </tr>\n";
+		echo '</td>';
+		echo "</tr>\n";
 	}
-
-	echo " <tr>\n";
-	echo '  <td colspan="2">&nbsp;</td>' . "\n";
-	echo " </tr>\n";
-
-	echo " <tr><td align=\"right\">\n";
-	echo '  <input type="hidden" name="id" value="' . $id . '" />';
-	echo '  <input type="hidden" name="action" value="submitted" />';
-	echo '  <a href="aide/gestuser.html" target="_blank">Aide</a>&nbsp;';
-	echo '  <input type="reset" value=" Effacer " />' . "\n";
-	echo " </td><td align=\"left\">\n";
-	echo ' &nbsp; <input type="submit" value=" *** ENREGISTRER *** " />' . "\n";
+	echo "<tr>\n";
+	echo '<td colspan="2">&nbsp;</td>' . "\n";
+	echo "</tr>\n";
+	echo "<tr><td align=\"right\">\n";
+	echo '<input type="hidden" name="id" value="' . $id . '" />';
+	echo '<input type="hidden" name="action" value="submitted" />';
+	echo '<a href="aide/gestuser.html" target="_blank">Aide</a>&nbsp;';
+	echo '<input type="reset" value=" Effacer " />' . "\n";
+	echo "</td><td align=\"left\">\n";
+	echo '&nbsp; <input type="submit" value=" *** ENREGISTRER *** " />' . "\n";
 	if ($id > 0 and $level < 9) {
-		echo ' &nbsp; &nbsp; &nbsp; <a href="gestuser.php?id=' . $id . '&amp;act=del">Supprimer cet utilisateur</a>' . "\n";
+		echo '&nbsp; &nbsp; &nbsp; <a href="gestuser.php?id=' . $id . '&amp;act=del">Supprimer cet utilisateur</a>' . "\n";
 	}
-	echo " </td></tr>\n";
+	echo "</td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 } else {
