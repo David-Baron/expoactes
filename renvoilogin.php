@@ -37,7 +37,7 @@ if (getparam('submit') <> '') {
 		msg('Vous devez fournir votre adresse email');
 	} else {
 		$missingargs = false;
-		$request = "select nom, prenom,login,email,level from " . EA_UDB . "_user3 where email = '" . getparam('email') . "'; ";
+		$request = "SELECT nom, prenom, login, email, level FROM " . EA_UDB . "_user3 WHERE email='" . getparam('email') . "'; ";
 
 		$result = EA_sql_query($request, $u_db);
 		$nb = EA_sql_num_rows($result);
@@ -46,8 +46,8 @@ if (getparam('submit') <> '') {
 			$userlevel = $user["level"];
 			$pw = MakeRandomPassword(8);
 			$hash = sha1($pw);
-			$reqmaj = "update " . EA_UDB . "_user3 set HASHPASS = '" . $hash . "' " .
-				" where email = '" . getparam('email') . "'; ";
+			$reqmaj = "UPDATE " . EA_UDB . "_user3 SET HASHPASS = '" . $hash . "' " .
+				" WHERE email='" . getparam('email') . "'; ";
 
 			//echo "<p>".$reqmaj."</p>";
 

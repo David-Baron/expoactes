@@ -58,10 +58,7 @@ if ($ok) {
 		$statut = 'A';  // attente approbation par admin
 	else
 		$statut = 'N';  // normal  
-	$reqmaj = "update " . EA_UDB . "_user3 set "
-		. " statut = '" . $statut . "',"
-		. " rem = ' '"
-		. " where id=" . $id . ";";
+	$reqmaj = "UPDATE " . EA_UDB . "_user3 SET statut='" . $statut . "', rem=' ' WHERE id=" . $id . ";";
 
 	//echo "<p>".$reqmaj."</p>";
 	if ($result = EA_sql_query($reqmaj, $u_db)) {
