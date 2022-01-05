@@ -25,7 +25,6 @@ navigation($root, 2, 'A', "Changement de mot de passe");
 
 ?>
 <script type="text/javascript">
-	<!--
 	function pwProtect() {
 		form = document.forms["eaform"];
 		if (form.oldpassw.value == "") {
@@ -55,8 +54,6 @@ navigation($root, 2, 'A', "Changement de mot de passe");
 		}
 		return true;
 	}
-	//
-	-->
 </script>
 <?php
 
