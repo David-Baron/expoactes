@@ -17,7 +17,7 @@ function current_user($zone)
 	if ($userlogin == "")
 		return 0;  // non connecté
 	else {
-		$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login = '" . $userlogin . "'";
+		$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login='" . $userlogin . "'";
 		$res = EA_sql_query($sql, $u_db);
 		if ($res and EA_sql_num_rows($res) != 0) {
 			$row = EA_sql_fetch_array($res);

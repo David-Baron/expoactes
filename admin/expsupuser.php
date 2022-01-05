@@ -90,34 +90,34 @@ if (!$missingargs) {
 		$condlevel = "level>=0";
 	$condrem = "";
 	if ($condit <> "0") {
-		$condrem = " and " . comparerSQL('REM', $rem, $condit);
+		$condrem = " AND " . comparerSQL('REM', $rem, $condit);
 	}
 	$condreg = "";
 	if ($regime >= 0) {
-		$condreg = " and regime =" . $regime;
+		$condreg = " AND regime =" . $regime;
 	}
 	$condsta = "";
 	if ($statut <> "0") {
 		if ($statut == "X")
-			$condsta = " and dtexpiration<'" . date("Y-m-d", time() - (DUREE_EXPIR * 24 * 60 * 60)) . "'";
+			$condsta = " AND dtexpiration<'" . date("Y-m-d", time() - (DUREE_EXPIR * 24 * 60 * 60)) . "'";
 		else
-			$condsta = " and statut ='" . $statut . "'";
+			$condsta = " AND statut ='" . $statut . "'";
 	}
 	$sqlexpir = "";
 	$baddt = 0;
 	ajuste_date($dtexpir, $sqlexpir, $baddt);
 	$condexp = "";
-	if ($sqlexpir > '0000-00-00' and $conditexp <> "0") {
-		$condexp = " and " . comparerSQL('dtexpiration', $sqlexpir, $conditexp);
+	if ($sqlexpir > '0000-00-00' && $conditexp <> "0") {
+		$condexp = " AND " . comparerSQL('dtexpiration', $sqlexpir, $conditexp);
 	}
 	$condpts = "";
 	if ($ptscons <> "" and $conditpts <> "0") {
-		$condpts = " and " . comparerSQL('pt_conso', $ptscons, $conditpts);
+		$condpts = " AND " . comparerSQL('pt_conso', $ptscons, $conditpts);
 	}
 
 	if ($suppr == 'Y') {
-		$request = "select count(*) from " . EA_UDB . "_user3"
-			. " where " . $condlevel . $condreg . $condrem . $condsta . $condexp . $condpts . " ;";
+		$request = "SELECT count(*) FROM " . EA_UDB . "_user3"
+			. " WHERE " . $condlevel . $condreg . $condrem . $condsta . $condexp . $condpts . " ;";
 		//echo $request;
 		$result = EA_sql_query($request, $u_db);
 		$ligne = EA_sql_fetch_row($result);
@@ -148,8 +148,8 @@ if (!$missingargs) {
 		}
 	}
 	if ($xaction == 'submitted' and $suppr <> "Y") {
-		$request = "select * from " . EA_UDB . "_user3"
-			. " where " . $condlevel . $condreg . $condrem . $condsta . $condexp . $condpts . " ;";
+		$request = "SELECT * FROM " . EA_UDB . "_user3"
+			. " WHERE " . $condlevel . $condreg . $condrem . $condsta . $condexp . $condpts . " ;";
 		//echo $request;
 		$result = EA_sql_query($request, $u_db);
 		$nbdocs = EA_sql_num_rows($result);
@@ -231,8 +231,8 @@ if (!$missingargs) {
 			}
 			writelog($actie . ' de fiches utilisateur', "USERS", $nb);
 			if ($suppr == "Oui") {
-				$request = "delete from " . EA_UDB . "_user3"
-					. " where level=" . $lelevel . $condreg . $condrem . $condsta . $condexp . $condpts . " ;";
+				$request = "DELETE FROM " . EA_UDB . "_user3"
+					. " WHERE level=" . $lelevel . $condreg . $condrem . $condsta . $condexp . $condpts . " ;";
 				$result = EA_sql_query($request, $u_db);
 				//echo $request;
 				$nb = EA_sql_affected_rows($u_db);

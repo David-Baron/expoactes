@@ -87,19 +87,19 @@ if ($xpatr == "" or mb_substr($xpatr, 0, 1) == "_")
 		$baselink = mkurl($path . '/' . $program, $xcomm, $xpatr, 'xord=D');
 	}
 	if ($xannee <> "")
-		$condit = " and year(act.LADATE)=" . $xannee;
+		$condit = " AND year(act.LADATE)=" . $xannee;
 	else
-		$condit = " and (act.NOM  = '" . sql_quote($xpatr) . "' or C_NOM  = '" . sql_quote($xpatr) . "')";
+		$condit = " AND (act.NOM='" . sql_quote($xpatr) . "' OR C_NOM='" . sql_quote($xpatr) . "')";
 
 	if ($Depart <> "")
-		$condDep = " and DEPART = '" . sql_quote($Depart) . "'";
+		$condDep = " AND DEPART='" . sql_quote($Depart) . "'";
 	else
 		$condDep = "";
 
-	$request = "select act.NOM, act.PRE, C_NOM, C_PRE, DATETXT, act.ID, act.DEPOSANT"
-		. " from " . EA_DB . "_mar3 as act"
-		. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep
-		. $condit . " order by " . $order;
+	$request = "SELECT act.NOM, act.PRE, C_NOM, C_PRE, DATETXT, act.ID, act.DEPOSANT"
+		. " FROM " . EA_DB . "_mar3 AS act"
+		. " WHERE COMMUNE='" . sql_quote($Commune) . "'" . $condDep
+		. $condit . " ORDER BY " . $order;
 
 	optimize($request);
 	$result = EA_sql_query($request);

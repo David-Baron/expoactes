@@ -115,11 +115,11 @@ if (!$missingargs) {
 			$petiq = htmlentities(getparam("etiq_$i"), ENTITY_REPLACE_FLAGS, ENTITY_CHARSET);
 			if ($petiq <> "")  // interdit de mettre à blanc
 			{
-				$request = "update " . EA_DB . "_metadb set affich = '" . sql_quote($paffi) . "' where ZID = '" . $pzid . "'";
+				$request = "UPDATE " . EA_DB . "_metadb SET affich='" . sql_quote($paffi) . "' WHERE ZID='" . $pzid . "'";
 				//echo "<p>".$request;
 				$result = EA_sql_query($request);
 				$cpt += EA_sql_affected_rows();
-				$request = "update " . EA_DB . "_metalg set etiq = '" . sql_quote($petiq) . "' where ZID = '" . $pzid . "' and LG='fr'";
+				$request = "UPDATE " . EA_DB . "_metalg SET etiq='" . sql_quote($petiq) . "' WHERE ZID='" . $pzid . "' AND LG='fr'";
 				$result = EA_sql_query($request);
 				$cpt += EA_sql_affected_rows();
 			}
@@ -132,7 +132,7 @@ if (!$missingargs) {
 			$getiq = htmlentities(getparam("group_$j"), ENTITY_REPLACE_FLAGS, ENTITY_CHARSET);
 			if ($getiq <> "")  // interdit de mettre à blanc
 			{
-				$request = "update " . EA_DB . "_mgrplg set getiq = '" . sql_quote($getiq) . "' where grp = '" . $grp . "' and LG='fr' and dtable='" . $xfile . "'";
+				$request = "UPDATE " . EA_DB . "_mgrplg SET getiq='" . sql_quote($getiq) . "' WHERE grp='" . $grp . "' AND LG='fr' AND dtable='" . $xfile . "'";
 				$result = EA_sql_query($request);
 				$tt = EA_sql_affected_rows();
 				//if ($tt>0) echo '<p>'.$request;
@@ -156,13 +156,13 @@ if (!$missingargs) {
 			//echo "<p>!".$getiq."==".grp_label($grp,'V',$lg)."!";
 			if ($getiq <> "" and $getiq <> grp_label($grp, 'V', $lg)) // si non vide et pas valeur par défaut   
 			{
-				$request = "select count(*) as CPT from " . EA_DB . "_mgrplg where lg='" . $lg . "' and dtable='V' and grp='" . $grp . "' and sigle='" . $lesigle . "'";
+				$request = "SELECT count(*) AS CPT FROM " . EA_DB . "_mgrplg WHERE lg='" . $lg . "' AND dtable='V' AND grp='" . $grp . "' AND sigle='" . $lesigle . "'";
 				$result = EA_sql_query($request);
 				$row = EA_sql_fetch_array($result);
 				if ($row["CPT"] > 0)
-					$request = "update " . EA_DB . "_mgrplg set getiq = '" . sql_quote($getiq) . "' where grp = '" . $grp . "' and LG='fr' and dtable='V' and sigle='" . $lesigle . "'";
+					$request = "UPDATE " . EA_DB . "_mgrplg SET getiq = '" . sql_quote($getiq) . "' WHERE grp = '" . $grp . "' AND LG='fr' AND dtable='V' AND sigle='" . $lesigle . "'";
 				else
-					$request = "insert into " . EA_DB . "_mgrplg (grp,dtable,lg,sigle,getiq) value ('" . $grp . "','V','" . $lg . "','" . $lesigle . "','" . sql_quote($getiq) . "')";
+					$request = "INSERT INTO " . EA_DB . "_mgrplg (grp,dtable,lg,sigle,getiq) VALUES ('" . $grp . "','V','" . $lg . "','" . $lesigle . "','" . sql_quote($getiq) . "')";
 				$result = EA_sql_query($request);
 				$tt = EA_sql_affected_rows();
 				//echo '<p>'.$request;
@@ -187,7 +187,7 @@ if ($xfile == "X") {
 	echo '  <td align="right"><b>Sigle des actes divers : </b></td>' . "\n";
 	echo '  <td>';
 
-	$request = "select distinct SIGLE from " . EA_DB . "_div3 where length(SIGLE)>0 order by SIGLE";
+	$request = "SELECT DISTINCT SIGLE FROM " . EA_DB . "_div3 WHERE length(SIGLE)>0 ORDER BY SIGLE";
 	optimize($request);
 	$result = EA_sql_query($request);
 	//echo $request;
@@ -206,7 +206,7 @@ if ($xfile == "X") {
 	echo "<tr>\n";
 	echo '  <td align="right"><b>Libellé concerné : </b></td>' . "\n";
 	echo '<td>';
-	$request = "select distinct LIBELLE from " . EA_DB . "_div3 where SIGLE='" . $lesigle . "' order by LIBELLE";
+	$request = "SELECT DISTINCT LIBELLE FROM " . EA_DB . "_div3 WHERE SIGLE='" . $lesigle . "' ORDER BY LIBELLE";
 	optimize($request);
 	$result = EA_sql_query($request);
 	if ($result = EA_sql_query($request)) {
@@ -243,7 +243,7 @@ else { // cas des etiquettes par défaut
 	else
 		$notech = " and affich<>'T' ";
 
-	$request = "select * from (" . EA_DB . "_metadb d join " . EA_DB . "_metalg l) where d.zid=l.zid and LG='fr' and dtable='" . $xfile . "'" . $notech . " order by GROUPE,OV3";
+	$request = "SELECT * FROM (" . EA_DB . "_metadb d JOIN " . EA_DB . "_metalg l) WHERE d.zid=l.zid AND LG='fr' AND dtable='" . $xfile . "'" . $notech . " ORDER BY GROUPE,OV3";
 	optimize($request);
 	$result = EA_sql_query($request);
 	//echo $request;

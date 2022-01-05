@@ -74,7 +74,7 @@ if (!$missingargs) {
 			if (($pos > 0)) {
 				$Depart  = departementde(mb_substr($comdep, 1, $pos));
 				$stype = mb_substr($comdep, $pos + 2);
-				$condtdiv = " and (LIBELLE='" . sql_quote($stype) . "')";
+				$condtdiv = " AND (LIBELLE='" . sql_quote($stype) . "')";
 				$soustype = " (" . $stype . ")";
 				$linkdiv = ";" . $stype;
 			}
@@ -105,8 +105,8 @@ if (!$missingargs) {
 	echo '<div id="col_main_adm">';
 	echo '<h2>' . $title . '</h2>';
 
-	$request = "select year(ladate) as ANNEE,count(*) as CPT from " . $table .
-		" where COMMUNE='" . sql_quote($Commune) . "' and DEPART='" . sql_quote($Depart) . "'" . $condtdiv . " group by year(ladate) ;";
+	$request = "SELECT year(ladate) AS ANNEE,count(*) AS CPT FROM " . $table .
+		" WHERE COMMUNE='" . sql_quote($Commune) . "' AND DEPART='" . sql_quote($Depart) . "'" . $condtdiv . " GROUP BY year(ladate) ;";
 	//echo $request;
 	$result = EA_sql_query($request);
 	$k = 0;

@@ -60,7 +60,6 @@ navigation($root, 2, 'A', "Changement de mot de passe");
 </script>
 <?php
 
-
 echo '<div id="col_menu">';
 form_recherche($root);
 //menu_admin($root,$userlevel);
@@ -81,7 +80,6 @@ if ($act == "relogin") {
 }
 
 $missingargs = true;
-
 $userid = current_user("ID");
 
 if (getparam('action') == 'submitted') {
@@ -112,8 +110,7 @@ if (getparam('action') == 'submitted') {
 
 	if ($ok) {
 		$missingargs = false;
-		$reqmaj = "update " . EA_UDB . "_user3 set HASHPASS = '" . $codedpass . "' " .
-			" where ID=" . $userid . ";";
+		$reqmaj = "UPDATE " . EA_UDB . "_user3 SET HASHPASS = '" . $codedpass . "' WHERE ID=" . $userid . ";";
 
 		//echo "<p>".$reqmaj."</p>";
 

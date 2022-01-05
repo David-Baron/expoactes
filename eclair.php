@@ -40,7 +40,7 @@ if (ECLAIR_AUTORISE == 1) {
 	if (($xcom == "") or ($xtyp == "")) {
 		// Lise des communes 
 
-		$request = "SELECT TYPACT as TYP, sum(NB_TOT) as CPT, COMMUNE, DEPART"
+		$request = "SELECT TYPACT AS TYP, sum(NB_TOT) AS CPT, COMMUNE, DEPART"
 			. " FROM " . EA_DB . "_sums "
 			. ' GROUP BY COMMUNE, DEPART, TYP ';
 
@@ -84,7 +84,7 @@ if (ECLAIR_AUTORISE == 1) {
 
 		// Extraction de la commune voulue
 		$cond = "";
-		if ($xini <> "") $cond .= " and NOM like '" . $xini . "%'";
+		if ($xini <> "") $cond .= " AND NOM LIKE '" . $xini . "%'";
 
 		$request  = "SELECT year(LADATE), " . $zones
 			. " FROM " . $table  //. " IGNORE INDEX (COM_DEP)"
@@ -99,12 +99,12 @@ if (ECLAIR_AUTORISE == 1) {
 			$lgi  = strlen($xini) + 1;
 			$initiale = "";
 			if ($lgi > 0)
-				$initiale = " and left(NOM,$lgi-1)= '" . sql_quote($xini) . "'";
+				$initiale = " AND left(NOM,$lgi-1)= '" . sql_quote($xini) . "'";
 
-			$request = "select left(NOM,$lgi), count(*)"
-				. " from $table "
-				. " where COMMUNE = '" . sql_quote($xcom) . "' and DEPART = '" . sql_quote($xdep) . "'" . $initiale
-				. " group by left(NOM,$lgi)";
+			$request = "SELECT left(NOM,$lgi), count(*)"
+				. " FROM $table "
+				. " WHERE COMMUNE = '" . sql_quote($xcom) . "' AND DEPART = '" . sql_quote($xdep) . "'" . $initiale
+				. " GROUP BY left(NOM,$lgi)";
 
 			optimize($request);
 			$result = EA_sql_query($request);
@@ -112,10 +112,10 @@ if (ECLAIR_AUTORISE == 1) {
 
 			if ($nblign == 1 and $lgi > 3)  // Permet d'éviter un bouclage si le nom devient trop petit
 			{
-				$request = "select NOM, count(NOM), min(NOM), max(NOM)"
-					. " from $table "
-					. " where COMMUNE = '" . sql_quote($xcom) . "' and DEPART = '" . sql_quote($xdep) . "'" . $initiale
-					. " group by NOM";
+				$request = "SELECT NOM, count(NOM), min(NOM), max(NOM)"
+					. " FROM $table "
+					. " WHERE COMMUNE = '" . sql_quote($xcom) . "' AND DEPART = '" . sql_quote($xdep) . "'" . $initiale
+					. " GROUP BY NOM";
 				optimize($request);
 				$result = EA_sql_query($request);
 			}
@@ -152,7 +152,7 @@ if (ECLAIR_AUTORISE == 1) {
 						$k++;
 					}
 				}
-				$reqmaj = "INSERT into tmp_eclair VALUES " . $insert;
+				$reqmaj = "INSERT INTO tmp_eclair VALUES " . $insert;
 				$res = EA_sql_query($reqmaj);
 				//echo '<p>'.$reqmaj;
 				if (!($res === true)) {
@@ -163,7 +163,7 @@ if (ECLAIR_AUTORISE == 1) {
 			}
 			// Extraction du décompte des patronymes
 
-			$request  = "SELECT count(*), min(ANNEE), max(ANNEE), PATRO FROM tmp_eclair group by PATRO";
+			$request  = "SELECT count(*), min(ANNEE), max(ANNEE), PATRO FROM tmp_eclair GROUP BY PATRO";
 			$result = EA_sql_query($request);
 			optimize($request);
 

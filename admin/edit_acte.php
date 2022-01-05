@@ -99,12 +99,12 @@ if (!$missingargs) {
 		ajuste_date(getparam("DATETXT"), $ladate, $MauvaiseDate);
 
 		if ($xid < 0) {
-			$request = "insert into " . $table . " ";
+			$request = "INSERT INTO " . $table . " ";
 			$zlist = "(";
 			$vlist = "(";
 			$txt = "ajouté";
 		} else {
-			$request = "update " . $table . " set ";
+			$request = "UPDATE " . $table . " SET ";
 			$txt = "modifié";
 			$logtxt = "Edition";
 		}
@@ -126,9 +126,9 @@ if (!$missingargs) {
 				$request .= $mdb[$i]['ZONE'] . " = '" . sql_quote($valeurlue) . "', "; // modif
 		}
 		if ($xid < 0)
-			$request .= $zlist . "LADATE,DTDEPOT,DTMODIF,TYPACT,IDNIM) values " . $vlist . "'" . $ladate . "','" . $today . "','" . $today . "','" . $xtyp . "',0)";
+			$request .= $zlist . "LADATE,DTDEPOT,DTMODIF,TYPACT,IDNIM) VALUES " . $vlist . "'" . $ladate . "','" . $today . "','" . $today . "','" . $xtyp . "',0)";
 		else
-			$request .= "LADATE= '" . $ladate . "', " . "DTMODIF= '" . $today . "' where ID=" . $xid . ";";
+			$request .= "LADATE= '" . $ladate . "', " . "DTMODIF= '" . $today . "' WHERE ID=" . $xid . ";";
 		if ($ok)
 		// *** si tout est ok : sauvegarde de l acte modifié
 		{
@@ -157,7 +157,7 @@ if (!$missingargs) {
 				$champs .= $mdb[$i]['ZONE'] . ", ";
 			}
 		}
-		$request = "select " . $champs . " ID from " . $table . " where ID=" . $xid;
+		$request = "SELECT " . $champs . " ID FROM " . $table . " WHERE ID=" . $xid;
 		$result = EA_sql_query($request);
 		//echo $request;
 		if ($acte = EA_sql_fetch_array($result) or $xid == -1) {

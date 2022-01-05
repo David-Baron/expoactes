@@ -25,13 +25,13 @@ function makecritjlc($xmin, $xmax, $xcomm, $xdepa, $pre, $c_pre, $xpre, $xc_pre)
 		$crit = sql_and($crit) . $critx;
 	}
 	if (mb_substr($xcomm, 0, 2) != "**") {
-		$critx = " (COMMUNE = '" . sql_quote($xcomm) . "' and DEPART= '" . sql_quote($xdepa) . "')";
+		$critx = " (COMMUNE = '" . sql_quote($xcomm) . "' AND DEPART= '" . sql_quote($xdepa) . "')";
 		$crit = sql_and($crit) . $critx;
 	}
-	$critx = "(" . $pre . "  like '" . $xpre . "%')  ";
+	$critx = "(" . $pre . "  LIKE '" . $xpre . "%')  ";
 	$crit = sql_and($crit) . $critx;
 	if ($c_pre != "") {
-		$critx = "(" . $c_pre . "  like '" . $xc_pre . "%')  ";
+		$critx = "(" . $c_pre . "  LIKE '" . $xc_pre . "%')  ";
 		$crit = sql_and($crit) . $critx;
 	}
 
@@ -209,11 +209,11 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 			{
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_mar3", "H", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				$fin_ok = table_temp($xach2, $xcomp, EA_DB . "_mar3", "F", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
-				$request = "select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' as LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_h.disth ," . EA_DB . "_" . $ip_adr_trait . "_f.distf "
-					. " from " . EA_DB . "_mar3 join " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_mar3.nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_mar3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
+				$request = "SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' AS LIBELLE, " . EA_DB . "_" . $ip_adr_trait . "_h.disth ," . EA_DB . "_" . $ip_adr_trait . "_f.distf "
+					. " FROM " . EA_DB . "_mar3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_h ON " . EA_DB . "_mar3.nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_f ON " . EA_DB . "_mar3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "PRE", "C_PRE", $xpre, $xpre2);
-				$request .= " where " . $crit . " order by ladate";
+				$request .= " WHERE " . $crit . " ORDER BY ladate";
 				$mes = 'des mariages pour les noms <b>' . strtoupper($xach) . '</b> et <b>' . strtoupper($xach2) . '</b> avec ' . $dm . '  ' . $critdate;
 			}
 			if ($xcomp2 == "EN")      //recherche enfants naissances seulement
@@ -221,13 +221,13 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_nai3", "H", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				$fin_ok = table_temp($xach2, $xcomp, EA_DB . "_nai3", "F", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 
-				//." from ".EA_DB."_nai3 join ".$ip_adr_trait."_h on ".EA_DB."_nai3.p_nom = ".$ip_adr_trait."_h.nomlev "
+				//." FROM ".EA_DB."_nai3 JOIN ".$ip_adr_trait."_h ON ".EA_DB."_nai3.p_nom = ".$ip_adr_trait."_h.nomlev "
 
-				$request = "select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Naissance' as LIBELLE,NOM,M_NOM "
-					. " from " . EA_DB . "_nai3 join " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_nai3.P_NOM = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_nai3.M_NOM = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
+				$request = "SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Naissance' AS LIBELLE,NOM,M_NOM "
+					. " FROM " . EA_DB . "_nai3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_h ON " . EA_DB . "_nai3.P_NOM = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_f ON " . EA_DB . "_nai3.M_NOM = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "P_PRE", "M_PRE", $xpre, $xpre2);
-				$request .= " where " . $crit . " order by ladate";
+				$request .= " WHERE " . $crit . " ORDER BY ladate";
 				$mes = 'des naissances enfants pour les noms <b>' . strtoupper($xach) . '</b> et <b>' . strtoupper($xach2) . '</b> avec ' . $dm . '  ' . $critdate;
 			}
 			if ($xcomp2 == "END")      //recherche enfants naissances deces 
@@ -237,19 +237,19 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 
 				cree_table_temp_sup($ip_adr_trait . "_hb", $ip_adr_trait . "_h");
 				cree_table_temp_sup($ip_adr_trait . "_fb", $ip_adr_trait . "_f");
-				//	." from ".EA_DB."_nai3 join ".$ip_adr_trait."_h on ".EA_DB."_nai3.p_nom = ".$ip_adr_trait."_h.nomlev "
-				$request = "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Naissance' as LIBELLE,P_NOM,M_NOM "
-					. " from " . EA_DB . "_nai3 join " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_nai3.p_nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_nai3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
+				//	." FROM ".EA_DB."_nai3 join ".$ip_adr_trait."_h ON ".EA_DB."_nai3.p_nom = ".$ip_adr_trait."_h.nomlev "
+				$request = "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Naissance' AS LIBELLE,P_NOM,M_NOM "
+					. " FROM " . EA_DB . "_nai3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_h ON " . EA_DB . "_nai3.p_nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_f ON " . EA_DB . "_nai3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "P_PRE", "M_PRE", $xpre, $xpre2);
-				//." from ".EA_DB."_dec3 join ".$ip_adr_trait."_hb on ".EA_DB."_dec3.p_nom = ".$ip_adr_trait."_hb.nomlev 
+				//." FROM ".EA_DB."_dec3 join ".$ip_adr_trait."_hb ON ".EA_DB."_dec3.p_nom = ".$ip_adr_trait."_hb.nomlev 
 				$request .= " where " . $crit . "  )";
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Décès' as LIBELLE,P_NOM,M_NOM "
-					. " from " . EA_DB . "_dec3 join " . EA_DB . "_" . $ip_adr_trait . "_hb on " . EA_DB . "_dec3.p_nom = " . EA_DB . "_" . $ip_adr_trait . "_hb.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_fb on " . EA_DB . "_dec3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev ";
+				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Décès' AS LIBELLE,P_NOM,M_NOM "
+					. " FROM " . EA_DB . "_dec3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_hb ON " . EA_DB . "_dec3.p_nom = " . EA_DB . "_" . $ip_adr_trait . "_hb.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_fb ON " . EA_DB . "_dec3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev ";
 
-				$request .= " where " . $crit . "  )";
-				$request .= "order by ladate ";
+				$request .= " WHERE " . $crit . "  )";
+				$request .= " ORDER BY ladate ";
 				$mes = 'des naissances et décès enfants pour les noms <b>' . strtoupper($xach) . '</b> et <b>' . strtoupper($xach2) . '</b> avec ' . $dm . '  ' . $critdate;
 			}
 			if ($xcomp2 == "TOUT")      //recherche mariages enfants naissances deces 
@@ -258,27 +258,27 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 				$fin_ok = table_temp($xach2, $xcomp, EA_DB . "_mar3", "F", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_nai3", "N", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_dec3", "D", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
-				$request = "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' as LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_h.disth ," . EA_DB . "_" . $ip_adr_trait . "_f.distf "
-					. " from " . EA_DB . "_mar3 join " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_mar3.nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_mar3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
+				$request = "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' AS LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_h.disth ," . EA_DB . "_" . $ip_adr_trait . "_f.distf "
+					. " FROM " . EA_DB . "_mar3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_h ON " . EA_DB . "_mar3.nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_f ON " . EA_DB . "_mar3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "P_PRE", "M_PRE", $xpre, $xpre2);
-				$request .= " where " . $crit . "  )";
+				$request .= " WHERE " . $crit . "  )";
 
 				cree_table_temp_sup($ip_adr_trait . "_fb", $ip_adr_trait . "_f");
 
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Naissance' as LIBELLE,NOM,M_NOM "
-					. " from " . EA_DB . "_nai3 join " . EA_DB . "_" . $ip_adr_trait . "_n on " . EA_DB . "_nai3.nom = " . EA_DB . "_" . $ip_adr_trait . "_n.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_fb on " . EA_DB . "_nai3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev ";
-				$request .= " where " . $crit . "  )";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Naissance' AS LIBELLE,NOM,M_NOM "
+					. " FROM " . EA_DB . "_nai3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_n ON " . EA_DB . "_nai3.nom = " . EA_DB . "_" . $ip_adr_trait . "_n.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_fb ON " . EA_DB . "_nai3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev ";
+				$request .= " WHERE " . $crit . "  )";
 
 				cree_table_temp_sup($ip_adr_trait . "_ft", $ip_adr_trait . "_f");
 
 
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Décès' as LIBELLE,P_NOM,M_NOM "
-					. " from " . EA_DB . "_dec3 join " . EA_DB . "_" . $ip_adr_trait . "_d on " . EA_DB . "_dec3.nom = " . EA_DB . "_" . $ip_adr_trait . "_d.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_ft on " . EA_DB . "_dec3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_ft.nomlev ";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE, LADATE,'Décès' AS LIBELLE,P_NOM,M_NOM "
+					. " FROM " . EA_DB . "_dec3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_d ON " . EA_DB . "_dec3.nom = " . EA_DB . "_" . $ip_adr_trait . "_d.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_ft ON " . EA_DB . "_dec3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_ft.nomlev ";
 
-				$request .= " where " . $crit . "  )";
+				$request .= " WHERE " . $crit . "  )";
 
 
 
@@ -287,20 +287,20 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 				cree_table_temp_sup($ip_adr_trait . "_hq", $ip_adr_trait . "_h");
 				cree_table_temp_sup($ip_adr_trait . "_fq", $ip_adr_trait . "_f");
 
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' as LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_hq.disth ," . EA_DB . "_" . $ip_adr_trait . "_fq.distf "
-					. " from " . EA_DB . "_mar3 join " . EA_DB . "_" . $ip_adr_trait . "_hq on " . EA_DB . "_mar3.nom = " . EA_DB . "_" . $ip_adr_trait . "_hq.nomlev "
-					. " join " . EA_DB . "_" . $ip_adr_trait . "_fq on " . EA_DB . "_mar3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_fq.nomlev ";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' AS LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_hq.disth ," . EA_DB . "_" . $ip_adr_trait . "_fq.distf "
+					. " FROM " . EA_DB . "_mar3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_hq ON " . EA_DB . "_mar3.nom = " . EA_DB . "_" . $ip_adr_trait . "_hq.nomlev "
+					. " JOIN " . EA_DB . "_" . $ip_adr_trait . "_fq ON " . EA_DB . "_mar3.m_nom = " . EA_DB . "_" . $ip_adr_trait . "_fq.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "P_PRE", "M_PRE", $xpre, $xpre2);
-				$request .= " where " . $crit . " )";
+				$request .= " WHERE " . $crit . " )";
 
 				cree_table_temp_sup($ip_adr_trait . "_hc", $ip_adr_trait . "_h");
 				cree_table_temp_sup($ip_adr_trait . "_fc", $ip_adr_trait . "_f");
 
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' as LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_hc.disth ," . EA_DB . "_" . $ip_adr_trait . "_fc.distf "
-					. " from " . EA_DB . "_mar3 join " . EA_DB . "_" . $ip_adr_trait . "_hc on " . EA_DB . "_mar3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_hc.nomlev "
-					. " join " . EA_DB . "_" . $ip_adr_trait . "_fc on " . EA_DB . "_mar3.cm_nom = " . EA_DB . "_" . $ip_adr_trait . "_fc.nomlev ";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' AS LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_hc.disth ," . EA_DB . "_" . $ip_adr_trait . "_fc.distf "
+					. " FROM " . EA_DB . "_mar3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_hc ON " . EA_DB . "_mar3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_hc.nomlev "
+					. " JOIN " . EA_DB . "_" . $ip_adr_trait . "_fc ON " . EA_DB . "_mar3.cm_nom = " . EA_DB . "_" . $ip_adr_trait . "_fc.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "CP_PRE", "CM_PRE", $xpre, $xpre2);
-				$request .= " where " . $crit . " )";
+				$request .= " WHERE " . $crit . " )";
 				//###########################################################""""
 
 				$request .= "order by ladate ";
@@ -312,21 +312,21 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_div3", "H", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				$fin_ok = table_temp($xach2, $xcomp, EA_DB . "_div3", "F", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				// recherche Int1 Int2 et Int2 Int1 (ce n'est pas H et F )
-				$request = "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Acte divers' as LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_h.disth ," . EA_DB . "_" . $ip_adr_trait . "_f.distf "
-					. " from " . EA_DB . "_div3 join " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_div3.nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_div3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
+				$request = "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Acte divers' AS LIBELLE," . EA_DB . "_" . $ip_adr_trait . "_h.disth ," . EA_DB . "_" . $ip_adr_trait . "_f.distf "
+					. " FROM " . EA_DB . "_div3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_h ON " . EA_DB . "_div3.nom = " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_f ON " . EA_DB . "_div3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "PRE", "C_PRE", $xpre, $xpre2);
-				$request .= " where " . $crit . "   )";
+				$request .= " WHERE " . $crit . "   )";
 
 				cree_table_temp_sup($ip_adr_trait . "_hb", $ip_adr_trait . "_h");
 				cree_table_temp_sup($ip_adr_trait . "_fb", $ip_adr_trait . "_f");
 
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Acte divers' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM "
-					. " from " . EA_DB . "_div3 join " . EA_DB . "_" . $ip_adr_trait . "_fb on " . EA_DB . "_div3.nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev "
-					. "  join " . EA_DB . "_" . $ip_adr_trait . "_hb on " . EA_DB . "_div3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_hb.nomlev ";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Acte divers' AS LIBELLE, 'Z' AS P_NOM, 'T' AS M_NOM "
+					. " FROM " . EA_DB . "_div3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_fb ON " . EA_DB . "_div3.nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev "
+					. "  JOIN " . EA_DB . "_" . $ip_adr_trait . "_hb ON " . EA_DB . "_div3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_hb.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "c_PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . "  )";
-				$request .= "order by ladate ";
+				$request .= " WHERE " . $crit . "  )";
+				$request .= " ORDER BY ladate ";
 
 
 				$mes = 'des actes divers pour les noms <b>' . strtoupper($xach) . '</b> et <b>' . strtoupper($xach2) . '</b> avec ' . $dm . '  ' . $critdate;
@@ -339,37 +339,37 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 			{
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_mar3", "H", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_mar3", "F", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
-				$request = "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE,  C_NOM, C_PRE, LADATE,'Mariage  ' as LIBELLE, 'Zzzzzzzzzzzzzzzzzzzzzzzzz' as P_NOM, 'Ttttttttttttttttttttttttt' as M_NOM  "
-					. " from " . EA_DB . "_mar3 join " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_mar3.nom =  " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev ";
+				$request = "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE,  C_NOM, C_PRE, LADATE,'Mariage  ' as LIBELLE, 'Zzzzzzzzzzzzzzzzzzzzzzzzz' as P_NOM, 'Ttttttttttttttttttttttttt' as M_NOM  "
+					. " FROM " . EA_DB . "_mar3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_h on " . EA_DB . "_mar3.nom =  " . EA_DB . "_" . $ip_adr_trait . "_h.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . "   )";
+				$request .= " WHERE " . $crit . "   )";
 
 
 
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM "
-					. " from " . EA_DB . "_mar3 join " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_mar3.c_nom =  " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Mariage' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM "
+					. " FROM " . EA_DB . "_mar3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_f on " . EA_DB . "_mar3.c_nom =  " . EA_DB . "_" . $ip_adr_trait . "_f.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "c_PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . "  )";
+				$request .= " WHERE " . $crit . "  )";
 				$mes = $mes . ' Mariages ';
 			}
 			if ($xtypD)       //deces
 			{
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_dec3", "D", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				if (strlen($request) > 0) $request .= ' union ';
-				$request .= "(select ID, TYPACT, DATETXT, COMMUNE, NOM,PRE,'X' as C_NOM, 'Y' as C_PRE, LADATE,'Décès' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM  "
-					. " from " . EA_DB . "_dec3 join " . EA_DB . "_" . $ip_adr_trait . "_d on " . EA_DB . "_dec3.nom = " . EA_DB . "_" . $ip_adr_trait . "_d.nomlev ";
+				$request .= "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM,PRE,'X' as C_NOM, 'Y' as C_PRE, LADATE,'Décès' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM  "
+					. " FROM " . EA_DB . "_dec3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_d on " . EA_DB . "_dec3.nom = " . EA_DB . "_" . $ip_adr_trait . "_d.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . "  )";
+				$request .= " WHERE " . $crit . "  )";
 				$mes = $mes . ' Décès ';
 			}
 			if ($xtypN)       //naissances	
 			{
 				$fin_ok = table_temp($xach, $xcomp, EA_DB . "_nai3", "N", $xcomm, $ip_adr_trait, $xmin, $xmax, $T0, $Max_time);
 				if (strlen($request) > 0) $request .= ' union ';
-				$request .= "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE,  LADATE,'Naissance' as LIBELLE,P_NOM,M_NOM  "
-					. " from " . EA_DB . "_nai3 join " . EA_DB . "_" . $ip_adr_trait . "_n on " . EA_DB . "_nai3.nom = " . EA_DB . "_" . $ip_adr_trait . "_n.nomlev ";
+				$request .= "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, P_PRE, M_PRE,  LADATE,'Naissance' as LIBELLE,P_NOM,M_NOM  "
+					. " FROM " . EA_DB . "_nai3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_n on " . EA_DB . "_nai3.nom = " . EA_DB . "_" . $ip_adr_trait . "_n.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . " )";
+				$request .= " WHERE " . $crit . " )";
 				$mes = $mes . ' Naissances ';
 			}
 			if ($xtypV)       //actes divers    ##########################NOUVEAU################################	
@@ -382,17 +382,17 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 
 
 				if (strlen($request) > 0) $request .= ' union ';
-				$request .= "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE,  C_NOM, C_PRE, LADATE,'Acte Divers' as LIBELLE, 'Z' as P_NOM,  'T' as M_NOM  "
-					. " from " . EA_DB . "_div3 join " . EA_DB . "_" . $ip_adr_trait . "_hb on " . EA_DB . "_div3.nom = " . EA_DB . "_" . $ip_adr_trait . "_hb.nomlev ";
+				$request .= "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE,  C_NOM, C_PRE, LADATE,'Acte Divers' as LIBELLE, 'Z' as P_NOM,  'T' as M_NOM  "
+					. " FROM " . EA_DB . "_div3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_hb on " . EA_DB . "_div3.nom = " . EA_DB . "_" . $ip_adr_trait . "_hb.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . "   )";
-				$request .= "union (select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Acte Divers' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM "
-					. " from " . EA_DB . "_div3 join " . EA_DB . "_" . $ip_adr_trait . "_fb on " . EA_DB . "_div3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev ";
+				$request .= " WHERE " . $crit . "   )";
+				$request .= "union (SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE,'Acte Divers' as LIBELLE, 'Z' as P_NOM, 'T' as M_NOM "
+					. " FROM " . EA_DB . "_div3 JOIN " . EA_DB . "_" . $ip_adr_trait . "_fb on " . EA_DB . "_div3.c_nom = " . EA_DB . "_" . $ip_adr_trait . "_fb.nomlev ";
 				$crit = makecritjlc($xmin, $xmax, $xcomm, $xdepa, "c_PRE", "", $xpre, $xpre2);
-				$request .= " where " . $crit . "  )";
+				$request .= " WHERE " . $crit . "  )";
 				$mes = $mes . ' Actes divers ';   // ##########################FIN###############################"
 			}
-			$request .= "order by ladate ";
+			$request .= " ORDER BY ladate ";
 			$mes = $mes . '  ' . $critdate;
 		}
 

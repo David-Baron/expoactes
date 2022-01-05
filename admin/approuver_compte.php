@@ -51,7 +51,7 @@ if (!isset($_REQUEST['action'])) {
 	$ok = false;
 }
 $res = EA_sql_query("SELECT * FROM " . EA_UDB . "_user3 WHERE id='" . sql_quote(getparam('id'))
-	. "' and  (statut='W' or statut='A')", $u_db);
+	. "' AND  (statut='W' OR statut='A')", $u_db);
 if (EA_sql_num_rows($res) != 1) {
 	echo "<p><b>Pas de compte à approuver avec cette identification.</b></p>";
 	echo '</div>';
@@ -75,10 +75,10 @@ if ($ok) {
 		$sujet = "Refus de votre compte";
 		$mes = "refusé";
 	}
-	$reqmaj = "update " . EA_UDB . "_user3 set "
+	$reqmaj = "UPDATE " . EA_UDB . "_user3 SET "
 		. " statut = '" . $statut . "',"
 		. " rem = ' '"
-		. " where id=" . $id . ";";
+		. " WHERE id=" . $id . ";";
 
 	//echo "<p>".$reqmaj."</p>";
 	if ($result = EA_sql_query($reqmaj, $u_db)) {
@@ -86,8 +86,8 @@ if ($ok) {
 		$log = "Cpte " . $mes;
 		$message = getparam('messageplus');
 
-		$sql = "select NOM, PRENOM, LOGIN"
-			. " from " . EA_UDB . "_user3 where id=" . $id . ";";
+		$sql = "SELECT NOM, PRENOM, LOGIN"
+			. " FROM " . EA_UDB . "_user3 WHERE id=" . $id . ";";
 		$res = EA_sql_query($sql, $u_db);
 		$ligne = EA_sql_fetch_array($res);
 

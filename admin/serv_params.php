@@ -37,11 +37,11 @@ navadmin($root, "Paramètres serveur");
 $action = getparam('maint');
 if ($action <> "") {
 	if ($action == "SET") {
-		$request = "update " . EA_DB . "_params set valeur = '1' where param = 'EA_MAINTENANCE'";
+		$request = "UPDATE " . EA_DB . "_params SET valeur='1' WHERE param='EA_MAINTENANCE'";
 		$result = EA_sql_query($request);
 	}
 	if ($action == "UNSET") {
-		$request = "update " . EA_DB . "_params set valeur = '0' where param = 'EA_MAINTENANCE'";
+		$request = "UPDATE " . EA_DB . "_params SET valeur='0' WHERE param='EA_MAINTENANCE'";
 		$result = EA_sql_query($request);
 	}
 }
@@ -54,7 +54,7 @@ echo '<div id="col_main_adm">';
 
 menu_software('E');
 
-$request = "select valeur from " . EA_DB . "_params where param = 'EA_MAINTENANCE'";
+$request = "SELECT valeur FROM " . EA_DB . "_params WHERE param='EA_MAINTENANCE'";
 $result = EA_sql_query($request);
 $row = EA_sql_fetch_array($result);
 if ($row[0] == 1) {

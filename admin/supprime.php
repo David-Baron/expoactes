@@ -85,8 +85,8 @@ if (!$missingargs) {
 			$ntype = "types divers";
 			$table = EA_DB . "_div3";
 			$nofiltre = 18;
-			if (($xtdiv <> "") and (mb_substr($xtdiv, 0, 2) <> "**")) {
-				$condtdiv = " and (LIBELLE='" . urldecode($xtdiv) . "')";
+			if (($xtdiv <> "") && (mb_substr($xtdiv, 0, 2) <> "**")) {
+				$condtdiv = " AND (LIBELLE='" . urldecode($xtdiv) . "')";
 				$soustype = " (" . $xtdiv . ")";
 			}
 			break;
@@ -104,19 +104,19 @@ if (!$missingargs) {
 
 	$condad = "";
 	if ($AnneeDeb <> "") {
-		$condad = " and year(LADATE)>=" . $AnneeDeb;
+		$condad = " AND year(LADATE)>=" . $AnneeDeb;
 	}
 	$condaf = "";
 	if ($AnneeFin <> "") {
-		$condaf = " and year(LADATE)<=" . $AnneeFin;
+		$condaf = " AND year(LADATE)<=" . $AnneeFin;
 	}
 	$conddep = "";
 	if ($userlevel < 8) {
-		$conddep = " and DEPOSANT=" . $userid;
+		$conddep = " AND DEPOSANT=" . $userid;
 	}
 	if ($xaction <> 'validated') {
-		$request = "select count(*) from " . $table .
-			" where COMMUNE='" . sql_quote($Commune) . "' and DEPART='" . sql_quote($Depart) . "'" . $condad . $condaf . $conddep . $condtdiv . " ;";
+		$request = "SELECT count(*) FROM " . $table .
+			" WHERE COMMUNE='" . sql_quote($Commune) . "' AND DEPART='" . sql_quote($Depart) . "'" . $condad . $condaf . $conddep . $condtdiv . " ;";
 		// echo $request;
 		optimize($request);
 		$result = EA_sql_query($request);
@@ -141,8 +141,8 @@ if (!$missingargs) {
 			echo "</form>\n";
 		}
 	} else {
-		$request = "delete from " . $table .
-			" where COMMUNE='" . sql_quote($Commune) . "' and DEPART='" . sql_quote($Depart) . "'" . $condad . $condaf . $conddep . $condtdiv . " ;";
+		$request = "DELETE FROM " . $table .
+			" WHERE COMMUNE='" . sql_quote($Commune) . "' AND DEPART='" . sql_quote($Depart) . "'" . $condad . $condaf . $conddep . $condtdiv . " ;";
 		// echo $request;
 		$result = EA_sql_query($request);
 		optimize($request);

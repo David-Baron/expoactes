@@ -639,16 +639,16 @@ if ($ok)
 						} else {  // complet
 							$lignvalide = true;
 							if ($avecidnim and ($Dedoublon == 'I' or $Dedoublon == 'M')) {
-								$condit = "COMMUNE='" . sql_quote($commune) . "' and DEPART='" . sql_quote($depart) . "' and IDNIM=" . $idnim;
+								$condit = "COMMUNE='" . sql_quote($commune) . "' AND DEPART='" . sql_quote($depart) . "' AND IDNIM=" . $idnim;
 							} else {
-								$condit = "COMMUNE='" . sql_quote($commune) . "' and DEPART='" . sql_quote($depart) . "' and DATETXT='" . $datetxt . "' and NOM='" . sql_quote($nom) . "' and PRE='" . sql_quote($pre) . "'";
+								$condit = "COMMUNE='" . sql_quote($commune) . "' AND DEPART='" . sql_quote($depart) . "' AND DATETXT='" . $datetxt . "' AND NOM='" . sql_quote($nom) . "' AND PRE='" . sql_quote($pre) . "'";
 							}
 						}
 					}
 					if ($lignvalide) {
 						// Dédoublonnage
 						if ($Dedoublon <> 'A' and $NewId == 0) {
-							$request = "select ID from " . $table . " where " . $condit . ";";
+							$request = "SELECT ID FROM `$table` WHERE `$condit`;";
 							//echo '<p>'.$no_ligne." -> ".$request.'</p>';
 							$result = EA_sql_query($request);
 							$nb = EA_sql_num_rows($result);
@@ -659,7 +659,7 @@ if ($ok)
 								$ligne = EA_sql_fetch_assoc($result);
 								$id = $ligne["ID"];
 								//------
-								$reqtest = "select * from " . $table . " where " . $condit . ";";
+								$reqtest = "SELECT * FROM " . $table . " WHERE " . $condit . ";";
 								$restest = EA_sql_query($reqtest);
 								$ligtest = implode('|', EA_sql_fetch_row($restest));
 								$ligtest = mb_substr($ligtest, 0, mb_strlen($ligtest) - 10); // éliminer la date de dernière modif
@@ -679,7 +679,7 @@ if ($ok)
 								$listmaj .= ",RELEVEUR = '" . sql_quote($trans) . "'";
 								$listmaj .= ",VERIFIEU = '" . sql_quote($verif) . "'";
 								$listmaj .= ",DTMODIF= '" . $today . "' ";
-								$reqmaj = "update " . $table . " set " . $listmaj . " where ID=" . $id . ";";
+								$reqmaj = "UPDATE " . $table . " SET " . $listmaj . " WHERE ID=" . $id . ";";
 							} // MAJ
 							else {
 								$cptdeja++;
@@ -705,7 +705,7 @@ if ($ok)
 								$listmaj .= ",'" . $ladate . "'," . $id . "," . $deposant . ",'" . sql_quote($photo) . "','" . sql_quote($trans) . "','" . sql_quote($verif) . "','" . $dtdepot . "','" . $dtmodif . "'";
 							}
 							//echo "<p>".$listzon." <br>--> ".$listmaj." <br>cond-> ".$condit;
-							$reqmaj = "insert into " . $table . "(" . $listzon . ") values (" . $listmaj . ");";
+							$reqmaj = "INSERT INTO " . $table . "(" . $listzon . ") VALUES (" . $listmaj . ");";
 						} // ADD
 						//	if ($cptadd+$cptmaj<5)	echo "<p>".$reqmaj;
 
@@ -714,7 +714,7 @@ if ($ok)
 								if ($NewId == 0) // pas d'ajout forcé
 								{
 									//------
-									$reqtest = "select *   from " . $table . " where " . $condit . ";";
+									$reqtest = "SELECT * FROM " . $table . " WHERE " . $condit . ";";
 									$restest = EA_sql_query($reqtest);
 									$ligtest = implode('|', EA_sql_fetch_row($restest));
 									$ligtest = mb_substr($ligtest, 0, mb_strlen($ligtest) - 10); // éliminer la date de dernière modif

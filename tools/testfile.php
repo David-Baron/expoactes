@@ -9,8 +9,7 @@ include($EA_Appel_dOu . 'tools/_COMMUN_env.inc.php');
 
 function writable($path)  // Teste si acces en ecriture est possible : attention aux deux _ _
 {
-	if ($path{
-	strlen($path) - 1} == '/')
+	if ($path[strlen($path) - 1] == '/')
 		return writable($path . uniqid(mt_rand()) . '.tmp');
 
 	echo '<p>Test de création du fichier ' . $path . '';

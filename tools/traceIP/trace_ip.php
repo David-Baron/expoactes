@@ -161,9 +161,7 @@ function admin_traceip()
 		echo '<h3>Affranchissement permanent d\'IP effectué.</h3>' . "\n";
 	};
 
-	$req_allIP = "SELECT id,ua, ip, login, datetime, cpt,locked
-										FROM " . EA_DB . "_traceip
-										ORDER BY id ASC";
+	$req_allIP = "SELECT id,ua, ip, login, datetime, cpt,locked	FROM " . EA_DB . "_traceip ORDER BY id ASC";
 
 	$allIP = EA_sql_query($req_allIP) or die(EA_sql_error() . ' ' . __LINE__);
 	$array_IP = array();

@@ -29,7 +29,7 @@ function traite_tables_temps($ip_adr_trait, $heurecreation)
 	$request = "CREATE TABLE IF NOT EXISTS tmp_tables (ip VARCHAR(20) NOT NULL,creation DATETIME NOT NULL)";
 	$result = EA_sql_query($request);
 
-	$request = "insert into tmp_tables (ip,creation) values ('" . $ip_adr_trait . "','" . $heurecreation . "')";
+	$request = "INSERT INTO tmp_tables (ip,creation) VALUES ('" . $ip_adr_trait . "','" . $heurecreation . "')";
 	$result = EA_sql_query($request);
 
 	$request = "SELECT * FROM tmp_tables WHERE creation < now() -  INTERVAL 90 SECOND";
@@ -47,7 +47,7 @@ function traite_tables_temps($ip_adr_trait, $heurecreation)
 			$request1 = "DROP TABLE " . $ligne[0] . "_n";
 			$result1 = EA_sql_query($request1);
 
-			$request1 = "delete  FROM tmp_tables WHERE (ip = '" . $ligne[0] . "') and (creation ='" . $ligne[1] . "')";
+			$request1 = "DELETE FROM tmp_tables WHERE (ip = '" . $ligne[0] . "') AND (creation ='" . $ligne[1] . "')";
 			$result1 = EA_sql_query($request1);
 		}
 	}

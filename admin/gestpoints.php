@@ -71,29 +71,28 @@ if (getparam('action') == 'submitted') {
 	}
 
 	if ($condit <> "0") {
-		$condrem = " and " . comparerSQL('REM', $rem, $condit);
+		$condrem = " AND " . comparerSQL('REM', $rem, $condit);
 	}
 	$condreg = "";
 	if ($regime >= 0) {
-		$condreg = " and regime =" . $regime;
+		$condreg = " AND regime =" . $regime;
 	}
 	if ($statut > 0) {
-		$condreg = " and statut =" . $statut;
+		$condreg = " AND statut =" . $statut;
 	}
 	$sqlexpir = "";
 	$baddt = 0;
 	ajuste_date($dtexpir, $sqlexpir, $baddt);
 	if ($sqlexpir > '0000-00-00' and $conditexp <> "0") {
-		$condreg = " and " . comparerSQL('dtexpiration', $sqlexpir, $conditexp);
+		$condreg = " AND " . comparerSQL('dtexpiration', $sqlexpir, $conditexp);
 	}
 
 	if ($ok) {
 		if ($oper == "E") // ==== ajustement de la date d'expiration
 		{
-
-			$request = "update " . EA_UDB . "_user3 set"
+			$request = "UPDATE " . EA_UDB . "_user3 SET"
 				. " dtexpiration='" . $sqlnewdt . "'"
-				. " where level=" . $xdroits . $condreg . $condrem . " ;";
+				. " WHERE level=" . $xdroits . $condreg . $condrem . " ;";
 			$result = EA_sql_query($request, $u_db);
 			//echo $request;
 			$nb = EA_sql_affected_rows($u_db);
@@ -102,9 +101,9 @@ if (getparam('action') == 'submitted') {
 			$missingargs = false;
 		} elseif ($oper == "R") //==== remise à 0 des points consommés
 		{
-			$request = "update " . EA_UDB . "_user3 set"
+			$request = "UPDATE " . EA_UDB . "_user3 SET"
 				. " pt_conso=0"
-				. " where level=" . $xdroits . $condreg . $condrem . " ;";
+				. " WHERE level=" . $xdroits . $condreg . $condrem . " ;";
 			$result = EA_sql_query($request, $u_db);
 			//echo $request;
 			$nb = EA_sql_affected_rows($u_db);
@@ -113,9 +112,9 @@ if (getparam('action') == 'submitted') {
 			$missingargs = false;
 		} elseif ($oper == "A" or $oper == "F") {
 			// modification des points disponibles
-			$request = "select id, nom, prenom, solde, pt_conso"
-				. " from " . EA_UDB . "_user3 "
-				. " where level=" . $xdroits . $condreg . $condrem . " ;";
+			$request = "SELECT id, nom, prenom, solde, pt_conso"
+				. " FROM " . EA_UDB . "_user3 "
+				. " WHERE level=" . $xdroits . $condreg . $condrem . " ;";
 			//echo $request;
 			$sites = EA_sql_query($request, $u_db);
 			$nbsites = EA_sql_num_rows($sites);
@@ -131,9 +130,9 @@ if (getparam('action') == 'submitted') {
 					$newsolde = $oldsolde + $nbrepts;
 				else
 					$newsolde = $nbrepts;
-				$request = "update " . EA_UDB . "_user3 set"
+				$request = "UPDATE " . EA_UDB . "_user3 SET"
 					. " solde=" . $newsolde . ", maj_solde='" . $today . "'"
-					. " where id=" . $idsit . " ;";
+					. " WHERE id=" . $idsit . " ;";
 				$result = EA_sql_query($request, $u_db);
 				// echo $request;
 				$nb = EA_sql_affected_rows($u_db);
@@ -201,7 +200,6 @@ if ($missingargs) {
 	listbox_trait('conditexp', "NTS", $conditexp);
 	echo '<input type="text" name="dtexpir" size="10" value="' . $dtexpir . '" />' . "</td>\n";
 	echo " </tr>\n";
-
 
 	echo " <tr><td align=right>ET</td><td>&nbsp;</td></tr>\n";
 	echo " <tr>\n";

@@ -36,7 +36,7 @@ function load_params()
 	$db  = con_db();
 	$res = EA_sql_query("SHOW TABLES LIKE '" . EA_DB . "_params';");
 	if (EA_sql_num_rows($res) > 0) {
-		$request = "select * from " . EA_DB . "_params";
+		$request = "SELECT * FROM " . EA_DB . "_params";
 		$result = EA_sql_query($request);
 		while ($row = EA_sql_fetch_array($result)) {
 			if (!defined($row["param"])) define($row["param"], html_entity_decode($row["valeur"], ENTITY_REPLACE_FLAGS, ENTITY_CHARSET));
@@ -359,10 +359,10 @@ function statistiques($vue = "T")
 		$crit_dates = "";
 	}
 
-	$request = "select TYPACT, sum(NB_TOT)"
+	$request = "SELECT TYPACT, sum(NB_TOT)"
 		. " FROM " . EA_DB . "_sums "
-		. ' group by TYPACT'
-		. " order by INSTR('NMDV',TYPACT)"     // cette ligne permet de trier dans l'ordre voulu
+		. ' GROUP BY TYPACT'
+		. " ORDER BY INSTR('NMDV',TYPACT)"     // cette ligne permet de trier dans l'ordre voulu
 	;
 	optimize($request);
 	$result = EA_sql_query($request);
@@ -713,7 +713,7 @@ function getCommunes($params)   // Utilisée pour remplir dynamiquement une list
 	// nécessité de passer les parmètres dans une seule variable
 	$typact = $params[0];
 	$mode =   $params[1];
-	$rs = EA_sql_query("select distinct COMMUNE,DEPART from " . EA_DB . "_sums where TYPACT = '$typact' order by COMMUNE, DEPART");
+	$rs = EA_sql_query("SELECT DISTINCT COMMUNE, DEPART FROM " . EA_DB . "_sums WHERE TYPACT='$typact' ORDER BY COMMUNE, DEPART");
 	$k = 0;
 	if (EA_sql_num_rows($rs) == 0)
 		$options[$k] = array("value" => "", "text" => ("Aucune commune pour ce type"));
@@ -765,8 +765,7 @@ function form_typeactes_communes($mode = '', $alldiv = 1)
 
 function listbox_communes($fieldname, $default, $vide = 0)  // liste de toutes les communes ts actes confondus
 {
-	$request = "select distinct COMMUNE,DEPART from " . EA_DB . "_sums "
-		. " order by COMMUNE, DEPART ";
+	$request = "SELECT DISTINCT COMMUNE, DEPART FROM " . EA_DB . "_sums ORDER BY COMMUNE, DEPART ";
 	optimize($request);
 	if ($result = EA_sql_query($request)) {
 		$i = 1;
@@ -814,24 +813,26 @@ function load_zlabels($table, $lg, $ordre = "CSV")
 {
 	switch ($ordre) {
 		case "CSV":
-			$condit = "and not (groupe like '_0') order by groupe, OV3";
+			$condit = "AND NOT (groupe LIKE '_0') ORDER BY groupe, OV3";
 			break;
 		case "NIM3":
-			$condit = "and (OV3>0 and OV3<100) order by OV3";
+			$condit = "AND (OV3>0 AND OV3<100) ORDER BY OV3";
 			break;
 		case "NIM2":
-			$condit = "and (OV2>0 and OV2<100) order by OV2";
+			$condit = "AND (OV2>0 AND OV2<100) ORDER BY OV2";
 			break;
 		case "EA3":
-			$condit = "and (OV3>0) order by OV3";
+			$condit = "AND (OV3>0) ORDER BY OV3";
 			break;
 		case "EA2":
-			$condit = "and (OV2>0) order by OV2";
+			$condit = "AND (OV2>0) ORDER BY OV2";
 			break;
 	}
 	// Charges les labels dans un table
-	$req1 = "select d.ZID, ZONE, GROUPE, BLOC, TAILLE, OBLIG, ETIQ, TYP, AFFICH, GETIQ from (" . EA_DB . "_metadb d join " . EA_DB . "_metalg l join " . EA_DB . "_mgrplg g)"
-		. " where ((d.ZID=l.ZID) and (d.GROUPE=g.GRP) and (g.LG='" . $lg . "') and (g.dtable='" . $table . "') and (g.sigle=' ') and (l.LG='" . $lg . "') and (d.dtable='" . $table . "')) " . $condit;
+	$req1 = "SELECT d.ZID, ZONE, GROUPE, BLOC, TAILLE, OBLIG, ETIQ, TYP, AFFICH, GETIQ 
+			FROM (" . EA_DB . "_metadb d JOIN " . EA_DB . "_metalg l JOIN " . EA_DB . "_mgrplg g) 
+		 	WHERE ((d.ZID=l.ZID) AND (d.GROUPE=g.GRP) AND (g.LG='" . $lg . "') AND (g.dtable='" . $table . "') 
+			AND (g.sigle=' ') AND (l.LG='" . $lg . "') AND (d.dtable='" . $table . "')) " . $condit;
 	//echo $req1;
 	$res = EA_sql_query($req1);
 	$nbtot = EA_sql_num_rows($res);
@@ -863,10 +864,7 @@ function metadata($zone, $voulu)  // valeur $zone du record $voulu
 
 function listbox_types($fieldname, $default, $vide = 0)
 {
-	$request = "select distinct TYPACT as TYP"
-		. " FROM " . EA_DB . "_sums "
-		. " order by INSTR('NMDV',TYPACT)"     // cette ligne permet de trier dans l'ordre voulu
-	;
+	$request = "SELECT DISTINCT TYPACT AS TYP FROM " . EA_DB . "_sums ORDER BY INSTR('NMDV',TYPACT)";
 
 	optimize($request);
 	if ($result = EA_sql_query($request)) {
@@ -886,7 +884,7 @@ function listbox_types($fieldname, $default, $vide = 0)
 
 function listbox_divers($fieldname, $default, $tous = 0)
 {
-	$request = "select distinct LIBELLE from " . EA_DB . "_sums where length(LIBELLE)>0";
+	$request = "SELECT DISTINCT LIBELLE FROM " . EA_DB . "_sums WHERE length(LIBELLE)>0";
 	optimize($request);
 	if ($result = EA_sql_query($request)) {
 		$i = 1;
@@ -906,7 +904,7 @@ function listbox_divers($fieldname, $default, $tous = 0)
 function listbox_users($fieldname, $default, $levelmin, $zero = 0, $txtzero = '')
 {
 	global $u_db;
-	$request = "select ID, NOM, PRENOM from " . EA_UDB . "_user3 where LEVEL >= " . $levelmin . " order by NOM,PRENOM";
+	$request = "SELECT ID, NOM, PRENOM FROM " . EA_UDB . "_user3 WHERE LEVEL >= " . $levelmin . " ORDER BY NOM,PRENOM";
 	//optimize($request,$u_db);
 	if ($result = EA_sql_query($request, $u_db)) {
 		$i = 1;
@@ -961,12 +959,12 @@ function show_simple_item($retrait, $format, $info, $label, $info2 = "", $url = 
 
 function grp_label($gp, $tb, $lg, $sigle = '')
 {
-	$request = "select GETIQ from " . EA_DB . "_mgrplg where lg='" . $lg . "' and dtable='" . $tb . "' and grp='" . $gp . "' and sigle=' '";
+	$request = "SELECT GETIQ FROM " . EA_DB . "_mgrplg WHERE lg='" . $lg . "' AND dtable='" . $tb . "' AND grp='" . $gp . "' AND sigle=' '";
 	$result = EA_sql_query($request);
 	$row = EA_sql_fetch_array($result);
 	$label = $row["GETIQ"];
 	if ($sigle <> '') {  // on cherche le label spécifique s'il existe
-		$request = "select GETIQ from " . EA_DB . "_mgrplg where lg='" . $lg . "' and dtable='" . $tb . "' and grp='" . $gp . "' and sigle='" . $sigle . "'";
+		$request = "SELECT GETIQ FROM " . EA_DB . "_mgrplg WHERE lg='" . $lg . "' AND dtable='" . $tb . "' AND grp='" . $gp . "' AND sigle='" . $sigle . "'";
 		$result = EA_sql_query($request);
 		if (EA_sql_num_rows($result) > 0) {
 			$row = EA_sql_fetch_array($result);
@@ -983,14 +981,14 @@ function show_grouptitle3($row, $retrait, $format, $type, $group, $sigle = '')
 	$listvals = "";
 	$cas = "'O'";
 	if (ADM == 10) $cas .= ",'A'";
-	$req1 = "select count(ZONE) as CPT from " . EA_DB . "_metadb"
-		. " where DTABLE='" . $type . "' and GROUPE='" . $group . "' and AFFICH in (" . $cas . ")";
+	$req1 = "SELECT count(ZONE) AS CPT FROM " . EA_DB . "_metadb"
+		. " WHERE DTABLE='" . $type . "' AND GROUPE='" . $group . "' AND AFFICH IN (" . $cas . ")";
 	$rs = EA_sql_fetch_assoc(EA_sql_query($req1));
 	$affich = $rs["CPT"];
 	//echo "<p>".$req1." -> !".$affich."!";
 	if ($affich == 0) { // si pas d'obligatoires alors voir les facultatives
-		$req1 = "select ZONE from " . EA_DB . "_metadb"
-			. " where DTABLE='" . $type . "' and GROUPE='" . $group . "' and AFFICH='F'";
+		$req1 = "SELECT ZONE FROM " . EA_DB . "_metadb"
+			. " WHERE DTABLE='" . $type . "' AND GROUPE='" . $group . "' AND AFFICH='F'";
 		$res1 = EA_sql_query($req1);
 
 		while ($rz = EA_sql_fetch_assoc($res1))
@@ -1010,8 +1008,8 @@ function show_grouptitle3($row, $retrait, $format, $type, $group, $sigle = '')
 function show_item3($row, $retrait, $format, $zidinfo, $url = "", $zidinfo2 = "", $activelink = 0)
 {
 	$lg = 'fr';
-	$req1 = "select ZONE, GROUPE, TYP, TAILLE, OBLIG, AFFICH, ETIQ, AIDE from (" . EA_DB . "_metadb d join " . EA_DB . "_metalg l)"
-		. " where ((d.ZID=l.ZID) and (l.LG='" . $lg . "') and d.ZID=" . $zidinfo . ")";
+	$req1 = "SELECT ZONE, GROUPE, TYP, TAILLE, OBLIG, AFFICH, ETIQ, AIDE FROM (" . EA_DB . "_metadb d JOIN " . EA_DB . "_metalg l)"
+		. " WHERE ((d.ZID=l.ZID) AND (l.LG='" . $lg . "') AND d.ZID=" . $zidinfo . ")";
 	$res1 = EA_sql_fetch_assoc(EA_sql_query($req1));
 	//echo $req1;
 	$info  = $row[$res1["ZONE"]];
@@ -1019,14 +1017,14 @@ function show_item3($row, $retrait, $format, $zidinfo, $url = "", $zidinfo2 = ""
 	$label = $res1["ETIQ"];
 
 	if ($zidinfo2 != "") {
-		$req2 = "select ZONE, GROUPE, TYP, TAILLE, OBLIG, AFFICH, ETIQ, AIDE from (" . EA_DB . "_metadb d join " . EA_DB . "_metalg l)"
-			. " where ((d.ZID=l.ZID) and (l.LG='" . $lg . "') and d.ZID=" . $zidinfo2 . ")";
+		$req2 = "SELECT ZONE, GROUPE, TYP, TAILLE, OBLIG, AFFICH, ETIQ, AIDE FROM (" . EA_DB . "_metadb d JOIN " . EA_DB . "_metalg l)"
+			. " WHERE ((d.ZID=l.ZID) AND (l.LG='" . $lg . "') AND d.ZID=" . $zidinfo2 . ")";
 		$res2 = EA_sql_fetch_assoc(EA_sql_query($req2));
 		$info2 = $row[$res2["ZONE"]];
 	} else
 		$info2 = "";
 
-	if ((trim($info) . trim($info2) != "" and $oblig == "F") or $oblig == 'O' or (ADM == 10 and $oblig == "A")) {
+	if ((trim($info) . trim($info2) != "" && $oblig == "F") || $oblig == 'O' || (ADM == 10 && $oblig == "A")) {
 
 		switch ($res1["TYP"]) {
 			case "TXT":
@@ -1061,15 +1059,15 @@ function show_deposant3($row, $retrait, $format, $zidinfo, $xid, $tact)
 {
 	global $u_db;
 	$lg = 'fr';
-	$req1 = "select ZONE, GROUPE, TYP, TAILLE, OBLIG, AFFICH, ETIQ, AIDE from (" . EA_DB . "_metadb d join " . EA_DB . "_metalg l)"
-		. " where ((d.ZID=l.ZID) and (l.LG='" . $lg . "') and d.ZID=" . $zidinfo . ")";
+	$req1 = "SELECT ZONE, GROUPE, TYP, TAILLE, OBLIG, AFFICH, ETIQ, AIDE FROM (" . EA_DB . "_metadb d JOIN " . EA_DB . "_metalg l)"
+		. " WHERE ((d.ZID=l.ZID) AND (l.LG='" . $lg . "') AND d.ZID=" . $zidinfo . ")";
 	$res1 = EA_sql_fetch_assoc(EA_sql_query($req1));
 	//echo $req1;
 	$info  = $row[$res1["ZONE"]];
 	$oblig = $res1["AFFICH"];  // F = Facultatif, O = Obligatoire, A=Adminstration seulmt
 	$label = $res1["ETIQ"];
 	$depid  = $row["DEPOSANT"];
-	$req = "select NOM,PRENOM from " . EA_UDB . "_user3 where (ID=" . $depid . ")";
+	$req = "SELECT NOM,PRENOM FROM " . EA_UDB . "_user3 WHERE (ID=" . $depid . ")";
 	$curs = EA_sql_query($req, $u_db);
 	if (EA_sql_num_rows($curs) == 1) {
 		$res = EA_sql_fetch_assoc($curs);
@@ -1127,7 +1125,7 @@ function liste_patro_1($script, $root, $xcomm, $xpatr, $titre, $table, $gid = ""
 	$Depart  = departementde($comdep);
 	if (mb_substr($xpatr, 0, 1) == "_") {
 		$lgi  = mb_strlen($xpatr); // utf-8 ==> multibytes si accents !
-		$initiale = " and left(NOM,($lgi-1))= '" . sql_quote(mb_substr($xpatr, 1)) . "'";
+		$initiale = " AND left(NOM,($lgi-1))= '" . sql_quote(mb_substr($xpatr, 1)) . "'";
 	}
 
 	echo '<h2>' . $titre . '</h2>' . "\n";
@@ -1136,28 +1134,27 @@ function liste_patro_1($script, $root, $xcomm, $xpatr, $titre, $table, $gid = ""
 		echo "<p>" . $note . "</p>";
 
 	if ($Depart <> "")
-		$condDep = " and DEPART = '" . sql_quote($Depart) . "'";
+		$condDep = " AND DEPART = '" . sql_quote($Depart) . "'";
 	else
 		$condDep = "";
 
 	// Faut-il découper le fichier par initiales ?
-	$request = "select count(*)"
-		. " from $table "
-		. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale;
+	$request = "SELECT count(*)"
+		. " FROM $table "
+		. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale;
 	optimize($request);
 	$result = EA_sql_query($request);
 	$ligne = EA_sql_fetch_row($result);
 	$nbresu = $ligne[0];
 
-	if ($nbresu > 0 and $nbresu <= iif((ADM > 0), MAX_PATR_ADM, MAX_PATR)) {
-		$request = "select NOM, count(*), min(year(LADATE)),max(year(LADATE)) "
-			. " from $table "
-			. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale
-			. " group by NOM ";
+	if ($nbresu > 0 && $nbresu <= iif((ADM > 0), MAX_PATR_ADM, MAX_PATR)) {
+		$request = "SELECT NOM, count(*), min(year(LADATE)),max(year(LADATE)) "
+			. " FROM $table "
+			. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale
+			. " GROUP BY NOM ";
 		optimize($request);
 		$result = EA_sql_query($request);
 		$nblign = EA_sql_num_rows($result);
-
 		$i = 1;
 		echo '<table summary="Liste alphabétique">' . "\n";
 		echo '<tr class="rowheader">' . "\n";
@@ -1180,10 +1177,10 @@ function liste_patro_1($script, $root, $xcomm, $xpatr, $titre, $table, $gid = ""
 		echo '</table>' . "\n";
 	}
 	if ($nbresu > iif((ADM > 0), MAX_PATR_ADM, MAX_PATR)) { // Alphabet car trop de patronymes
-		$request = "select left(NOM,$lgi), count(distinct NOM), min(NOM), max(NOM)"
-			. " from $table "
-			. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale
-			. " group by left(NOM,$lgi)";
+		$request = "SELECT left(NOM,$lgi), count(distinct NOM), min(NOM), max(NOM)"
+			. " FROM $table "
+			. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale
+			. " GROUP BY left(NOM,$lgi)";
 
 		optimize($request);
 		$result = EA_sql_query($request);
@@ -1191,10 +1188,10 @@ function liste_patro_1($script, $root, $xcomm, $xpatr, $titre, $table, $gid = ""
 
 		if ($nblign == 1 and $lgi > 3)  // Permet d'éviter un bouclage si le nom devient trop petit
 		{
-			$request = "select NOM, count(distinct NOM), min(NOM), max(NOM)"
-				. " from $table "
-				. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale
-				. " group by NOM";
+			$request = "SELECT NOM, count(distinct NOM), min(NOM), max(NOM)"
+				. " FROM $table "
+				. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale
+				. " GROUP BY NOM";
 			optimize($request);
 			$result = EA_sql_query($request);
 		}
@@ -1244,13 +1241,13 @@ function liste_patro_2($script, $root, $xcomm, $xpatr, $titre, $table, $stype = 
 		$lgi  = mb_strlen($xpatr);
 		$initiale  = " left(NOM,($lgi-1))= '" . sql_quote(mb_substr($xpatr, 1)) . "'";
 		$initialeF = " left(C_NOM,($lgi-1))= '" . sql_quote(mb_substr($xpatr, 1)) . "'";
-		$initdeux  = " and (" . $initiale . " or " . $initialeF . ")";
-		$initiale  = " and " . $initiale;
-		$initialeF = " and " . $initialeF;
+		$initdeux  = " AND (" . $initiale . " OR " . $initialeF . ")";
+		$initiale  = " AND " . $initiale;
+		$initialeF = " AND " . $initialeF;
 	}
 
 	if ($stype <> "") {
-		$soustype = " and LIBELLE = '" . sql_quote($stype) . "'";
+		$soustype = " AND LIBELLE = '" . sql_quote($stype) . "'";
 		$sousurl  = ";" . $stype;
 		$stitre   = " (" . $stype . ")";
 	} else {
@@ -1265,32 +1262,32 @@ function liste_patro_2($script, $root, $xcomm, $xpatr, $titre, $table, $stype = 
 		echo "<p>" . $note . "</p>";
 
 	if ($Depart <> "")
-		$condDep = " and DEPART = '" . sql_quote($Depart) . "'";
+		$condDep = " AND DEPART = '" . sql_quote($Depart) . "'";
 	else
 		$condDep = "";
 
 	// Faut-il découper le fichier par initiales ?
-	$request = "select count(*)"
-		. " from $table "
-		. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initdeux . $soustype;
+	$request = "SELECT count(*)"
+		. " FROM $table "
+		. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initdeux . $soustype;
 	optimize($request);
 	$result = EA_sql_query($request);
 	$ligne = EA_sql_fetch_row($result);
 	$nbresu = $ligne[0];
 
 	if ($nbresu > iif((ADM > 0), MAX_PATR_ADM, MAX_PATR)) { // Alphabet car trop de patronymes
-		$req1 = "select left(NOM,$lgi), count(distinct NOM), min(NOM), max(NOM)"
-			. " from $table "
-			. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale . $soustype
-			. " group by left(NOM,$lgi)";
+		$req1 = "SELECT left(NOM,$lgi), count(distinct NOM), min(NOM), max(NOM)"
+			. " FROM $table "
+			. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale . $soustype
+			. " GROUP BY left(NOM,$lgi)";
 		$result1 = EA_sql_query($req1);
 		$nb1 = EA_sql_num_rows($result1);
 		optimize($req1);
 
-		$req2 = "select left(C_NOM,$lgi), count(distinct C_NOM), min(C_NOM), max(C_NOM)"
-			. " from $table "
-			. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initialeF . $soustype
-			. " group by left(C_NOM,$lgi)";
+		$req2 = "SELECT left(C_NOM,$lgi), count(distinct C_NOM), min(C_NOM), max(C_NOM)"
+			. " FROM $table "
+			. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initialeF . $soustype
+			. " GROUP BY left(C_NOM,$lgi)";
 		$result2 = EA_sql_query($req2);
 		$nb2 = EA_sql_num_rows($result2);
 		optimize($req2);
@@ -1301,11 +1298,11 @@ function liste_patro_2($script, $root, $xcomm, $xpatr, $titre, $table, $stype = 
 		$lire1 = 0;
 		$lire2 = 0;
 		$neof1 = ($ligne1 = EA_sql_fetch_row($result1));
-		while ($neof1 and remove_accent($ligne1[0]) == "") {
+		while ($neof1 && remove_accent($ligne1[0]) == "") {
 			$neof1 = ($ligne1 = EA_sql_fetch_row($result1));
 		}
 		$neof2 = ($ligne2 = EA_sql_fetch_row($result2));
-		while ($neof2 and remove_accent($ligne2[0]) == "") {
+		while ($neof2 && remove_accent($ligne2[0]) == "") {
 			$neof2 = ($ligne2 = EA_sql_fetch_row($result2));
 		}
 
@@ -1316,7 +1313,7 @@ function liste_patro_2($script, $root, $xcomm, $xpatr, $titre, $table, $stype = 
 		echo '</tr>';
 		$code = 250;
 		$code_arret = chr($code);
-		while ($fini == 0 and $i < 100) {
+		while ($fini == 0 && $i < 100) {
 			if (!$neof1) $mari = "";
 			else
 				$mari = remove_accent($ligne1[0]);
@@ -1376,20 +1373,20 @@ function liste_patro_2($script, $root, $xcomm, $xpatr, $titre, $table, $stype = 
 		}
 		echo '</table>' . "\n";
 	} elseif ($nbresu > 0) {
-		$req1 = "select distinct NOM, count(*), min(year(LADATE)),max(year(LADATE))"
-			. " from $table "
-			. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initiale . $soustype
-			. " group by NOM "
-			. " order by NOM";
+		$req1 = "SELECT DISTINCT NOM, count(*), min(year(LADATE)),max(year(LADATE))"
+			. " FROM $table "
+			. " WHERE COMMUNE='" . sql_quote($Commune) . "'" . $condDep . $initiale . $soustype
+			. " GROUP BY NOM "
+			. " ORDER BY NOM";
 		$result1 = EA_sql_query($req1);
 		optimize($req1);
 		$nb1 = EA_sql_num_rows($result1);
 
-		$req2 = "select distinct C_NOM, count(*), min(year(LADATE)),max(year(LADATE)) "
-			. " from $table "
-			. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep . $initialeF . $soustype . " and C_NOM<>''"
-			. " group by C_NOM "
-			. " order by C_NOM";
+		$req2 = "SELECT DISTINCT C_NOM, count(*), min(year(LADATE)),max(year(LADATE)) "
+			. " FROM $table "
+			. " WHERE COMMUNE='" . sql_quote($Commune) . "'" . $condDep . $initialeF . $soustype . " AND C_NOM<>''"
+			. " GROUP BY C_NOM "
+			. " ORDER BY C_NOM";
 
 		$result2 = EA_sql_query($req2);
 		optimize($req1);
@@ -1554,7 +1551,7 @@ function pagination($nbtot, &$page, $href, &$listpages, &$limit)
 function actions_deposant($userid, $depid, $actid, $typact)  // version graphique
 {
 	global $path, $userlevel, $u_db;
-	$req = "select NOM,PRENOM from " . EA_UDB . "_user3 where (ID=" . $depid . ")";
+	$req = "SELECT NOM, PRENOM FROM " . EA_UDB . "_user3 WHERE (ID=" . $depid . ")";
 	$curs = EA_sql_query($req, $u_db);
 	if (EA_sql_num_rows($curs) == 1) {
 		$res = EA_sql_fetch_assoc($curs);
@@ -1636,7 +1633,6 @@ function solde_ok($cout = 0, $dep_id = "", $typact = "", $xid = "")
 			$lstactvus = array();
 		} // vide
 
-
 		$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login = '" . $userlogin . "'";
 		$res = EA_sql_query($sql, $u_db);
 		if ($res and EA_sql_num_rows($res) != 0) {
@@ -1645,7 +1641,7 @@ function solde_ok($cout = 0, $dep_id = "", $typact = "", $xid = "")
 			if (($row['level'] >= 8) or ($row['regime'] == 0) or ($userid == $dep_id)) {
 				// On note seulement la consultation
 				$newconso = $row['pt_conso'] + $cout;
-				$reqmaj = "update " . EA_UDB . "_user3 set pt_conso = " . $newconso . " where ID=" . $userid . "";
+				$reqmaj = "UPDATE " . EA_UDB . "_user3 SET pt_conso = " . $newconso . " WHERE ID=" . $userid . "";
 				$result = EA_sql_query($reqmaj, $u_db);
 				//$avertissement .= 'Solde inchangé ('.$lesolde. ' points) car vous avez déposé cet acte';
 				return 1; // pas de restriction pour cet utilisateur car immunisé ou déposant
@@ -1662,7 +1658,7 @@ function solde_ok($cout = 0, $dep_id = "", $typact = "", $xid = "")
 						array_push($lstactvus, $cle);
 						$newsolde = max($lesolde - $cout, 0);
 						$newconso = $row['pt_conso'] + $cout;
-						$reqmaj = "update " . EA_UDB . "_user3 set solde = " . $newsolde . ", pt_conso = " . $newconso . " where ID=" . $userid . "";
+						$reqmaj = "UPDATE " . EA_UDB . "_user3 SET solde = " . $newsolde . ", pt_conso = " . $newconso . " WHERE ID=" . $userid . "";
 						if ($result = EA_sql_query($reqmaj, $u_db)) {
 							$avertissement .= 'Il vous reste à présent ' . $newsolde . ' points';  // passé par variable globale
 						} else {
@@ -1712,7 +1708,7 @@ function recharger_solde()
 {
 	global $userlogin, $avertissement, $u_db;
 	if ($userlogin == "") return;   // hors connexion, rien à recharger
-	$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login = '" . $userlogin . "'";
+	$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login='" . $userlogin . "'";
 	$res = EA_sql_query($sql, $u_db);
 	$row = EA_sql_fetch_array($res);
 	// recharge SI conditions remplies par le compte de l'utilisateur
@@ -1724,7 +1720,7 @@ function recharger_solde()
 			if ($lesolde < PTS_PAR_PER)	// pour ne pas supprimer des points "bonus" on attend.
 			{
 				$lesolde = PTS_PAR_PER;
-				$reqmaj = "update " . EA_UDB . "_user3 set solde = " . $lesolde . ", maj_solde = '" . today() . "' where ID=" . $userid . "";
+				$reqmaj = "UPDATE " . EA_UDB . "_user3 SET solde=" . $lesolde . ", maj_solde='" . today() . "' WHERE ID=" . $userid . "";
 				if ($result = EA_sql_query($reqmaj, $u_db)) {
 					$avertissement .= 'Votre compte a été automatiquement crédité de ' . PTS_PAR_PER . ' points<br />';  // passé par variable globale
 				} else {
@@ -1780,7 +1776,7 @@ function annee_seulement($date_txt)  // affichage date simplifié à l'annee si 
 {
 	global $userid, $userlevel;
 
-	if ((ANNEE_TABLE >= 3) or (ANNEE_TABLE >= 1 and $userid == 0) or (ANNEE_TABLE >= 2 and $userlevel < 5) or (current_user_solde() == 0)) {
+	if ((ANNEE_TABLE >= 3) || (ANNEE_TABLE >= 1 and $userid == 0) || (ANNEE_TABLE >= 2 && $userlevel < 5) || (current_user_solde() == 0)) {
 		$tdsql = "";
 		$bad = 0;
 		$date_txt = ajuste_date($date_txt, $dtsql, $bad);
@@ -1867,42 +1863,42 @@ function stats_1_comm($xtyp, $lacom)
 	switch ($xtyp) {
 		case "N":
 			$table = EA_DB . "_nai3";
-			$libel = "'' as LIBELLE,";
+			$libel = "'' AS LIBELLE,";
 			break;
 		case "V":
 			$table = EA_DB . "_div3";
 			$libel = "LIBELLE,";
 			break;
 		case "M":
-			$libel = "'' as LIBELLE,";
+			$libel = "'' AS LIBELLE,";
 			$table = EA_DB . "_mar3";
 			break;
 		case "D":
 			$table = EA_DB . "_dec3";
-			$libel = "'' as LIBELLE,";
+			$libel = "'' AS LIBELLE,";
 			break;
 	}
-	$request = "select COMMUNE, DEPART, " . $libel
-		. " count(*) as ctot,"
-		. "  DEPOSANT, max(DTDEPOT) as ddepot,"
-		. "  min(if(year(LADATE)>0,year(LADATE), null)) as dmin,"  // null indispensabel pour que le tri élimine les 0
-		. "  max(year(LADATE)) as dmax, "
-		. "  sum(if(length(concat_ws('',P_PRE,M_NOM,M_PRE))>0,1,0)) as cfil,"
-		. "  sum(if(year(LADATE)>0,1,0)) as cnnul"
-		. " from " . $table
-		. " where COMMUNE='" . sql_quote($lacom) . "'"
-		. " group by COMMUNE,DEPART,LIBELLE,DEPOSANT; ";
+	$request = "SELECT COMMUNE, DEPART, " . $libel
+		. " count(*) AS ctot,"
+		. " DEPOSANT, max(DTDEPOT) AS ddepot,"
+		. " min(if(year(LADATE)>0,year(LADATE), null)) AS dmin,"  // null indispensabel pour que le tri élimine les 0
+		. " max(year(LADATE)) AS dmax, "
+		. " sum(if(length(concat_ws('',P_PRE,M_NOM,M_PRE))>0,1,0)) AS cfil,"
+		. " sum(if(year(LADATE)>0,1,0)) AS cnnul"
+		. " FROM " . $table
+		. " WHERE COMMUNE='" . sql_quote($lacom) . "'"
+		. " GROUP BY COMMUNE,DEPART,LIBELLE,DEPOSANT; ";
 
 	optimize($request);
 
 	//$listcomm .= ",'".sql_quote($comm['COMMUNE'])."'";
 
 	$result = EA_sql_query($request);
-	$reqdel = "delete from " . EA_DB . "_sums where TYPACT = '" . $xtyp . "' and COMMUNE='" . sql_quote($lacom) . "'";
+	$reqdel = "DELETE FROM " . EA_DB . "_sums WHERE TYPACT='" . $xtyp . "' AND COMMUNE='" . sql_quote($lacom) . "'";
 	$resdel = EA_sql_query($reqdel);
 
 	while ($ligne = EA_sql_fetch_array($result)) {
-		$reqins = "insert into " . EA_DB . "_sums (COMMUNE,DEPART,TYPACT,LIBELLE,DEPOSANT,DTDEPOT,AN_MIN,AN_MAX,NB_TOT,NB_N_NUL,NB_FIL,DER_MAJ) values ("
+		$reqins = "INSERT INTO " . EA_DB . "_sums (COMMUNE,DEPART,TYPACT,LIBELLE,DEPOSANT,DTDEPOT,AN_MIN,AN_MAX,NB_TOT,NB_N_NUL,NB_FIL,DER_MAJ) VALUES ("
 			. "'" . sql_quote($ligne['COMMUNE']) . "', "
 			. "'" . sql_quote($ligne['DEPART']) . "', "
 			. "'" . $xtyp . "', "
@@ -1962,24 +1958,24 @@ function maj_stats($xtyp, $T0, $path, $mode, $com = "", $dep = "")
 
 		$Max_time = ini_get("max_execution_time") - 2;
 
-		if ($mode == "C" or $mode == "D") {
+		if ($mode == "C" || $mode == "D") {
 			stats_1_comm($xtyp, $com);
 			if ($mode == "C")
 				geoloc_1_com($com, $dep);
 		} else {
 			if ($mode == "A") {
-				$reqdel = "delete from " . EA_DB . "_sums where TYPACT = '" . $xtyp . "'";
+				$reqdel = "DELETE FROM " . EA_DB . "_sums WHERE TYPACT='" . $xtyp . "'";
 				echo "<p>Suppression des statistiques existantes</p>";
 				$resdel = EA_sql_query($reqdel);
 			}
 			$reqbase = "set sql_big_selects=1";
 			$resbase = EA_sql_query($reqbase);
-			$reqbase = "select distinct COMMUNE,DEPART from " . $table . " order by COMMUNE";
+			$reqbase = "SELECT DISTINCT COMMUNE, DEPART FROM " . $table . " ORDER BY COMMUNE";
 			$resbase = EA_sql_query($reqbase);
 			optimize($reqbase);
 			$listcomm = "";
 			$timeisup = false;
-			while ($comm = EA_sql_fetch_array($resbase) and !$timeisup) {
+			while ($comm = EA_sql_fetch_array($resbase) && !$timeisup) {
 				$lacom = $comm['COMMUNE'];
 				$ledep = $comm['DEPART'];
 				$listcomm .= ",'" . sql_quote($lacom) . "'";
@@ -1990,7 +1986,7 @@ function maj_stats($xtyp, $T0, $path, $mode, $com = "", $dep = "")
 				$timeisup = (time() - $T0 >= $Max_time);
 			}
 		}
-		if ($mode == "A" or $mode == "N") {
+		if ($mode == "A" || $mode == "N") {
 			if ($timeisup) {
 				echo "<p><b>Mise à jour INCOMPLETE des statistiques des " . $typ . " </b></p>";
 				//echo "<p>Pour continuer le calcul des statistiques cliquez le lien suivant :<br>";
@@ -2027,7 +2023,7 @@ function geocode_google($com, $dep)
 
 function geoloc_1_com($com, $dep)
 {
-	$reqbase = "select STATUT from " . EA_DB . "_geoloc where COMMUNE = '" . sql_quote($com) . "' and DEPART = '" . sql_quote($dep) . "'";
+	$reqbase = "SELECT STATUT FROM " . EA_DB . "_geoloc WHERE COMMUNE='" . sql_quote($com) . "' AND DEPART='" . sql_quote($dep) . "'";
 	$res = EA_sql_query($reqbase);
 	if ($res and EA_sql_num_rows($res) != 0) {
 		$ligne = EA_sql_fetch_array($res);
@@ -2041,16 +2037,16 @@ function geoloc_1_com($com, $dep)
 	{
 		//echo "<p>Recherche de ".$com."/".$dep;
 		$coord = geocode_google($com, $dep);
-		if ($coord['lon'] == 0 and $coord['lat'] == 0)
+		if ($coord['lon'] == 0 && $coord['lat'] == 0)
 			$statut = 'N'; // Non trouvé
 		else
 			$statut = 'A'; // Automatique
 		if ($rech == 1)
-			$reqmaj = "insert into " . EA_DB . "_geoloc (COMMUNE,DEPART,LON,LAT,STATUT)"
-				. " values ('" . sql_quote($com) . "','" . sql_quote($dep) . "'," . $coord['lon'] . "," . $coord['lat'] . ",'" . $statut . "')";
+			$reqmaj = "INSERT INTO " . EA_DB . "_geoloc (COMMUNE,DEPART,LON,LAT,STATUT)"
+				. " VALUES ('" . sql_quote($com) . "','" . sql_quote($dep) . "'," . $coord['lon'] . "," . $coord['lat'] . ",'" . $statut . "')";
 		else
-			$reqmaj = "update " . EA_DB . "_geoloc set LON=" . $coord['lon'] . ", LAT=" . $coord['lat'] . ",STATUT='" . $statut . "'"
-				. " where COMMUNE = '" . sql_quote($com) . "' and DEPART = '" . sql_quote($dep) . "'";
+			$reqmaj = "UPDATE " . EA_DB . "_geoloc SET LON=" . $coord['lon'] . ", LAT=" . $coord['lat'] . ",STATUT='" . $statut . "'"
+				. " WHERE COMMUNE = '" . sql_quote($com) . "' AND DEPART = '" . sql_quote($dep) . "'";
 		$result = EA_sql_query($reqmaj);
 		//echo $reqmaj;
 		if ($coord['lat'] <> 0)
@@ -2067,7 +2063,7 @@ function test_geocodage($show = false)
 	$coord = geocode_google("Paris", "France");
 	$xx = $coord['lon'] + $coord['lat'];
 	$gok = true;
-	if (($xx > 51) and ($xx < 52))
+	if (($xx > 51) && ($xx < 52))
 		$msg = "<p>Le géocodage fonctionne normalement</p>";
 	else {
 		$gok = false;
@@ -2095,7 +2091,7 @@ function geoUrl($gid)
 function geoNote($Commune, $Depart, $atyp)
 {
 	global $gid;
-	$georeq = "select ID,LON,LAT,NOTE_" . $atyp . " from " . EA_DB . "_geoloc where COMMUNE = '" . sql_quote($Commune) . "' and  DEPART = '" . sql_quote($Depart) . "'";
+	$georeq = "SELECT ID, LON, LAT, NOTE_" . $atyp . " FROM " . EA_DB . "_geoloc WHERE COMMUNE='" . sql_quote($Commune) . "' AND DEPART='" . sql_quote($Depart) . "'";
 	$geores =  EA_sql_query($georeq);
 	$note = '';
 	if ($geo = EA_sql_fetch_array($geores)) {
@@ -2144,7 +2140,7 @@ function set_last_backups($list_backups)
 	$laliste = "";
 	foreach ($list_backups as $btyp => $bdate)
 		$laliste .= $btyp . ":" . $bdate . ";";
-	$request = "update " . EA_DB . "_params set valeur = '" . $laliste . "' where param = 'EA_LSTBACKUP'";
+	$request = "UPDATE " . EA_DB . "_params SET valeur='" . $laliste . "' WHERE param='EA_LSTBACKUP'";
 	$result = EA_sql_query($request);
 	return $result;
 }

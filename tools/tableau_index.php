@@ -21,9 +21,9 @@ if ($init == "") {
 
 
 $baselink = $root . $chemin . 'index.php';
-$request = "select distinct upper(left(COMMUNE,1)) as init from " . EA_DB . "_sums " . $condit1 . " order by init";
+$request = "SELECT DISTINCT upper(left(COMMUNE,1)) AS init FROM " . EA_DB . "_sums " . $condit1 . " ORDER BY init";
 // Sélectionner et grouper sur initiale de commune et ascii(initiale), ordonner code ascii ascendant pour avoir + grand code (accentué) en dernier
-$request = "select  alphabet.init  from ( select upper(left(COMMUNE,1)) as init,ascii(upper(left(COMMUNE,1)))  as oo from " . EA_DB . "_sums " . $condit1 . " group by init,oo  order by init , oo asc) as alphabet group by init";
+$request = "SELECT alphabet.init FROM ( SELECT upper(left(COMMUNE,1)) AS init,ascii(upper(left(COMMUNE,1))) AS oo FROM " . EA_DB . "_sums " . $condit1 . " GROUP BY init,oo  ORDER BY init , oo ASC) AS alphabet GROUP BY init";
 optimize($request);
 $result = EA_sql_query($request);
 $alphabet = "";
@@ -66,10 +66,10 @@ $cptfil = 0;
 
 foreach ($arr as $ztyp) {
 	//André DELACHARLERIE 					." where typact = '".$ztyp."'".$condit2
-	$request = "select *"
-		. " from " . EA_DB . "_sums "
-		. " where typact = '" . sql_quote($ztyp) . "'" . $condit2
-		. " order by LIBELLE,COMMUNE,DEPART; ";
+	$request = "SELECT *"
+		. " FROM " . EA_DB . "_sums "
+		. " WHERE typact='" . sql_quote($ztyp) . "'" . $condit2
+		. " ORDER BY LIBELLE,COMMUNE,DEPART; ";
 
 	optimize($request);
 	//echo '<p>'.$request;

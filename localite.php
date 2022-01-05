@@ -22,9 +22,7 @@ $JSheader = "";
 
 if ($id > 0)  // édition
 {  //
-	$request = "select *"
-		. " from " . EA_DB . "_geoloc "
-		. " where ID =" . $id;
+	$request = "SELECT * FROM " . EA_DB . "_geoloc WHERE ID=" . $id;
 	if ($result = EA_sql_query($request)) {
 		$row = EA_sql_fetch_array($result);
 		$commune   = $row["COMMUNE"];
@@ -37,9 +35,10 @@ if ($id > 0)  // édition
 		$noteD     = $row["NOTE_D"];
 		$noteV     = $row["NOTE_V"];
 
-		$request = "select *"
-			. " from " . EA_DB . "_sums where COMMUNE = '" . sql_quote($commune) . "' and DEPART = '" . sql_quote($depart) . "'"
-			. " order by INSTR('NMDV',TYPACT),LIBELLE; ";
+		$request = "SELECT * FROM " . EA_DB . "_sums 
+				WHERE COMMUNE='" . sql_quote($commune) . "' 
+				AND DEPART='" . sql_quote($depart) . "' 
+				ORDER BY INSTR('NMDV',TYPACT),LIBELLE; ";
 
 		$cptN = $cptM = $cptD = $cptV = 0;
 		$i = 0;

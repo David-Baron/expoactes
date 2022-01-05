@@ -56,19 +56,19 @@ $today = today();
 $condrem = "";
 $condlevel = "";
 if ($xdroits <> "10") {
-	$condlevel = " and level =" . $xdroits;
+	$condlevel = " AND level =" . $xdroits;
 }
 if ($condit <> "0") {
-	$condrem = " and " . comparerSQL('REM', $rem, $condit);
+	$condrem = " AND " . comparerSQL('REM', $rem, $condit);
 }
 $condreg = "";
 if ($regime >= 0) {
-	$condreg = " and regime =" . $regime;
+	$condreg = " AND regime =" . $regime;
 }
 if ($xaction == 'submitted') {
-	$request = "select nom, prenom, email, level, statut"
-		. " from " . EA_UDB . "_user3 "
-		. " where (1=1) " . $condlevel . $condreg . $condrem . " ;";
+	$request = "SELECT nom, prenom, email, level, statut"
+		. " FROM " . EA_UDB . "_user3 "
+		. " WHERE (1=1) " . $condlevel . $condreg . $condrem . " ;";
 	//echo $request1;
 	$sites = EA_sql_query($request, $u_db);
 	$nbsites = EA_sql_num_rows($sites);

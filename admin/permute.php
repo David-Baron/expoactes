@@ -67,11 +67,11 @@ if (!$missingargs) {
 	}
 
 	if ($xconfirm == 'confirmed' and $oktype) {
-		$request = "select NOM, PRE, ORI, DNAIS, AGE, PRO, EXCON, EXC_PRE, EXC_COM, COM, " . $sexe
+		$request = "SELECT NOM, PRE, ORI, DNAIS, AGE, PRO, EXCON, EXC_PRE, EXC_COM, COM, " . $sexe
 			. "P_NOM, P_PRE, P_COM, P_PRO, M_NOM, M_PRE, M_COM, M_PRO, "
 			. "C_NOM, C_PRE, C_ORI, C_DNAIS, C_AGE, C_PRO, C_EXCON, C_X_PRE, C_X_COM, C_COM, "
 			. "CP_NOM, CP_PRE, CP_COM, CP_PRO, CM_NOM, CM_PRE, CM_COM, CM_PRO, "
-			. "DATETXT,COMMUNE,DEPART from " . $table . " where ID=" . $xid;
+			. "DATETXT,COMMUNE,DEPART FROM " . $table . " WHERE ID=" . $xid;
 		$result = EA_sql_query($request);
 		//echo $request;
 		if ($acte = EA_sql_fetch_array($result)) {

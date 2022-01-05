@@ -71,7 +71,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$critX = sqlcomp("NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("C_NOM", $nom) . ')';
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("C_NOM", $nom) . ')';
 					$critM1 = sql_and($critM1) . "(" . $critX . ')';
 					$critM2 = sql_and($critM2) . "(" . sqlcomp("C_NOM", $nom) . ')';
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " patronyme de la personne intéressée</li>\n";
@@ -80,7 +80,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$critX = sqlcomp("PRE", $pre);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("C_PRE", $pre) . ')';
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("C_PRE", $pre) . ')';
 					//$critM1 = sql_and($critM1)."(".$critX.')';
 					//$critM2 = sql_and($critM2)."(".sqlcomp("C_PRE",$pre).')';
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom de la personne intéressée</li>\n";
@@ -90,10 +90,10 @@ function makecrit($nom, $pre, $zone, $comp)
 		case "2"; // recherche via patronyme de la mère, des témoins, parrains, ...
 			{
 				if ($nom != "") {
-					$critX = sqlcomp("M_NOM", $nom) . " or " . sqlcomp("T1_NOM", $nom) . " or " . sqlcomp("T2_NOM", $nom);
+					$critX = sqlcomp("M_NOM", $nom) . " OR " . sqlcomp("T1_NOM", $nom) . " OR " . sqlcomp("T2_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
-					$critD = sql_and($critD) . $critX . " or " . sqlcomp("C_NOM", $nom);
-					$critM = sql_and($critM) . "(" . $critD . " or " . sqlcomp("CM_NOM", $nom) . " or " . sqlcomp("T3_NOM", $nom) . " or " . sqlcomp("T4_NOM", $nom) . ")";
+					$critD = sql_and($critD) . $critX . " OR " . sqlcomp("C_NOM", $nom);
+					$critM = sql_and($critM) . "(" . $critD . " OR " . sqlcomp("CM_NOM", $nom) . " OR " . sqlcomp("T3_NOM", $nom) . " OR " . sqlcomp("T4_NOM", $nom) . ")";
 					// trop de zones pour faire une recherche indexée ici
 					$critD = "(" . $critD . ")";
 					$mes .= '<li><b>' . $nom . "</b> dans le patronyme de la mère, des témoins, du parrain ou de la marraine</li>\n";
@@ -105,7 +105,7 @@ function makecrit($nom, $pre, $zone, $comp)
 				if ($nom != "") {
 					$critX = sqlcomp("C_NOM", $nom);
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("EXCON", $nom) . " or " . sqlcomp("C_EXCON", $nom) . ")";
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("EXCON", $nom) . " OR " . sqlcomp("C_EXCON", $nom) . ")";
 					// trop de zones pour faire une recherche indexée ici
 					$xtypN = false;
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " patronyme du (futur/ex) conjoint</li>\n";
@@ -125,7 +125,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$critX = sqlcomp("P_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("CP_NOM", $nom) . ')';
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("CP_NOM", $nom) . ')';
 					$critM1 = sql_and($critM1) . "(" . $critX . ')';
 					$critM2 = sql_and($critM2) . "(" . sqlcomp("CP_NOM", $nom) . ')';
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " patronyme du père</li>\n";
@@ -134,7 +134,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$critX = sqlcomp("P_PRE", $pre);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("CP_PRE", $pre) . ')';
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("CP_PRE", $pre) . ')';
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom du père</li>\n";
 				}
 				break;
@@ -145,7 +145,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$critX = sqlcomp("M_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("CM_NOM", $nom) . ')';
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("CM_NOM", $nom) . ')';
 					$critM1 = sql_and($critM1) . "(" . $critX . ')';
 					$critM2 = sql_and($critM2) . "(" . sqlcomp("CM_NOM", $nom) . ')';
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " patronyme de la mère</li>\n";
@@ -154,7 +154,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$critX = sqlcomp("M_PRE", $pre);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("CM_PRE", $pre) . ')';
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("CM_PRE", $pre) . ')';
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom de la mère</li>\n";
 				}
 				break;
@@ -162,17 +162,17 @@ function makecrit($nom, $pre, $zone, $comp)
 		case "7"; // recherche sur les parrains / témoins et commentaires
 			{
 				if ($nom != "") {
-					$critX = sqlcomp("T1_NOM", $nom) . " or " . sqlcomp("T2_NOM", $nom);
+					$critX = sqlcomp("T1_NOM", $nom) . " OR " . sqlcomp("T2_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("T3_NOM", $nom) . " or " . sqlcomp("T4_NOM", $nom) . ")";
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("T3_NOM", $nom) . " OR " . sqlcomp("T4_NOM", $nom) . ")";
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " patronyme des témoins ou des parrains et marraines</li>\n";
 				}
 				if ($pre != "") {
-					$critX = sqlcomp("T1_PRE", $pre) . " or " . sqlcomp("T2_PRE", $pre);
+					$critX = sqlcomp("T1_PRE", $pre) . " OR " . sqlcomp("T2_PRE", $pre);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("T3_PRE", $pre) . " or " . sqlcomp("T4_PRE", $pre) . ")";
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("T3_PRE", $pre) . " OR " . sqlcomp("T4_PRE", $pre) . ")";
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom des témoins ou des parrains et marraines</li>\n";
 				}
 				break;
@@ -180,12 +180,12 @@ function makecrit($nom, $pre, $zone, $comp)
 		case "8"; // recherche sur les commentaires
 			{
 				if ($nom != "") {
-					$critX = sqlcomp("COM", $nom) . " or " . sqlcomp("P_COM", $nom) . " or " . sqlcomp("M_COM", $nom)
-						. " or " . sqlcomp("T1_COM", $nom) . " or " . sqlcomp("T2_COM", $nom) . " or " . sqlcomp("COMGEN", $nom);
+					$critX = sqlcomp("COM", $nom) . " OR " . sqlcomp("P_COM", $nom) . " OR " . sqlcomp("M_COM", $nom)
+						. " OR " . sqlcomp("T1_COM", $nom) . " OR " . sqlcomp("T2_COM", $nom) . " OR " . sqlcomp("COMGEN", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
-					$critD = sql_and($critD) . "(" . $critX . " or " . sqlcomp("C_COM", $nom) . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("C_COM", $nom) . " or " . sqlcomp("CP_COM", $nom) . " or " . sqlcomp("CM_COM", $nom)
-						. " or " . sqlcomp("T3_COM", $nom) . " or " . sqlcomp("T4_COM", $nom) . ")";
+					$critD = sql_and($critD) . "(" . $critX . " OR " . sqlcomp("C_COM", $nom) . ")";
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("C_COM", $nom) . " OR " . sqlcomp("CP_COM", $nom) . " OR " . sqlcomp("CM_COM", $nom)
+						. " OR " . sqlcomp("T3_COM", $nom) . " OR " . sqlcomp("T4_COM", $nom) . ")";
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " texte des commentaires personnels et généraux</li>\n";
 				}
 				break;
@@ -197,7 +197,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$xtypN = false;
 					$critX = sqlcomp("ORI", $nom);
 					$critD = sql_and($critD) . "(" . $critX . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("C_ORI", $nom) . ")";
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("C_ORI", $nom) . ")";
 					$critM1 = sql_and($critM1) . "(" . $critX . ')';
 					$critM2 = sql_and($critM2) . "(" . sqlcomp("C_ORI", $nom) . ')';
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " lieu d'origine d'un des intéressés</li>\n";
@@ -207,11 +207,11 @@ function makecrit($nom, $pre, $zone, $comp)
 		case "A"; // recherche sur les professions
 			{
 				if ($nom != "") {
-					$critX = sqlcomp("P_PRO", $nom) . " or " . sqlcomp("M_PRO", $nom);
+					$critX = sqlcomp("P_PRO", $nom) . " OR " . sqlcomp("M_PRO", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
-					$critD = sql_and($critD) . "(" . $critX . " or " . sqlcomp("PRO", $nom) . ")";
-					$critM = sql_and($critM) . "(" . $critX . " or " . sqlcomp("PRO", $nom)
-						. " or " . sqlcomp("C_PRO", $nom) . " or " . sqlcomp("CP_PRO", $nom) . " or " . sqlcomp("CM_PRO", $nom) . ")";
+					$critD = sql_and($critD) . "(" . $critX . " OR " . sqlcomp("PRO", $nom) . ")";
+					$critM = sql_and($critM) . "(" . $critX . " OR " . sqlcomp("PRO", $nom)
+						. " OR " . sqlcomp("C_PRO", $nom) . " OR " . sqlcomp("CP_PRO", $nom) . " OR " . sqlcomp("CM_PRO", $nom) . ")";
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " profession (intéressé et parents)</li>\n";
 				}
 				break;
@@ -357,7 +357,7 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 			else $mes .= '<li>Années comprises entre <b>' . $xmin . '</b> et <b>' . $xmax . "</b></li>\n";
 		}
 		if (mb_substr($xcomm, 0, 2) != "**") {
-			$critX = " (COMMUNE = '" . sql_quote($xcomm) . "' and DEPART= '" . sql_quote($xdepa) . "') ";
+			$critX = " (COMMUNE = '" . sql_quote($xcomm) . "' AND DEPART= '" . sql_quote($xdepa) . "') ";
 			$critN = sql_and($critN) . $critX;
 			$critD = sql_and($critD) . $critX;
 			$critM = sql_and($critM) . $critX;
@@ -369,7 +369,7 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 	$critV = $critM;
 	$critV1 = $critM1;
 	$critV2 = $critM2;
-	if (($xtypV) and ($xtdiv <> "") and (mb_substr($xtdiv, 0, 2) <> "**")) {
+	if (($xtypV) && ($xtdiv <> "") && (mb_substr($xtdiv, 0, 2) <> "**")) {
 		if (!empty($critV))  $critV  = sql_and($critV) . " (LIBELLE='" . sql_quote(urldecode($xtdiv)) . "')";
 		if (!empty($critV1)) $critV1 = sql_and($critV1) . " (LIBELLE='" . sql_quote(urldecode($xtdiv)) . "')";
 		if (!empty($critV2)) $critV2 = sql_and($critV2) . " (LIBELLE='" . sql_quote(urldecode($xtdiv)) . "')";
@@ -389,18 +389,12 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 			$listzones = "ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE, 'Mariage' as LIBELLE ";
 			if ($compmode == "F")  // full scan 
 			{
-				$request .= "(select " . $listzones
-					. " from " . EA_DB . "_mar3 "
-					. " where  " . $critM . ") ";
+				$request .= "(SELECT " . $listzones . " FROM " . EA_DB . "_mar3 WHERE  " . $critM . ") ";
 			} else  // indexed
 			{
-				$request .= "(select " . $listzones
-					. " from " . EA_DB . "_mar3 "
-					. " where  " . $critM1 . ") ";
+				$request .= "(SELECT " . $listzones	. " FROM " . EA_DB . "_mar3 WHERE  " . $critM1 . ") ";
 				$request .= ' union ';
-				$request .= "(select " . $listzones
-					. " from " . EA_DB . "_mar3 "
-					. " where  " . $critM2 . ") ";
+				$request .= "(SELECT " . $listzones	. " FROM " . EA_DB . "_mar3 WHERE  " . $critM2 . ") ";
 			}
 			$listactes = "mariages";
 			$listtyps .= "N";
@@ -409,17 +403,11 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 			if (strlen($request) > 0) $request .= ' union ';
 			$listzones = "ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, C_NOM, C_PRE, LADATE, LIBELLE ";
 			if ($compmode == "F") {
-				$request .= "(select " . $listzones
-					. " from " . EA_DB . "_div3 "
-					. " where  " . $critV . ") ";
+				$request .= "(SELECT " . $listzones	. " FROM " . EA_DB . "_div3 WHERE  " . $critV . ") ";
 			} else {
-				$request .= "(select " . $listzones
-					. " from " . EA_DB . "_div3 "
-					. " where  " . $critV1 . ") ";
+				$request .= "(SELECT " . $listzones	. " FROM " . EA_DB . "_div3 WHERE  " . $critV1 . ") ";
 				$request .= ' union ';
-				$request .= "(select " . $listzones
-					. " from " . EA_DB . "_div3 "
-					. " where  " . $critV2 . ") ";
+				$request .= "(SELECT " . $listzones	. " FROM " . EA_DB . "_div3 WHERE  " . $critV2 . ") ";
 			}
 			if (strlen($listactes) > 0) $listactes .= ", ";
 			$listactes .= "types divers";
@@ -427,23 +415,23 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 		}
 		if ($xtypD) {
 			if (strlen($request) > 0) $request .= ' union ';
-			$request .= "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, 'X' as C_NOM, 'Y' as C_PRE, LADATE,'Décès' as LIBELLE "
-				. " from " . EA_DB . "_dec3 "
-				. " where  " . $critD . ") ";
+			$request .= "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, 'X' AS C_NOM, 'Y' AS C_PRE, LADATE,'Décès' AS LIBELLE "
+				. " FROM " . EA_DB . "_dec3 "
+				. " WHERE  " . $critD . ") ";
 			if (strlen($listactes) > 0) $listactes = ", " . $listactes;
 			$listactes = "décès" . $listactes;
 			$listtyps .= "N";
 		}
 		if ($xtypN and !empty($critN)) {
 			if (strlen($request) > 0) $request .= ' union ';
-			$request .= "(select ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, 'X' as C_NOM, 'Y' as C_PRE, LADATE,'Naissance' as LIBELLE "
-				. " from " . EA_DB . "_nai3 "
-				. " where  " . $critN . ") ";
+			$request .= "(SELECT ID, TYPACT, DATETXT, COMMUNE, NOM, PRE, 'X' AS C_NOM, 'Y' AS C_PRE, LADATE,'Naissance' AS LIBELLE "
+				. " FROM " . EA_DB . "_nai3 "
+				. " WHERE  " . $critN . ") ";
 			if (strlen($listactes) > 0) $listactes = ", " . $listactes;
 			$listactes = "naissances" . $listactes;
 			$listtyps .= "N";
 		}
-		$request .= " order by LADATE";
+		$request .= " ORDER BY LADATE";
 		$listactes = "<li>Actes de " . $listactes . "</li>\n";
 
 		//	echo $request;

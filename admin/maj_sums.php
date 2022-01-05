@@ -58,11 +58,7 @@ echo '<h2 align="center">Mise à jour des statistiques</h2>';
 echo '<p><b>' . $menu_actes . '</b></p>';
 
 if ($xtyp == "") {
-	$request = "select TYPACT, max(DER_MAJ) as DERMAJ, count(COMMUNE) as CPTCOM"
-		. " from " . EA_DB . "_sums"
-		. " group by TYPACT"
-		. " order by INSTR('NMDV',TYPACT)"     // cette ligne permet de trier dans l'ordre voulu
-	;
+	$request = "SELECT TYPACT, max(DER_MAJ) AS DERMAJ, count(COMMUNE) AS CPTCOM FROM " . EA_DB . "_sums GROUP BY TYPACT ORDER BY INSTR('NMDV',TYPACT)";
 
 	// echo $request;
 	if ($result = EA_sql_query($request)) {

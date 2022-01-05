@@ -45,7 +45,7 @@ menu_software('J');
 
 // Suppression des informations anciennes
 if ($xdel > 31) {
-	$request = "delete from " . EA_DB . "_log where datediff(curdate(),DATE)>" . $xdel;
+	$request = "DELETE FROM " . EA_DB . "_log WHERE datediff(curdate(),DATE)>" . $xdel;
 	$result = EA_sql_query($request);
 	$nb = EA_sql_affected_rows();
 	echo $nb . " ligne(s) suprimée(s)."; // .$datedel;
@@ -61,19 +61,19 @@ echo '</form></center>';
 
 $baselink = $root . '/admin/listlog.php' . "?xfilter=" . $xfilter;
 if ($xord == "N") {
-	$order = "NOM, PRENOM, DATE desc";
+	$order = "NOM, PRENOM, DATE DESC";
 	$hdate = '<a href="' . $baselink . '&xord=D">Date et heure</a>';
 	$hcomm = '<a href="' . $baselink . '&xord=C">Commune/Paroisse</a>';
 	$baselink = $baselink . '&xord=N';
 	$hnoms = '<b>Utilisateur</b>';
 } elseif ($xord == "D") {
-	$order = "DATE desc";
+	$order = "DATE DESC";
 	$hcomm = '<a href="' . $baselink . '&xord=C">Commune/Paroisse</a>';
 	$hnoms = '<a href="' . $baselink . '&xord=N">Utilisateur</a>';
 	$baselink = $baselink . '&xord=D';
 	$hdate = '<b>Date et heure</b>';
 } else {
-	$order = "COMMUNE, DATE desc";
+	$order = "COMMUNE, DATE DESC";
 	$hdate = '<a href="' . $baselink . '&xord=D">Date et heure</a>';
 	$hnoms = '<a href="' . $baselink . '&xord=N">Utilisateur</a>';
 	$baselink = $baselink . '&xord=L';
@@ -81,22 +81,22 @@ if ($xord == "N") {
 }
 $baselink .= "&xfilter=" . $xfilter;
 
-$request = "create temporary table temp_user3 (ID int(11), nom varchar(30), prenom varchar(30), PRIMARY KEY (ID))";
+$request = "CREATE TEMPORARY TABLE temp_user3 (ID int(11), nom varchar(30), prenom varchar(30), PRIMARY KEY (ID))";
 $result = EA_sql_query($request);
 
-$request = "select ID,NOM,PRENOM from " . EA_UDB . "_user3";
+$request = "SELECT ID, NOM, PRENOM FROM " . EA_UDB . "_user3";
 $result = EA_sql_query($request, $u_db);
 while ($ligne = EA_sql_fetch_row($result)) {
-	$treq = "insert into temp_user3 values (" . $ligne[0] . ",'" . $ligne[1] . "','" . $ligne[2] . "')";
+	$treq = "INSERT INTO temp_user3 VALUES (" . $ligne[0] . ",'" . $ligne[1] . "','" . $ligne[2] . "')";
 	$tres = EA_sql_query($treq);
 	//echo "<br>".$treq;
 }
 
-$request = "select NOM, PRENOM, ID, DATE, ACTION, COMMUNE, NB_ACTES"
-	. " from " . EA_DB . "_log left join temp_user3 on (temp_user3.id=" . EA_DB . "_log.user)";
+$request = "SELECT NOM, PRENOM, ID, DATE, ACTION, COMMUNE, NB_ACTES"
+	. " FROM " . EA_DB . "_log LEFT JOIN temp_user3 ON (temp_user3.id=" . EA_DB . "_log.user)";
 if ($xfilter <> "")
-	$request .= " where COMMUNE like '%" . $xfilter . "%' or ACTION like '%" . $xfilter . "%' or NOM like '%" . $xfilter . "%'";
-$request .= " order by " . $order;
+	$request .= " WHERE COMMUNE LIKE '%" . $xfilter . "%' OR ACTION LIKE '%" . $xfilter . "%' OR NOM LIKE '%" . $xfilter . "%'";
+$request .= " ORDER BY " . $order;
 
 optimize($request);
 

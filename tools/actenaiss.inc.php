@@ -20,17 +20,17 @@ while ($userlevel < $lvl) {
 	login($root);
 }
 
-$request = "select * from " . EA_DB . "_nai3 where ID = " . $xid;
+$request = "SELECT * FROM " . EA_DB . "_nai3 WHERE ID=" . $xid;
 //echo $request;
 optimize($request);
 
-if ($result = EA_sql_query($request) and EA_sql_num_rows($result) != 0) {
+if ($result = EA_sql_query($request) && EA_sql_num_rows($result) != 0) {
 	$row = EA_sql_fetch_array($result);
 } else {
 	$error = 1;
 }
 
-if (($error == 0) and !($ctrlcod == ctrlxid($row["NOM"], $row["PRE"]))) {
+if (($error == 0) && !($ctrlcod == ctrlxid($row["NOM"], $row["PRE"]))) {
 	$error = 1;
 	$title = "Erreur";
 } else

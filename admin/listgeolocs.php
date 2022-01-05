@@ -45,7 +45,7 @@ menu_datas('L');
 echo '<h2>Localités connues du site ' . SITENAME . '</h2>';
 
 $baselink = $root . '/admin/listgeolocs.php';
-$request = "select distinct upper(left(COMMUNE,1)) as init from " . EA_DB . "_geoloc order by init";
+$request = "SELECT DISTINCT upper(left(COMMUNE,1)) AS init FROM " . EA_DB . "_geoloc ORDER BY init";
 $result = EA_sql_query($request);
 $alphabet = "";
 while ($row = EA_sql_fetch_row($result)) {
@@ -82,13 +82,13 @@ if ($xord == "C") {
 if ($init == "")
 	$condit = "";
 else
-	$condit = " where COMMUNE like '" . $init . "%' ";
+	$condit = " WHERE COMMUNE LIKE '" . $init . "%' ";
 
 
-$request = "select ID,COMMUNE,DEPART,LON,LAT,STATUT"
-	. " from " . EA_DB . "_geoloc "
+$request = "SELECT ID, COMMUNE, DEPART, LON, LAT, STATUT"
+	. " FROM " . EA_DB . "_geoloc "
 	. $condit
-	. " order by " . $order;
+	. " ORDER BY " . $order;
 //echo $request;
 $result = EA_sql_query($request);
 $nbtot = EA_sql_num_rows($result);

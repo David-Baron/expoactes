@@ -363,13 +363,13 @@ if (!$missingargs) { // fichier d'actes
 								$inversion = false;
 								// Recherche si épouse en 1er
 								$prem_pre = explode(' ', $pre, 2);
-								$sql = "select * from " . EA_DB . "_prenom where prenom = '" . sql_quote($prem_pre[0]) . "'";
+								$sql = "SELECT * FROM " . EA_DB . "_prenom WHERE prenom = '" . sql_quote($prem_pre[0]) . "'";
 								$res = EA_sql_query($sql);
 								$nb = EA_sql_num_rows($res);
 								if ($nb > 0) {
 									// vérifier que cpre n'est pas feminin
 									$prem_pre = explode(' ', $cpre, 2);
-									$sql = "select * from " . EA_DB . "_prenom where prenom = '" . sql_quote($prem_pre[0]) . "'";
+									$sql = "SELECT * FROM " . EA_DB . "_prenom WHERE prenom = '" . sql_quote($prem_pre[0]) . "'";
 									$res = EA_sql_query($sql);
 									$nb = EA_sql_num_rows($res);
 									if ($nb == 0) {
@@ -379,12 +379,12 @@ if (!$missingargs) { // fichier d'actes
 									}
 								}
 								// recherche doublon inversé	
-								$condit = "DATETXT='" . $datetxt . "' and NOM='" . sql_quote($cnom) . "' and PRE='" . sql_quote($cpre) . "'";
-								$condit .= " and C_NOM='" . sql_quote($nom) . "' and C_PRE='" . sql_quote($pre) . "'";
+								$condit = "DATETXT='" . $datetxt . "' AND NOM='" . sql_quote($cnom) . "' AND PRE='" . sql_quote($cpre) . "'";
+								$condit .= " AND C_NOM='" . sql_quote($nom) . "' AND C_PRE='" . sql_quote($pre) . "'";
 								if ($TypeActes == 'V')
-									$condit .= " and LIBELLE='" . sql_quote($typedoc) . "'";
-								$request = "select ID from " . $table .
-									" where COMMUNE='" . sql_quote($commune) . "' and DEPART='" . sql_quote($depart) . "' and " . $condit . ";";
+									$condit .= " AND LIBELLE='" . sql_quote($typedoc) . "'";
+								$request = "SELECT ID FROM " . $table .
+									" WHERE COMMUNE='" . sql_quote($commune) . "' AND DEPART='" . sql_quote($depart) . "' and " . $condit . ";";
 
 								//echo '<p>'.$request;
 								$result = EA_sql_query($request);
@@ -397,21 +397,21 @@ if (!$missingargs) { // fichier d'actes
 							}
 							if ($SuprRedon == 1) {
 								// Détection si déjà présent 								
-								$condit = "DATETXT='" . $datetxt . "' and NOM='" . sql_quote($nom) . "' and PRE='" . sql_quote($pre) . "'";
-								if (($TypeActes == "M") or ($TypeActes == 'V' and !empty($cnom)))
-									$condit .= " and C_NOM='" . sql_quote($cnom) . "'";
-								if (($TypeActes == "M") or ($TypeActes == 'V' and !empty($cpre)))
-									$condit .= " and C_PRE='" . sql_quote($cpre) . "'";
+								$condit = "DATETXT='" . $datetxt . "' AND NOM='" . sql_quote($nom) . "' AND PRE='" . sql_quote($pre) . "'";
+								if (($TypeActes == "M") || ($TypeActes == 'V' && !empty($cnom)))
+									$condit .= " AND C_NOM='" . sql_quote($cnom) . "'";
+								if (($TypeActes == "M") || ($TypeActes == 'V' && !empty($cpre)))
+									$condit .= " AND C_PRE='" . sql_quote($cpre) . "'";
 								if ($TypeActes == 'V')
-									$condit .= " and LIBELLE='" . sql_quote($typedoc) . "'";
-								$request = "select ID from " . $table .
-									" where COMMUNE='" . sql_quote($commune) . "' and DEPART='" . sql_quote($depart) . "' and " . $condit . ";";
+									$condit .= " AND LIBELLE='" . sql_quote($typedoc) . "'";
+								$request = "SELECT ID FROM " . $table .
+									" WHERE COMMUNE='" . sql_quote($commune) . "' AND DEPART='" . sql_quote($depart) . "' AND " . $condit . ";";
 								$result = EA_sql_query($request);
 								//echo '<p>'.$request;
 								$nb = EA_sql_num_rows($result);
 							} else
 								$nb = 0;
-							if ($TypeActes == 'V' and !empty($typedoc))  // ajout du type d'acte divers global 
+							if ($TypeActes == 'V' && !empty($typedoc))  // ajout du type d'acte divers global 
 							{
 								$listzone[0] .= "LIBELLE,";
 								$listdata[0] .= "'" . sql_quote($typedoc) . "',";
@@ -438,14 +438,14 @@ if (!$missingargs) { // fichier d'actes
 								$listdata[0] .= "'" . sql_quote($verif) . "',";
 							}
 
-							if (($SuprRedon == 1) and ($nb + $nbx) > 0 and !($dateincomplete)) {
+							if (($SuprRedon == 1) && ($nb + $nbx) > 0 && !($dateincomplete)) {
 								$reqmaj = "";
 							} else { // ADD
 								$action = "AJOUT";
-								$reqmaj = "insert into " . $table
+								$reqmaj = "INSERT INTO " . $table
 									. " (BIDON,TYPACT," . $listzone[1] . $listzone[2] . $listzone[0]
 									. "LADATE,DEPOSANT,DTDEPOT,DTMODIF)"
-									. " values('CSV','" . $TypeActes . "'," . $listdata[1] . $listdata[2] . $listdata[0]
+									. " VALUES('CSV','" . $TypeActes . "'," . $listdata[1] . $listdata[2] . $listdata[0]
 									. "'" . $ladate . "'," . $deposant . ",'" . $today . "','" . $today . "');";
 							} // ADD
 							//echo "<p>".$reqmaj;
@@ -476,7 +476,7 @@ if (!$missingargs) { // fichier d'actes
 		} // all ok	
 	} // chargement effectif
 
-	if (isin("DVAR", $submit) >= 0 or $resume) // liste des champs (+fiche exemple?)
+	if (isin("DVAR", $submit) >= 0 || $resume) // liste des champs (+fiche exemple?)
 	{
 		if ($resume)
 			echo '<h2>Poursuite du chargement</h2>';
@@ -492,7 +492,7 @@ if (!$missingargs) { // fichier d'actes
 		$acte = explode_csv($line);
 
 		$cookname = "charge" . getparam('TypeActes');
-		if (isset($_COOKIE[$cookname]) and strlen($_COOKIE[$cookname]) > 20)
+		if (isset($_COOKIE[$cookname]) && strlen($_COOKIE[$cookname]) > 20)
 			$cookparam = $_COOKIE[$cookname];
 		else
 			$cookparam = str_repeat("0-0-0+", 2);
@@ -678,10 +678,10 @@ if (!$missingargs) { // fichier d'actes
 			echo '<th>Données de la ligne ' . $nofiche . '</th>';
 			echo '</tr>';
 
-			if ($TypeActes == 'V' and $typedoc == "" and empty($_REQUEST[$zonelibelle])) {
+			if ($TypeActes == 'V' && $typedoc == "" && empty($_REQUEST[$zonelibelle])) {
 				msg($meserrdivers1);
 			}
-			if ($TypeActes == 'V' and $typedoc <> "" and !empty($_REQUEST[$zonelibelle])) {
+			if ($TypeActes == 'V' && $typedoc <> "" && !empty($_REQUEST[$zonelibelle])) {
 				msg($meserrdivers2);
 			}
 
@@ -690,10 +690,10 @@ if (!$missingargs) { // fichier d'actes
 			$data = array();
 			foreach ($mdb as $zone) {
 				// extraction des données à afficher pour l'exemple en suivant les consignes du modèle de chargement
-				if (array_key_exists('ZID' . $i, $_REQUEST) and $zone['ZID'] == $_REQUEST['ZID' . $i]) { // traiter ce champ
+				if (array_key_exists('ZID' . $i, $_REQUEST) && $zone['ZID'] == $_REQUEST['ZID' . $i]) { // traiter ce champ
 					//echo "<p> vu ".$i."->".$zone['ZID']." ".$zone['ZONE'];
-					if ($zone['OBLIG'] == 'Y' and $_REQUEST['Zone' . $i] == 0) { // zone obligatoire
-						if (!($TypeActes == 'V' and $typedoc <> ""))  // cas particulier pour le libelle des actes divers : ne plus vérifier, déjà fait + haut
+					if ($zone['OBLIG'] == 'Y' && $_REQUEST['Zone' . $i] == 0) { // zone obligatoire
+						if (!($TypeActes == 'V' && $typedoc <> ""))  // cas particulier pour le libelle des actes divers : ne plus vérifier, déjà fait + haut
 							msg('Vous devez affecter un contenu à (' . $zone['GETIQ'] . ' : ' . $zone['ETIQ'] . ')');
 					}
 					if ($_REQUEST['Zone' . $i] > 0)  // la zone à été notée à charger

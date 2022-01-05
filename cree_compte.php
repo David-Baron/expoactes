@@ -111,9 +111,9 @@ if (getparam('action') == 'submitted') {
 		$dtexpir = dt_expiration_defaut();
 		$mes = "";
 		$maj_solde = date("Y-m-d");
-		$reqmaj = "insert into " . EA_UDB . "_user3 "
+		$reqmaj = "INSERT INTO " . EA_UDB . "_user3 "
 			. "(nom, prenom, email, level, login, hashpass, regime, solde, maj_solde, statut, dtcreation, dtexpiration, pt_conso, libre, rem)"
-			. " values('"
+			. " VALUES('"
 			. sql_quote(getparam('nom')) . "','"
 			. sql_quote(getparam('prenom')) . "','"
 			. sql_quote($email) . "','"

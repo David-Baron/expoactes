@@ -93,8 +93,8 @@ if (!$missingargs) {
 		case "V":
 			$ntype = "types divers";
 			$table = EA_DB . "_div3";
-			if (($xtdiv <> "") and (mb_substr($xtdiv, 0, 2) <> "**")) {
-				$condtdiv = " and (LIBELLE='" . urldecode($xtdiv) . "')";
+			if (($xtdiv <> "") && (mb_substr($xtdiv, 0, 2) <> "**")) {
+				$condtdiv = " AND (LIBELLE='" . urldecode($xtdiv) . "')";
 				$soustype = " (" . $xtdiv . ")";
 			}
 			break;
@@ -109,25 +109,25 @@ if (!$missingargs) {
 	}
 	$condad = "";
 	if ($AnneeDeb <> "") {
-		$condad = " and year(LADATE)>=" . $AnneeDeb;
+		$condad = " AND year(LADATE)>=" . $AnneeDeb;
 	}
 	$condaf = "";
 	if ($AnneeFin <> "") {
-		$condaf = " and year(LADATE)<=" . $AnneeFin;
+		$condaf = " AND year(LADATE)<=" . $AnneeFin;
 	}
 	if (mb_substr($comdep, 0, 4) == "TOUS") {
 		$condcom = " NOT (ID IS NULL) ";
 	} else {
-		$condcom = " COMMUNE='" . sql_quote($oldcom) . "' and DEPART='" . sql_quote($olddep) . "'";
+		$condcom = " COMMUNE='" . sql_quote($oldcom) . "' AND DEPART='" . sql_quote($olddep) . "'";
 	}
 	$conddep = "";
 	if ($olddepos > 0) {
-		$conddep = " and DEPOSANT=" . $olddepos;
+		$conddep = " AND DEPOSANT=" . $olddepos;
 	}
 
 	if ($xaction <> 'validated') {
-		$request = "select count(*) from " . $table .
-			" where " . $condcom . $conddep . $condtdiv . $condad . $condaf . " ;";
+		$request = "SELECT count(*) FROM " . $table .
+			" WHERE " . $condcom . $conddep . $condtdiv . $condad . $condaf . " ;";
 		//echo $request;
 		$result = EA_sql_query($request);
 		$ligne = EA_sql_fetch_row($result);
@@ -178,9 +178,9 @@ if (!$missingargs) {
 		if (!empty($newlibel))
 			$listmodif = sql_virgule($listmodif, "LIBELLE='" . sql_quote($newlibel) . "'");
 
-		$request = "update " . $table
-			. " set " . $listmodif
-			. " where " . $condcom . $conddep . $condtdiv . $condad . $condaf . " ;";
+		$request = "UPDATE " . $table
+			. " SET " . $listmodif
+			. " WHERE " . $condcom . $conddep . $condtdiv . $condad . $condaf . " ;";
 		$result = EA_sql_query($request);
 		// echo $request;
 		$nb = EA_sql_affected_rows();

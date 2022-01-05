@@ -77,10 +77,10 @@ if (!$missingargs) {
 	}
 
 	if ($xconfirm == 'confirmed') {
-		$request = "select NOM,PRE,DATETXT,COMMUNE,DEPART " . $conj . " from " . $table . " where ID=" . $xid;
+		$request = "SELECT NOM, PRE, DATETXT, COMMUNE, DEPART " . $conj . " FROM " . $table . " WHERE ID=" . $xid;
 		$result = EA_sql_query($request);
 		$ligne = EA_sql_fetch_row($result);
-		$request = "delete from " . $table . " where ID=" . $xid;
+		$request = "DELETE FROM " . $table . " WHERE ID=" . $xid;
 		$result = EA_sql_query($request);
 		//echo $request;
 		$nb = EA_sql_affected_rows();
@@ -97,7 +97,7 @@ if (!$missingargs) {
 			echo '<p>Aucun acte supprimé.</p>';
 		}
 	} else {
-		$request = "select NOM,PRE,DATETXT,COMMUNE,DEPART" . $conj . " from " . $table . " where ID=" . $xid;
+		$request = "SELECT NOM, PRE, DATETXT, COMMUNE, DEPART" . $conj . " FROM " . $table . " WHERE ID=" . $xid;
 		$result = EA_sql_query($request);
 		if ($ligne = EA_sql_fetch_row($result)) {
 			echo '<form method="post" enctype="multipart/form-data" action="">' . "\n";

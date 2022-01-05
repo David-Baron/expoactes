@@ -51,7 +51,7 @@ if (isset($udbname)) {
 }
 
 $baselink = $root . '/admin/listusers.php';
-$request = "select distinct upper(left(NOM,1)) as init from " . EA_UDB . "_user3 order by init";
+$request = "SELECT DISTINCT upper(left(NOM,1)) AS init FROM " . EA_UDB . "_user3 ORDER BY init";
 $result = EA_sql_query($request, $u_db);
 $alphabet = "";
 while ($row = EA_sql_fetch_row($result)) {
@@ -83,11 +83,11 @@ switch ($xord) {
 		$hlogin = '<b>Login</b>';
 		break;
 	case "A":
-		$order = "LEVEL desc";
+		$order = "LEVEL DESC";
 		$hacces = '<b>Niveau d\'accès</b>';
 		break;
 	case "I":
-		$order = "ID desc";
+		$order = "ID DESC";
 		$hid = '<b>ID</b>';
 		break;
 	case "S":
@@ -95,15 +95,15 @@ switch ($xord) {
 		$hstatu = '<b>Statut</b>';
 		break;
 	case "D":
-		$order = "SOLDE desc, REGIME asc";
+		$order = "SOLDE DESC, REGIME ASC";
 		$hsolde = '<b>Solde</b>';
 		break;
 	case "R":
-		$order = "MAJ_SOLDE desc";
+		$order = "MAJ_SOLDE DESC";
 		$hrecha = '<b>Rechargé</b>';
 		break;
 	case "C":
-		$order = "PT_CONSO desc";
+		$order = "PT_CONSO DESC";
 		$hconso = '<b>Consommés</b>';
 		break;
 	case "N":
@@ -115,13 +115,11 @@ switch ($xord) {
 if ($init == "")
 	$condit = "";
 else
-	$condit = " where NOM like '" . $init . "%' ";
+	$condit = " WHERE NOM LIKE '" . $init . "%' ";
 
 
-$request = "select NOM, PRENOM, LOGIN, LEVEL, ID, EMAIL, REGIME, SOLDE, MAJ_SOLDE, if(STATUT='N',if(dtexpiration<'" . date("Y-m-d", time()) . "','X',STATUT),STATUT) as STATUT, PT_CONSO"
-	. " from " . EA_UDB . "_user3 "
-	. $condit
-	. " order by " . $order;
+$request = "SELECT NOM, PRENOM, LOGIN, LEVEL, ID, EMAIL, REGIME, SOLDE, MAJ_SOLDE, if(STATUT='N',if(dtexpiration<'" . date("Y-m-d", time()) . "','X',STATUT),STATUT) AS STATUT, PT_CONSO"
+	. " FROM " . EA_UDB . "_user3 " . $condit . " ORDER BY " . $order;
 //echo $request;
 $result = EA_sql_query($request, $u_db);
 $nbtot = EA_sql_num_rows($result);

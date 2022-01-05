@@ -169,8 +169,8 @@ if (!$missingargs) {
 			case "V":
 				$ntype = "types divers";
 				$table = EA_DB . "_div3";
-				if (($xtdiv <> "") and (mb_substr($xtdiv, 0, 2) <> "**")) {
-					$condtdiv = " and (LIBELLE='" . urldecode($xtdiv) . "')";
+				if (($xtdiv <> "") && (mb_substr($xtdiv, 0, 2) <> "**")) {
+					$condtdiv = " AND (LIBELLE='" . urldecode($xtdiv) . "')";
 					$soustype = " (" . $xtdiv . ")";
 					$extstype = "_" . mb_substr($xtdiv, 0, 4);
 				}
@@ -186,31 +186,31 @@ if (!$missingargs) {
 		}
 		$condad = "";
 		if ($AnneeDeb <> "") {
-			$condad = " and year(LADATE)>=" . $AnneeDeb;
+			$condad = " AND year(LADATE)>=" . $AnneeDeb;
 		}
 		$condaf = "";
 		if ($AnneeFin <> "") {
-			$condaf = " and year(LADATE)<=" . $AnneeFin;
+			$condaf = " AND year(LADATE)<=" . $AnneeFin;
 		}
 		$conddep = "";
 		if ($userlevel < 8) {
-			$conddep = " and DEPOSANT=" . $userid;
+			$conddep = " AND DEPOSANT=" . $userid;
 		}
 		if (mb_substr($comdep, 0, 6) == "BACKUP") {
 			$condcom = " NOT (ID IS NULL) ";
 		} else {
-			$condcom = " COMMUNE='" . sql_quote($Commune) . "' and DEPART='" . sql_quote($Depart) . "'";
+			$condcom = " COMMUNE='" . sql_quote($Commune) . "' AND DEPART='" . sql_quote($Depart) . "'";
 		}
 		if ($xaction == 'go') {
-			$request = "select count(*) from " . $table .
-				" where " . $condcom . $condad . $condaf . $conddep . $condtdiv . ";";
+			$request = "SELECT count(*) FROM " . $table .
+				" WHERE " . $condcom . $condad . $condaf . $conddep . $condtdiv . ";";
 			//echo $request;
 			$result = EA_sql_query($request);
 			$row = EA_sql_fetch_row($result);
 			$nbdocs = $row[0];
 
-			$request = "select * from " . $table .
-				" where " . $condcom . $condad . $condaf . $conddep . $condtdiv . " limit 0,1 ;";
+			$request = "SELECT * FROM " . $table .
+				" WHERE " . $condcom . $condad . $condaf . $conddep . $condtdiv . " LIMIT 0,1 ;";
 			optimize($request);
 			$result = EA_sql_query($request);
 			$fields_cnt = EA_sql_num_fields($result);
@@ -273,12 +273,12 @@ if (!$missingargs) {
 				} // switch					
 
 				$stop = 0;
-				$request = "select * from " . $table .
-					" where " . $condcom . $condad . $condaf . $conddep . $condtdiv;
+				$request = "SELECT * FROM " . $table .
+					" WHERE " . $condcom . $condad . $condaf . $conddep . $condtdiv;
 				if (MAX_SELECT_REC > 0)
-					$request .= " limit " . $skip . "," . MAX_SELECT_REC . " ;";
+					$request .= " LIMIT " . $skip . "," . MAX_SELECT_REC . " ;";
 				else
-					$request .= " limit " . $skip . ",999999999 ;";
+					$request .= " LIMIT " . $skip . ",999999999 ;";
 				optimize($request);
 				$result = EA_sql_query($request);
 				$nb = $skip;

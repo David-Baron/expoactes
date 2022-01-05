@@ -33,9 +33,7 @@ $leid = getparam('id');
 if ($id > 0)  // édition
 {  //
 	$action = 'Modification';
-	$request = "select *"
-		. " from " . EA_DB . "_geoloc "
-		. " where ID =" . $id;
+	$request = "SELECT * FROM " . EA_DB . "_geoloc WHERE ID=" . $id;
 	//echo '<P>'.$request;
 	if ($result = EA_sql_query($request)) {
 		$row = EA_sql_fetch_array($result);
@@ -52,8 +50,8 @@ if ($id > 0)  // édition
 		echo "<p>*** FICHE NON TROUVEE***</p>";
 	}
 	$zoom = 11;
-	if ($lon == 0 and $lat == 0 and GEO_CENTRE_CARTE <> "") {
-		$georeq = "select LON,LAT from " . EA_DB . "_geoloc where COMMUNE = '" . sql_quote(GEO_CENTRE_CARTE) . "' and STATUT in ('A','M')";
+	if ($lon == 0 && $lat == 0 && GEO_CENTRE_CARTE <> "") {
+		$georeq = "SELECT LON,LAT FROM " . EA_DB . "_geoloc WHERE COMMUNE = '" . sql_quote(GEO_CENTRE_CARTE) . "' AND STATUT IN ('A','M')";
 		$geores =  EA_sql_query($georeq);
 		if ($geo = EA_sql_fetch_array($geores)) {
 			$lon = $geo['LON'];
@@ -61,7 +59,7 @@ if ($id > 0)  // édition
 			$zoom = 5;
 		}
 	}
-	if ($lon == 0 and $lat == 0) {
+	if ($lon == 0 && $lat == 0) {
 		$lon = 5;
 		$lat = 50; // Froidfontaine !!
 		$zoom = 5;
@@ -102,8 +100,8 @@ echo '<div id="col_main_adm">';
 menu_datas('L');
 
 
-if ($id > 0 and $act == "del") {
-	$reqmaj = "delete from " . EA_DB . "_geoloc where ID=" . $id . ";";
+if ($id > 0 && $act == "del") {
+	$reqmaj = "DELETE FROM " . EA_DB . "_geoloc WHERE ID=" . $id . ";";
 	if ($result = EA_sql_query($reqmaj, $a_db)) {
 		//writelog('Suppression localité #'.$id,$lelogin,1);
 		echo '<p><b>FICHE SUPPRIMEE.</b></p>';

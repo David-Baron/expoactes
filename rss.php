@@ -44,8 +44,8 @@ if ($xtyp == "" or $xtyp == "A")
 else
 	$condit = " WHERE TYPACT = '" . $xtyp . "'";
 
-$request  .= "SELECT TYPACT as TYP, sum(NB_TOT) as CPT, COMMUNE, DEPART, concat(PRENOM,' ',u.NOM) as DEPO, EMAIL, DTDEPOT as DTE, AN_MIN as DEB, AN_MAX as FIN"
-	. " FROM " . EA_DB . "_sums as a left join " . EA_UDB . "_user3 as u on (a.deposant=u.id)"
+$request  .= "SELECT TYPACT AS TYP, sum(NB_TOT) AS CPT, COMMUNE, DEPART, concat(PRENOM,' ',u.NOM) AS DEPO, EMAIL, DTDEPOT AS DTE, AN_MIN AS DEB, AN_MAX AS FIN "
+	. " FROM " . EA_DB . "_sums AS a LEFT JOIN " . EA_UDB . "_user3 AS u ON (a.deposant=u.id)"
 	. $condit
 	. ' GROUP BY COMMUNE, DEPART, TYP, PRENOM, NOM, email, dtdepot, an_min, an_max '
 	. ' ORDER BY DTE desc '

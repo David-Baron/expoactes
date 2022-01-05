@@ -113,7 +113,7 @@ if (!empty($_FILES['Users']['tmp_name'])) { // fichier d'utilisateurs
 				}
 				if ($ok) {
 					// Recherche si existant
-					$sql = "select * from " . EA_UDB . "_user3 where nom = '" . sql_quote($nom) . "' and prenom = '" . sql_quote($pre) . "'";
+					$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE nom='" . sql_quote($nom) . "' AND prenom = '" . sql_quote($pre) . "'";
 					$res = EA_sql_query($sql, $u_db);
 					$nb = EA_sql_num_rows($res);
 					if ($nb > 0) {
@@ -123,7 +123,7 @@ if (!empty($_FILES['Users']['tmp_name'])) { // fichier d'utilisateurs
 					}
 				}
 				if ($ok and TEST_EMAIL_UNIC == 1) {
-					$sql = "select * from " . EA_UDB . "_user3 where email = '" . sql_quote($mail) . "'";
+					$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE email='" . sql_quote($mail) . "'";
 					$res = EA_sql_query($sql, $u_db);
 					$nb = EA_sql_num_rows($res);
 					if ($nb > 0) {
@@ -140,14 +140,14 @@ if (!empty($_FILES['Users']['tmp_name'])) { // fichier d'utilisateurs
 						$racine = strtolower(mb_substr($pre, 0, 3) . mb_substr($nom, 0, 3));
 						$login = $racine;
 						// recherche si existe
-						$sql = "select * from " . EA_UDB . "_user3 where login = '" . sql_quote($login) . "'";
+						$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login='" . sql_quote($login) . "'";
 						$res = EA_sql_query($sql, $u_db);
 						$nb = EA_sql_num_rows($res);
 						if ($nb > 0) {
 							// création d'un login numéroté
-							$sql = "select login from " . EA_UDB . "_user3"
-								. " where login like '" . $racine . "__' AND cast( substring( login, 7, 2 ) AS unsigned ) >0"
-								. " order by login desc";
+							$sql = "SELECT login FROM " . EA_UDB . "_user3"
+								. " WHERE login LIKE '" . $racine . "__' AND cast( substring( login, 7, 2 ) AS unsigned ) >0"
+								. " ORDER BY login DESC";
 							$res = EA_sql_query($sql, $u_db);
 							$nb = EA_sql_num_rows($res);
 							$val = 1;
@@ -159,7 +159,7 @@ if (!empty($_FILES['Users']['tmp_name'])) { // fichier d'utilisateurs
 						}
 					}
 					// TEST FINAL du login (dans tous les cas)
-					$sql = "select * from " . EA_UDB . "_user3 where login = '" . sql_quote($login) . "'";
+					$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE login='" . sql_quote($login) . "'";
 					$res = EA_sql_query($sql, $u_db);
 					$nb = EA_sql_num_rows($res);
 					if ($nb > 0) {
@@ -234,7 +234,7 @@ if (!empty($_FILES['Users']['tmp_name'])) { // fichier d'utilisateurs
 					// test sur le n° ID
 					if (!empty($user[11])) {
 						$iduser = $user[11];
-						$sql = "select * from " . EA_UDB . "_user3 where ID = '" . sql_quote($iduser) . "'";
+						$sql = "SELECT * FROM " . EA_UDB . "_user3 WHERE ID='" . sql_quote($iduser) . "'";
 						$res = EA_sql_query($sql, $u_db);
 						$nb = EA_sql_num_rows($res);
 						if ($nb > 0) {
@@ -248,9 +248,9 @@ if (!empty($_FILES['Users']['tmp_name'])) { // fichier d'utilisateurs
 
 				if ($ok) {
 					// insertion
-					$reqmaj = "insert into " . EA_UDB . "_user3 "
+					$reqmaj = "INSERT INTO " . EA_UDB . "_user3 "
 						. " ( `login` , `hashpass` , `nom` , `prenom` , `email` , `level` , `regime` , `solde` , `maj_solde` , statut, dtcreation, dtexpiration, libre, pt_conso, ID,`REM`)"
-						. " values('" . sql_quote($login) . "','"
+						. " VALUES('" . sql_quote($login) . "','"
 						. sql_quote($hashpw) . "','"
 						. sql_quote($nom) . "','"
 						. sql_quote($pre) . "','"

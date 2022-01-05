@@ -95,14 +95,14 @@ if (getparam('action') == 'submitted') {
 		$pw = $lepassw;
 	} else
 		$pw = "";
-	$res = EA_sql_query("SELECT * FROM " . EA_UDB . "_user3 WHERE login='" . sql_quote($lelogin) . "' and id <> " . $leid, $u_db);
+	$res = EA_sql_query("SELECT * FROM " . EA_UDB . "_user3 WHERE login='" . sql_quote($lelogin) . "' AND id <> " . $leid, $u_db);
 	if (EA_sql_num_rows($res) != 0) {
 		$row = EA_sql_fetch_array($res);
 		msg('Ce code de login est déjà utilisé par "' . $row['prenom'] . ' ' . $row['nom'] . '" !');
 		$ok = false;
 	}
 	if (TEST_EMAIL_UNIC == 1) {
-		$res = EA_sql_query("SELECT * FROM " . EA_UDB . "_user3 WHERE email='" . sql_quote(getparam('email')) . "' and id <> " . $leid, $u_db);
+		$res = EA_sql_query("SELECT * FROM " . EA_UDB . "_user3 WHERE email='" . sql_quote(getparam('email')) . "' AND id <> " . $leid, $u_db);
 		if (EA_sql_num_rows($res) != 0) {
 			$row = EA_sql_fetch_array($res);
 			msg('Cette adresse email est déjà utilisé par "' . $row['prenom'] . ' ' . $row['nom'] . '" !');
@@ -115,9 +115,9 @@ if (getparam('action') == 'submitted') {
 			$dtexpir = TOUJOURS;
 		if ($id <= 0) {
 			$maj_solde = date("Y-m-d");
-			$reqmaj = "insert into " . EA_UDB . "_user3 "
+			$reqmaj = "INSERT INTO " . EA_UDB . "_user3 "
 				. "(nom, prenom, email, level, login, hashpass, regime, solde, maj_solde, statut, dtcreation, dtexpiration, rem, libre)"
-				. " values('"
+				. " VALUES('"
 				. sql_quote(getparam('nom')) . "','"
 				. sql_quote(getparam('prenom')) . "','"
 				. sql_quote(getparam('email')) . "','"
@@ -139,7 +139,7 @@ if (getparam('action') == 'submitted') {
 			else
 				$maj_solde = $_REQUEST['maj_solde'];
 
-			$reqmaj = "update " . EA_UDB . "_user3 set ";
+			$reqmaj = "UPDATE " . EA_UDB . "_user3 SET ";
 			$reqmaj = $reqmaj .
 				"NOM        = '" . sql_quote(getparam('nom')) . "', " .
 				"PRENOM     = '" . sql_quote(getparam('prenom')) . "', " .
@@ -156,7 +156,7 @@ if (getparam('action') == 'submitted') {
 				"STATUT     = '" . sql_quote(getparam('statut')) . "', " .
 				"LIBRE      = '" . sql_quote(getparam('libre')) . "', " .
 				"REM        = '" . sql_quote(getparam('rem')) . "' " .
-				" where ID=" . $id . ";";
+				" WHERE ID=" . $id . ";";
 		}
 		//echo "<p>".$reqmaj."</p>";
 
@@ -194,7 +194,7 @@ if (getparam('action') == 'submitted') {
 }
 
 if ($id > 0 and $act == "del") {
-	$reqmaj = "delete from " . EA_UDB . "_user3 where ID=" . $id . ";";
+	$reqmaj = "DELETE FROM " . EA_UDB . "_user3 WHERE ID=" . $id . ";";
 	if ($result = EA_sql_query($reqmaj, $u_db)) {
 		writelog('Suppression utilisateur #' . $id, $lelogin, 1);
 		echo '<p><b>FICHE SUPPRIMEE.</b></p>';
@@ -240,9 +240,8 @@ if ($id == -1) {  // Initialisation
 
 if ($id > 0) {  //
 	$action = 'Modification';
-	$request = "select NOM, PRENOM, EMAIL, LEVEL, LOGIN, REGIME, SOLDE, MAJ_SOLDE, STATUT, DTCREATION, DTEXPIRATION, PT_CONSO, REM, LIBRE"
-		. " from " . EA_UDB . "_user3 "
-		. " where ID =" . $id;
+	$request = "SELECT NOM, PRENOM, EMAIL, LEVEL, LOGIN, REGIME, SOLDE, MAJ_SOLDE, STATUT, DTCREATION, DTEXPIRATION, PT_CONSO, REM, LIBRE"
+		. " FROM " . EA_UDB . "_user3 WHERE ID=" . $id;
 	//echo '<P>'.$request;
 	if ($result = EA_sql_query($request, $u_db)) {
 		$row = EA_sql_fetch_array($result);
@@ -428,7 +427,7 @@ if ($id <> 0 and $missingargs) {
 	echo '  <input type="reset" value=" Effacer " />' . "\n";
 	echo " </td><td align=\"left\">\n";
 	echo ' &nbsp; <input type="submit" value=" *** ENREGISTRER *** " />' . "\n";
-	if ($id > 0 and $level < 9) {
+	if ($id > 0 && $level < 9) {
 		echo ' &nbsp; &nbsp; &nbsp; <a href="gestuser.php?id=' . $id . '&amp;act=del">Supprimer cet utilisateur</a>' . "\n";
 	}
 	echo " </td></tr>\n";
@@ -436,9 +435,9 @@ if ($id <> 0 and $missingargs) {
 	echo "</form>\n";
 } else {
 	echo '<p align="center"><a href="listusers.php">Retour à la liste des utilisateurs</a>';
-	if ($leid > 0 and $act != "del")
+	if ($leid > 0 && $act != "del")
 		echo '&nbsp;|&nbsp; <a href="gestuser.php?id=' . $leid . '">Retour à la fiche de ' . getparam('prenom') . " " . getparam('nom') . '</a>';
-	if ($leid == -1 and $act != "del")
+	if ($leid == -1 && $act != "del")
 		echo '&nbsp;|&nbsp; <a href="gestuser.php?id=-1">Ajout d\'une autre fiche' . '</a>';
 	echo '</p>';
 }

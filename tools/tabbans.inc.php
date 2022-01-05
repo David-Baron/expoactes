@@ -24,7 +24,7 @@ if ($p > 0) {
 	$stype = mb_substr($xcomm, $p + 1);
 	$xcomm = mb_substr($xcomm, 0, $p);
 	$stitre = " (" . $stype . ")";
-	$soustype = " and LIBELLE = '" . sql_quote($stype) . "'";
+	$soustype = " AND LIBELLE = '" . sql_quote($stype) . "'";
 	$sousurl  = ";" . $stype;
 } else {
 	$stype = "";
@@ -110,11 +110,11 @@ if ($xpatr == "" or mb_substr($xpatr, 0, 1) == "_")
 	else
 		$condDep = "";
 
-	$request = "select act.NOM, act.PRE, C_NOM, C_PRE, DATETXT, act.ID, act.LIBELLE, act.DEPOSANT"
-		. " from " . EA_DB . "_div3 as act"
-		. " where COMMUNE = '" . sql_quote($Commune) . "'" . $condDep
+	$request = "SELECT act.NOM, act.PRE, C_NOM, C_PRE, DATETXT, act.ID, act.LIBELLE, act.DEPOSANT"
+		. " FROM " . EA_DB . "_div3 AS act"
+		. " WHERE COMMUNE = '" . sql_quote($Commune) . "'" . $condDep
 		. " " . $soustype . $condit
-		. " order by " . $order;
+		. " ORDER BY " . $order;
 
 	//echo $request;
 	optimize($request);

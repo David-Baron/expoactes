@@ -82,7 +82,7 @@ if ($xgroupe == '') {
 }
 
 //$request = "select distinct groupe from ".EA_DB."_params order by groupe";
-$request = "select distinct groupe from " . EA_DB . "_params where not (groupe in ('Hidden','Deleted')) order by groupe";
+$request = "SELECT DISTINCT groupe FROM " . EA_DB . "_params WHERE NOT (groupe IN ('Hidden','Deleted')) ORDER BY groupe";
 $result = EA_sql_query($request);
 //echo $request;
 $barre = false;
@@ -108,13 +108,13 @@ if (!$missingargs) {
 			$parname = getparam("parname$i");
 			$parvalue = htmlentities(getparam("parvalue$i"), ENTITY_REPLACE_FLAGS, ENTITY_CHARSET);
 			if ($parvalue == "") {
-				$request = "select * from " . EA_DB . "_params where param = '" . $parname . "'";
+				$request = "SELECT * FROM " . EA_DB . "_params WHERE param='" . $parname . "'";
 				$result = EA_sql_query($request);
 				$row = EA_sql_fetch_array($result);
 				if ($row["type"] == "B")
 					$parvalue = 0;
 			}
-			$request = "update " . EA_DB . "_params set valeur = '" . sql_quote($parvalue) . "' where param = '" . $parname . "'";
+			$request = "UPDATE " . EA_DB . "_params SET valeur = '" . sql_quote($parvalue) . "' WHERE param='" . $parname . "'";
 			//echo "<p>".$request;
 			optimize($request);
 			$result = EA_sql_query($request);
@@ -126,7 +126,7 @@ if (!$missingargs) {
 	}
 }
 
-$request = "select * from " . EA_DB . "_params where groupe='" . $xgroupe . "' order by ordre";
+$request = "SELECT * FROM " . EA_DB . "_params WHERE groupe='" . $xgroupe . "' ORDER BY ordre";
 optimize($request);
 $result = EA_sql_query($request);
 //echo $request;
