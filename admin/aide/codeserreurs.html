@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>ExpoActes : Configuration avanc&eacute;e</title>
+<meta content="Delacharlerie Andre" name="author" />
+<link rel="stylesheet" href="../../_config/actes.css" type="text/css" />
+<style type="text/css">
+.cadre { border: 1px dashed rgb(255, 153, 102);
+padding: 15px;
+}
+<!--
+-->
+</style>
+</head>
+
+
+<body>
+<h1 style="text-align: center;">Codes d'erreurs du logiciel et pistes de solutions</h1>
+
+<p>&nbsp;</p>
+<h4>011 : Impossible d'ouvrir la connexion au serveur MySQL [xxxxxx] avec l'utilisateur 
+  [xxxxxx].</h4>
+<p>Les codes d'acc&egrave;s &agrave; la base de donn&eacute;es (nom du serveur, 
+  login et mot de passe) ne sont pas pr&eacute;sents dans le fichier _config/connect.inc.php 
+  ou ne sont pas corrects. <br />
+  <a href="config.html#params">Ajoutez ces codes ou corrigez-les</a>.</p>
+<h4>012 : La base [xxxxx] n'est pas accessible sur le serveur MySQL.</h4>
+<p>Le nom de la base de donn&eacute;es n'est par reconnu par le serveur MYSQL. 
+  Le nom peut &ecirc;tre incorrect ou la base n'est pas encore cr&eacute;&eacute;e 
+  sur le serveur.<br />
+  <a href="config.html#params">V&eacute;rifier le nom de la base</a> et sa pr&eacute;sence. 
+  Bien souvent vous pouvez utiliser l'utilitaire PHPMyAdmin pour v&eacute;rifier 
+  ces informations.</p>
+<h4>021 : Ce programme n&eacute;cessite au moins la version X.Y.Z de PHP.</h4>
+<p>La version du module PHP sur le serveur n'est pas adapt&eacute;e pour le programme. 
+  Certaines fonctions indispensables ne sont pas pr&eacute;sentes. <br />
+  Mettez &agrave; jour le serveur ou demander &agrave; votre h&eacute;bergeur 
+  de le faire.</p>
+<h4>022 : Ce programme n&eacute;cessite au moins la version X.Y.Z de MySQL.</h4>
+<p>La version du moteur de base de donn&eacute;e MySQL du serveur n'est pas adapt&eacute;e 
+  pour le programme. Certaines fonctions indispensables ne sont pas pr&eacute;sentes. 
+  <br />
+  Mettez &agrave; jour le serveur ou demander &agrave; votre h&eacute;bergeur 
+  de le faire.</p>
+<h4>031 : R&eacute;pertoire de t&eacute;l&eacute;chargement &quot;_upload&quot; 
+  inaccessible ou inexistant.</h4>
+<p>Le logiciel doit disposer d'un r&eacute;pertoire o&ugrave; les fichiers CSV 
+  charg&eacute;s seront stock&eacute;s pendant le temps n&eacute;cessaire &agrave; 
+  leur traitement. En principe, ce r&eacute;pertoire est plac&eacute; en &quot;actes/admin/_upload&quot;. 
+  Les droits d'acc&egrave;s effect&eacute;s &agrave; ce r&eacute;pertoire doivent 
+  permettre au serveur web de d&eacute;placer un fichier vers ce r&eacute;pertoire.<br />
+  V&eacute;rifier la pr&eacute;sence du r&eacute;pertoire et ses droits d'acc&egrave;s. 
+  Au besoin, ExpoActes peut utiliser un autre r&eacute;pertoire dont le chemin 
+  d'acc&egrave;s doit &ecirc;tre pr&eacute;cis&eacute; via le <a href="config.html#uploaddir">param&egrave;tre 
+  UPLOAD_DIR</a>.</p>
+<h4>032 : Impossible de cr&eacute;er un fichier dans &quot;_upload&quot;.</h4>
+<p>Le r&eacute;pertoire pour le t&eacute;l&eacute;chargement existe mais il est 
+  impossible - pour le serveur web - d'&eacute;crire un fichier dans ce r&eacute;pertoire.<br />
+  En g&eacute;n&eacute;ral ce probl&egrave;me est du au fait que les droits d'acc&egrave;s 
+  au r&eacute;pertoire sont insuffisant. Pour les modifier, il faut utiliser votre 
+  logiciel FTP et afficher le r&eacute;pertoire &quot;admin&quot;. Les permissions 
+  attribu&eacute;es au r&eacute;pertoire doivent &ecirc;tre &quot;drwxrwxrwx&quot; 
+  ou encore &quot;777&quot;. Si ce n'est pas le cas modifiez ces droits de la 
+  fa&ccedil;on suivante : Sur le nom du r&eacute;pertoire &quot;_upload&quot; 
+  faites un clic droit et s&eacute;lectionner l'item &quot;Propri&eacute;t&eacute;s...&quot; 
+  ou &quot;Attributs...&quot; puis cochez tous les droits d'acc&egrave;s.</p>
+<h4>033 : Impossible de ranger le fichier dans &quot;_upload&quot;.</h4>
+<p>Le fichier qui vient d'&ecirc;tre t&eacute;l&eacute;charg&eacute; n'a pas pu 
+  &ecirc;tre stock&eacute; dans le r&eacute;pertoire _upload pr&eacute;vu &agrave; 
+  cet effet. En g&eacute;n&eacute;ral, la solution est la m&ecirc;me que pour 
+  l'erreur 032 ou &eacute;ventuellement 031.</p>
+<h4>034 : R&eacute;pertoire de backup &quot;_backup&quot; inaccessible ou inexistant.</h4>
+<p>Le repertoire _backup doit &ecirc;tre cr&eacute;&eacute; et accessible &agrave; 
+  la racine du site (au m&ecirc;me niveau que _config). S'il n'existe pas, il 
+  faut le cr&eacute;er manuellement.</p>
+<h4>035 : Impossible de cr&eacute;er un fichier dans &quot;_backup&quot;.</h4>
+<p>Le r&eacute;pertoire pour le backup existe mais il est impossible - pour le 
+  serveur web - d'&eacute;crire un fichier dans ce r&eacute;pertoire.<br />
+  En g&eacute;n&eacute;ral ce probl&egrave;me est du au fait que les droits d'acc&egrave;s 
+  au r&eacute;pertoire sont insuffisant. Pour les modifier, il faut utiliser votre 
+  logiciel FTP et afficher le r&eacute;pertoire &quot;admin&quot;. Les permissions 
+  attribu&eacute;es au r&eacute;pertoire doivent &ecirc;tre &quot;drwxrwxrwx&quot; 
+  ou encore &quot;777&quot;. Si ce n'est pas le cas modifiez ces droits de la 
+  fa&ccedil;on suivante : Sur le nom du r&eacute;pertoire &quot;_backup&quot; 
+  faites un clic droit et s&eacute;lectionner l'item &quot;Propri&eacute;t&eacute;s...&quot; 
+  ou &quot;Attributs...&quot; puis cochez tous les droits d'acc&egrave;s.</p>
+<h4>041 : Impossible de trouver le script SQL &quot;xxxxx.sql&quot;.</h4>
+<p>Le fichier de script ne se trouve pas dans le r&eacute;pertoire attendu (en 
+  principe le r&eacute;pertoire &quot;install&quot;. R&eacute;-ex&eacute;cuter 
+  l'installation ou la mise &agrave; jour.</p>
+<h4>051 : L'envoi du mail via la proc&eacute;dure interne &agrave; PHP n'a pas 
+  r&eacute;ussi.</h4>
+<p>Si l'adresse du destinataire est correctement sp&eacute;cifi&eacute;e, la cause 
+  la plus probable est que le module d'envoi de courrier &eacute;lectronique interne 
+  &agrave; PHP n'est soit pas disponible ou n'a pas &eacute;t&eacute; configur&eacute; 
+  correctement. C'est souvent le cas lors de l'utilisation en local avec EasyPHP. 
+  Dans le cas d'un serveur h&eacute;berg&eacute;, il est aussi possible que l'h&eacute;bergeur 
+  ait d&eacute;cid&eacute; de ne pas offrir ce service. <br />
+  Pour r&eacute;soudre la probl&egrave;me, il faut soit corriger le param&eacute;trage 
+  du module PHP (fichier php.ini) soit utiliser le module d'envoi de mail int&eacute;gr&eacute; 
+  &agrave; ExpoActes en <a href="config.html#sendmail">configurant celui-ci</a> 
+  de mani&egrave;re ad&eacute;quate.</p>
+<h4>052 : Param&egrave;tres de gestion du mail incoml&egrave;tement configur&eacute;s.</h4>
+<p>Les param&egrave;tres de la focntion interne de mail doivent &ecirc;tre compl&eacute;t&eacute;s. 
+  Au minimum, il faut pr&eacute;ciser le nom du serveur SMTP, le nom de la machine 
+  qui envoie le mail et l'adresse de l'exp&eacute;diteur, plus, parfois, le login 
+  et le mot de passe.</p>
+<h4>053 : Impossible de se connecter au serveur mail &quot;xxxxx&quot;.</h4>
+<p>Le serveur sp&eacute;cifi&eacute; n'existe pas, n'est pas accessible ou ne 
+  founit pas le service SMTP sur le port 25.</p>
+<h4>054 : Probl&egrave;me lors du dialogue avec le serveur mail &quot;xxxxx&quot; 
+  : xxxxxx.</h4>
+<p>Le serveur SMTP a renvoy&eacute; le message cit&eacute;. Il est possible que 
+  ce serveur requi&egrave;re une authentification (v&eacute;rifier le login et 
+  le mot de passe) ou qu'il ne soit pas accessible pour le moment.</p>
+<h4>061 : Librairie GD indisponible.</h4>
+<p>La librairie graphique GD2 n'a pas &eacute;t&eacute; activ&eacute;e sur votre 
+  h&eacute;bergement. Celle-ci est indispensable pour g&eacute;n&eacute;rer &agrave; 
+  la vol&eacute;e les codes &quot;captcha&quot; : codes masqu&eacute;s de protection 
+  des formulaire d'auto-inscription. Si vous avez acc&egrave;s au param&eacute;trage 
+  PHP, il suffit bien souvent de retirer le point virgule devant la ligne &quot;;extension=php_gd2.dll&quot; 
+  du fichier PHP.INI.</p>
+<p>Si cela est inpossible avec votre h&eacute;bergement vous pouvez aussi d&eacute;sactiver 
+  la gestion des codes captcha dans le param&eacute;trage des utilisateurs.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Pour la modification des param&egrave;tres du logiciel, voir la <a href="config.html">configuration 
+  avanc&eacute;e</a>.</strong> </p>
+<div style="text-align: center;">
+<p align="left">&nbsp;</p>
+  <p>-o-O-o- <br />
+  </p>
+</div>
+
+
+
+
+</body>
+</html>

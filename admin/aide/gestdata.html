@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+    <title>
+      ExpoActes : Gestion des utilisateurs
+    </title>
+    <link media="screen" rel="stylesheet" href="../../_config/actes.css" type="text/css">
+  </head>
+
+  <body>
+    
+<h1 align="center"> Expoactes : Administration des donn&eacute;es </h1>
+<p align="center"><a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a><br>
+</p>
+<p>L'administration des donn&eacute;es permet de r&eacute;aliser quelques t&acirc;ches moins courantes mais utiles &agrave; la bonne gestion de la base expoactes. Une de ces actions consiste en la r&eacute;alisation des copies de s&eacute;curit&eacute;s des donn&eacute;es ou &quot;backup&quot; et parfois en la restauration de donn&eacute;es sauvegard&eacute;es. Cette t&acirc;che importante est trait&eacute;e dans un <a href="backup.html">chapitre sp&eacute;cifique consacr&eacute; au backup et &agrave; la restauration</a>.</p>
+<p>Ces fonctions ne sont accessibles qu'aux personnes ayant un niveau d'acc&egrave;s de 8 au moins.</p>
+<p>La gestion des donn&eacute;es de g&eacute;olocalisatuion fait l'objet d'une <a href="geolocalisation.html">page sp&eacute;cifique</a>.</p>
+<h3>Gestion des statistiques </h3>
+<p>Pour le reste une autre t&acirc;che parfois n&eacute;cessaire consiste &agrave; recalculer les statistiques relatives aux communes. En effet, pour all&eacute;ger le travail du serveur et acc&eacute;l&eacute;rer le temps de r&eacute;ponse du site, le d&eacute;compte des nombres d'actes par commune est calcul&eacute; au moment o&ugrave; les donn&eacute;es sont charg&eacute;e puis est enregistr&eacute; dans une table sp&eacute;ciale qui contient ainsi les statistiques d&eacute;taill&eacute;es sur le contenu de la base de donn&eacute;es. </p>
+<p>Il peut arriver que, lorsqu'une op&eacute;ration de manipulation des donn&eacute;es (chargement, &eacute;dition, suppression,...) est interrompue pour une rason impr&eacute;visible, que les statistiques ne soient plus exactes : les chiffres afficher dans la page d'accueil ne refl&egrave;tent plus exactement la situation de la base de donn&eacute;es. Il faut alors provoquer le recalcul des statistiques. Pour cela, s&eacute;lectionner le menu &quot;<strong>Administrer les donn&eacute;es</strong>&quot; :</p>
+<p align="center"><img src="statistiques.png" width="718" height="215" border="1"> </p>
+<p align="left">Il suffit alors de cliquer sur le type des actes dont il convient de recalculer les statistiques : Naissance, Mariage, D&eacute;c&egrave;s ou Divers. Le syst&egrave;me supprimer alors toutes les statistiques sur ce type d'acte puis examine tous les actes de ce type pour recalculer les statistiques. Cette op&eacute;ration est parfois assez longue lorsque la base est cons&eacute;quente et il faut bien surveiller qu'elle se termine compl&eacute;tement. Au besoin, il faut cliquer sur le lien proposant de continuer l'op&eacute;ration sinon certaines communes ne seront pas reprises dans l'inventaire et ne seront que partiellement accessibles &agrave; la consultation.</p>
+<p align="left">Lorsque la proc&eacute;dure de recalcul des statistiques indiques que les dates sont mal encod&eacute;es, cela signifie que le logiciel n'a pas pu interpr&eacute;ter correctement les dates lors que chargement et qu'elle sont donc inconnues pour lui. Il vaut mieux dans ce cas supprimer la commune puis recharger le actes concern&eacute;s.</p>
+<p align="left">C'est &eacute;galement au cours du recalcul des statistiques que le logiciel interroge GoogleMaps pour conna&icirc;tre les coordonn&eacute;es g&eacute;ographiques des lieux qui ne sont pas encore cod&eacute;s dans la base. Cette op&eacute;ration n'est effectu&eacute;e que pour les lieux non encore cod&eacute;s. </p>
+<h3 align="left">Ajout d'un acte</h3>
+<p align="left">Cet &eacute;cran permet d'enregistrer un acte qui aurait &eacute;t&eacute; oubli&eacute; ou supprim&eacute; lors de l'encodage ou du chargement. Ce n'est en aucun cas un outil d'encodage syst&eacute;matique des actes. En effet, pratiquement aucune v&eacute;rification n'est effectu&eacute;e par le logiciel.</p>
+<h3 align="left">Corrections group&eacute;es </h3>
+<p align="left">Cet &eacute;cran permet de modifier facilement une grande quantit&eacute; de donn&eacute;es. C'est parfois n&eacute;cessaire pour corriger un nom de commune ou de d&eacute;partement sans devoir recharger toutes les donn&eacute;es. </p>
+<p align="left">Avec la version 3 c'est aussi un moyen pratique pour ajouter les mentions de cr&eacute;dits &quot;Photographe&quot;, &quot;Transcripteur&quot; ou &quot;V&eacute;rificateur&quot; ou encore de changer le sigle ou le libell&eacute; des actes divers. </p>
+<p align="center"><img src="correctgroupee.png" width="702" height="519" border="1"></p>
+<p align="left">L'&eacute;cran comprend deux parties : </p>
+<ul>
+  <li>La partie sup&eacute;rieure permet de pr&eacute;ciser quels actes vont &ecirc;tre modifi&eacute;es : les <strong>Actes concern&eacute;s</strong>. Il est obligatoir de pr&eacute;cier le type des actes ainsi que la commune. On peut aussi pr&eacute;ciser le d&eacute;posant si seuls les actes d'un d&eacute;posant sont concern&eacute;s ainsi qu'une fourchette d'ann&eacute;es. </li>
+  <li>La seconde partie permet de pr&eacute;ciser les<strong> Modifications souhait&eacute;es. </strong> On peut donc pr&eacute;ciser une ou plusieurs des modifications suivante : un nouveau nom pour la commune, un nouveau nom pour le d&eacute;partement, un code de d&eacute;posant diff&eacute;rent ou un nom pour chacune des trois zones de cr&eacute;dits. Dans le cas des actes divers, on peut aussi pr&eacute;ciser le sigle (max 6 caract&egrave;res) et/ou le libell&eacute;. <br>
+    <strong>Il faut noter que les modifications sont effectu&eacute;es imm&eacute;diatement et sans aucune v&eacute;rification.</strong> Il est donc prudent, avant de r&eacute;aliser des modifications group&eacute;es de <a href="backup.html">r&eacute;aliser un backup des donn&eacute;es</a> (ou au minimum de la commune concern&eacute;e). </li>
+</ul>
+<p align="center"><br>
+  <br>
+  <a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a></p>
+  </body>
+</html>

@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <title>ExpoActes : Configuration avancée</title>
+    <meta name="author" content="Delacharlerie Andre" />
+    <link type="text/css" href="../../_config/actes.css" rel="stylesheet" />
+    <style type="text/css">
+.cadre { border: 1px dashed rgb(255, 153, 102);
+padding: 15px;
+}
+<!--
+-->
+</style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Expoactes : Paramétrage du logiciel et
+      configuration avancée </h1>
+    <p style="text-align: center;"><a href="aide.html">Retour à la liste des
+        fichiers d'aide</a> </p>
+    <h4>Sommaire</h4>
+    <p>Presque tous les éléments de personnalisation du logiciel (on dit pluôt
+      paramétrage) sont stockés dans la base de donnée et peuvent facilement
+      être modifiés grâce aux formulaires interactifs accessibles en mode
+      administrateur sous l'item "<strong>Paramétrage du logiciel</strong>".</p>
+    <p> Pour faciliter la configuration, les paramètres ont été regroupés en
+      plusieurs thèmes : Affichage, Système, Utilistateurs ... Une nouvelle
+      section "<strong>Etiquettes</strong>" (à partir de la verson 3.0) permet
+      de modifier les intitulés des zones affichées dans les actes. </p>
+    <p>L'ensemble de ces paramètres peut aussi être sauvegardé ou restauré selon
+      les besoins (notamment en cas de migration de la base d'un hébergeur à un
+      autre). Cette procédure est décrite dans le <a href="backup.html">chapitre
+        backup</a>. </p>
+    <p>En plus de cette configuration, quelques autres actions peuvent être
+      apportées pour modifier l'apparence du site (essentiellement modifier la
+      feuille de styles et insérer des fichiers de textes) ou modifier les
+      règles de sécurisation des données. </p>
+    <p>Ce chapitre traite en détail de ces tâches de configuration.</p>
+    <ul>
+      <li><a href="#secur"><strong>Sécurisation des répertoires</strong></a><br />
+      </li>
+      <li><a href="#fichinfo"><strong>Fichiers d'informations</strong></a><br />
+      </li>
+      <li><a href="#styles"><strong>Style des pages</strong></a><br />
+      </li>
+      <li><a href="#etiquettes"><strong>Etiquettes des données</strong></a> <br />
+      </li>
+      <li><a href="#params"><strong>Modifier le comportement du programme avec
+            des paramètres facultatifs</strong></a> <br />
+        <ul>
+          <li><a href="#EA_DB"><strong>Localisation de la base de données -
+                bases multiples</strong></a><br />
+          </li>
+          <li> <strong><a href="#Backup">Sauvegarder / restaurer les paramètres</a></strong>
+            <br />
+          </li>
+          <li><a href="#Affichage"><strong>Affichage des données (onglet
+                Affichage)</strong></a>
+            <ul>
+              <li><a href="#SITENAME">Identification du site</a></li>
+              <li><a href="#Max_page">Quantité d'information affichée par page</a></li>
+              <li><a href="#SHOW_DATE">Eléments affichés dans la page d'accueil</a></li>
+              <li><a href="#ANNEE_TABLE">Eléments affichés dans les fiches et
+                  listes d'actes</a></li>
+              <li><a href="#AVERTISMT">Textes facultatifs</a></li>
+              <li>
+                <a href="#COOKIES">Messages pour la gestion des cookies</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#Geoloc"><strong>Géolocalisation (onglet Géoloc) </strong></a>
+            <ul>
+              <li><a href="#GEO_MODE_PUBLIC">Affichage de la carte globale en
+                  page d'accueil</a></li>
+              <li><a href="#GEO_LOCALITE">Affichage des cartes de localisation
+                  individuelles </a><br />
+              </li>
+            </ul>
+          </li>
+          <li><a href="#Mail"><strong>Envoi de courrier électronique (onglet
+                Mail)</strong></a>
+            <ul>
+              <li><a href="#EXTERN_MAIL">Choix du mode de gestion des mails</a></li>
+              <li><a href="#SMTP_HOST">Paramètres de serveur de mails externe</a></li>
+              <li><a href="#SIGNERR">Mail pour l'envoi des signalements
+                  d'erreurs</a></li>
+              <li><a href="#CONTACT">Mail pour le formulaire de contact</a></li>
+              <li><a href="#TEXTESMAIL">Mails par défaut pour la gestion des
+                  utilisateurs</a><br />
+              </li>
+            </ul>
+          </li>
+          <li><strong><a href="#protection">Gestion des mécanismes de protection
+                (onglet Protection)</a></strong>
+            <ul>
+              <li><a href="#MLOGIN">Contrôle des logins</a> </li>           
+              <li><a href="#TIP">Filtrage des adresses IP</a><br />
+            </li>
+          </ul>
+          </li>
+          <li><strong><a href="#Recherche">Recherche des données (onglet
+                Recherche)</a></strong>
+            <ul>
+              <li><a href="#EXTERN_MAIL">Recherches de base et avancées</a></li>
+              <li><a href="#RECH_LEVENSHTEIN">Recherches par la méthode
+                  levenshtein</a></li>
+              <li><a href="#geneanet">Liste éclair "Généanet"</a><br />
+              </li>
+            </ul>
+          </li>
+          <li><strong><a href="#Systeme">Paramètres globaux et divers (onglet
+                Système)</a></strong>
+            <ul>
+              <li><a href="#FULL_URL">Gestion des URL du logiciel lui-même</a></li>
+              <li><a href="#URL_JPG">Gestion d'URL vers des images et des pages
+                  externes</a></li>
+              <li><a href="#META_TAG">Gestion des balises "meta tags"</a></li>
+              <li><a href="#GOOGLEANA">Activation des statistiques Google
+                  Analytics</a> </li>
+              <li><a href="#UPLOAD_DIR">Chargement des fichiers CSV</a></li>
+              <li><a href="#SHOW_ACCES">Divers</a><br />
+              </li>
+            </ul>
+          </li>
+          <li><strong><a href="#Utilisateurs">Gestion des utilisateurs (onglet
+                Utilisateurs)</a></strong>
+            <ul>
+              <li><a href="#Public_level">Niveau d'accès public aux données des
+                  actes</a></li>
+              <li><a href="#USER_AUTO_DEF">Mode de création des comptes des
+                  utilisateurs enregistrés</a></li>
+              <li><a href="#LIMITE_EXPIRATION">Durée de validité d'un compte -
+                  Date d'expiration</a></li>
+              <li><a href="#DUREE_EXPIR">Nombre de jours pour statut expiré</a></li>
+              <li><a href="#USER_ZONE_LIBRE">Zone personnalisable dans la liste
+                  des utilisateurs</a></li>
+              <li><a href="#CHANGE_PW">Droits donnés aux utilisateurs</a></li>
+              <li><a href="#GEST_POINTS">Gestion de points pour limiter le
+                  nombre d'actes pouvant être affichés par utilisateur</a></li>
+              <li><a href="#DEPOSANT_LEVEL">Liste des déposants</a></li>
+              <li><a href="#CONDIT_USAGE">Conditions d'utilisation</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h1><a id="secur" name="secur"></a>Sécurisation des répertoires</h1>
+    <p>Le logiciel installe automatiquement plusieurs fichiers .htaccess
+      permettant de contrôler l'accès aux fichers et répertoires :</p>
+    <ul>
+      <li>Le fichier .htaccess "principal" est placé dans le répertoire
+        principal du logiciel. Il contient des instructions interdisant
+        d'afficher la liste des fichiers de tous les répertoires sous-jacents et
+        il reformule les principaux messages d'erreur;</li>
+      <li>Le fichier .htaccess placé dans le répertoire _config interdit tout
+        accès aux fichiers de ce répertoire à l'exception des feuilles de style
+        (fichiers *.css);</li>
+      <li>Les fichiers .htaccess placés dans les répertoires "_backup" et
+        "_upload" interdisent tout accès externe aux fichiers de ces
+        répertoires. </li>
+    </ul>
+    <p>Le plus souvent, il convient de ne pas modifier ces fichiers ni les
+      renommer (le nom commençant par un point est non seulement normal mais
+      obligatoire !). En cas de nécessité, consulter la documentation Apache
+      avant de les modifier.</p>
+    <h3><a id="fichinfo" name="fichinfo"></a>Fichiers d'informations</h3>
+    Plusieurs (petits) fichiers permettent de personnaliser votre site en
+    donnant des informations spécifiques aux visiteurs. Tous ces fichiers sont
+    rangés dans le répertoire "_config". <br />
+    <br />
+    Le premier fichier qui peut être configuré est le fichier <span style="font-weight: bold;">commentaire.htm</span>.
+    Celui-ci contient un (petit) texte qui doit être rédigé en respectant la
+    syntaxe HTML et qui sera affiché sous la liste des communes dans la page
+    d'accueil du module ExpoActes.  C'est le lieu privilégié pour indiquer les
+    crédits aux personnes qui ont dépouillé les actes présentés ainsi que
+    l'adresse mail où les codes d'accès doivent être demandés lorsque l'accès
+    aux détails des actes n'est pas public.<br />
+    <br />
+    Le second fichier qui peut être configuré est le fichier <span style="font-weight: bold;">acces.htm</span>.
+    Celui-ci contient un (petit) texte qui doit être rédigé en respectant la
+    syntaxe HTML et qui présentera le détail des conditions pour avoir accès aux
+    détails des actes (s'ils sont masqués) et/ou pour rejoindre le groupe des
+    déposants.  Si ce fichier n'est pas présent (situation par défaut), le
+    contenu du fichier commentaire.htm est utilisé à sa place.<br />
+    <br />
+    Le fichier <span style="font-weight: bold;">bandeau.htm</span> peut
+    également être modifié pour intégrer, en tête de chaque page, un bandeau qui
+    soit spécifique à votre site. Vous pouvez alors modifier le code original :<br />
+    <br />
+    <div style="margin-left: 40px;"> <code>&lt;div class="bandeau"&gt;</code><br />
+      <code>&lt;strong&gt;&lt;a href="&lt;?php echo SITE_URL ?&gt;"&gt;&lt;?php
+        echo SITENAME ?&gt;&lt;/a&gt; || &lt;/strong&gt;</code><br />
+      <code>Dépouillement de tables et actes d'état-civil ou de registres
+        paroissiaux</code><br />
+      <code>&lt;/div&gt;<br />
+        <br />
+      </code> </div>
+    en remplaçant  ce qui se situe entre <code>&lt;div class="bandeau"&gt;</code>
+    et <code>&lt;/div&gt;</code> par une image ou un texte qui vous soit
+    spécifique. Attention toutefois à bien respecter la syntaxe  HTML. Pour
+    conserver la meilleure lisibilité des fiches des actes, il est conseillé de
+    ne pas agrandir trop cette entête.<br />
+    <h3><a id="styles" name="styles"></a>Style des pages </h3>
+    La feuille de style <span style="font-weight: bold;">actes.css</span> (dans
+    le répertoire <span style="font-weight: bold;">_config</span>) peut être
+    totalement modifiée afin de changer assez considérablement les couleurs et
+    la présentation des pages. Comme les programmes font systématiquement
+    référence à la feuille de style pour la mise en page, les mises-à-jour
+    adopteront automatiquement le "look" que vous aurez défini.  <br />
+    <br />
+    Si vous souhaitez modifier le style de certaines pages en particuliers (par
+    exemple mettre une image de fond sous les actes), il est possible de définir
+    des styles particuliers pour les pages en prenant comme nom celui du
+    programme (juste avant le ".php" et en le faisant précéder de "#".  En
+    effet, le tag &lt;body&gt; de chaque page est affecté de l'identifiant du
+    nom de cette page.<br />
+    <br />
+    Exemple de style à ajouter dans actes.css pour intégrer un fond de page dans
+    les actes.<br />
+    <div style="margin-left: 40px;"><code>#acte_naiss, #acte_mari, #acte_bans,
+        #acte_deces<br />
+            {<br />
+            background : url(../img/fond_act.jpg) repeat;<br />
+            }<br />
+      </code></div>
+    <h3><a id="etiquettes" name="etiquettes"></a>Etiquettes des données </h3>
+    <p>Chacunes des zones de données des actes peut à présent être renommée
+      selon les besoins. Il est aussi possible de choisir les informations qui
+      seront affichées dans la fiche publique et celles qui ne le seront que
+      pour les administrateurs. </p>
+    <p>L'écran "<strong>Etiquettes</strong>" accessible via le menu "<strong>Administrer
+        le logiciel</strong>" affiche la liste de toutes les zones de données
+      utilisables pour chacun des 4 types d'actes. Nous verrons plus loin qu'il
+      permet aussi de modifier les intitulés des groupes de données pour les
+      actes divers spécifiques. </p>
+    <p align="center"><img width="629" height="427" src="Etiquettes.png" /></p>
+    <p align="left">Comme on le voit, pour chaque zone on peut d'abord préciser
+      quand elle sera affichées :</p>
+    <ul>
+      <li><strong>Toujours</strong> : La zone est affichée tant en mode public
+        que dans l'interface d'administration et ce qu'elle contienne une
+        information ou non;</li>
+      <li><strong>Si non vide</strong> : Elle n'est affichée que si la zone
+        contient une information et ce en mode public et administration;</li>
+      <li><strong>Adminsitration</strong> : La zone est toujours affichée en
+        mode administration, jamais dans le mode public;</li>
+      <li><strong>Inutilisé</strong> : Cette zone n'est jamais affichée. </li>
+    </ul>
+    <p align="left">On notera que les zones "Prénom" sont toujours associées
+      avec la zone "Nom" de la personne. Le réglage de l'affichage se fait donc
+      via le nom. Ensuite on peut modifier l'intitulé de la zone. Pour faciliter
+      la lecture, les zones sont rassemblées en groupes qui portent aussi une
+      étiquette modifiable. Ces titres de groupe sont affichés lorsqu'au moins
+      une de ses zones doit être affichée (même si elle est vide).</p>
+    <p align="left">Le cinquième menu permet de modifier les étiquettes de
+      groupes pour les actes divers selon le type de ces actes. La sélection du
+      type s'effectue sur base du sigle associé à ce type d'actes.</p>
+    <p align="center"><img width="524" height="330" src="etiquettesdiverses.png" /></p>
+    <p align="left">Si le sigle d'une série d'acte n'a pas été défini, il est
+      possible de l'affecter avec le menu de modification groupée des actes. La
+      sauvegarde des étiquette s'effectue en même temps que celle des autres
+      paramètres. </p>
+    <p align="left">  </p>
+    <h3><a id="params" name="params"></a>Modifier le comportement du programme
+      avec des paramètres facultatifs</h3>
+    <p>Les paramètres régulant le fonctionnement du programme sont gérés dans
+      une table spécifique de la base de données (act_params) et sont donc
+      directement modifiables via des formulaires ad hoc. A chaque paramètre
+      correspond une constante toujours écrite en caractères majuscules qui est
+      finalement utilisée dans les programmes. Le nom de cette constante est
+      toujours indiqué entre crochets. </p>
+    <h4><a id="EA_DB" name="EA_DB"></a>Localisation de la base de données -
+      bases multiples</h4>
+    <p>Il reste toutefois un paramètre qui doit, s'il est nécessaire, être
+      configuré dans le fichier "<strong>connect.inc.php</strong>" (dans le
+      répertoire "_config") qui contient aussi les codes d'accès à la base de
+      données. </p>
+    <p>Le paramètre spécial <strong>EA_DB</strong> est celui qui permet de
+      définir un autre préfixe pour les noms des tables de la base de données.
+      Cette option permet de faire cohabiter dans une même base MySQL, plusieurs
+      bases expoactes en préfixant par exemple les table de la seconde base par
+      "act2" au lieu du préfixe standard "act".</p>
+    <blockquote>
+      <p><code>define ("EA_DB","act2");  // préfixe des tables de la seconde
+          base Expoactes</code></p>
+    </blockquote>
+    <p>Pour modifier le fichier connect.inc.php, ouvrez-le avec un éditeur de
+      texte tel que le programme "Notepad" de Windows. L'instruction <span style="font-style: italic;">define</span>
+      doit être placée AVANT le code "?&gt;" final.<br />
+      <br />
+      On comprend évidemment que ce paramètre ne peut être géré par la base de
+      données puisqu'il indique où trouver cette base de données.</p>
+    <h4><a id="Backup" name="Backup"></a>Sauvegarder / restaurer les paramètres</h4>
+    <p>Le logiciel propose des dispositifs pour réaliser des <a href="backup.html">copies
+        de sécurité des actes</a> d'une part et de <a href="gestuser.html">la
+        liste des utilisateurs</a> d'autre part. La liste des paramètres
+      personnalisés de votre installation est le troisième et dernier "paquet"
+      d'informations qu'il serait indispensable de retrouver pour restaurer
+      votre base après un crash total. Plus couramment, cette option sera utile
+      lorsque pour une raison ou une autre vous décidez de déplacer votre base
+      de données d'un hébergeur chez un autre. </p>
+    <p>A cette fin, le menu "<strong>Paramètres &gt; Backup</strong>" donne
+      accès à un écran permettant de sauvegarder l'ensemble des paramètres dans
+      un fichier XML et aussi de relire ce fichier et de modifier les paramètres
+      courants avec ceux présents dans le fichier XML.</p>
+    <ul>
+      <li>
+        <div align="left"><strong>Pour prendre une souvegarde</strong>, il
+          suffit de cliquer sur le lien "Sauvegarder". Le fichier XML dont le
+          nom est postfixé par la date est automatiquement téléchargé et il faut
+          juste veiller à le ranger dans un répertoire où vous le retrouverez en
+          temps utile. Une bonne solution consiste à le ranger dans le
+          répertoire _backup SUR VOTRE ordinateur.</div>
+      </li>
+      <li>
+        <div align="center" class="message"><br />
+          <img width="697" height="243" src="restaureparams.png" /> </div>
+      </li>
+      <li><strong>Pour restaurer les paramètres</strong>, il suffit de cliquer
+        sur le bouton "Parcourir" puis de désigner le fichier XML
+        "act_params_XXXXXXXX.xml" à restaurer puis de cliquer sur le bouton "
+        &gt;&gt; CHARGER &gt;&gt;". Le reste est automatique. Notons qu'il n'est
+        pas possible de restaurer seulement une partie des paramètres. </li>
+    </ul>
+    <h4><a id="Affichage" name="Affichage"></a>Affichage des données (onglet
+      Affichage) </h4>
+    <blockquote>
+      <h5><a id="SITENAME" name="SITENAME"></a>Identification du site </h5>
+      <p align="center"><img width="818" height="454" src="parametres.png" /></p>
+      <ul>
+        <li><strong>Nom du site principal</strong> [SITENAME] : <br />
+          Nom de votre site principal. Ce nom est utiliés dans le cartouche de
+          tête, dans l'identification du fil RSS et dans les mails automatiques.
+        </li>
+        <li><strong>URL du site principal</strong> [SITE_URL] : <br />
+          URL relative ou absolue du site web principal (cette URL est
+          automatiquement utilisée pour créer un lien de retour vers les autres
+          pages de votre site web) </li>
+      </ul>
+      <h5><a id="Max_page" name="Max_page"></a>Quantité d'information affichée
+        par page</h5>
+      <ul>
+        <li><span style="font-weight: bold;">Eléments affichés par page</span>
+          [MAX_PAGE] :<br />
+          Concerne l'affichage des résultats d'une recherche et les listes
+          d'actes. Lorsque le nombre d'actes trouvé est supérieur à cette
+          valeur, le surplus est reporté sur une ou plusieurs autres pages
+          numérotées; </li>
+        <li><strong>Eléments par page (mode administration)</strong>
+          [MAX_PAGE_ADM] :<br />
+          F onction identique au précédent mais concernent les écrans
+          d'administration pour les déposants. </li>
+        <li><strong>Basculement en mode alphabétique</strong> [MAX_PATR] :<br />
+          C oncerne l'affichage des patronymes d'une commune. Lorsque le nombre
+          de patronymes à présenter dépasse ce nombre, alors l'affichage passe
+          en mode alphabétique en regroupant les patronymes par initiales. Si le
+          nombre de patronymes pour une initiale est encore supérieur à
+          MAX_PATR, alors le système décompose sur base de la seconde lettre du
+          patronyme et ainsi de suite. </li>
+        <li><strong>Mode alphabétique (mode administration)</strong>
+          [MAX_PATR_ADM] :<br />
+          F onction identique au précédent mais concernent les écrans
+          d'administration pour les déposants.</li>
+      </ul>
+      <h5><br />
+        <a id="SHOW_DATE" name="SHOW_DATE"></a>Eléments affichés dans la page
+        d'accueil</h5>
+      <p> La page d'accueil telle qu'elle est conçue dans la version par défaut
+        apporte beaucoup d'informations sur les actes qui sont présents dans la
+        base de données. Toutefois, lorsque cette base de données est
+        volumineuse (à partir de 50.000 ou 100.000 actes) la liste peut être
+        trop longue est volumineuse. Il convient donc, dans ce cas, d'alléger
+        cette page en utilisant un ou plusieurs des paramètres suivants : </p>
+      <ul>
+        <li><strong>Accueil : affichage des dates min. et max.</strong>
+          [SHOW_DATES] :<br />
+          Détermine si les dates minimales et maximales des actes d'une commune
+          sont affichés dans la page d'accueil d'expoactes. Par défaut,
+          SHOW_DATES vaut 1 (=case cochée).</li>
+        <li><strong> <strong>Accueil : lien vers la distribution des années</strong></strong>
+          [SHOW_DISTRIBUTION] : <br />
+          Détermine si l'icône faisant le lien vers les statistiques des actes
+          par années est présent dans le tableau public. NB : L'affichage de
+          lien nécessite aussi que le paramètre SHOW_DATES soit activé.<strong>
+          </strong>Par défaut, SHOW_DISTRIBUTION vaut 0 (=case non cochée).</li>
+        <li><strong>Accueil : afficher tous les types d'actes</strong>
+          [SHOW_ALLTYPES] :<br />
+          Détermine si la page d'accueil affiche le tableau résumé des quatre
+          types d'actes (par défaut) ou d'un seul. Par défaut, SHOW_ALLTYPES
+          vaut 1 (activé).<br />
+          Lorsque la page d'accueil n'affiche qu'un type à la fois, le passage
+          d'un type à l'autre s'effectue en sélectionnant le type dans le résumé
+          statistique qui comporte alors les liens ad hoc.  </li>
+      </ul>
+      <h5><a id="ANNEE_TABLE" name="ANNEE_TABLE"></a>Eléments affichés dans les
+        fiches et listes d'actes</h5>
+      <p>Quelques paramètres permettent aussi de contrôler l'affichage des
+        listes d'actes et des fiches détaillées.</p>
+      <ul>
+        <li><strong>Tables : affichages des années seulement</strong>
+          [ANNEE_TABLE] : <br />
+          L'affichage des tables d'actes présente en principe la date complète
+          des actes. Il est possible de limiter cet affichage à l'année
+          seulement, soit pour les visteurs nonconnectés (valeur 1) soit aussi
+          pour les visteurs connectés qui n'ont pas le statut de déposant
+          (valeur 2). Cette option permet d'obliger les visiteurs enregistrés à
+          consulter l'acte (avec décompte d'un point) pour connaître la date
+          exacte de l'évenement.<br />
+          enfin, la valeur 3 impose systématiquement la limitation de
+          l'affichage des date aux années seulement. Cette option interdit donc
+          la recopie de tables.</li>
+        <li><strong>Actes : images seulement si login</strong><strong> </strong>[JPG_SI_LOGIN]
+          :<br />
+          Lorsque cette case est cochée, les lien vers les <a href="#URL_JPG">images
+            d'actes</a> ou les liens http (zone "Cote", "Libre", "Commentaires
+          généraux" et "Photos") n'apparaissent que lorsque le visiteur est
+          connecté; dans le cas contraire le texte "image privée"ou "document
+          privé" est affiché. </li>
+      </ul>
+      <h5><a id="AVERTISMT" name="AVERTISMT"></a>Textes facultatifs</h5>
+      <p>Quelques paramètres permettent d'ajouter de petit morceaux de texte
+        dans certains écrans du logiciel.</p>
+      <ul>
+        <li><strong>Texte d'avertissement</strong> [AVERTISMT] : <br />
+          Texte facultatif à afficher en tête de la première page au dessus de
+          l'inventaire des communes. </li>
+        <li><strong>Pied de page</strong> [PIED_PAGE] : <br />
+          Texte libre qui est affiché sur au millieu du pied de page de toutes
+          les pages du logiciel. Cette zone peut contenir un texte ordinaire, un
+          texte formaté en HTML (contenant par exemple un lien vers une autre
+          page) ou même un script javascript (pour un compteur de visiteurs par
+          exemple).</li>
+        <li> <strong>Zone de pub sous le menu </strong> [PUB_ZONE_MENU] : <br />
+          Il est possible de faire afficher sous le menu un texte quelconque
+          tels qu'une publicité pour vos activités. Il peut aussi être utilisé
+          pour afficher un cadre de publicités type "Google Adsens". Cette zone
+          doit être complétée par du HTML valide. Le style .pub_menu peut être
+          utilement créé dans la CSS.</li>
+      </ul>
+    </blockquote>
+    <blockquote>
+      <h5><a id="COOKIES" name="AVERTISMT"></a>Messages pour la gestion des
+        cookies</h5>
+      <p>Depuis 2014, tous les sites web européens qui utilisent des cookies
+        sont sensés en informer les visiteurs. Chaque pays de l'Union Européenne
+        a traduit cette directive dans sa loi nationale et les dispositions
+        varient légèrement d'un pays à l'autre. Afin de faciliter la mise en
+        conformité des sites utilisant ExpoActes, une dispositif a été ajouté
+        dans la version 3.2 afin d'afficher un message d'avertissement lors de
+        la première visite du site puis tous les ans ensuite. </p>
+      <p>Sans entrer dans les détails de la réglementation, il faut savoir que
+        les cookies strictement nécessaires au fonctionnement du site (par
+        exemple ceux mémorisant le login d'un jour à l'autre) ne doivent pas
+        faire l'objet d'une déclaration. Par contre, si vous utilisez Google
+        Analystics, ou un système du même type, ou que vous affichez des
+        publicités via une régie telle que Google AdSense, ces systèmes
+        utilisent des cookies dont l'annonce au visiteur est absolument obligatoire.
+        </p>
+      <p>Les paramètres suivants vous permettent de personnaliser ce dispositif
+        :</p>
+      <ul>
+        <li><b>Message acceptation des cookies </b>[<span class="aide" style=""
+            id="aide15">COOKIE_MESSAGE</span>]
+          : <br />
+          <span class="aide" style="" id="aide15">Ce message, affiché tous les
+            ans, annonce l'utilisation des cookies sur le site. Vous pouvez
+            personnaliser le message en fonction des services activés (google
+            analytics, publicité, réseaux sociaux, ...)</span>. </li>
+        <li><b>URL d'une page sur les cookie</b> [<span class="aide" style="" id="aide16">COOKIE_URL_INFO</span>]
+          : <br />
+          La réglementation recommande d'informer aussi précisément que possible
+          le visiteur sur les cookies mis en oeuvre. Vous pouvez donc créer une
+          page web informative à cet effet <span class="aide" style="" id="aide16">et
+            préciser ici l'URL de cette page. Il peut s'agir d'une page interne
+            au site ou externe.</span></li>
+        <li> <strong><b>Style du message cookies</b> </strong>[<span class="aide"
+            style=""
+            id="aide17">COOKIE_STYLE</span>]
+          : <span class="aide" style="" id="aide17"></span><span class="aide" style=""
+            id="aide17"><br />
+            Le texte du message précisé ci-dessus apparaît dans une boîte de
+            dialogue dont vous avez la possibilité de préciser le positionnement
+            sur la page (en haut, en bas ou "flottante") ainsi que le style qui
+            peut être un texte clair sur un fond foncé ou l'inverse.</span></li>
+      </ul>
+       </blockquote>
+    <h4><a id="Geoloc" name="Geoloc"></a>Géolocalisation (onglet Géoloc)</h4>
+    <blockquote>
+      <h5><a id="GEO_MODE_PUBLIC" name="GEO_MODE_PUBLIC"></a>Affichage de la
+        carte globale en page d'accueil</h5>
+      <p align="left">Selon l'importance de la base et les choix de
+        l'administrateur il peut être intéressant de moduler la manière dont
+        sera affichée (ou non) la carte globale en page d'accueil (au niveau
+        visiteurs). </p>
+      <p align="left">Le premier paramètre (GEO_MODE_PUBLIC) précise le <strong>Contenu
+          de la page d'accueil</strong> si la carte peut être affichée et quand.
+        Cinq possibilités sont proposées :</p>
+      <ul>
+        <li>1 - Carte seulement (le tableau général ne peut plus être affiché
+          par les visiteurs mais reste accessible aux administrateurs) </li>
+        <li>2 - Tableau seulement (la carte n'est jamais affichée ni affichable)</li>
+        <li>3 - Carte affichée et tableau masqué (la carte est affichée par
+          défaut mais on peut faire apparaître le tableau en cliquant sur le mot
+          "Tableau" en haut de la page) </li>
+        <li>4 - Tableau affiché et carte masquée (Le tableau est affiché par
+          défaut mais on peut voir la carte en cliquant sur le mot "Carte" en
+          haut de la page) </li>
+        <li>5 - Carte et tableau affichés (Les deux éléments sont toujours
+          affichés, la carte d'abord, le tableau ensuite). </li>
+      </ul>
+      <p align="left"> Les quatre paramètres suivants déterminent les
+        caractéristiques de la carte globale lorsqu'elle est affichée :</p>
+      <ul>
+        <li><strong>Hauteur de la carte en pixels </strong><a href="http://127.0.0.1/LDEV3/actes/admin/gest_params.php?grp=G%E9oloc">(</a>GEO_HAUT_CARTE)
+          : La valeur classique est de 500 pixels. Vous pouvez agrandir ou
+          réduire cette valeur mais il est prudent de rester dans la fourchette
+          400 à 700 pixels. La largeur est déterminée automatiquement pour
+          occuper toute la largeur libre de la page.</li>
+        <li><strong>Niveau de zoom initial </strong><a href="http://127.0.0.1/LDEV3/actes/admin/gest_params.php?grp=G%E9oloc"></a>(GEO_ZOOM_INITIAL)
+          : Détermine le niveau de zoom à l'affichage de la carte (généralement
+          entre 6 et 11). Par défaut, cette valeur est à 0 et laisse donc le
+          système déterminer lui-même le niveau de zoom permettant de voir
+          toutes les données sur la carte. Cependant lorsque la base comporte
+          quelques dépouillement "exotiques", très éloignés de la région
+          principale, l'affichage de la carte peut être trop général et il y a
+          lieu de préciser le niveau de zoom. Il est alors conseillé de
+          commencer avec la valeur 10 puis d'ajuster si besoin à une valeur plus
+          petite ou plus grande.</li>
+        <li><strong>Centrage forcé de la carte sur </strong><a href="http://127.0.0.1/LDEV3/actes/admin/gest_params.php?grp=G%E9oloc"></a>(GEO_CENTRE_CARTE)
+          : Complémentaire du paramètre précédent, celui-ci permet de "centrer"
+          la carte initiale sur une localité prédéterminée qui doit être une des
+          communes ou paroisses géolocalisées. Cette localisation servira
+          également de base pour la définition des coordonnées non trouvées par
+          Google.</li>
+        <li><strong>Niveau de zoom dégroupage </strong><a href="http://127.0.0.1/LDEV3/actes/admin/gest_params.php?grp=G%E9oloc"></a>(GEO_ZOOM_DEGROUPAGE)
+          : Une carte comportant trop de "punaises" devient illisible. Pour
+          éviter cela un mécanisme regroupe les localités proches en "groupes"
+          et indique le nombre de localités présentes. Toutefois, dans les vues
+          détaillées ce mécanisme peut se révéler désagréable en regroupant deux
+          localités très proches sans plus apporter d'avantage. Il est donc
+          intéressant de préciser le niveau de zoom en dessous duquel les points
+          seront toujours dégroupés. Ordinairement une valeur entre 10 à 12 est
+          un bon choix.</li>
+      </ul>
+      <h5><a id="GEO_LOCALITE" name="GEO_LOCALITE"></a>Affichage des cartes de
+        localisation individuelles</h5>
+      <p align="left">Le paramètre <strong>Géolocalisation des localités</strong>
+        (GEO_LOCALITE) contrôle l'affichage des liens vers la page de
+        localisation individuelle de chaque localité à partir des tables
+        patronymiques. NB : Pour éviter qu'une "localité" particulière soit
+        localisée, il suffit de mettre à 0 ses deux coordonnées.</p>
+    </blockquote>
+    <blockquote>
+      <p> </p>
+    </blockquote>
+    <h4><a id="Mail" name="Mail"></a>Envoi de courrier électronique (onglet
+      Mail)</h4>
+    <blockquote>
+      <h5><a id="EXTERN_MAIL" name="EXTERN_MAIL"></a>Choix du mode de gestion
+        des mails</h5>
+      <p align="left">Le logiciel peut envoyer des email lors de la création des
+        comptes d'utilisateur pour avertir ceux-ci du code de login et du mot de
+        passe qui leur a été attribué.  <br />
+        <br />
+        <strong>Toutefois, cette fonctionnalité dépend de façon crucialle de la
+          possibilité de se connecter à un serveur SMTP</strong> qui jouera le
+        rôle de relais pour l'envoi effectif des emails (comme la boîte au
+        lettres de la poste dans le courrier traditionnel).  </p>
+      <p align="left">La plupart des hébergements fournissent cette possibilité
+        en standard dans la configuration PHP (fonction mail()). Il n'y a donc
+        pas de configuration spécifique à réaliser. Toutefois, si le serveur PHP
+        n'offre pas la fonction mail, il est souvent possible d'utiliser un
+        compte mail externe. Dans tous les cas, il faut préciser l'adresse email
+        de l'administrateur :</p>
+      <ul>
+        <li><strong>Votre adresse mail (adresse d'envoi et de réponse par
+            défaut)</strong> [LOC_MAIL] : <br />
+          Votre propre adresse e-mail. Cette adresse est utilisée pour
+          identifier l'expéditeur du mail et le cas échant, elle est transformée
+          en destinataire en cas de réponse au mail. C'est aussi à cette adresse
+          que seront adressés les mails relatifs à l'autoinscription des
+          utilisateurs.</li>
+        <li><strong>Envoyer les mails via un serveur externe</strong>
+          [EXTERN_MAIL] :<br />
+          S'il est activé, ce paramètre indique au logiciel qu'il ne peut faire
+          appel à la fonction mail intégrée de PHP qui est normalement
+          préconfigurée par l'hébergeur. Il est alors nécesssaire de configurer
+          les autres paramètres pour utiliser un compte mail personnel dont le
+          serveur SMTP doit cependant être accessible au départ du lieu
+          d'hébergement. </li>
+      </ul>
+      <p><strong>Quel que soit le mode sélectionné, il est vivement conseillé de
+          vérifier que le système peut envoyer des emails sans problème</strong>.
+        Pour cela, un lien est proposé en bas des paramètres relatifs au Mail
+        pour envoyer un email de test vers l'adresse de votre choix. </p>
+      <h5><a id="SMTP_HOST" name="SMTP_HOST"></a>Paramètres de serveur de mails
+        externe</h5>
+      <p align="left">Lorsque le paramètre précédent est coché, les paramètres
+        du compte mail doivent alors être précisés explicitement. <br />
+        Si vous possédez un compte mail chez cet hébergeur, les paramètres de ce
+        compte doivent être utilisés de préférence.</p>
+      <ul>
+        <li><strong>Serveur SMTP</strong> [SMTP_HOST] : <br />
+          Adresse du serveur SMTP. Ce serveur doit être accessible à partir du
+          lieu d'hébergement. En effet, il est courant que pour limiter le spam,
+          certains serveurs SMTP refusent d'acheminer des courrier électroniques
+          qui ne sont pas émis à partir d'un réseau déterminé.</li>
+        <li><strong>Login du compte mail</strong> [SMTP_ACC] : <br />
+          Votre code d'accès pour le compte mail (si le serveur SMTP exige une
+          authentification de l'utilisateur) </li>
+        <li><strong>Mot de passe du compte SMTP</strong> [SMTP_PASS] : <br />
+          Votre mot de passe pour le compte mail (si le serveur SMTP exige une
+          authentification de l'utilisateur)</li>
+        <li><strong>Nom du serveur d'origine des mails</strong> [LOC_HOST] : <br />
+          Nom du serveur local expédiant les mails. C'est donc le nom de la
+          machine qui contient le site. A défaut de la connaître, il convient de
+          donner le nom de domaine du site web (exemple www.truc.com) </li>
+      </ul>
+      <h5><a id="SIGNERR" name="SIGNERR"></a>Mail pour l'envoi des signalements
+        d'erreurs </h5>
+      <p>Il peut être intéressant de laisser la possibilité aux visiteurs de
+        signaler les erreurs qu'ils auraient constatés dans la transcription
+        d'une acte et ce soit suite à la lecture de l'acte original dans des
+        archives, soit en déchiffrant l'acte dont une copie scannée est
+        accessible via un lien ad hoc. </p>
+      <p>Pour cela, il suffit de compléter préciser une adresse email dans le
+        paramètre <strong>Mail pour signalements d'erreur</strong>
+        [EMAIL_SIGN_ERR]. Un lien vers une page permettant de noter la
+        description de l'erreur sera alors ajoutée sous chaque acte (en mode
+        visiteur). Cette page comprend aussi des zones pour lire les nom et
+        prénom ainsi que le maild e la personne qui signale l'erreur. Enfin, si
+        le paramètre <span id="aide4">AUTO_CAPTCHA</span> est activé (voir la <a
+          href="#USER_AUTO_DEF">section
+          Utilisateurs</a>), une image présente un code à transcrire afin
+        d'empêcher la génération de mail par des robots. Si besoin, il est
+        possible de noter plusieurs adresses mails en les séparant par des
+        virgules. </p>
+      <p>Le mail envoyé au destinataire comprend un lien direct vers l'acte
+        concerné de façon à permettre une mise à jour rapide et facile des
+        données. </p>
+      <h5><a id="CONTACT" name="CONTACT"></a>Mail pour le formulaire de contact</h5>
+      <p>Pour éviter de publier l'adresse mail du gestionnaire de la base, il
+        est possible d'activer un formulaire de contact qui permet ainsi à tout
+        visiteur d'envoyer un message au webmaster sans connaître son adresse
+        email. De plus le formulaire est protégé par la méthode du code captcha
+        (voir la <a href="#USER_AUTO_DEF">section Utilisateurs</a>) qui empêche
+        l'envoi automatisé de messages via ce formulaire.</p>
+      <p>Pour activer le formulaire, il suffit de préciser l'adresse mail du
+        destinataire dans le paramètre <strong>Mail destinataire du formulaire
+          de contact</strong> [EMAIL_CONTACT].</p>
+      <h5><a id="TEXTESMAIL" name="TEXTESMAIL"></a>Mails par défaut pour la
+        gestion des utilisateurs</h5>
+      <p>Lors de création des comptes utilisateurs, il est nécessaire d'envoyer
+        différents courriers électroniques vers les candidats utilisateurs
+        notamment pour les informer des codes login et mots de passe ou encore
+        pour les inviter à activer leur compte. Les paramètres qui suivent
+        permettent de préciser le texte automatique de ces mails. Dans chacun
+        d'eux il est possible de faire insérer automatiquement certaines
+        informations en mentionnant les codes suivants qui seront remplacés
+        spécifiquement dans chaque mail envoyé :</p>
+      <ul>
+        <li>#NOMSITE# : Nom du site web; </li>
+        <li>#URLSITE# : Adresse internet du site, permettant de faciliter la
+          connexion de l'utilisateur;</li>
+        <li>#NOM# et #PRENOM# : Nom et prénom de l'utilisateur;</li>
+        <li>#LOGIN# et #PASSW# : Code de login et mot de passe attribué à cet
+          utilisateur.</li>
+      </ul>
+      <p>Les textes par défaut ou automatiques spécifiables sont :</p>
+      <ul>
+        <li><strong>Message à un nouvel utilisateur</strong> [MAIL_NEWUSER] : <br />
+          Ce texte est utilisé à la fois pour la création manuelle des nouveaux
+          utilisateurs ainsi que pour la création automatisés par import d'une
+          liste de noms et adresses mail. Ce texte peut être modifié par
+          l'administrateur au moment de l'ajout ou de l'import.</li>
+        <li><strong>Message de demande d'activation SANS validation</strong>
+          [MAIL_AUTOUSER] : <br />
+          Texte automatique du mail envoyé aux candidats utilisateurs qui
+          viennent de créer spontanément leur compte d'accès. Ce mail convient
+          lorsque le compte est immédiatement actif sans nécessiter de
+          validation par l'administrateur;<br />
+          Attention à bien y laisser le code #URLVALID# qui donne l'adresse du
+          lien permettant l'activation du compte. Le code #KEYVALID# permet de
+          rappeler la clé d'activation. </li>
+        <li><strong>Message de demande d'activation AVEC validation</strong>
+          [MAIL_VALIDUSER] : <br />
+          Semblable au précédent ce mail contient une phrase de plus pour
+          informer le candidat utilisateur que sa demande devra être validée par
+          une administrateur;</li>
+        <li><strong>Message d'approbation d'un utilisateur</strong>
+          [MAIL_APPROBATION] : <br />
+          Texte par defaut du mail envoyé aux utilisateurs lors de l'approbation
+          de leur compte. Ce texte est modifiable par l'administrateur au moment
+          de l'approbation;</li>
+        <li><strong>Message de refus d'un utilisateur</strong> [MAIL_REFUS] : <br />
+          Texte par defaut du mail envoyé aux utilisateurs lors du refus de leur
+          compte. Ce texte est modifiable par l'administrateur au moment du
+          refus;</li>
+      </ul>
+    </blockquote>
+    <h4><a id="protection" name="Protection"></a>Gestion des mécanismes de
+      protection (onglet Protection)</h4>
+    <blockquote>
+      <h5> <a id="MLOGIN" name="MLOGIN"></a>Contrôle des logins</h5>
+      <p>Un maximum d'efforts a été réalisé pour sécuriser au maximum la base de
+        données. S'il advenait qu'un utilisateur parvienne à se connecter avec
+        un des comptes de plus haut niveau, il serait intéressant de le savoir
+        le plus tôt possible. C'est ce que permet le paramètre " <strong>Niveaux
+          avec login confirmé par mail" </strong> [LEVEL_MAIL_LOGIN]. Ce
+        paramètre indique le niveau à partir duquel le login est
+        systématiquement confirmé par l'envoi d'un mail à son propriétaire. En
+        selectionnant le niveau 10, aucun niveau ne reçoit ce genre d'email. </p>
+      <h5><a id="TIP" name="TIP"></a>Filtrage des adresses IP</h5>
+      <p align="left">A la demande de plusieurs utilisateurs, un mécanisme de
+        protection contre les systèmes d'aspiration de sites a été intégré. Il
+        s'agit en fait d'une version adaptée et enrichie du module "TraceIP v2"
+        proposé sur le site <a href="http://www.php-astux.info">www.php-astux.info</a>.</p>
+      <p align="left"><strong>Le module de protection N'EST PAS ACTIF PAR DEFAUT</strong>.
+        Pour l'activer, il suffit de sélectionner l'une des options 1 ou 2 du
+        paramètre "<strong>Utiliser l'anti-aspirateur IP</strong>" dans l'onglet
+        "Protection" du paramétrage.  Les deux variantes sont expliquées un peu
+        plus loin.<br />
+        <br />
+        <strong>Cette fonctionnalité nécessite que la configuration mail soit
+          correcte afin de transmettre les alertes lorqu'un abus est détecté.</strong> </p>
+      <p align="left">Le principe de fonctionnement est simple. Pour chaque
+        requête reçue, le logiciel mémorise l'adresse IP du demandeur et vérifie
+        si cette adresse a déjà effectué des requêtes au cours d'une période
+        prédéfinie. Si c'est le cas, un compteur est augmenté d'une unité à
+        chaque requête. Lorsque le compteur dépasse la valeur limite fixée par
+        le parmètre "<strong>Nombre maximum par période</strong>" alors
+        l'adresse IP est automatiquement bannie : toute requête suivante est
+        alors interdite et retourne le message qui se trouve dans "<strong>Texte
+          renvoyé aux IP bannies</strong>".</p>
+      <p align="left">Les deux variantes possibles dans la protection sont les
+        suivantes :</p>
+      <ul>
+        <li><strong>1 - Compter toutes les pages</strong> : Avec ce
+          choix, toutes les pages vues par les visiteurs sont prises en compte.
+          Cela à pour inconvénient qu'un visiteurs qui parcourt rapidement les
+          listes de tables peut attendre le maximum sans pour autant avaoir
+          l'impression d'avoir abusé.</li>
+        <li><strong>2 - Compter les actes seulement</strong> :
+          Cette option ne prend plus en compte que la visualisation des actes
+          détaillés. Ici seul ceux qui affichent beaucoup d'actes sont bloqués.</li>
+      </ul>
+      <p>Le paramètre "<strong>Durée de la période en minutes</strong>" est
+        important pour définir la longueur de la période consiédérée pour la
+        mesure. Cette période est exprimée en minutes. On peut choisir une
+        période très courte (1 minute) mais il est plus intéressant de prendre
+        une période plus longue telle qu'une journée (1440 minutes). En effet,
+        limiter à 10 actes par minute permettrait à un robot bien réglé de lire
+        10x 1440 = 14.400 actes en 24h alors que d'autoriser 200 ou 300 actes en
+        une journée est suffisant pour tout utilisateur "normal".</p>
+      <p>Pour éviter de pénaliser les visiteurs normaux qui approchent de la
+        limite, une possibilité d'afficher un texte d'avertissement a été
+        ajoutée. Pour l'activer, il faut tout d'abord indiquer le nombre de
+        pages qui comporteront un message d'alerte avant blocage dans la case "<strong>Nbre
+          d'alertes avant blocage</strong>". Une valeur représentant 20 à 30 %
+        du nombre maximum semble indiquée. Ensuite, il est possible de modifier
+        le texte d'avertissement présent dans la case "<strong>Texte d'alerte
+          avant blocage</strong>". Enfin, il est possible de choisir le mode
+        d'avertissement via le paramètre <strong>Mode d'affichage des alertes </strong>
+        :</p>
+      <ul>
+        <li>1 : Message de couleur rouge affiché en haut de page;</li>
+        <li>2 : Boîte de dialogue javascript avec bouton OK à cliquer
+          obligatoirement;</li>
+        <li>3 : Combinaison des deux méthodes précédentes.</li>
+      </ul>
+      <p>Enfin, comme les adresses IP distribuées par les fournisseurs d'accès
+        Internet ne sont en général pas fixe, un utilisateur ne garde son
+        adresse IP que pendant 2 ou 3 jours. Il n'est donc pas nécessaire de
+        maintenir le blocage pendant un temps plus long. Le paramètre "<strong>Durée
+          du blocage en jours</strong>" permet ainsi de préciser le nombre de
+        jours pendant lequel le blocage est maintenu. La valeur 0 provoque le
+        blocage permanent. Notons que, même lorsque l'accès est bloqué, le
+        nombre de tentative d'accès continue à être comptabilisé. Cela explique
+        que l'on trouve un nombre d'accès supérieur à la limite maximale. S'il
+        s'agit d'un utilisteur ordinaire, celui-ci tentera toujours quelques
+        fois d'accéder à d'autres actes puis s'arretera très vite. Par contre,
+        s'il s'agit d'un robot, il ne s'arrêtera pas et le nombre peut dépasser
+        de beaucoup la valeur limite. Aussi,<strong> le déblocage automatique
+          n'a pas lieu lorsque le nombre d'accès est supérieur au double du
+          nombre autorisé</strong>. </p>
+      <p>Par ailleurs, le filtrage des adresses IP est en principe actif pour
+        tous les utilisateurs enregistrés ou pas. Il peut cependant être utile
+        d'exempter les déposants de cette vérification pour ne pas risquer de
+        les bloquer lors d'un usage un peu trop rapide, d'autant plus probable
+        que connaissant bien le logiciel, ces dernier l'utilisent plus
+        rapidement. Pour cela il suffit de sélectionner le niveau d'accès à
+        partir duquel l'exemption a lieu dans la case "<strong>Niveaux exemptés
+          du contrôle IP</strong>". Il est toutefois à noter qu'à partir de la
+        version 3.2, le niveau 5 est toujours exempté du contrôle IP. Cette
+        facilité est destinée aux membres des clubs qui peuvent ainsi avoir un
+        accès étendu aux actes.</p>
+      <p>A ce comportement natif du module TraceIP, nous avons ajouté une
+        possibilité d'outrepasser cette protection pour certaines adresses IP ou
+        certains "Agent". En effet, les moteurs de recherches tels que Google,
+        Yahoo, MSN, etc accèdent aussi régulièrement aux pages des sites
+        Expoactes et peuvent être bannis s'ils dépassent une certaine cadence de
+        visite. Pour éviter ce problème, il est possible de détecter ces moteurs
+        d'indexation (dit aussi "robots" ou simplements "bots") grâce à la
+        signature de l'"agent" qu'ils fournissent automatiquement. Voir à ce
+        sujet la liste des "agents" existant sur <a href="http://user-agents.org/">user-agents.org</a>
+        . Il est donc possible de déclarer les agents qui sont acceptés en
+        copiant la signature (ou seulement une partie significative) dans le
+        paramètre "<strong>Agents affranchis</strong>". Si plusieurs agents sont
+        acceptés, il faut séparer les signatures par des VIRGULES. </p>
+      <blockquote>
+        <p align="left">Exemple :
+          "+http://www.google.com/bot.html;,http://help.yahoo.com/help/us/ysearch/slurp;"
+          autorise les robots de Google et de Yahoo. </p>
+      </blockquote>
+      <p align="left">Pour suivre facilement les agents qui reçoivent un libre
+        accès, il suffit de cocher la case "<strong>Mémoriser les IP
+          auto-affranchies</strong>" pour que celles-ci appraissent dans le
+        liste des adresses IP affichées par l'écran d'administration.</p>
+      <p align="left">Lorsqu'une adresse IP est bannie, le logiciel envoie un
+        message email à un adminstrateur dans l'adresse sera précisée dans le
+        paramètre "<strong>Destinataire du mail d'alerte</strong>". Ce mail
+        contient toutes les informations disponibles sur la dernière page
+        consultée et sur l'adresse IP demandeuse. De plus, un lien en fin de
+        mail donne accès à l'écran d'administration des IP bannies. Il est alors
+        possible à l'administrateur de supprimer le bannissement ou d'affranchir
+        l'adresse bannie.</p>
+      <p align="left">L'écran d'administration, accessible via le menu
+        "Administrer le logiciel" puis "Filtrage IP" dresse le liste des
+        adresses IP stockées dans la base de données. Selon la couleur
+        d'affichage, on distingue trois catégories :</p>
+      <ul>
+        <li>Affichage en noir : Adresses IP ayant accédé au site dans la minute;
+        </li>
+        <li>Affichage en rouge : Adresses IP bannies avec date et heure du
+          bannissement; </li>
+        <li>Affichage en vert : Adresses IP affranchie soit manulellement, soit
+          automatiquement via la liste des agents affranchis. </li>
+      </ul>
+      <p>Lorsque le visiteur est identifié par un login, ce code est aussi
+        ajouté dans la liste. Il faut toutefois noter qu'un utilisateur peut se
+        connecter tour à tour avec plusieurs logins sur un même ordinateur donc
+        avec une même IP. Inversément, il est possible qu'un même login soit
+        utilisé via plusieurs ordinateurs différents donc via des IP
+        différentes. Pour toutes ces raisons, le login qui est associé à une IP
+        est le dernier utilisé via cette IP. (ajouté à la version 3.1.2)</p>
+      <p>Les liens permettent d'affranchir manuellement une adresse libre ou
+        bannie ou de supprimer une adresse de la liste (ce qui supprime son
+        statit d'affranchie ou de bannie).</p>
+      <p>Un lien spécifique permet de supprimer d'un coup toutes les adresses
+        affranchies automatiquement (via la liste des agents affranchis) mais
+        qui n'ont en fait été utiliséeq qu'un très petit nombre de fois. Cela
+        allège la liste et facilite le contrôle.</p>
+    </blockquote>
+    <h4 align="left"><a id="Recherche" name="Recherche"></a>Recherche des
+      données (onglet Recherche)</h4>
+    <blockquote>
+      <h5><a id="CHERCH_TS_TYP" name="CHERCH_TS_TYP"></a>Recherches de base et
+        avancées</h5>
+      <p>Par défaut, les recherches s'effectuent dans la base de données avec
+        les outils standards de MySQL. La façon dont s'effectue ces recherches
+        peut être contrôlé par les paramètres suivants :</p>
+      <ul>
+        <li><strong>Recherche par défaut sur tous types d'actes</strong>
+          [CHERCH_TS_TYP] : <br />
+          Cette option, lorsqu'elle n'est pas activée, provoque l'affichage
+          d'une liste de sélection du type des actes dans la boîte de recherche
+          de la page d'accueil. Elle limite aussi les recherches avancées et
+          levenshtein à un seul type d'acte à la fois. Cette option permet donc
+          d'alléger le travail du moteur de recherche. </li>
+        <li><strong>Comparaison proposée par défaut</strong> [RECH_DEF_TYP] : <br />
+          Détermine le mode de comparaison qui est proposé par défaut pour la
+          recherche avancée. Les deux premiers sont nettement plus économes en
+          ressources serveur que les trois suivants car ils exploient les index.
+          Lorsque la base est importante, il est conseillé de présélectionner ce
+          mode car, pour la mojorité des recherches il economise les ressources
+          du serveur et accélère la traitement.</li>
+        <li><strong>Longueur minimale du mot recherché</strong> [RECH_MIN] : <br />
+          Détermine le nombre minimum de caractères sur lesquels doit porter une
+          recherche. <br />
+          Par défaut, RECH_MIN vaut 3.  <br />
+          Notez que l'administrateur principal n'est pas soumis à cette
+          restriction.</li>
+      </ul>
+      <h5><a id="RECH_LEVENSHTEIN" name="RECH_LEVENSHTEIN"></a>Recherches par la
+        méthode Levenshtein</h5>
+      <p>La méthode de recherche avancée "sonore" ne permet pas toujours de
+        trouver ceertains actes comportant des erreurs d'encodage et ce
+        particulièrement si le lettre initiale est incorrecte. Pour résoudre ce
+        problème<strong> Jean-Louis Cazor</strong> a eu l'idée d'implémenter un
+        autre algorithme se basant sur <a href="levenshtein_principes.html">la
+          méthode Levenshtein</a>. Cet algorithme est très puissant mais
+        malheureusement très gourmand en ressouces machine. Il crée en effet des
+        tables de données intermédiaires et effectue de nombreux calculs sur les
+        informations prélectionnées. Il convient dès lors de le reserver aux
+        utilisateurs avertis et de <a href="levenshtein_utilisation.html">suivre
+          les conseils d'utilisation précisés par Jean-Louis</a>. </p>
+      <p>Par défaut cet algorithme est activé mais seulement accessible aux
+        administrateurs. La mise à disposition de cet algorithme est contrôlée
+        par trois paramètres facultatifs :</p>
+      <ul>
+        <li><strong>Activation de la recherche Levenshtein</strong>
+          [RECH_LEVENSHTEIN] :<br />
+          Ce paramètre indique si l'algorithme est actif et si c'est le cas, où
+          doit apparaître le lien vers la page de recherche spécifique. Les
+          valeurs possibles sont :
+          <ul>
+            <li>0 : la recherche levenshtein est totalement désactivée (et donc
+              interdite à tout utilisateur);</li>
+            <li>1 : la recherche levenshtein est active et accessible via un
+              lien situé dans la page de recherche avancée;</li>
+            <li>2 : la recherche levenshtein est active et accessible via un
+              lien situé dans la boîte de recherche rapide;</li>
+          </ul>
+        </li>
+        <li><strong>Niveau d'accès pour la rech. Levenshtein</strong>
+          [LEVEL_LEVENSHTEIN] :<br />
+          Ce paramètre détermine le niveau d'accès nécessaires aux utilisateurs
+          pour pouvoir utiliser la recherche levenshtein. Par défaut, ce niveau
+          est 8 afin de réserver l'usage aux administrateurs seulement. Ce
+          niveau ne peut pas être inférieur au niveau PUBLIC_LEVEL.</li>
+        <li><strong>Secondes réservée pour terminer une recherche</strong>
+          [SECURITE_TIME_OUT_PHP] : <br />
+          La recherche levenshtein peut nécessiter plusieurs dizaines de seconde
+          de calcul lorsque la requête est trop vague. Or la plupart des
+          serveurs limitent le temps de calcul (souvent à 30 sec) puis
+          abandonnent la tâche. Pour éviter cela, le paramètre
+          SECURITE_TIME_OUT_PHP spécifie le nombre de seconde de sécurité que le
+          système se réserve afin de stopper proporement la recherche et de
+          signaler à l'utilisateur que sa recherche est trop complexe.<br />
+          Par défaut, SECURITE_TIME_OUT_PHP vaut 5.</li>
+        <li><strong>Etendue des recherches sur les couples</strong>
+          [CRIT_RECH_COUPLES] :<br />
+          Ce paramètre permet d'étendre ou de restreindre les possibilités de
+          recherches sur les couples. Les valeurs peuvent aller de 2 à 4 :
+          <ul>
+            <li>2 : Autorise la recherche des mariages de ces couples et des
+              naissances des enefants de ces couples;</li>
+            <li>3 : Idem 2 + les décès des enfants de ces couples ;</li>
+            <li>4 : Idem 3 + recherches des mariages d'enfants de ces couples;</li>
+          </ul>
+        </li>
+      </ul>
+      <h5><a id="geneanet" name="geneanet"></a>Liste éclair "Généanet"</h5>
+      <p>Pour faciliter le référencement de vos actes dans le moteur de
+        recherche de Généanet, un dispositif de génération automatique de
+        liste-éclair a a été adjoint au logiciel. Il est accessible via l'URL <a
+          href="../../eclair.php">eclair.php</a>
+        à la racine du site ExpoActes pour auatnt que cette inddexation soit
+        autorisées via le paramètre <strong>Publier la liste éclair pour
+          Généanet </strong><a href="http://127.0.0.1/LDEV3/actes/admin/gest_params.php?grp=Recherche"></a>[ECLAIR_AUTORISE].
+        </p>
+      <p>La procédure produit une liste principale des communes avec le nombre
+        d'actes puis pour chacune d'elles une liste des patronymes avec la
+        première année, la dernière année et le nombre d'actes.</p>
+      <table width="669" border="1">
+        <caption>  </caption>
+        <tbody>
+          <tr>
+            <th width="399" scope="col">Liste principale </th>
+            <th width="254" scope="col">Liste détaillées </th>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li><a href="http://127.0.0.1/LDEV3/actes/eclair.php?xtyp=D&amp;xcom=Graide&amp;xdep=Namur">Décès
+                    de Graide [Namur] </a> (657 actes) <strong>---------------&gt;</strong>
+                </li>
+                <li><a href="http://127.0.0.1/LDEV3/actes/eclair.php?xtyp=N&amp;xcom=Hanret&amp;xdep=Namur">Naissances
+                    de Hanret [Namur] </a> (4281 actes) </li>
+                <li><a href="http://127.0.0.1/LDEV3/actes/eclair.php?xtyp=N&amp;xcom=Incourt&amp;xdep=Brabant+Wallon">Naissances
+                    de Incourt [Brabant Wallon] </a> (364 actes) </li>
+                <li><a href="http://127.0.0.1/LDEV3/actes/eclair.php?xtyp=N&amp;xcom=L%27Ecluse&amp;xdep=Brabant+Wallon">Naissances
+                    de L'Ecluse [Brabant Wallon] </a> (64 actes) </li>
+              </ul>
+            </td>
+            <td>
+              <blockquote>
+                <p>...<br />
+                  <br />
+                  BADOT;1823;1899;14; <br />
+                  BAETEN;1910;1910;1; <br />
+                  BALOY;1688;1688;1; <br />
+                  BARAS;1733;1896;120;</p>
+                <p>...</p>
+              </blockquote>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Pour éviter de charger exagérément le serveur lors de la production de
+        ces listes, il est possible de les scinder en plusieurs parties grâce au
+        paramètre <strong>Nombre maximum d'actes par liste éclair </strong><a
+          href="http://127.0.0.1/LDEV3/actes/admin/gest_params.php?grp=Recherche"></a>[ECLAIR_MAX_ROW].</p>
+      <p>Par ailleurs, il est possible de contrôler les accès qui sont effectués
+        à cette liste éclair en obligeant, via le paramètre <strong>Journalisation
+          des requêtes éclair</strong> [ECLAIR_LOG], le système à journaliser
+        les appels dans un fichier qui est stocké dans le répertoire _log. Pour
+        que les fichiers ne soient pas trop gros, le nom du fichier change
+        automatiquement chaque mois. Chaque ligne du fichier contient les
+        informations suivantes, séparées par des points-virgules :</p>
+      <ul>
+        <li>date et heure;</li>
+        <li>adresse IP du demandeur;</li>
+        <li>type d'actes (N, D, M ou V ou vide pour la liste principale);</li>
+        <li>commune;</li>
+        <li>département;</li>
+        <li>initiale des patronymes (si la commune doit être découpée en
+          plusieurs parties);</li>
+        <li>nombre de lignes générées;</li>
+        <li>durée de la requête en millièmes de seconde;</li>
+        <li>signature HTTP_USER_AGENT.</li>
+      </ul>
+    </blockquote>
+    <h4><a id="Systeme" name="Systeme"></a>Paramètres globaux et divers (onglet
+      Système)</h4>
+    <blockquote>
+      <h5><a id="FULL_URL" name="FULL_URL"></a>Gestion des URL du logiciel
+        lui-même</h5>
+      <ul>
+        <li><strong>Affichage des URL sans arguments</strong> [FULL_URL] : <br />
+          C e paramètre permet - lorsque la configuration du serveur web
+          l'autorise - à utiliser une notation des URL qui ne comporte pas de
+          paramètres. Montrons cela par un exemple :
+          <ul>
+            <li>FULL_URL = 0 (désactivé) :
+               http://...votre_site.../actes/tab_naiss.php<span style="font-weight: bold;">?args=Graide,ALEN</span>
+            </li>
+            <li>FULL_URL = 1 (activé) :
+               http://...votre_site.../actes/tab_naiss.php<span style="font-weight: bold;">/Graide/ALEN</span></li>
+          </ul>
+        </li>
+      </ul>
+      <blockquote>
+        <p>Certains moteurs de recherche n'indexent pas bien les URL qui
+          comportent des arguments. Il faut donc préférer le mode FULL_URL = 1
+          mais malheureusement cette possibilité dépend de la configuration du
+          serveur web de l'hébergeur.  Si elle ne fonctionne pas, il faut
+          utiliser la valeur 0.<br />
+        </p>
+      </blockquote>
+      <h5><a id="URL_JPG" name="URL_JPG"></a>Gestion d'URL vers des images et
+        des pages externes</h5>
+      <p>En plus du dépouillement d'un acte, il est souvent intéressant de
+        renvoyer vers l'image de l'acte (ou plusieurs images lorsque celui-ci
+        compte plusieurs pages). A cette fin, plusieurs zones acceptent des
+        contenus qui sont succeptibles de générer un lien vers ces images, ou le
+        cas échéant, vers tout autre document jugé intéressant. </p>
+      <p>Les zones qui acceptents ces liens sont les zones "LIBRE", "COTE",
+        "COMGEN" (Commentaire général) et la nouvelle zone "PHOTOS" ajoutée avec
+        la version 3. Il existe toutefois une différence entre les trois
+        permières et la zone PHOTO au niiveau des séparateurs. Pour les trois
+        premières, les nom d'images ou d'URL peuvent être séparés par des blancs
+        ou des virgules comme dans un texte ordinaire. Dans la zone PHOTOS par
+        contre, les chemins des photos ou les URL DOIVENT être séparés par des
+        points-vigules. Cette disposition permet à la fois de rester cohérent
+        avec le logiciel NIMEGUE et aussi d'admettre des chemins d'accès qui
+        comprennent eux-même des blancs.</p>
+      <p>Ainsi, les contenus suivants :</p>
+      <p align="center"><img width="758" height="249" src="url001.png" /></p>
+      <p>Produisent l'affichage suivant : </p>
+      <p align="center"><img width="654" height="74" src="url002.png" /></p>
+      <p>Reste à déterminer quelle URL est finalement générée sous le lien
+        actif. </p>
+      <p><strong>Lien créé pour une URL </strong></p>
+      <p>La première possibilité consiste à inclure directement une URL complète
+        (c'est-à-dire commençant par "http://" ou https://) pointant vers la
+        page souhaitée. Dans ce cas, cette adresse est automatiquement détectée
+        et est transformée en un lien actif qui pourra donc être simplement
+        cliqué par le visiteur. Il n'y a pas de configuration particulière pour
+        cette facilité. A partir de la version 3.2, cette règle compte une
+        exception lorsque le lien comporte la définition d'un iframe via une
+        paire de balises &lt;iframe&gt; .... &lt;/iframe&gt;. Dans ce cas en
+        effet, le bloc iframe est simplement restitué comme tel et permet ainsi
+        d'afficher directement l'image pointée par l'URL. </p>
+      <p><strong>Liens vers des images d'actes</strong></p>
+      <p>Il est aussi possible de créer des liens vers des images ayant l'une
+        des extensions suiavntes : .JPG, .PNG, .TIF ou .PDF (par exemple
+        "image0234.jpg". Il faut alors savoir où se trouve cette image. </p>
+      <p>La première possibilité consiste à créer un répertoire /img_act/ à côté
+        du pépertoire /actes/ qui contient le logiciel puis à placer les images
+        dans ce répertoire /img_act/. Il n'y a alors rien d'autre à faire que de
+        citer le nom du fichier image pour qu'un lien soit créé. </p>
+      <blockquote>
+        <p>Exemple : Si le site a pour adresse http://www.monsite.fr/actes, <br />
+          alors l'image <strong>"acte_00012.jpg</strong>" va produire l'URL "<strong>http://www.monsite.fr/img_act/acte_00012.jpg</strong>"</p>
+      </blockquote>
+      <p>De plus, le nom de l'image peut être précédé du nom d'un répertoire, ou
+        même d'un chemin, de façon à regrouper ensemble par exemple les actes
+        d'une même commune (exemple : c02/img234.jpg, c03/img566.jpg).</p>
+      <p>Si pour une raison quelconque, il n'est pas possible de créer ou
+        d'utiliser un répertoire /img_act/ à la racine du site web, il est
+        possible de préciser, dans le paramètre URL_JPG décrit ci-dessous, un
+        autre répertoire placé à la racine du même site (exemple :
+        /genealogie/mesimages/) ou l'URL complète d'un répertoire sur un autre
+        site (exemple : http://www.imageur.com/magenealaogie/communes/). Ce
+        préfixe sera utilisé pour générer le lien vers les images. </p>
+      <p><strong>Images localisées dans plusieurs sites web différents </strong></p>
+      <p>Devant la nécessité de gérer de façon nuancée les multipes cas qui
+        peuvent se présenter, la version 3.0 introduit une notation plus
+        complète pour la liste des <strong>URL des images d'actes</strong>
+        [URL_JPG]. Cette doit comprendre, d'abord le chemin par défaut des
+        images d'actes locales au serveur dont nous venons de parler au
+        paragréphe précédente. Ensuite, et séparées les unes des autres par des
+        points-virgules (;) on peut préciser des expression comportant soit le
+        symblole "&gt;" soit "&gt;&gt;". La signalifaction est la suivante :</p>
+      <ul>
+        <li><strong>&gt;</strong> signifie "ajouter, avant le nom des images
+          comportant le code précédant le signe &gt;, l'URL suivante". <br />
+          Par exemple "NAMUR&gt;http://www.site1.be/" signifie "lorsque le nom
+          de l'image comporte "NAMUR", il faut ajouter devant ce nom
+          "http://www.site1.be/" et donc l'image NAMUR/photo1234.jpg produit
+          l'URL "http://www.site1.be/NAMUR/photo1234.jpg".<br />
+        </li>
+        <li><strong>&gt;&gt;</strong> signifie "remplacer le texte qui précède
+          le code &gt;&gt; par celui qui le suit". <br />
+          Par exemple "C:\mes
+          images\genealogie\&gt;&gt;http://www.site1.be/actes/" aura pour effet
+          de transformer le nom de la photo d'acte <br />
+          "C:\mes images\genealogie\namur\photo1234.jpg" en
+          "http://www.site1.be/actes/namur/photo1234.jpg".</li>
+      </ul>
+      <p>Les règles sont énoncées à la suite les une des autres dans la zone <strong>URL
+          des images d'actes</strong> [URL_JPG] : </p>
+      <p>Exemple : </p>
+      <blockquote>
+        <p>/img_act/;<br />
+          NAMUR&gt;http://www.site1.be/;<br />
+          C:\mes images\genealogie\&gt;&gt;http://www.site1.be/actes/;<br />
+          JAMBES&gt;&gt;http://www.site3.be/actes/jbe;</p>
+      </blockquote>
+      <p><strong>Protection de l'accès aux images</strong></p>
+      <p>Certains utilisateurs d'Expoactes, souhaitent réserver l'accès de tout
+        ou partie des images à certains des visiteurs seulement. Le logiciel
+        propose pour cela deux mécanismes :</p>
+      <ul>
+        <li>D'une part, il est possible de ne laisser voir les images que par
+          les visiteurs connectés (se preporter ici aux <a href="#ANNEE_TABLE">
+            paramètres "Affichage"</a>)<br />
+        </li>
+        <li>D'autre part, il est possible de <strong>protéger l'accès à
+            certaines images seulement</strong> en les plaçant dans un
+          sous-répertoire qui doit comporter le mot "prive" dans son nom
+          (exemple : /img_act/prive/ ou aussi /img_act/scan/prive/dinant/). Dans
+          ce cas, le lien n'apparaitra que pour les personnes connectées ayant
+          le niveau d'accès spécifié dans paramètres suivant. Il restera
+          invisible pour les autres.</li>
+      </ul>
+      <ul>
+        
+          <li><strong>Niveau d'accès nécessaire pour les images protégées </strong>
+            [LEVEL_JPG_PRIVE] : <br />
+            Niveau d'accès nécessaire pour obtenir le lien vers les images
+            présentes dans le ou les répertoires PRIVES.</li>
+        
+      </ul>
+      <h5 align="left"><a id="UPLOAD_DIR" name="UPLOAD_DIR"></a>Chargement des
+        fichiers CSV</h5>
+      <ul>
+        <li><strong>Répertoire de stockage temporaire des
+            chargements</strong> [UPLOAD_DIR] : <br />
+          Les fichiers CSV téléchargés pour l'ajout d'actes sont transférés
+          temporairement dans le répertoire "_upload" situé lui-même dans le
+          répertoire "admin". Si l'hébergement oblige à utiliser un autre
+          répertoire pour les téléchargements, il faut alors spécifier le chemin
+          d'accès de ce répertoire avec le paramètre UPLOAD_DIR</li>
+      </ul>
+      <h5 align="left"><a id="META_TAG" name="META_TAG"></a>Gestion des balises
+        "meta tags"</h5>
+      <ul>
+        <li><strong>Personalisation de la description et des
+            mots-clés </strong> [META_DESCRIPTION] et [META_KEYWORDS] : <br />
+          Ces deux zones sont utilisées par les moteurs de recherche pour
+          qualifier et référencer votre site web. De façon automatique Expactes
+          ajoute dans ces deux zones le titre de la page qui varie
+          automatiquement d'une page à l'autre en précisant la commune ou le
+          patronyme dont il est question. Il est possible de noter une
+          description supplémentaire ainsi que des mots-clés spécifiques.</li>
+        <li><strong>Autres éléments pour le header HTML</strong>
+          [INCLUDE_HEADER] : <br />
+          D'autre balises meta tags peuvent être incluses dans la zone "header"
+          pour donner des instructions plus précises aux moteurs de recherche. <br />
+          <em>Attention : ces éléments doivent respecter strictement la syntaxe
+            xHTML.</em> </li>
+      </ul>
+      <h5 align="left"><a id="GOOGLEANA" name="GOOGLEANA"></a>Activation des
+        statistiques Google Analytics </h5>
+      <ul>
+        <li><strong>ID de suivi Web Google Analytics</strong> [GOOGLE_ANA_CODE]
+          :<span id="aide8"><br />
+            Pour obtenir très facilement des statistiques détaillées sur
+            l'utilisation du site par les visteurs, une solution très simple et
+            très efficace consiste à créer un compte Google Analytics puis à
+            récupérer le n° identifiant de ce compte (il ressemble à
+            UA-1234566-2) et enfin à renseigner cet identiiant dans le paramètre
+            GOOGLE_ANA_CODE de Expoactes. C'est tout, après 24h à 48h les
+            premières statistiques sont disponibles via votre compte Google
+            Analytics.<br />
+            Remarques importantes : </span>
+          <ul>
+            <li><span> il est indispensable de renseigner dans le compte
+                l'adresse du répeertoire principale du logiciel qui comporte les
+                code Google Analytics. En l'occurence, ici c'est le répertoire
+                actes : l'adresse du site doit donc être par exmpple
+                "http://XXXX.monsite.fr/actes" </span><span>.</span></li>
+            <li><span>si vous souhaitez faire suivre les statistique d'un site
+                plus important dans le répertoire actes n'est qu'une partie, il
+                faut alors ajouter vous-même le code javascript fourni pas
+                Google dans toutes les autres pages du site. <br />
+                <br />
+                Pour plus de détails voir <a href="http://www.google.com/analytics/fr-FR/index.html">http://www.google.com/analytics/fr-FR/index.html</a></span>
+              . </li>
+          </ul>
+        </li>
+      </ul>
+      <h5 align="left"><a id="SHOW_ACCES" name="SHOW_ACCES"></a>Divers</h5>
+      <ul>
+        <li><strong>Affichage des conditions d'accès privé</strong> [SHOW_ACCES]
+          : <br />
+          Détermine l'item "Conditions d'accès" apparaît dans le menu public.
+          Cet item n'a pas lieu d'être si l'accès est totalement libre
+          (USER_LEVEL = 4)</li>
+        <li><strong>Affichage de l'icône RSS</strong> [SHOW_RSS] :<br />
+          Détermine si le lien avec icône du flux RSS est affiché dans le cadre
+          des statistiques. </li>
+        <li><strong>Temps maximum pour l'exécution d'une page</strong>
+          [MAX_EXEC_TIME] : <br />
+          Ce temps permet d'obliger ExpoActes à limiter le temps d'exécution des
+          opérations de chargement, de backup, ... plus strictement que ce qui
+          est détecté en se basant sur les paramètres PHP. Ne mettre une valeur
+          inférieure à 30 que si l'on rencontre des problèmes répétés de blocage
+          de l'affichage de pages incomplètes.</li>
+        <li><strong>Nombre maximal d'actes sélectionnés par requête</strong>
+          [MAX_SELECT_REC] : <br />
+          Certains serveurs MySQL interdisent des requêtes qui rapportent un
+          trop grand nombre de réponses ce qui peut poser problème pour les
+          backups. Dans ce cas, le logiciel affiche le message "Aucun acte
+          exporté" alors que l'on voit bien qu'il y a un grand nombre d'actes
+          qui auraient pu être exportés. Il faut donc modifier la valeur du
+          présent paramètre. <br />
+          Ce pramètre permet donc de limiter les requêtes lors des exports et
+          backups lorsque c'est nécessaire pour ne pas dépasser la limite
+          impossée par le serveur.<br />
+          Un valeur de 25000 ou même 50000 est alors souvent judicieuse mais
+          rend impossible les exports plus grands que ce nombre de lignes par
+          fichier produit (en effet, un export produit un seul fichier tandis
+          qu'un backup peut produire plusieurs fichiers). <br />
+          La valeur 0, renseignée par défaut, ne limite pas les requêtes.</li>
+      </ul>
+    </blockquote>
+    <h4><a id="Utilisateurs" name="Utilisateurs"></a>Gestion des utilisateurs
+      (onglet Utilisateurs) </h4>
+    <blockquote>
+      <h5><a id="Public_level" name="Public_level"></a>Niveau d'accès public aux
+        données des actes </h5>
+      <p>De nombreux utilisateurs du logiciel souhaitent contrôler la diffusion
+        du détail des actes en la retreignant à des personnes préalablement
+        enregistrées ou aux membres d'une association. Pour cela, il convient de
+        définir d'abord jusqu'à quel niveau de détail les informations sont
+        diffusées à tout le monde. C'est le rôle du paramètre PUBLIC_LEVEL. </p>
+      <ul>
+        <li><strong>Niveau d'accès public (sans login)</strong> [PUBLIC_LEVEL] :<br />
+          Ce paramètres détermine le niveau d'accès qui est autorisé en mode
+          "public" c'est-à-dire sans devoir fournir un login et un mot de passe.<br />
+          <br />
+          Les valeurs admises sont :
+          <ul>
+            <li>1 = Accès public à la liste des communes uniquement; </li>
+            <li>2 = Accès public aux patronymes et périodes concernées
+              (équivalent des listes "éclair";  </li>
+            <li>3 = Accès public aux "tables" avec noms, prénoms et dates (ou
+              années) des actes; </li>
+            <li>4 = Accès public aux détails des actes. </li>
+          </ul>
+          <p>Par défaut, la valeur est 4 pour laisser la libre consultation des
+            tables et des actes.</p>
+        </li>
+      </ul>
+      <h5><a id="USER_AUTO_DEF" name="USER_AUTO_DEF"></a>Mode de création des
+        comptes des utilisateurs enregistrés</h5>
+      <p>Le logiciel permet de créer les comptes utilisateur de trois manières
+        différentes : </p>
+      <ul>
+        <li>Soit de façon totalement manuelle et ponctuelle : l'administrateur
+          (niveau 9) complète le formulaire de création du nouvel utilisateur;</li>
+        <li>Soit par import d'un fichier CSV dûment structuré comprenant la
+          liste des utlisateurs à créer. (<a href="gestuser.html">voir à ce
+            sujet l'aide spécifique</a>);</li>
+        <li>Soit en laissant les candidats utilisateurs compléter eux-même un
+          formulaire d'incription. Dans ce derniers cas, il convient de préciser
+          si l'utilistateur nouveau est automatiquement et immédiatement accepté
+          ou si sa demande doit d'abord être validée par l'administrateur. </li>
+      </ul>
+      <p>Les deux premiers modes sont considérés comme "manuels" car ils
+        nécessitent l'intervention de l'administrateur. Le paramètre
+        USER_AUTO_DEF permet de définir la stratégie d'enregistrement des
+        utilisateurs. Le second paramètre fixe le niveau d'accès attribué
+        automatiquement.</p>
+      <ul>
+        <li><strong>Enregistrement des utilisateurs</strong> [USER_AUTO_DEF] : <br />
+          Mode d'enregistrement des utilisateurs et distribution des logins :
+          <ul>
+            <li>0 : Enregistrement toujours manuel par l'administrateur;</li>
+            <li>1 : Enregistrement semi-automatique via formulaire avec
+              approbation obligatoire par l'administrateur;</li>
+            <li>2 : Enregistrement tout automatique sur base des valeurs par
+              défaut de gestion des points.</li>
+          </ul>
+        </li>
+        <li><strong>Niveau d'accès après enregistement auto.</strong>
+          [USER_AUTO_LEVEL] : <br />
+          Niveau d'accès attribué automatiquement aux personnes qui
+          s'enregistrent directement sur le site. Par défaut, USER_AUTO_LEVEL
+          vaut 4.</li>
+      </ul>
+      <p><strong>Attention</strong> : </p>
+      <ul>
+        <li>Les modes 1 et 2 nécessitent que le fonctionnement du serveur mail
+          soit parfait car tous les échanges sont réalisés par mail;</li>
+      </ul>
+      <p>Pour prémunir le serveur de l'enregistrement automatique de faux
+        utilisateurs par des robots, un mécanisme de "captcha" c'est-à-dire
+        d'image dissimulant un code qui ne peut être déchiffré que par une
+        personne humaine a aussi été prévu. Il est évidemment recommandé de le
+        mettre en oeuvre mais il peut arriver que certains hébergements ne
+        fournissent pas la librairie graphique PHP (GD2) nécessaire à son bon
+        fonctionnement. Un paramètre a donc été ajouté pour désactiver les
+        captchas si le serveur ne le permet pas.</p>
+      <ul>
+        <li><strong>Affichage d'un code captcha</strong> [AUTO_CAPTCHA] : <br />
+          Indique si les captcha peuvent être affichés. Par défaut, AUTO_CAPTCHA
+          vaut 1.</li>
+      </ul>
+      <p>Logiquement on s'attend à ce que les utilisateurs enregistrés disposent
+        d'une adresse mail personnelle et donc que tous les utilisateurs aient
+        des adresses mail distinctes. Ce n'est pas toujours le cas chez les
+        couples de généalogistes .. qui partagent parfois la même adresse. Il
+        est dès lors possible de désactiver la détection contre les doublons des
+        adresses mail.</p>
+      <ul>
+        <li><strong>Vérifier l'unicité des adresses mail</strong>
+          [TEST_EMAIL_UNIC] : <br />
+          Interdit l'enregistrement de deux utilisateurs avec la même adresse
+          email. </li>
+      </ul>
+      <blockquote></blockquote>
+      <h5><a id="LIMITE_EXPIRATION" name="LIMITE_EXPIRATION"></a>Durée de
+        validité d'un compte - Date d'expiration </h5>
+      <p>La version 3 introduit une notion de durée de validité d'un compte afin
+        de pouvoir gérer automatiquement le fait de bloquer le compte après une
+        certaine durée ou à un date prédéternimée. Sans indication dans cette
+        zone, les comptes créés n'expirent jamais (ou en fait à une date
+        tellement lointaine, le 31-12-2033, que c'est équivalent).</p>
+      <ul>
+        <li> <strong>Date limite ou durée des comptes</strong>
+          [LIMITE_EXPIRATION] : Cette zone permet de préciser la valeur par
+          défaut qui sera utilisée pour la création de nouveau comptes
+          utilisateurs. Elle admet deux formes de valeurs :
+          <ul>
+            <li> Soit une date fixe au format JJ/MM/AAAA : cette date est
+              utilisée systématiquement;</li>
+            <li>soit un nombre unique qui précise une durée en JOURS à compter
+              de la date de création : la date réelle sera donc calculée en
+              ajoutant ce nombre de jour à la date courante. </li>
+          </ul>
+        </li>
+      </ul>
+      <p>Remarques :</p>
+      <ul>
+        <li>La date ainsi calculée pour toujours être modifiée par
+          l'adminsitrateur lors de la création manuelle du compte. Par contre,
+          lors de la création automatisée, cette date est employée tant qu'elle
+          n'est pas modifiée par l'administrateur.</li>
+        <li>Les comptes existant, créé avecnt la version 3, héritent toujours
+          d'une date d'expiration "illimitée" car le système ne peut préjuger de
+          la politique adoptée pour chause visiteur.  <br />
+        </li>
+      </ul>
+      <h5><a id="DUREE_EXPIR" name="DUREE_EXPIR"></a>Délai avant suppression des
+        comptes expirés</h5>
+      <p>Il est possible de supprimer des comptes qui sont expirés depuis un
+        temps déterminé. En effet, ces comptes sont inutilisable et si les
+        propriétaires n'ont pas marqué leur intention de les faire renouveler on
+        peut considérer qu'ils sont définitivement inutilisables. Il peut être
+        utile de les éliminer pour gérer plus facilement les comptes actifs. Le
+        paramètre DUREE_EXPIR donne le nombre de jours de dépassement de la date
+        d'expiration après lequel un compte<strong> peut être sélectionné</strong>
+        pour suppression. Notez que cette supression n'est jamais automatique
+        mais doit être demandée dans la gestion des utilisateurs. La valeur par
+        défaut est de 90 jours. </p>
+      <h5><a id="USER_ZONE_LIBRE" name="USER_ZONE_LIBRE"></a>Zone
+        personnalisable dans la liste des utilisateurs </h5>
+      <p>La version 3 ajoute également une possibilité de collecter une
+        information supplémentaire aux données standard concernant
+        l'utilisateur. Cette zone peut alors être étiquetée au choix de
+        l'adminsitrateur et elle figurera dans le formulaire d'auto-inscription
+        des utilisateurs. Elle pourra permettre, par exemple, de collecter
+        l'adresse ou un n° d'affiliation du nouveau membre. </p>
+      <ul>
+        <li> <strong>Libellé de la zone libre</strong> [USER_ZONE_LIBRE] :
+          Cette zone permet d'ecoder le libellé ou la question posée à
+          l'utilisateur lors de son inscription. Si la zone reste vide, alors la
+          zone libre n'est pas affichée dans le formulaire d'auto-inscription <br />
+        </li>
+      </ul>
+      <h5><a id="CHANGE_PW" name="CHANGE_PW"></a>Droits donnés aux utilisateurs</h5>
+      <ul>
+        <li><strong>Niveau pour pouvoir changer de mot de passe</strong>
+          [CHANGE_PW] : <br />
+          Détermine le niveau d'accès à partir duquel un utilisateur enregistré
+          a le droit de modifier lui-même son mot de passe. Par défaut,
+          CHANGE_PW vaut 1.<br />
+          Si plusieurs utilistateurs doivent partager le même code d'accès et le
+          même mot de passe (par exemple au niveau 4), il est prudent d'en
+          interdire la modification.  <br />
+        </li>
+      </ul>
+      <h5><a id="GEST_POINTS" name="GEST_POINTS"></a>Gestion de points pour
+        limiter le nombre d'actes pouvant être affichés par utilisateur</h5>
+      <p><span style="font-weight: bold;">Certains utilisateurs du logiciel ont
+          souhaité que soit inclus un moyen de limiter le nombre de consultation
+          d'actes détaillés. </span><br style="font-weight: bold;" />
+        <span style="font-weight: bold;">Cette gestion est tout à fait
+          facultative et n'est pas mise en oeuvre par défaut.</span><br />
+        Pour l'activer il faut modifier les valeurs des trois paramètres
+        ci-dessous qui détermineront les modes d'attribution des "points" aux
+        utilisateurs enregistrés.<br />
+        <br />
+        Le système fonctionne sur base d'un capital de "points" qui sont
+        affectés aux utilisateurs  disposant d'un code de login.  Ces points
+        peuvent être attribués manuellement par l'administrateur ou
+        automatiquement par le programme.  Dans ce dernier cas, les paramètres
+        permettent de fixer le nombre de points qui sont automatiquement
+        attribués à chaque utilisateur ainsi que la périodicité avec laquelle
+        cette "recharge" a lieu.  Le système est extrêmement souple car il
+        permet aussi bien de prévoir que l'on peut "voir" maximum 10 actes par
+        jour (recharger 10 points tous les 1 jours) jusqu'à 1000 actes sur un an
+        (recharger 1000 points tous les 365 jours).  <br />
+        <br />
+        La recharge n'est pas cumulative: ainsi si la recharge est fixée par
+        exemple à 30 points tous les 7 jours, un visiteur qui ne vient sur le
+        site qu'une fois tous les trois mois dispose de 30 points qui lui sont
+        affecté le jour où il revient sur le site (et non 480 points qui se
+        seraient accumulés).  C'est en effet, au moment du login que le système
+        recharge le compte lorsque les conditions sont remplies.<br />
+        <br />
+        Le système permet toutefois à l'administrateur de donner à qui il veut
+        des points supplémentaires ou de faire une recharge intermédiaire.
+         Enfin,  l'administrateur peut donner à chaque membre le "régime" qui
+        lui convient : soit la recharge automatique, soit la recharge manuelle
+        soit encore le libre accès.  Les membres avec les statuts 8 et 9
+        (administrateurs) disposent d'ailleurs automatiquement d'un libre accès.<br />
+        <br />
+        Notons encore que le système ne décompte pas de point à un déposant
+         pour voir les actes qu'il a déposé. Par contre, il n'a pas été prévu
+        d'ajouter des points aux déposants car il aurait été trop facile de
+        déposer 1000 actes puis de les supprimer pour "recharger" son compte
+        sans difficulté.  A charge pour l'administrateur de gérer ces situations
+        à sa discrétion.</p>
+      <p>Notons que lorsqu'un utilisateur ne dispose plus d'aucun point, les
+        dates dans les tables sont systématiquement limitées à l'année. L'accès
+        à la date complète (et au détail de l'acte) nécessite de recouvrer des
+        points. <br />
+        <br />
+        Les paramètres à définir sont les suivants : </p>
+      <ul>
+        <li><strong>Mode de gestion des points</strong> [GEST_POINTS] : <br />
+          Détermine le régime de gestion des points par défaut:
+          <ul>
+            <li>0 : aucune gestion des points pour aucun membre;</li>
+            <li>1 : gestion des points avec recharge manuelle. C'est
+              l'adminsitrateur qui distribue les points et lui seul;</li>
+            <li>2 : gestion des points avec recharge automatique. La recharge
+              s'effectuera automatiquement pour tous les membres auxquel
+              l'administrateur affectera le régime 2 (valeur par défaut).</li>
+          </ul>
+        </li>
+        <li><strong>Points donnés à chaque recharge automatique</strong>
+          [PTS_PAR_PER] : <br />
+          Détermine le nombre de points qui sont attribués aux membres à chaque
+          recharge automatique. </li>
+        <li><strong>Nombre de jours entre deux recharges auto.</strong>
+          [DUREE_PER_P] : <br />
+          Détermine le nombre de jours qui séparent deux recharges
+          automatiques.  </li>
+        <li><strong>Recherche autorisée si points épuisés</strong>
+          [RECH_ZERO_PTS] : <br />
+          Autorise ou interdit la réalisation de recherches lorsque le stock de
+          points est épuisé.  </li>
+      </ul>
+      <h5><a id="DEPOSANT_LEVEL" name="DEPOSANT_LEVEL"></a>Liste des déposants</h5>
+      <ul>
+        <li><strong>Niveau min. de la liste des déposants</strong>
+          [DEPOSANT_LEVEL] : <br />
+          Niveau à partir duquel un utilisteur apparait dans les liste des
+          déposants lors des import par l'administrateur. Cette liste permet à
+          l'administrateur d'importer des données en lieu et place des
+          utilisateurs qui n'ont pas l'expertise nécessaire pour effectuer cette
+          opération. Pour ne pas encombrer cette liste, il est possible de la
+          limiter aux niveau de 9 à 6, 5 ou 4. </li>
+      </ul>
+      <h5><a id="CONDIT_USAGE" name="CONDIT_USAGE"></a>Conditions d'utilisation
+      </h5>
+      <ul>
+        <li><strong>Texte des conditions d'utilisation</strong>
+          [TXT_CONDIT_USAGE] : <br />
+          Ce texte ne peut apparaître que lors de la création d'un nouveau
+          compte par les utilisteurs eux-même (si Enregistrement des
+          utilisateurs est à 1 ou 2). Si la zone est complétée, le texte est
+          affiché dans le formulaire de lecture des coordonnées du nouvel
+          utilisteur ainsi qu'une case à cocher qui doit être explicitement
+          cochée pour que la demande de création de compte soit prise en compte.
+          Le texte à afficher peut être aussi long que nécessaire. </li>
+      </ul>
+    </blockquote>
+    <h4> </h4>
+    <p align="center"><a href="aide.html">Retour à la liste des fichiers d'aide</a></p>
+    <h3 align="center">-o-O-o- <br />
+    </h3>
+  </body>
+</html>
