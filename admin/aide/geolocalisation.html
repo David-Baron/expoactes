@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+  <title>Aide : Inventaire des actes</title>
+
+  <link media="screen" rel="stylesheet" href="../../_config/actes.css" type="text/css">
+</head>
+<body>
+
+<h1 align="center">G&eacute;olocalisation des communes et paroisses (Localit&eacute;s) </h1>
+<p align="center"><a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a></p>
+<p>La version 3.1 introduit des facilit&eacute;s de g&eacute;olocalisation des localit&eacute;s dont les actes sont publi&eacute;s. </p>
+<p><strong>Pour le visiteur</strong> du site cela peut se faire de deux mani&egrave;res :</p>
+<ul>
+  <li><strong>Dans la page d'accueil g&eacute;n&eacute;rale</strong>, la carte de toutes les localit&eacute;s pr&eacute;sentant des actes ou un type particulier d'acte peut &ecirc;tre affich&eacute;e en cliquant le mot &quot;Carte&quot; dans le titre de la page. Un <a href="config.html#Geoloc">param&egrave;tre sp&eacute;cifique</a> permet de contr&ocirc;ler si cette vue est propos&eacute;e par d&eacute;faut ou si elle est accessible. dans le mode &quot;Tous&quot; (les actes), la &quot;punaise&quot; pointant la localit&eacute; indique soit l'unique type d'acte pr&eacute;sent avec les symboles classiques (o = Naissance, x = Mariage, + = D&eacute;c&egrave;s ainsi que # qui d&eacute;signe les actes divers) ou un chiffre indiquant le nombre de types pr&eacute;sents. Dans ce dernier cas, lors du survol avec la souris de la punaise, une &eacute;tiquette affiche les diff&eacute;rents types pr&eacute;sents. <br>
+  </li>
+  <li><strong>Lors de la navigation dans les tables des patronymes</strong>, une petite rose des vents <img src="../../img/boussole.png" width="21" height="21">accompagne le nom de la commune/paroisse. Elle donne acc&egrave;s &agrave; une carte qui localise le lieu et affiche la liste des relev&eacute;s disponibles pour cette localit&eacute;.</li>
+</ul>
+<p><strong>Pour l'administrateur,</strong> il est possible de corriger ou d'ajouter la localisation d'une localit&eacute; qui n'aurait pas &eacute;t&eacute; reconnue convenablement lors de la g&eacute;olocalisation automatique. En effet, une table des localit&eacute;s m&eacute;morise les coordonn&eacute;es g&eacute;ographiques de celles-ci afin de pouvoir tracer rapidement la carte. L'association des coordonn&eacute;es est en principe automatique et s'appuie sur le service en ligne de Google Maps. Il se peut cependant que certains lieux soient mal reconnus car la paroisse n'est plus aujourd'hui qu'un lieu-dit voire &agrave; totalement disparu. De plus, Google ne disposant que du nom de la localit&eacute; et du d&eacute;partement ou de la province, il se peut qu'il associe une localisation incorrecte. </p>
+<p>Aussi, il est possible pour l'administrateur de modifier la localisation d'une commune de fa&ccedil;on tr&egrave;s simple. Il suffit de se rendre dans l&quot;<strong>Administration des donn&eacute;es</strong>&quot; puis dans &quot;<strong>Localit&eacute;s</strong>&quot;. La liste des localit&eacute;s trouv&eacute;es dans la base (uniquement celles du lieu de r&eacute;daction de l'acte et non les localit&eacute;s associ&eacute;es aux personnes cit&eacute;es) est affich&eacute;e avec le statut relatif &agrave; la g&eacute;olocalisation :</p>
+<ul>
+  <li>Auto : C'est Google qui a automatiquement affect&eacute; un couple de coordonn&eacute;es &agrave; ce lieu.</li>
+  <li>Non d&eacute;finie : Google n'a pu trouver ou d&eacute;cider quelles coordonn&eacute;es affect&eacute; &agrave; ce lieu. Il n'a donc pas de coordonn&eacute;es et n'est donc pas affich&eacute; dans les cartes.</li>
+  <li>Manuelle : La localisation a &eacute;t&eacute; d&eacute;finie ou corrig&eacute;e manuellement. </li>
+</ul>
+<p>En cliquant sur le nom de la localit&eacute;, une carte permet de red&eacute;finir la g&eacute;olocalisation. Il suffit de cliquer sur la &quot;punaise&quot; <img src="../../img/pin_eye.png" width="21" height="34">et de la d&eacute;placer vers la bonne localisation. L'op&eacute;ration peut &ecirc;tre effectu&eacute;e en plusieurs &eacute;tapes en agrandissant ou r&eacute;duisant le niveau de zoom si n&eacute;cessaire.</p>
+<p>Lorsque la localisation est bonne, il faut presser le bouton enregistrer pour que la correction soit m&eacute;moris&eacute;e. </p>
+<p>Notez que, lorsque la g&eacute;olocalisation n'est pas d&eacute;finie, pour &eacute;viter de devoir partir du milieu de l'Atlantique (coordonn&eacute;es 0,0), la punaise est plac&eacute;e sur la localit&eacute; centrale (param&egrave;tre GEO_CENTRE_CARTE) ou, &agrave; d&eacute;faut, dans un petit village gaulois. Le zoom est alors beaucoup plus large pour permettre un premier positionnement approximatif.</p>
+<p>Les 4 zones textes qui suivent permettent d'enregistrer un petit texte de commentaire sur le d&eacute;pouillement de chaque type d'acte pour cette commune ou paroisse. C'est notamment utile pour pr&eacute;ciser pourquoi certaines ann&eacute;es sont absentes. </p>
+<p>Voir aussi les <a href="config.html#Geoloc"><strong>param&egrave;tres sp&eacute;cifiques &agrave; la g&eacute;olocalisation</strong></a>. </p>
+<p><br>
+    
+
+    
+<a href="aide.html">Sommaire de l'aide</a></p>
+</body>
+</html>

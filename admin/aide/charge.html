@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
+    <title>
+      Aide : Charger des actes NIMEGUE
+    </title>
+    <link rel="stylesheet" href="../../_config/actes.css" type="text/css" />
+
+  </head>
+  <body>
+    <h1 align="center">
+      Charger des actes NIMEGUE V2 ou V3
+</h1>
+    <p align="center"><a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a> </p>
+    Cette fonction permet de <span style="font-weight: bold;">charger des
+    actes encod&#233;s &#224; l'aide du programme NIMEGUE</span> (version 2 ou version 3)
+    d&#233;velopp&#233; par Gilles DAVID : voir <a href=
+    "http://www.cegfc.net/nimegue/" target="_blank">le site
+    du&nbsp;logiciel</a> et le <a href=
+    "http://fr.groups.yahoo.com/group/nimegue/" target="_blank">groupe de
+    discussion consacr&#233; au programme</a>. Le programme ExpoActes reconnait automatiquement la version du fichier d'export qui lui est pr&eacute;sent&eacute;e. Il faut savoir que les modifications apport&eacute;e par la version 3 concernent essentiellment l'allongement de plusieurs zones, et l'ajout de champs permettant de pr&eacute;ciser des donn&eacute;es plus rares mais parfois rencontr&eacute;es : professions des m&egrave;res, nom et pr&eacute;nom des ex-conjoints de plusieurs intervenants, ... ainsi que, &agrave; partir de la version 3.06, liste des photographies de l'acte. <br />
+
+    <br />
+    Pour pr&#233;parer les actes &#224; transf&#233;rer sur votre site
+    ExpoActes, il faut exporter les donn&#233;es &#224; partir de NIMEGUE en
+    suivant les instructions suivantes :<br />
+    <ul>
+      <li>Dans le panneau "Outils", presser le bouton "Export Nim&#232;gue V3" (ou V2 le cas &eacute;ch&eacute;nat);
+      </li>
+
+      <li>S&#233;lectionner la commune concern&#233;e;
+      </li>
+      <li>Taper un nom&nbsp;pour le fichier. Le plus simple pour s'y retrouver
+      consiste &#224; donner le nom de la commune suivi d'une lettre
+      identifiant le type des actes qui vont &#234;tre export&#233;s (par
+      exemple DINANT_N pour les naissances de DINANT);&nbsp;
+      </li>
+      <li>Presser le bouton "Export" &nbsp;en rapport avec le type d'acte
+      voulu.
+      </li>
+
+    </ul>Le fichier est cr&#233;&#233; dans le r&#233;pertoire TEMP du logiciel
+    NIMEGUE avec l'extension .TXT .<br />
+    Pour charger, cet export dans ExpoActes, il faut proc&#233;der comme suit
+    :<br />
+<ul>
+  <li>S&#233;lectionner le menu "Charger des actes NIMEGUE" ;</li>
+  </ul>
+<p align="center"><img src="chargeNimegueV3A.png" width="714" height="496" border="1" /><br />
+  </p>
+<ul><li>S&#233;lectionner le type des actes;<br /> 
+  </li>
+  <li>Naviguer jusqu'au fichier pr&#233;c&#233;demment export&#233; avec le bouton 
+    "Parcourir..." et le s&#233;lectionner; <br />
+  </li>
+  <li>Introduire les nom des personnes qui ont collabor&eacute; &agrave; la mise en ligne de ces actes. Pour cela trois zones sont disponibles. Il est possible d'en modifier la d&eacute;nomination et de d&eacute;terminer dans quelle mesure elles seront affich&eacute;es dans la fiche d&eacute;taill&eacute;e de l'acte en mode visiteur et/ou administrateur. Se reporter &agrave; la <a href="config.html#etiquettes">gestion des &eacute;tiquettes</a> pour cette gestion.<br />
+  </li>
+  <li>Choisir le mode de <strong>d&eacute;doublonnage</strong> : 
+    <ul>
+      <li><em>Sur la combinaison date+nom+prenom</em> : Les actes ayant le m&ecirc;me 
+          date et les m&ecirc;mes patronyme et pr&eacute;nom seront consid&eacute;r&eacute;s 
+        comme des doublons et seront donc ignor&eacute;s;</li>
+      <li><em>Sur le n&deg; ID de NIMEGUE (Ignorer si existe d&eacute;j&agrave;)</em>: 
+          Les actes de la m&ecirc;me commune ayant le m&ecirc;me n&deg; d'identification 
+          interne (fourni par NIMEGUE) seront consid&eacute;r&eacute;s comme des 
+        doublons et seront donc ignor&eacute;s;</li>
+      <li><em>Sur le n&deg; ID de NIMEGUE (Mettre &agrave; jour si existe d&eacute;j&agrave;)</em>: 
+          Les actes de la m&ecirc;me commune ayant le m&ecirc;me n&deg; d'identification 
+          interne (fourni par NIMEGUE) seront consid&eacute;r&eacute;s comme des 
+          versions mises &agrave; jour et seront donc remplac&eacute;s par la nouvelle 
+        version.</li>
+      <li><em>Aucune v&eacute;rification</em> : Ici plus aucune v&eacute;rification 
+          n'est effectu&eacute;e. Cela permet d'acc&eacute;l&eacute;rer le chargement 
+          lorsque l'on est certain que les donn&eacute;es sont d&eacute;j&agrave; 
+        v&eacute;rifi&eacute;es.<br />
+      </li>
+    </ul>
+  </li>
+  <li>Cocher &#233;ventuellement une option de<strong> filtrage des donn&eacute;es</strong> 
+    : </li>
+  <li style="list-style: none"> 
+    <ul>
+      <li> <span style="font-style: italic;">&#201;liminer les actes sans filiation</span> 
+        : Ne&nbsp;charge&nbsp;pas les actes pour lesquels il n'y a aucune indication 
+          de p&#232;re ou m&#232;re pour la personne concern&#233;e par l'acte; 
+      </li>
+      <li> <span style="font-style: italic;">&#201;liminer les actes dont l'ann&#233;e 
+          est incompl&#232;te</span>&nbsp;: Ne&nbsp;charge&nbsp;pas les actes pour 
+          lesquels l'ann&#233;e de l'acte n'est pas compl&#232;te (exemple : 17?? 
+        ou 0000 ou 165x) ; </li>
+      <li> <span style="font-style: italic;">&#201;liminer les actes "A VERIFIER"</span> 
+        : Ne charge pas les actes qui contiennent le texte "VERIF" dans la zone 
+        "Cote". Cette option permet de&nbsp;marquer dans NIMEGUE les actes dont 
+          le contenu doit &#234;tre v&#233;rifi&#233; avant publication. <br />
+      </li>
+    </ul>
+  </li>
+  <li>Cocher selon les besoins les informations souhait&eacute;es pour le contr&ocirc;le 
+      du chargement. L'affichage de ces informations ralenti le chargement mais 
+      facilite la d&eacute;tection et la recherche des anomalies &eacute;ventuelles. 
+      Lorsqu'un n&deg; est affich&eacute; entre parenth&egrave;ses, il s'agit du 
+      n&deg; de la ligne du fichier NIMEGUE qui cause le soucis.<br />
+  </li>
+  <li>S&eacute;l&eacute;ctionner le <strong>d&eacute;posant</strong> : c'est en principe la 
+      personne qui  effectue le chargement des actes. Cette 
+      option n'est disponible que pour les adminstrateurs qui peuvent charger des 
+      donn&eacute;es pour plusieurs d&eacute;posants. A partir de la version 3, cette mention est de moins d'importance car les trois zones Photographe, Transcripteur et V&eacute;rificateur offrent bien plus de facilit&eacute;s pour r&eacute;f&eacute;rencer les contributeurs. <br />
+  </li>
+  <li>Presser le bouton "&gt;&gt; CHARGER &gt;&gt;". </li>
+</ul>
+<p>Pour chaque acte, le programme v&#233;rifie si la base ne contient pas d&#233;j&#224; 
+  cet acte selon les r&egrave;gles de d&eacute;doublonnage. Si l'acte est d&#233;j&#224; 
+  pr&#233;sent et que l'option mise &agrave; jour &eacute; &eacute;t&eacute; s&eacute;lectionn&eacute;e, 
+  les donn&#233;es sont simplement mises &#224; jour sinon, il est ajout&#233;. 
+  Pour pouvoir faire une mise &agrave; jour d'actes, tous les actes d'un type 
+  et d'une commune donn&#233;e doivent donc provenir de la m&#234;me base NIMEGUE 
+  sinon ExpoActes ne pourra pas correctement d&#233;tecter les doublons &#233;ventuels.</p>
+<p><strong>La taille des fichiers qui peuvent &ecirc;tre charg&eacute;s est limit&eacute;es 
+  par les possibilit&eacute;s de t&eacute;l&eacute;chargement de l'h&eacute;bergement</strong> 
+  (souvent limit&eacute; &agrave; 2 Mo). Si le fichier NIMEGUE est plus important 
+  il est indispensable de le d&eacute;couper en portions de 2 Mo maximum. Il est 
+  important d'utiliser un logiciel editeur de texte &quot;neutre&quot; qui n'ajoute 
+  pas de codes et ne se permet pas de modifier d'autorit&eacute; certains &eacute;l&eacute;ments 
+  du fichier (<a href="http://www.textpad.com/">TextPad</a> est mon pr&eacute;f&eacute;r&eacute; 
+  mais il n'est pas le seul). Il faut alors bien veiller &agrave; couper le fichier 
+  &agrave; un saut de ligne. </p>
+<p>Lorsque le fichier NIMEGUE est assez volumineux (mais inf&eacute;rieur &agrave; 
+  2 Mo) le chargement est souvent trop long pour s'effectuer dans le temps imparti 
+  pour l'ex&eacute;cution d'une page web (en g&eacute;n&eacute;ral 30 secondes). 
+  <strong>Expoactes veille alors &agrave; d&eacute;couper le chargemet en plusieurs 
+  &eacute;tapes</strong> qui s'enchainent automatiquement avec des interruptions 
+  de 5 &agrave; 10 secondes. Il suffit de laisser travailler le programme sans 
+  interragir. <br />
+  <br />
+  <a href="aide.html">Sommaire de l'aide</a> </p>
+</body>
+</html>

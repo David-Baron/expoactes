@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
+  <title>Gestion des backups</title>
+  <link media="screen" rel="stylesheet" href="../../_config/actes.css" type="text/css" />
+</head>
+<body>
+<h1 align="center">Gestion des backups et restores</h1>
+<ul>
+  <li><a href="#maint">Mode MAINTENANCE</a></li>
+  <li><a href="#data">Backup/restauration des donn&eacute;es (actes)</a></li>
+  <li><a href="#users">Backup/restauration des utilisateurs</a></li>
+  <li><a href="#users">Backup/restauration des param&egrave;tres de configuration</a></li>
+</ul>
+<p align="center"><a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a></p>
+<p><span style="font-weight: bold;">Il est toujours prudent de r&eacute;aliser 
+  r&eacute;guli&egrave;rement une copie de sauvegarde de l'ensemble de la base 
+  &nbsp;de donn&eacute;es</span> afin de pouvoir faire face &agrave; un incident 
+  qu'il soit occasionn&eacute; par nous-m&ecirc;me (manipulation incorrecte au 
+  travers de PhpMyAdmin, m&eacute;prise lors de la suppression de donn&eacute;es,...) 
+  ou qu'il soit imputable &agrave; l'h&eacute;bergement (crash sur le serveur, 
+  suppression du service, ...). Dans ce dernier cas, l'h&eacute;bergeur doit en 
+  principe restaurer les fichiers et les bases de donn&eacute;es dans l'&eacute;tat 
+  avant incident ... mais cela n'est pas toujours le cas ... et ce d'autant plus 
+  si le co&ucirc;t de l'h&eacute;bergement est tr&egrave;s faible. <br />
+  De plus, le backup permettra facilement de transf&eacute;rer une base de donn&eacute;es 
+  d'un h&eacute;bergement vers une autre.<br />
+  <br />
+  <strong>Malheureusement, le backup n'est pas toujours facile &agrave; r&eacute;aliser 
+  sur les grandes bases de donn&eacute;es car il manipule de grandes quantit&eacute;s 
+  de donn&eacute;es et demande donc des temps de traitement qui d&eacute;passent 
+  de beaucoup les 30 secondes g&eacute;n&eacute;ralement allou&eacute;es par la 
+  plupart des serveurs. De plus, &agrave; la restauration des donn&eacute;es, 
+  de nombreux h&eacute;bergements limitent la taille des fichiers t&eacute;l&eacute;chargeables 
+  (souvent &agrave; 2Mb).</strong></p>
+<p>Ces deux limitations compliquent d&egrave;s lors la r&eacute;alisation des 
+  copies de sauvegarde et des restaurations. Pour y faire face, <strong>Expoactes 
+  propose un m&eacute;canisme qui va d&eacute;couper le backup en une s&eacute;rie 
+  de fichiers de la taille autoris&eacute;e (2Mb en g&eacute;n&eacute;ral) en 
+  veillant &eacute;galement &agrave; ne pas outrepasser la limite de temps allou&eacute;e</strong>. 
+  Pour automatiser l'op&eacute;ration, Expoactes fait appel au m&eacute;canisme 
+  de rechargement automatique des pages. De cette fa&ccedil;on, d&egrave;s que 
+  le backup est lanc&eacute;, il suffit de laisser le logiciel cr&eacute;er tour 
+  &agrave; tour les fichiers jusqu'&agrave; ce qu'il indique que le backup est 
+  termin&eacute;. Si pour une raison o&ugrave; l'autre votre navigateur ne recharge 
+  pas automatiquement la page, il suffit de cliquer sur le lien ad hoc qui a le 
+  m&ecirc;me effet.</p>
+<p>Pour donner un ordre de grandeur, un ensemble de 100.000 actes sera ainsi d&eacute;compos&eacute; 
+  en une dizaine de fichiers. </p>
+<p><strong>La restauration est &agrave; pr&eacute;sent automatis&eacute;e selon 
+  le m&ecirc;me principe</strong> mais avec la particularit&eacute; que la restauration 
+  d'un seul fichier peut elle-m&ecirc;me &ecirc;tre d&eacute;coup&eacute;e en 
+  plusieurs phases successives. En effet, la restauration est une t&acirc;che 
+  plus complexe que la sauvegarde car le serveur doit toujours v&eacute;rifier 
+  si la donn&eacute;e n'est pas d&eacute;j&agrave; pr&eacute;sente avant de l'ajouter 
+  et ensuite, il doit &eacute;galement ins&eacute;rer les donn&eacute;es ad&eacute;quates 
+  dans chacun des index qui sont g&eacute;r&eacute;s pour acc&eacute;l&eacute;rer 
+  les recherches.</p>
+<h3><a name="maint"></a>Mode MAINTENANCE</h3>
+<p>Pour &ecirc;tre certain de prendre une copie coh&eacute;rente de la base lors 
+  du backup, il vaut mieux que personne d'utilise la base pendant ce moment l&agrave;. 
+  A cette fin, il est possible de basculer la base en mode maintenance. De cette 
+  mani&egrave;re, seul l'administrateur peut encore utiliser le site lorsque le 
+  mode MAINTENANCE est activ&eacute;. Tous les autres visiteurs voient un &eacute;cran 
+  de login avec le message &quot;<strong>Erreur : Le syst&egrave;me est en cours 
+  de mise &agrave; jour. Merci de revenir plus tard.</strong>&quot; qui n'est 
+  franchissable qu'avec le niveau 9. </p>
+<p>Pour basculer entre le mode NORMAL et le mode MAINTENANCE, il suffit de cliquer 
+  sur le lien ad hoc dans la page <strong>Administrer le logiciel &gt; Etat serveur.</strong></p>
+<p>Cette page <strong>Etat serveur</strong> donne aussi quelques indications sur 
+  l'&eacute;tat du serveur MySQL de l'h&eacute;bergement. Il faut bien entendu 
+  garder &agrave; l'esprit que le nombre de requ&ecirc;tes par seconde concerne 
+  toutes les bases h&eacute;berg&eacute;es sur ce serveur et pas seulement la 
+  v&ocirc;tre. Il n'est donc pas anormal de trouver un nombre de plusieurs centaines 
+  de requ&ecirc;tes par seconde, m&ecirc;me si cette valeur d&eacute;note un serveur 
+  qui est tout de m&ecirc;me assez charg&eacute;.</p>
+<h3><a name="data"></a>Backup/restauration des donn&eacute;es (actes) </h3>
+<h4>Localisation des fichiers de backup</h4>
+<p>Pour acc&eacute;l&eacute;rer la r&eacute;alisation des backups, les fichiers 
+  g&eacute;n&eacute;r&eacute;s sont automatiquement cr&eacute;&eacute;s dans le 
+  r&eacute;pertoire "actes/<span style="font-weight: bold;">_backup</span>" du 
+  serveur web. Ces fichiers, au format texte, sont des variantes l&eacute;g&egrave;rement 
+  modifi&eacute;es des fichies d'export NIMEGUE mais ne sont pas directement compatibles 
+  avec ceux-ci. <strong>Pour bien les distinguer ils recoivent l'extension &quot;.bea&quot;</strong> 
+  pour &quot;Backup ExpoActes&quot;. Pour les restaurations les fichiers doivent 
+  aussi se trouver dans ce r&eacute;pertoire pour pouvoir &ecirc;tre utilis&eacute;s.</p>
+<p>Il est tr&egrave;s important de prot&eacute;ger l'acc&egrave;s &agrave; ce 
+  r&eacute;pertoire de backup car il contient tout votre travail ! C'est pour 
+  cela que le r&eacute;pertoire "actes/<span style="font-weight: bold;">_backup</span>" 
+  contient aussi un fichier "<span style="font-weight: bold;">.htaccess</span>" 
+  qui indique au serveur Apache qu'il doit interdire l'acc&egrave;s via HTTP &agrave; 
+  tous les fichiers de ce r&eacute;pertoire. Malheureusement, l'efficacit&eacute; 
+  de ce fichier ".htaccess" d&eacute;pend de la configuration du serveur et il 
+  faut donc v&eacute;rifier que l'acc&egrave;s au fichier de backup est bien prot&eacute;g&eacute;. 
+  <br />
+  <br />
+  De toutes fa&ccedil;ons, <span style="font-weight: bold;">pour que la sauvegarde 
+  soit vraiment &nbsp;efficace, il est important de transf&eacute;rer les fichiers 
+  de backup vers votre propre ordinateur</span>. Pour cela, vous devez utiliser 
+  votre programme FTP. De cette fa&ccedil;on, en cas d'incident vous disposez 
+  d'une copie compl&egrave;te des donn&eacute;es. &nbsp;De plus, pour ne pas encombrer 
+  votre espace web et &eacute;ventuellement pour &ecirc;tre assur&eacute; que 
+  personne ne pourra charger ind&ucirc;ment vos fichiers backup, il est prudent 
+  de les supprimer sur le serveur apr&egrave;s les avoir transf&eacute;r&eacute;s 
+  sur votre PC. </p>
+<p>Avant toute restauration de donn&eacute;es, il convient &eacute;videmment de 
+  retransf&eacute;rer vos fichier sauvegard&eacute;s dans le r&eacute;pertoire 
+  "actes/<span style="font-weight: bold;">_backup</span>". </p>
+<p>NB : Le backup et la restauration ont pour objectif de garantir la s&eacute;curit&eacute; 
+  d'une base de donn&eacute;e d&eacute;termin&eacute;e. Il ne faut pas utiliser 
+  la restauration pour &quot;ajouter&quot; des donn&eacute;es d'une base dans 
+  une autre. Par contre, on peut sans crainte restaurer une base sur des donn&eacute;es 
+  qui existent d&eacute;j&agrave;. En effet, le logiciel se base sur l'identifiant 
+  inerne des actes et ne restaure que les donn&eacute;es qui ne sont plus pr&eacute;sentes. 
+  Il est ainsi par exemple possible de restaurer tous les actes d'une commune 
+  qui auraient &eacute;t&eacute; supprim&eacute;s par erreur.</p>
+<h4>Effectuer une copie de sauvegarde (backup)</h4>
+<p>La marche &agrave; suivre est donc la suivante : </p>
+<ul>
+  <li>Acc&eacute;der au menu &quot;<strong>Administrer les donn&eacute;es</strong>&quot; 
+    (qui n'est accessible que si vous avez le niveau d'acc&egrave;s 8 ou 9);</li>
+  <li>Cliquer sur le lien &quot;<strong>Backup</strong>&quot; </li>
+  <li>S&eacute;lectionner alors le type des actes dont on veut faire la backup. 
+    <strong>Ceci indique que pour effectuer le backup de tous les actes, il faut 
+    demander successivement le backup des 4 types d'actes.</strong></li>
+  <li>Le programme propose automatiquement la taille de fichier autoris&eacute;e 
+    sur ce serveur. Si l'on souhaite des fichiers plus petits ou plus gros, il 
+    suffit de modifier cette taille exprim&eacute;e en m&eacute;gaoctets. Il faut 
+    toutefois savoir que le temps d'ex&eacute;cution limitera aussi la taille 
+    si n&eacute;cessaire. </li>
+  <li>Presser le bouton &quot;&gt;&gt; EXPORTER &gt;&gt;&quot;</li>
+  <li>Le backup commence alors en indiquant le nom du fichier qui est cr&eacute;&eacute;.<br />
+    <br />
+    <img src="scr_backup_1.png" border="1" /> <br />
+  </li>
+  <li>Ce nom est compos&eacute; de la date du backup dans l'ordre ann&eacute;e-mois-jour 
+    suivie du code du type des actes (N, M, D ou V pour &quot;Divers&quot;) et 
+    enfin d'un num&eacute;ro indiquant l'ordre du fichier dans la s&eacute;quence. 
+  </li>
+  <li>Si la taille des donn&eacute;es n&eacute;cessite plusieurs fichiers, le 
+    premier est cl&ocirc;tur&eacute; juste avant qu'il ne d&eacute;passe la taille 
+    maximale et un lien est propos&eacute; pour pourvoir relancer le backup &agrave; 
+    partir de ce point.</li>
+  <li>Il suffit donc de presser successivent ce lien pour conduire la copie &agrave; 
+    son terme. <br />
+    <br />
+    <img src="scr_backup_2.png" border="1" /><br />
+  </li>
+  <li>Il faut bien entendu r&eacute;p&eacute;ter l'op&eacute;ration avec les autres 
+    types d'actes pr&eacute;sents.</li>
+  <li>Il est important pour la s&eacute;curisation des donn&eacute;es de r&eacute;cup&eacute;rer 
+    les fichiers ainsi cr&eacute;&eacute;s avec votre logiciel FTP et de les supprimer 
+    ensuite du r&eacute;pertoire _backup.<br />
+  </li>
+</ul>
+<h4>Restauration des donn&eacute;es </h4>
+<p>En cas de n&eacute;cessit&eacute; ou pour installer une copie locale des donn&eacute;es 
+  (par exemple avec une base EasyPHP) il faut restaurer les donn&eacute;es qui 
+  ont &eacute;t&eacute; sauvegard&eacute;es. </p>
+<p>Pour cela, il convient de proc&eacute;der comme suit :</p>
+<ul>
+  <li>Copier d'abord l'ensemble des fichiers constituant le backup &agrave; restaurer 
+    dans le r&eacute;pertoire &quot;_backup&quot; avec un utilitaire FTP.</li>
+  <li>Acc&eacute;der au menu &quot;<strong>Administrer les donn&eacute;es</strong>&quot; 
+    (qui n'est accessible que si vous avez le niveau d'acc&egrave;s 8 ou 9);</li>
+  <li>Cliquer sur le lien &quot;<strong>Restauration</strong>&quot; ;</li>
+  <li>S&eacute;lectionner le nom du premier fichier &agrave; restaurer dans la 
+    liste d&eacute;roulante (le nom doit se terminer par &quot;.001.bea&quot;);</li>
+  <li>S&eacute;lectionner &eacute;galement le type des actes &agrave; restaurer;</li>
+  <li>Presser le bouton &quot;&gt;&gt; CHARGER &gt;&gt;&quot;;<br />
+    <br />
+  <img src="restauration_1.png" width="724" height="261" border="1" /><br />
+  </li>
+  <li>Remarque : Il est &agrave; pr&eacute;sent possible d'ajouter TOUTES les donn&eacute;es d'un backup &agrave; une autre base de donn&eacute;es en cochant la case &quot;AJOUTER ...&quot;. Dans ce cas, AUCUNE v&eacute;rification n'est effectu&eacute;e lors du transfert. Les actes migr&eacute;s re&ccedil;oivent  un nouvel identifiant (xid) dans la base de destination afin de s'ajouter &agrave; cette base et non de remplacer les actes ayant le m&ecirc;me xid comme dans une restauration normale. Il faut donc faire cette op&eacute;ration avec pr&eacute;caution et il est donc judicieux de r&eacute;aliser pr&eacute;alablement un backup de la base de destination. En cas de probl&egrave;me, il serait ainsi possible de retrouver la base dans son &eacute;tat pr&eacute;alable &agrave; la migration. <br />
+  </li>
+  <li>Le chargement et la restauration commencent alors. Si le fichier est volumineux, 
+    il est normal que cette op&eacute;ration prenne du temps et puisse exc&eacute;der 
+    les 30 secondes normalement allou&eacute;e au processus. En effet, lors de 
+    la restauration, Expoacte v&eacute;rifie que chaque ligne &agrave; ajouter 
+    n'est pas d&eacute;j&agrave; pr&eacute;sente dans la base de donn&eacute;es. 
+    Une ligne n'est donc ajout&eacute;e que si elle &eacute;tait absente. Aussi, 
+    il n'y a aucun risque a restaurer plusieurs fois le m&ecirc;me fichier : les 
+    actes d&eacute;j&agrave; pr&eacute;sent sont simplement ignor&eacute;s.<br />
+    <br />
+    <img src="restauration_2.png" width="716" height="230" border="1" /><br />
+  </li>
+  <li>Si le temps allou&eacute; est d&eacute;pass&eacute;, un message indique 
+    l'avancement du travail et il suffit de cliquer sur le lien pour poursuivre 
+    le travail ou de simplement attendre que la page se recherche d'elle-m&ecirc;me 
+    (10 secondes de d&eacute;lai). De cette mani&egrave;re, la restauration se 
+    poursuit jusqu'&agrave; ce que le fichier en cours soit compl&egrave;tement 
+    trait&eacute;.</li>
+  <li>Si le backup comprend plusieurs fichiers, vous &ecirc;tes alors invit&eacute; 
+    &agrave; charger les fichiers suivants. Ici aussi, on peut cliquer directement 
+    sur le lien ad hoc ou laisser le recharger la page et poursuivre automatiquement.<br />
+    <br />
+    <img src="restauration_3.png" width="718" height="179" border="1" /><br />
+  </li>
+  <li>Lorsque tous les fichiers ont &eacute;t&eacute; charg&eacute;s, le syst&egrave;me 
+    tente d'effectuer un recalcul des statistiques relatives au type d'acte consid&eacute;r&eacute;. 
+    Si le temps disponible pour cela n'est pas suffisant, un lien ad hoc est propos&eacute; 
+    qu'il suffit d'activer.<br />
+    <br />
+    <img src="restauration_4.png" width="713" height="370" border="1" /> </li>
+</ul>
+<p>Remarques : </p>
+<ol>
+  <li>Il est &eacute;vident que la restauration ne peut pas &ecirc;tre utilis&eacute;es 
+    pour assembler plusieurs bases de donn&eacute;es car la restauration se base 
+    sur le n&deg; identifiant dans la base de donn&eacute;es. </li>
+  <li>La restauration restitue toutes les zones et en particulier celles indiquant 
+    le code du d&eacute;posant, la date de d&eacute;p&ocirc;t et la date de derni&egrave;re 
+    modification. Il est donc important que la base des utilisateurs soit&eacute; 
+    &eacute;galement bien &agrave; jour sinon le nom du d&eacute;posant ne pourra 
+    appara&icirc;tre.</li>
+</ol>
+<h3><a name="users"></a>Backup/restauration des utilisateurs</h3>
+<p>Pour r&eacute;aliser le backup 
+  ou la restauration des fiches des utilisateurs, <strong>il suffit d'exporter et des r&eacute;importer les fiches d'utilisateurs. </strong>Pour enregistrer tous les utilisateurs en un seul fichier, il suffit de s&eacute;lectionner le mode &quot;Backup&quot; dans la liste de s&eacute;lection du niveau des utilsateurs &agrave; exporter. </p>
+<p>Le fichier est automatiquement t&eacute;l&eacute;charg&eacute; et il convient de le ranger en lieu s&ucirc;r.</p>
+<h3><a name="config"></a>Backup/restauration des param&egrave;tres de configuration </h3>
+<p>Il est aussi important de sauvegarder les param&egrave;tres du logiciel ainsi que toutes les personnalisations apport&eacute;es dans la d&eacute;finition des &eacute;tiquettes des donn&eacute;es. Pour r&eacute;aliser ce backup, il faut s&eacute;lectionner &quot;Administrer le logiciel&quot; puis dans le menu &quot;Param&eacute;trage&quot; s&eacute;lectionner &quot;Backup&quot; et enfin cliquer sur &quot;Sauvegarder&quot;. L'ensemble des param&egrave;tres et des &eacute;tiquettes sont enregistr&eacute;s dans un fichier XML qui est automatiquement t&eacute;l&eacute;charg&eacute;. Il convient de le ranger en lieu s&ucirc;r.</p>
+<p>Pour restaurer les param&egrave;tres, il faut aller dans le m&ecirc;me menu puis identifier le fichier &agrave; restaurer et cliquer sur &quot;&gt;&gt; CHARGER &gt;&gt;&quot;.</p>
+<p align="center"><br />
+  <br />
+  <a href="aide.html">Retour &agrave; la liste des fichiers d'aide</a></p>
+</body>
+</html>
