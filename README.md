@@ -2,7 +2,7 @@
 
 Dépot clone de l'application expoactes avec rectification de divers bugs et erreurs.
 
-La dernière version publiée est l'originale expoactes-v3.2.3-rc5
+La dernière version publiée est l'originale expoactes-v3.2.4-final
 
 ## Info
 
