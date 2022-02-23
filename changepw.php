@@ -25,40 +25,42 @@ navigation($root, 2, 'A', "Changement de mot de passe");
 
 ?>
 <script type="text/javascript">
-function pwProtect() {
-    form = document.forms["eaform"];
-    if (form.oldpassw.value == "") {
-        alert("Erreur : L'ancien mot de passe est vide !");
-        return false;
+    function pwProtect() {
+        form = document.forms["eaform"];
+        if (form.oldpassw.value == "") {
+            alert("Erreur : L'ancien mot de passe est vide !");
+            return false;
+        }
+        if (form.passw.value == "") {
+            alert("Erreur : Le nouveau mot de passe est vide !");
+            return false;
+        }
+        if (form.passw.value.length < 6) {
+            alert("Erreur : Le nouveau mot de passe est trop court (min 6 caractères) !");
+            return false;
+        }
+        if (!(form.passw.value == form.passwverif.value)) {
+            alert("Erreur : Les nouveaux mots de passes ne sont pas identiques !");
+            return false;
+        }
+        if (sha1_vm_test()) { // si le codage marche alors on l'utilise
+            form.codedpass.value = hex_sha1(form.passw.value);
+            form.codedoldpass.value = hex_sha1(form.oldpassw.value);
+            form.passw.value = "";
+            form.oldpassw.value = "";
+            form.passwverif.value = "";
+            form.iscoded.value = "Y";
+        }
+        return true;
     }
-    if (form.passw.value == "") {
-        alert("Erreur : Le nouveau mot de passe est vide !");
-        return false;
+
+    function seetext(x) {
+        x.type = 'text';
     }
-    if (form.passw.value.length < 6) {
-        alert("Erreur : Le nouveau mot de passe est trop court (min 6 caractères) !");
-        return false;
+
+    function seeasterisk(x) {
+        x.type = 'password';
     }
-    if (!(form.passw.value == form.passwverif.value)) {
-        alert("Erreur : Les nouveaux mots de passes ne sont pas identiques !");
-        return false;
-    }
-    if (sha1_vm_test()) { // si le codage marche alors on l'utilise
-        form.codedpass.value = hex_sha1(form.passw.value);
-        form.codedoldpass.value = hex_sha1(form.oldpassw.value);
-        form.passw.value = "";
-        form.oldpassw.value = "";
-        form.passwverif.value = "";
-        form.iscoded.value = "Y";
-    }
-    return true;
-}
-function seetext(x) {
-    x.type = 'text';
-}
-function seeasterisk(x){
-    x.type = 'password';
-}
 </script>
 <?php
 
@@ -98,7 +100,7 @@ if (getparam('action') == 'submitted') {
             msg('Les deux copies du nouveau MOT DE PASSE ne sont pas identiques');
             $ok = false;
         }
-        if (! (sans_quote(getparam('passw')))) {
+        if (!(sans_quote(getparam('passw')))) {
             msg('Vous ne pouvez pas mettre d\'apostrophe dans le MOT DE PASSE');
             $ok = false;
         }
@@ -116,7 +118,7 @@ if (getparam('action') == 'submitted') {
 
     if ($ok) {
         $missingargs = false;
-        $reqmaj = "UPDATE " . EA_UDB . "_user3 SET hashpass = '" . $codedpass . "' " . 
+        $reqmaj = "UPDATE " . EA_UDB . "_user3 SET hashpass = '" . $codedpass . "' " .
             " WHERE id = " . $userid . ";";
 
         //echo "<p>" . $reqmaj . "</p>";
@@ -134,7 +136,7 @@ if (getparam('action') == 'submitted') {
 
 //Si pas tout les arguments nécessaire, on affiche le formulaire
 if ($missingargs) {
-    echo<<<AAA
+    echo <<<AAA
      <h2>Modification de votre mot de passe</h2>
      <form method="post" name="eaform" action="" onsubmit="return  pwProtect();">
      <table cellspacing="0" cellpadding="1" border="0" summary="Formulaire">
@@ -184,7 +186,7 @@ if ($missingargs) {
      </table>
      </form>
 
-    AAA;
+AAA;
 } else {
     $mes = 'Vous DEVEZ vous reconnecter avec le nouveau mot de passe.';
     echo '<p align="center"><a href="login.php?cas=4">' . $mes . '</a></p>';
