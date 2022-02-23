@@ -1,0 +1,26 @@
+Processus d'installation et de mise à jour
+(c) A Delacharlerie, 2005-2015
+
+Le fichier index.php principal détecte lui-même si une installation ou une mise à jour doit être effectuée :
+Si le nombre de tables est inférieur à 7, il faut installer la base de données (install/install.php)
+La base de données contient notamment une table ACT_PARMAS qui mémorise les paramètres locaux plus quelques paramètres cachés :
+	EA_VERSION : contient le n° de version actuel qui est affiché en bas de page
+	EA_MAINTENANCE : commutateur qui passe à 1 si on veut bloquer la base ne mode maintenance 
+	EA_LSTBACKUP ; liste des dates des derniers backups réalisés dans le programme.
+	  
+Sinon, si la version est inférieure à 3, il faut adapter la base de données à la version 3 (install/update3.php)
+soit globalement remplacer les fichiers ACT_NAI, ACT_MAR, ACT_DEC, ACT_DIV et ACT_USER 
+par les version ACT_NAI3, ACT_MAR3, ACT_DEC3, ACT_DIV3 et ACT_USER3 qui ont été sensiblement enrichies.
+
+Sinon, si la version est simplement inférieure à celle annoncée dans le fichier actutils.php (EA_VERSION_PRG), 
+alors il y a manifestement une mise à jour à effectuer qui sera pilotée via install/update.php.
+Cette mise à jour s'effectue en deux phases.
+Phase 1 : mise à jour de la base de données : 
+	Le fichier update.sql contient une liste d'instructions SQL qui sont exécutées pour autant que la condition ad hoc soit vérifiée
+Phase 2 : mise à jour de la liste des paramètres :	
+	Le fichier act_params.xml contient la description des paramètres locaux avec la valeur par défaut. 
+	Si un paramètre (nouveau) n'est pas dans la base, il est ajouté avec sa valeur par défaut. 
+	Si par contre il est déjà présent mais que sa description a changé, cette description est adaptée 
+	mais sans toucher à la valeur personnalisée de la base locale ! 
+	
+	

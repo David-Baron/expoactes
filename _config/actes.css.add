@@ -1,0 +1,165 @@
+// Eléments à ajouter à la feuille de style
+----
+.rech_zone
+ .rech_zone { 
+    display: block;
+    width: 100%;
+    text-align: left;
+    }
+----
+.rech_titre
+ .rech_titre { 
+    border: 1px dotted rgb(153, 51, 0);
+	padding: 5px 10px;
+    background-color: #FFF68F;
+    color: rgb(102, 102, 204);
+    font-weight: bold;
+    }
+----
+.critrech
+ .critrech {
+    }
+----
+.critrech ul
+ .critrech ul {
+    list-style : none;
+    }
+----
+dt 
+  dt{ font-weight: bold;
+    padding-bottom: 6px;
+    padding-top: 12px;
+    }
+----
+.fich0
+ .fich0 { background-color: rgb(255, 246, 143);
+    text-align: left;
+    padding: 1px 5px 1px 5px;
+    }
+----
+.fich1
+ .fich1 { background-color: rgb(255, 255, 204);
+   text-align: left;
+   padding: 1px 5px 1px 5px;
+   }
+----
+.fich2
+ .fich2 { background-color: rgb(255, 204, 102);
+   text-align: left;
+   padding: 1px 5px 1px 5px;
+   }
+----
+.certificats
+ .certificats { 
+   display: block;
+   float: left;
+   margin-bottom: 20px;
+   width: 100%;
+   text-align: center;
+   }
+----
+.pied_page2
+ .pied_page2 {
+    border: 1px dotted rgb(153, 51, 0);
+    margin: 10px 0px 5px;
+    padding: 5px 10px;
+    background-color: rgb(255, 255, 204);
+    display: block;
+    font-size: 9px;
+    text-align: center;
+    clear: both;   
+    float:left;
+    width:98%;
+    }
+----
+.pied_page2 a
+  .pied_page2 a { 
+    color: rgb(0, 0, 255);
+    }
+----
+#totop2
+  #totop2 {
+    width:33%;
+    float: left;
+    }
+----
+#texte_pied2
+  #texte_pied2 {
+    width:32%;
+    float:left;
+    text-align:center;
+    }
+----
+#copyright2
+  #copyright2 {
+    width:33%;
+    float: left;
+    text-align:right;
+    }
+----
+.totop2
+ .totop2 { 
+     font-size: 9px;
+     text-align: left;
+     }
+----
+.texte_pied2
+ .texte_pied2 {
+    text-align: center;
+    font-size: 9px;
+     }
+----
+.copyright2
+ .copyright2 { 
+     font-size: 9px;
+     text-align: right;
+     }
+----
+.pub_menu
+ .pub_menu { 
+    display: block;
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    }
+----
+.histo
+ .histo {
+     position: relative; /* IE hack */
+     width: 350px;
+     border: 0px solid rgb(255, 204, 102);
+     padding: 0px;
+     margin: 0 auto;
+}
+----
+.histo .barre
+ .histo .barre {
+     display: block;
+     position: relative;
+     background:rgb(255, 204, 102);
+     text-align: center;
+     color: #333;
+     height: 1em;
+     line-height: 1em;
+}
+----
+.graphe
+ .graphe {
+     position: relative; /* IE hack */
+     width: 400px;
+     border: 1px solid rgb(255, 204, 102);
+     padding: 2px;
+     margin: 0 auto;
+}
+----
+.graphe .barre
+ .graphe .barre {
+     display: block;
+     position: relative;
+     background:rgb(255, 204, 102);
+     text-align: center;
+     color: #333;
+     height: 2em;
+     line-height: 2em;
+}

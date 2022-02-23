@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  lang="fr-be"
+  xml:lang="fr-be"
+  xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>Principe de la recherche de Levenshtein</TITLE>
+	<META NAME="AUTHOR" CONTENT="jean louis cazor">
+	<META NAME="CREATED" CONTENT="20061105;13460455">
+	<link media="screen" rel="stylesheet" href="../../_config/actes.css" type="text/css">
+</HEAD>
+<BODY LANG="fr-FR" DIR="LTR">
+<h2 ALIGN=CENTER>Principes de la recherche de Levenshtein.</h2>
+<P>L'algorythme<B> de Levenshtein</B> permet de mesurer la similarit&eacute; entre 
+  deux chaines de caract&egrave;res. Son r&eacute;sultat est &eacute;gal au nombre 
+  minimal de caract&egrave;res qu'il faut <B>supprimer</B>, <B>ins&eacute;rer</B>, 
+  ou <B>remplacer</B> pour passer d'une cha&icirc;ne &agrave; l'autre. </P>
+<P>Dans le cadre d'une recherche sur une base de donn&eacute;es de nom, cette 
+  recherche s'av&egrave;re particuli&egrave;rement utile pour s'affranchir des 
+  fautes de transcriptions r&eacute;alis&eacute;es aussi bien par les personnes 
+  qui ont r&eacute;dig&eacute; l'acte que par les personnes qui l'ont d&eacute;crypt&eacute;.</P>
+<P>Elle permet aussi de retrouver des noms dont la variablit&eacute; au fil du 
+  temps est importante et impr&eacute;visible.</P>
+<P>Prenons un exemple :</P>
+<ul>
+  <li>DURAND peut avoir &eacute;t&eacute; &eacute;crit : DURAND, DUREND, DUREN, 
+    DURAN, ... au 18 &egrave;me si&egrave;cle,</li>
+  <li>Les d&eacute;crypteurs peuvent aussi avoir fait une faute de saisie et notre 
+    DURAND peut &ecirc;tre un RURAND ou un DUBAND ou tout autre variante.</li>
+</ul>
+<P>Lors d'une recherche classique, si l'on tape DURAND on ne trouvera
+qu'une occurrence dans la liste des 6 noms.</P>
+<P>On peut am&eacute;liorer la chose en ne recherchant qu'une partie
+du nom : URAN nous retrouvera 3 noms de la liste, plus d'autre
+contenant ces 4 lettres : BOURAN, FAURAN , URANUS  etc..</P>
+<P>On peut aussi chercher sur le d&eacute;but du nom : DUR nous
+donneras 4 noms plus tous les DURAS, DURIVE etc..</P>
+<P>Avec la m&eacute;thode de Levenshtein, on va rechercher les noms dans la base 
+  qui varient de une, deux diff&eacute;rences ou plus avec notre nom.</P>
+<P>Reprenons notre DURAND : DUREND pr&eacute;sente une diff&eacute;rence,
+il en est de m&ecirc;me pour DURAN, RURAND et DUBAND.</P>
+<P>                                              DUREN pr&eacute;sente
+deux diff&eacute;rences</P>
+<P>Donc si nous faisons une recherche avec deux diff&eacute;rence, le
+programme va aller piocher dans la base de donn&eacute;es tous les
+noms qui ressemblent &agrave; deux diff&eacute;rences pr&egrave;s &agrave;
+notre DURAND : nous retrouverons bien nos 6 noms.</P>
+<P>Certains pourront dire que l'on peut faire une recherche sur la
+prononciation. Dans le cas ci dessus elle marcherait probablement. Le
+probl&egrave;me est que les recherches sur les prononciations sont
+bas&eacute;es dans le meilleur des cas sur le Fran&ccedil;ais
+moderne, souvent sur l'anglosaxon et jamais sur les dialectes
+pratiqu&eacute;s dans les campagnes juqu'au 19&egrave;me si&egrave;cle.
+En outre elles ne trouveront jamais les fautes de saisie : notre
+RURAND ne sera jamais trouv&eacute;.</P>
+<P>J'esp&egrave;re vous avoir convaincu sur l'int&ecirc;ret de ce
+type de recherche.</P>
+</BODY>
+</HTML>

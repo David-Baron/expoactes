@@ -1,0 +1,5 @@
+// Eléments à ajouter à la liste des paramètres
+// Laisser une ligne vide en bas 
+//----
+//EA_DB
+//define ("EA_DB","act");  // Préfixe des noms de tables

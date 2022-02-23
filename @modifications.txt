@@ -1,0 +1,82 @@
+Liste des modifications à partir de 3.1.2
+
+Merci de pointer ici les changements réalisés et les conséquences pour les utilisateurs
+
+
+2014 : Application des correctifs pour PHP 5.4 créés par Emmanuel Lethrosne (Merci à lui pour ce travail !)
+La majorité des fichiers sont modifiés pour PHP 5.4, la modification 
+consiste à simplement indiquer le type de caractère dans les appels
+aux commandes htmlspecialchars, htmlentities, html_entities_decode, 
+htmlspecialchars_decode (il n'y en pas de cette dernière référence).
+-  chercher.php
+-  chercherlevenshtein.php
+-  form_contact.php
+-  rss.php
+-  admin/chargecsv.php
+-  admin/corr_grp_acte.php
+-  admin/edit_acte.php
+-  admin/exporte.php
+-  admin/gestgeoloc.php
+-  admin/gest_labels.php
+-  admin/gest_params.php
+-  admin/supprime.php
+-  tools/actutils.php
+-  tools/function.php
+-  tools/statannees.inc.php
+-  tools/tabbans.inc.php
+-  tools/tabdeces.inc.php
+-  tools/tabmari.inc.php
+-  tools/tabnaiss.inc.php
+-  install/instutils.php
+-  install/update3.php
+D'autres modifications reprennent simplement les correctifs ou améliorations
+donnés dans le WIKI :
+- chercherlevenshtein.php : problème IPV6
+- rss.php : Caractères spéciaux dans l'url
+- tools/tableau_index.php et tools/function.php : Eviter l'injonction SQL
+- admin/listusers.php  :  Ajout tri sur la colonne ID (corrigeant d'ailleurs une erreur mineure)
+Un autre petite modification dans tools/carto_index.php pour intégrer le port dans la référence url 
+aux images.
+La dernière concerne le replacement d'un code javascript à un meilleur endroit dans les fichiers :
+admin/ajout_1acte.php, admin/supprime.php, admin/exporte.php, admin/corr_grp_acte.php
+
+27/07/2015 : André Delacharlerie : Ajout de la gestion des iframes et de HTTPS pour les images d'actes (références à des actes  stockés sur OneDrive par exemple)
+	Modification de fonction.php
+	
+27/07/2015 : André Delacharlerie : Modification du niveau 5 en accès étendu aux actes sans limitation de nombre alors que le niveau 4 est éventuellement limité via la protection IP
+	Actions déplacées du niveau 5 au niveau 6 : 
+		liste des actes en mode gestion (admin/index.php)
+		exporter des données, (admin/exporte.php)
+		chargement d'actes NIMEGUE (admin/charge.php)
+		edition des actes (admin/etit_acte.php)
+		mise à jour des statistiques (admin/maj_sums.php)
+		permutation des comparants d'un acte de mariage ou divers (admin/permute.php)
+		suppression d'un acte isolé (admin/suppr_acte.php)
+		suppression d'une série d'actes (admin/supprime.php)
+	Changement de la liste des droits et des menus d'accès à le gestion (actutils.php)
+	
+08/08/2015 : André Delacharlerie : Ajout d'une boîte de dialogue demandant le consentement pour l'usage des cookies. 
+Cette boîte est légalement requise dès lors que le site utilise des cookies pour le suivi de trafic (typiquement avec 
+Google Analytics) ou des publicités. Il l'est aussi pour les boutons de réseaux sociaux (genre AddThis). 
+la solution employée se base sur les outils mis à disposition par le site https://silktide.com/tools/cookie-consent/
+Trois nouveaux paramètres ont été ajoutés pour permettre une adapation facile du texte affiché par la boîte de dialogue,
+le lien vers une page de compélment d'information et l'apprence de la boîte de dialogue.
+
+10/08/2015 : André Delacharlerie : Adapation de la procédure de chargement et d'export pour respecter le format ISO ou UTF-8 des fichiers
+- les fichiers NIMEGUES V2 et V3 (lu ou générés) sont et restent ISO-8859-1
+- les anciens backups (EA2 er EA3) sont aussi ISO-8859-1 et doivent etre lu comme tels
+- les nouveaux fichiers backup (EA32) sont UTF-8
+Les procédure d'exportation et de backup générent les fichiers dans le format voulu tandis que charge.php converti en UTF-8 sauf pour les nouveau backups
+Ajout du nom de la commune (8 premier car) dans le nom d'un backup ou FULL si complet 
+Adapataion aussi de chargecsv.php sur le même modèle. A priori les fichiers CSV issus de Excel sont tous en ISO, donc sont converti.
+
+14/08/2015 : Via Emmanuel Lethrosne, modification de la recherche levenstein :
+ - de la création des tables temporaires pour recherche levenstein pour adapation automatique du mode de collation (cree
+ - modifiation de la gestion des dates (chercherlevenstein.php)
+
+30/08/2015 : ADLC : nombreuses modifications dans la documentation pour refléter les modifs 
++ nombreuses corrections de détail pour adapter le programme à l'UTF-8
+
+
+	
+	

@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Valeurs par défaut des paramètres du logiciel Expoactes
+Dernière mise à jour : 28/07/2015
+Groupe Hidden = variables systèmes
+Groupe Deleted = parametres devenus sans objet
+-->
+
+<expoactes>
+  <!-- Table act_params -->
+    <act_params>
+        <param>EA_VERSION</param>
+        <groupe>Hidden</groupe>
+        <ordre>100</ordre>
+        <type>C</type>
+        <valeur>0.0.0</valeur>
+        <libelle>N° de version du logiciel</libelle>
+        <aide></aide>
+    </act_params>
+    <act_params>
+        <param>EA_MAINTENANCE</param>
+        <groupe>Hidden</groupe>
+        <ordre>100</ordre>
+        <type>N</type>
+        <valeur>0</valeur>
+        <libelle>Indique si l'accès est bloqué (1) pour maintenance</libelle>
+        <aide></aide>
+    </act_params>
+    <act_params>
+        <param>EA_LSTBACKUP</param>
+        <groupe>Hidden</groupe>
+        <ordre>100</ordre>
+        <type>C</type>
+        <valeur>N:0000-00-00;M:0000-00-00;D:0000-00-00;V:0000-00-00;U:0000-00-00;P:0000-00-00;</valeur>
+        <libelle>Mémorise la date des derniers backups complets réalisés N M D V U P</libelle>
+        <aide></aide>
+    </act_params>
+    <act_params>
+        <param>SITENAME</param>
+        <groupe>Affichage</groupe>
+        <ordre>100</ordre>
+        <type>C</type>
+        <valeur>Mon site principal</valeur>
+        <libelle>Nom du site principal</libelle>
+        <aide>Nom du site utiliés dans le cartouche de tête et dans les mails automatiques.</aide>
+    </act_params>
+    <act_params>
+        <param>SITE_URL</param>
+        <groupe>Affichage</groupe>
+        <ordre>110</ordre>
+        <type>C</type>
+        <valeur>/</valeur>
+        <libelle>URL du site principal</libelle>
+        <aide>URL relative ou absolue du site web principal (utilisée pour créer un lien de retour vers le site principal).</aide>
+    </act_params>
+    <act_params>
+        <param>MAX_PAGE</param>
+        <groupe>Affichage</groupe>
+        <ordre>200</ordre>
+        <type>N</type>
+        <valeur>100</valeur>
+        <libelle>Eléments affichés par page</libelle>
+        <aide>Nombre références d'actes affichés par pages dans les recherches</aide>
+    </act_params>
+    <act_params>
+        <param>MAX_PAGE_ADM</param>
+        <groupe>Affichage</groupe>
+        <ordre>210</ordre>
+        <type>N</type>
+        <valeur>100</valeur>
+        <libelle>Eléments par page (mode administration)</libelle>
+        <aide>Nombre références d'actes affichés par pages dans les recherches en mode administration</aide>
+    </act_params>
+    <act_params>
+        <param>MAX_PATR</param>
+        <groupe>Affichage</groupe>
+        <ordre>250</ordre>
+        <type>N</type>
+        <valeur>200</valeur>
+        <libelle>Basculement en mode alphabétique</libelle>
+        <aide>Nombre de patronymes à partir duquel on passe en mode de regroupement alphabétique ABC..Z</aide>
+    </act_params>
+    <act_params>
+        <param>MAX_PATR_ADM</param>
+        <groupe>Affichage</groupe>
+        <ordre>260</ordre>
+        <type>N</type>
+        <valeur>200</valeur>
+        <libelle>Mode alphabétique (mode administration)</libelle>
+        <aide>Nombre de patronymes à partir duquel on passe en mode de regroupement alphabétique ABC..Z (en mode administration)</aide>
+    </act_params>
+    <act_params>
+        <param>SHOW_DATES</param>
+        <groupe>Affichage</groupe>
+        <ordre>300</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Accueil : affichage des dates min. et max.</libelle>
+        <aide>Détermine si les dates minimales et maximales des actes d'une commune sont affichées dans la page d'accueil d'Expoactes.</aide>
+    </act_params>
+    <act_params>
+        <param>SHOW_DISTRIBUTION</param>
+        <groupe>Affichage</groupe>
+        <ordre>310</ordre>
+        <type>B</type>
+        <valeur>0</valeur>
+        <libelle>Accueil : lien vers la distribution des années</libelle>
+        <aide>Détermine si l'icône faisant le lien vers les statistiques des actes par années est présent dans le tableau public. NB : L'affichage de lien nécessite aussi que le paramètre précédent soit activé.</aide>
+    </act_params>
+    <act_params>
+        <param>SHOW_ALLTYPES</param>
+        <groupe>Affichage</groupe>
+        <ordre>320</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Accueil : afficher tous les types d'actes</libelle>
+        <aide>Détermine si la page d'accueil affiche le tableau résumé des quatre types d'actes (par défaut) ou d'un seul.</aide>
+    </act_params>
+    <act_params>
+        <param>SHOW_NULL</param>
+        <groupe>Deleted</groupe>
+        <ordre>510</ordre>
+        <type>B</type>
+        <valeur>0</valeur>
+        <libelle>Actes : afficher les zones non complétées</libelle>
+        <aide>Détermine si les zones vides sont affichées ou non dans les fiches détaillées des actes</aide>
+    </act_params>
+    <act_params>
+        <param>SHOW_DEPOSANT</param>
+        <groupe>Deleted</groupe>
+        <ordre>520</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Actes : afficher les noms des déposants</libelle>
+        <aide>Détermine si le nom de la personne ayant chargé les actes dans la base est affiché au bas du détail des actes.</aide>
+    </act_params>
+    <act_params>
+        <param>ANNEE_TABLE</param>
+        <groupe>Affichage</groupe>
+        <ordre>400</ordre>
+        <type>L</type>
+        <valeur>0</valeur>
+        <listval>0 - Toujours date détaillée;1 - Années si non connecté;2 - Années si non déposant;3 - Années dans tous les cas</listval>
+        <libelle>Tables : affichages des années seulement</libelle>
+        <aide>L'affichage des tables d'actes présente en principe la date complète des actes. Si vous souhaitez limiter cet affichage à l'année seulement pour les visiteurs non connectés ou les non déposants (niveau=4), il suffit de sélectionner la valeur appropriée.</aide>
+    </act_params>
+    <act_params>
+        <param>JPG_SI_LOGIN</param>
+        <groupe>Affichage</groupe>
+        <ordre>550</ordre>
+        <type>B</type>
+        <valeur>0</valeur>
+        <libelle>Actes : images seulement si login</libelle>
+        <aide>Lorsque cette case est cochée, le lien vers les images d'actes (zone "Libre") n'apparait que lorsque le visiteur est connecté; dans le cas contraire le texte "image privée" est affiché.</aide>
+    </act_params>
+    <act_params>
+        <param>AVERTISMT</param>
+        <groupe>Affichage</groupe>
+        <ordre>600</ordre>
+        <type>T</type>
+        <valeur></valeur>
+        <libelle>Texte d'avertissement</libelle>
+        <aide>Texte facultatif à afficher en tête de la première page au dessus de l'inventaire des communes.</aide>
+    </act_params>
+    <act_params>
+        <param>PIED_PAGE</param>
+        <groupe>Affichage</groupe>
+        <ordre>620</ordre>
+        <type>T</type>
+        <valeur></valeur>
+        <libelle>Pied de page</libelle>
+        <aide>Texte libre du pied de page : peut contenir un texte ou un script javascript (pour un compteur de visiteurs par exemple).</aide>
+    </act_params>
+    <act_params>
+        <param>PUB_ZONE_MENU</param>
+        <groupe>Affichage</groupe>
+        <ordre>720</ordre>
+        <type>T</type>
+        <valeur></valeur>
+        <libelle>Zone de pub sous le menu</libelle>
+        <aide>Il est possible de faire afficher sous le menu un texte quelconque tels qu'une publicité pour vos activités. Il peut aussi être utilisé pour afficher un cadre de publicités type "Google Adsens". Cette zone doit être complétée par du HTML valide. Le style .pub_menu peut être utilement créé dans la CSS.</aide>
+    </act_params>
+    <act_params>
+        <param>COOKIE_MESSAGE</param>
+        <groupe>Affichage</groupe>
+        <ordre>800</ordre>
+        <type>T</type>
+        <valeur>Les cookies nous permettent de faciliter la navigation et l'usage du site, de personnaliser le contenu et les annonces et d'analyser notre trafic. L'usage du site implique l'acceptation de ces cookies.</valeur>
+        <libelle>Message acceptation des cookies</libelle>
+        <aide>Ce message, affiché tous les ans, annonce l'utilisation des cookies sur le site. Vous pouvez personnaliser le message en fonction des services activés (google analytics, publicité, ...)</aide>
+    </act_params>
+    <act_params>
+        <param>COOKIE_URL_INFO</param>
+        <groupe>Affichage</groupe>
+        <ordre>810</ordre>
+        <type>T</type>
+        <valeur>http://www.allaboutcookies.org/fr/</valeur>
+        <libelle>URL d'une page sur les cookies</libelle>
+        <aide>Cette page permet au visiteur d'en savoir plus sur les cookies. Il peut s'agir d'une page interne au site ou externe.</aide>
+    </act_params>
+    <act_params>
+        <param>COOKIE_STYLE</param>
+        <groupe>Affichage</groupe>
+        <ordre>820</ordre>
+        <type>L</type>
+        <valeur>1</valeur>
+        <listval>1 - en haut, foncé;2 - en haut, clair ;3 - en bas, foncé;4 - en bas, clair ;5 - flottant, foncé;6 - flottant, clair</listval>
+        <libelle>Style du message cookies</libelle>
+        <aide>La boîte de message pour l'acceptation des cookies peut avoir un fond clair ou foncé et être positionnée en haut, en bas ou "flottante".</aide>
+    </act_params>
+    <act_params>
+        <param>FULL_URL</param>
+        <groupe>Système</groupe>
+        <ordre>200</ordre>
+        <type>B</type>
+        <valeur>0</valeur>
+        <libelle>Affichage des URL sans arguments</libelle>
+        <aide>Cette option permet d'intégrer les arguments d'une requête directement dans l'URL de façon à favoriser l'indexation de vos pages par les moteurs de recherche (Google p. ex). Attention, il est possible que cette option ne soit pas supportée par votre hébergeur.</aide>
+    </act_params>
+    <act_params>
+        <param>URL_JPG</param>
+        <groupe>Système</groupe>
+        <ordre>300</ordre>
+        <type>T</type>
+        <valeur>/img_act/</valeur>
+        <libelle>URLs des images d'actes</libelle>
+        <aide>Cette zone contient l'URL relative ou absolue désignant le répertoire où sont rangées les images des actes citées dans la rubrique LIBRE (fichers avec extension .JPG ou .TIF). Il est possible de faire appel à des images situées dans plusieurs sites différents en les prifixant par un code de votre choix. Dans ce cas, l'URL par défaut sera suivie d'un ; puis, pour chaque site d'image du code préfixe des images suivi > et ensuite de l'URL absolue du site. Exemple de contenu : /img_act/;CODE1>http://site1.fr/;CD2>http://site2.be/images/ </aide>
+    </act_params>
+    <act_params>
+        <param>LEVEL_JPG_PRIVE</param>
+        <groupe>Système</groupe>
+        <ordre>310</ordre>
+        <type>L</type>
+        <valeur>5</valeur>
+        <listval>4 - Actes;5 - Import Nimègue;6 - Import CSV;7 - Spécial;8 - Gestionnaire;9 - Administrateur</listval>
+        <libelle>Niveau d'accès aux images privées</libelle>
+        <aide>L'accès aux images d'actes dans les sous-répertoires PRIVE du repertoire ci-dessus n'est autorisé qu'aux visiteurs connectés avec le niveau précisé ici</aide>
+    </act_params>
+    <act_params>
+        <param>UPLOAD_DIR</param>
+        <groupe>Système</groupe>
+        <ordre>350</ordre>
+        <type>C</type>
+        <valeur>_upload</valeur>
+        <libelle>Répertoire de stockage temporaire des chargements</libelle>
+        <aide>Les fichiers CSV téléchargés pour l'ajout d'actes sont transférés tempoarairement dans le répertoire &quot;_upload&quot; situé lui-même dans le répertoire &quot;admin&quot;. Si l'hébergement oblige à utiliser un autre répertoire pour les téléchargement, il faut alors spécifier le chemin d'accès de ce répertoire avec ce paramètre</aide>
+    </act_params>
+    <act_params>
+        <param>LOGINTYPE</param>
+        <groupe>Deleted</groupe>
+        <ordre>400</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Login avec cookies et cryptage</libelle>
+        <aide>Spécifie le mode de login qui peut être soit avec usage de cookies (permet le crypatge et la mémorisation des codes d'accès et la déconnexion), soit le login via HTTP Header. Le mode via cookies doit être préféré chaque fois que c'est possible.</aide>
+    </act_params>
+    <act_params>
+        <param>META_DESCRIPTION</param>
+        <groupe>Système</groupe>
+        <ordre>510</ordre>
+        <type>T</type>
+        <valeur></valeur>
+        <libelle>Description du site (pour balise meta tags)</libelle>
+        <aide>Description de votre site pour les moteurs de recherche. Notez que cette description est automatiquement postfixée par le titre de la page généré par le logiciel.</aide>
+    </act_params>
+    <act_params>
+        <param>META_KEYWORDS</param>
+        <groupe>Système</groupe>
+        <ordre>520</ordre>
+        <type>T</type>
+        <valeur>généalogie, dépouillement, actes, tables, patronymes, BMS, NMD, commune, paroisse</valeur>
+        <libelle>Mots-clés du site (pour balise meta tags)</libelle>
+        <aide>Liste de mots clés pour les moteurs de recherche (à séparer par des virgules). Notez que cette description est automatiquement postfixée par le titre de la page généré par le logiciel.</aide>
+    </act_params>
+    <act_params>
+        <param>GOOGLE_ANA_CODE</param>
+        <groupe>Système</groupe>
+        <ordre>525</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>ID de suivi Web Google Analytics (exemple : UA-12345-1)</libelle>
+        <aide>Votre code identifiant pour le suivi automatiques des statistiques de votre site via Google Analytics : Voir http://www.google.com/analytics/fr-FR/index.html</aide>
+    </act_params>
+    <act_params>
+        <param>INCLUDE_HEADER</param>
+        <groupe>Système</groupe>
+        <ordre>530</ordre>
+        <type>T</type>
+        <valeur></valeur>
+        <libelle>Autres élements pour le header HTML</libelle>
+        <aide>Eléments à inclure dans le header de chaque page HTML.&lt;br /&gt;Attention : ces éléments doivent respecter strictement la syntaxe xHTML.</aide>
+   </act_params>
+   <act_params>
+        <param>SHOW_ACCES</param>
+        <groupe>Système</groupe>
+        <ordre>900</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Affichage des conditions d'accès privé</libelle>
+        <aide>Détermine si l'item &quot;Conditions d'accès&quot; apparaît dans le menu public.</aide>
+    </act_params>
+    <act_params>
+        <param>SHOW_RSS</param>
+        <groupe>Système</groupe>
+        <ordre>910</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Affichage de l'icône RSS</libelle>
+        <aide>Détermine si le lien avec icône du flux RSS est affiché dans le cadre des statistiques.</aide>
+    </act_params>
+    <act_params>
+        <param>MAX_EXEC_TIME</param>
+        <groupe>Système</groupe>
+        <ordre>920</ordre>
+        <type>N</type>
+        <valeur>30</valeur>
+        <libelle>Temps (en sec.) maximum de création d'une page</libelle>
+        <aide>Ce temps permet d'obliger ExpoActes à limiter le temps d'exécution des opérations de chargement, de backup, ... plus strictement que ce qui est détecté en se basant sur les paramètres PHP.</aide>
+    </act_params>
+    <act_params>
+        <param>MAX_SELECT_REC</param>
+        <groupe>Système</groupe>
+        <ordre>930</ordre>
+        <type>N</type>
+        <valeur>0</valeur>
+        <libelle>Nombre maximal d'actes sélectionnés par requête</libelle>
+        <aide>Ce nombre permet de limiter les requêtes lors des exports et backups lorsque le serveur MySQL rejette les requêtes contenant "trop" (selon lui) de lignes en résultat. &lt;br /&gt;Un valeur de 25000 est alors souvent judicieuse mais rend impossible les exports supérieurs à ce nombre de lignes. &lt;br /&gt;La valeur 0 annule cette limite.</aide>
+   </act_params>
+    <act_params>
+        <param>EA_ERROR</param>
+        <groupe>Système</groupe>
+        <ordre>990</ordre>
+        <type>L</type>
+        <valeur>0</valeur>
+        <listval>0 - Aucune erreur affichée (Normal);1 - Erreurs uniquement;2 - Erreurs + problèmes mineurs;3 - Toutes remarques;4 - Debugging MySQL</listval>
+        <libelle>Niveau d'affichage des erreurs et problèmes rencontrés</libelle>
+        <aide>Ce paramètre permet en cas de recherche de solution à un problème, de faire apparaître les erreurs détectées par PHP. En fonctionnement normal, toujours choisir 0.</aide>
+   </act_params>
+   <act_params>
+        <param>CHERCH_TS_TYP</param>
+        <groupe>Recherche</groupe>
+        <ordre>100</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Recherche par défaut sur tous types d'actes</libelle>
+        <aide>Cette option provoque l'affichage d'une liste de sélection du type des actes dans la boîte de recherche de la page d'accueil et n'autorise que la sélection d'un type d'acte à la fois dans les recherches avancées. Cette option permet donc d'alléger le travail du moteur de recherche.</aide>
+    </act_params>
+    <act_params>
+        <param>RECH_DEF_TYP</param>
+        <groupe>Recherche</groupe>
+        <ordre>150</ordre>
+        <type>L</type>
+        <valeur>1</valeur>
+        <listval>1 - Exacte;2 - au Début;3 - à la Fin;4 - est Compris dans;5 - Sonore</listval>
+        <libelle>Comparaison proposée par défaut</libelle>
+        <aide>Détermine le mode de comparaison qui est proposé par défaut pour la recherche avancée. Les deux premiers sont nettement plus économes en ressources serveur que les trois suivants.</aide>
+    </act_params>
+    <act_params>
+        <param>RECH_MIN</param>
+        <groupe>Recherche</groupe>
+        <ordre>200</ordre>
+        <type>N</type>
+        <valeur>3</valeur>
+        <libelle>Longueur minimale du mot recherché</libelle>
+        <aide>Détermine le nombre minimum de caractères sur lesquels doit porter une recherche.</aide>
+    </act_params>
+    <act_params>
+        <param>RECH_LEVENSHTEIN</param>
+        <groupe>Recherche</groupe>
+        <ordre>500</ordre>
+        <type>L</type>
+        <valeur>1</valeur>
+        <listval>0 - Désactivée;1 - Dans rechercher avancée;2 - Dans recherche rapide</listval>
+        <libelle>Activation de la recherche Levenshtein</libelle>
+        <aide>Ce paramètre indique si l'algorithme est actif et si c'est le cas, où doit apparaître le lien vers la page de recherche spécifique. Les valeurs possibles sont :  0 : la recherche levenshtein est totalement désactivée (et donc interdite à tout utilisateur); 1 : la recherche levenshtein est active et accessible via un lien situé dans la page de recherche avancée; 2 : la recherche levenshtein est active et accessible via un lien situé dans la boîte de recherche rapide.</aide>
+    </act_params>
+    <act_params>
+        <param>LEVEL_LEVENSHTEIN</param>
+        <groupe>Recherche</groupe>
+        <ordre>510</ordre>
+        <type>L</type>
+        <valeur>5</valeur>
+        <listval>1 - Communes;2 - Patronymes;3 - Tables;4 - Actes;5 - Import Nimègue;6 - Import CSV;7 - Spécial;8 - Gestionnaire;9 - Administrateur</listval>
+        <libelle>Niveau d'accès pour la rech. Levenshtein</libelle>
+        <aide>Ce paramètre détermine le niveau d'accès nécessaires aux utilisateurs pour pouvoir utiliser la recherche Levenshtein. Par défaut, ce niveau est 8 afin de réserver l'usage aux administrateurs seulement. Ce niveau ne peut pas être inférieur au niveau PUBLIC_LEVEL.</aide>
+    </act_params>
+    <act_params>
+        <param>SECURITE_TIME_OUT_PHP</param>
+        <groupe>Recherche</groupe>
+        <ordre>520</ordre>
+        <type>N</type>
+        <valeur>5</valeur>
+        <libelle>Secondes réservées pour terminer une recherche</libelle>
+        <aide>La recherche levenshtein peut nécessiter plusieurs dizaines de seconde de calcul lorsque la requête est trop vague. Or la plupart des serveurs limitent le temps de calcul (souvent à 30 sec) puis abandonnent la tâche. Pour éviter cela, le paramètre SECURITE_TIME_OUT_PHP spécifie le nombre de seconde de sécurité que le système se réserve afin de stopper proprement la recherche et de signaler à l'utilisateur que sa recherche est trop complexe.</aide>
+    </act_params>
+    <act_params>
+        <param>CRIT_RECH_COUPLES</param>
+        <groupe>Recherche</groupe>
+        <ordre>530</ordre>
+        <type>L</type>
+        <valeur>3</valeur>
+        <listval>2 - ° des enfants;3 - ° &amp; + des enfants;4 - °, + &amp; x des enfants</listval>
+        <libelle>Etendue des recherches sur les couples</libelle>
+        <aide>Ce paramètre permet d'étendre ou de restreindre les possibilités de recherches levenshtein sur les couples. Les valeurs peuvent aller de 2 à 4 :* 2 : Autorise la recherche des mariages de ces couples et des naissances des enfants de ces couples;* 3 : Idem 2 + les décès des enfants de ces couples ;* 4 : Idem 3 + recherches des mariages d'enfants de ces couples;</aide>
+    </act_params>    
+    <act_params>
+        <param>ECLAIR_AUTORISE</param>
+        <groupe>Recherche</groupe>
+        <ordre>950</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Publier la liste éclair pour Généanet</libelle>
+        <aide>Cette liste éclair permet à Généanet d'indexer facilement les données de votre base pour en favoriser l'usage par les généalogistes. Cette page page est visible à l'adresse &lt;a href=../eclair.php&gt;eclair.php&lt;/a&gt;</aide>
+    </act_params>
+    <act_params>
+        <param>ECLAIR_MAX_ROW</param>
+        <groupe>Recherche</groupe>
+        <ordre>960</ordre>
+        <type>N</type>
+        <valeur>10000</valeur>
+        <libelle>Nombre maximum d'actes par liste éclair</libelle>
+        <aide>Si la cration d'une liste éclair prend trop de temps, ce paramètre permet de réduire le nombre d'actes qui sont considérés pour les listes partielles.</aide>
+    </act_params>
+    <act_params>
+        <param>ECLAIR_LOG</param>
+        <groupe>Recherche</groupe>
+        <ordre>965</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Journalisation des requêtes éclair</libelle>
+        <aide>Lorsque la case est cochée, chaque appel de la liste éclair génère une ligne dans un fichier log rangé dans le répertoire _log.</aide>
+    </act_params>
+    <act_params>
+        <param>PUBLIC_LEVEL</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>100</ordre>
+        <type>L</type>
+        <valeur>4</valeur>
+        <listval>1 - Communes;2 - Patronymes;3 - Tables;4 - Actes</listval>
+        <libelle>Niveau d'accès public (sans login)</libelle>
+        <aide>Le paramètres PUBLIC_LEVEL détermine le niveau d'accès qui est autorisé en mode &quot;public&quot; c'est-à-dire sans devoir fournir un login et un mot de passe.Les valeurs admises sont :1 = Accès public à la liste des communes uniquement;2 = Accès public aux patronymes; 3 = Accès public aux &quot;tables&quot; avec noms, prénoms et dates des actes;4 = Accès public aux détails des actes.</aide>
+    </act_params>
+    <act_params>
+        <param>USER_AUTO_DEF</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>150</ordre>
+        <type>L</type>
+        <valeur>0</valeur>
+        <listval>0 - Manuel par les gestionnaires;1 - Semi-automatique avec approbation;2 - Automatique sans approbation</listval>
+        <libelle>Enregistrement des utilisateurs</libelle>
+        <aide>Mode d'enregistrement des utilisateurs et distribution des logins :&lt;br /&gt;
+0 : Enregistrement manuel par le gestionnaire ou l'administrateur;&lt;br /&gt;
+1 : Enregistrement semi-automatique via formulaire avec approbation obligatoire par l'administrateur ou un gestionnaire;&lt;br /&gt;
+2 : Enregistrement tout automatique sur base des valeurs par défaut de gestion des points. Attention : le fonctionnement du serveur mail doit être parfait.</aide>
+    </act_params>
+    <act_params>
+        <param>USER_AUTO_LEVEL</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>160</ordre>
+        <type>L</type>
+        <valeur>4</valeur>
+        <listval>3 - Tables seulement;4 - Voir les actes;5 - Import NIMEGUE;6 - Import CSV</listval>
+        <libelle>Niveau d'accès après enregistement auto.</libelle>
+        <aide>Niveau d'accès attribué automatiquement aux personnes qui s'enregistrent directement sur le site.</aide>
+    </act_params>
+    <act_params>
+        <param>AUTO_CAPTCHA</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>180</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Affichage d'un code captcha</libelle>
+        <aide>Affiche un code de contrôle anti-spam sous forme d'image avec des chiffres dissimulés. Interdit l'encodage automatique a des robots.&lt;br /&gt;(Nécessite la librairie GD sur l'hébergement)</aide>
+    </act_params>
+    <act_params>
+        <param>TEST_EMAIL_UNIC</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>190</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Vérifier l'unicité des adresses mail</libelle>
+        <aide>Interdit l'enregistrement de deux utilisateurs avec la même adresse email.</aide>
+    </act_params>
+    <act_params>
+        <param>LIMITE_EXPIRATION</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>194</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Date limite ou durée des comptes</libelle>
+        <aide>Expiration des comptes visiteurs : Soit une date fixe JJ/MM/AAAA, soit une durée en JOURS à compter de la date de création.</aide>
+    </act_params>
+    <act_params>
+        <param>DUREE_EXPIR</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>195</ordre>
+        <type>N</type>
+        <valeur>90</valeur>
+        <libelle>Délai avant suppression des comptes expirés</libelle>
+        <aide>Détermine le nombre de jours qui sont comptés pour pouvoir sélectionner un compte comme expiré lors de la suppression des comptes. NB : La suppression n'est pas automatique.</aide>
+    </act_params>
+    <act_params>
+        <param>USER_ZONE_LIBRE</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>197</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Libellé de la zone libre</libelle>
+        <aide>Une zone de texte peut être ajoutée au formulaire d'inscription des utilisateurs lorsque ce libellé est non vide. Cette zone est aussi reprise dans la fiche utilisateur.</aide>
+    </act_params>
+    <act_params>
+        <param>CHANGE_PW</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>200</ordre>
+        <type>L</type>
+        <valeur>5</valeur>
+        <listval>1 - Communes;2 - Patronymes;3 - Tables;4 - Actes;5 - Actes sans limite;6 - Import data;7 - Spécial;8 - Gestionnaire;9 - Administrateur</listval>
+        <libelle>Niveau pour pouvoir changer de mot de passe</libelle>
+        <aide>Détermine le niveau d'accès à partir duquel un utilisateur enregistré a le droit de modifier lui-même son mot de passe. Par défaut, CHANGE_PW vaut 1.Si plusieurs utilistateurs doivent partager le même code d'accès et le même mot de passe (par exemple au niveau 4), il est prudent d'en interdire la modification.</aide>
+    </act_params>
+    <act_params>
+        <param>GEST_POINTS</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>500</ordre>
+        <type>L</type>
+        <valeur>0</valeur>
+        <listval>0 - Désactivée;1 - Recharge manuelle;2 - Recharge automatique</listval>
+        <libelle>Mode de gestion des points</libelle>
+        <aide>Détermine le régime de gestion des points par défaut:
+        0 : aucune gestion des points pour aucun membre;
+        1 : gestion des points avec recharge manuelle. C'est l'adminsitrateur qui distribue les points et lui seul;
+        2 : gestion des points avec recharge automatique. La recharge s'effectuera automatiquement pour tous les membres auxquel l'administrateur affectera le régime 2 (valeur par défaut).</aide>
+    </act_params>
+    <act_params>
+        <param>PTS_PAR_PER</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>510</ordre>
+        <type>N</type>
+        <valeur>10</valeur>
+        <libelle>Points donnés à chaque recharge automatique</libelle>
+        <aide>Détermine le nombre de points qui sont attribués aux membres à chaque recharge automatique.</aide>
+    </act_params>
+    <act_params>
+        <param>DUREE_PER_P</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>520</ordre>
+        <type>N</type>
+        <valeur>7</valeur>
+        <libelle>Nombre de jours entre deux recharges auto.</libelle>
+        <aide>Détermine le nombre de jours qui séparent deux recharges automatiques.</aide>
+    </act_params>
+    <act_params>
+        <param>RECH_ZERO_PTS</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>530</ordre>
+        <type>B</type>
+        <valeur>1</valeur>
+        <libelle>Recherche autorisée si points épuisés</libelle>
+        <aide>Autorise ou interdit la réalisation de recherches lorsque le stock de points est épuisé.</aide>
+    </act_params>
+    <act_params>
+        <param>DEPOSANT_LEVEL</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>600</ordre>
+        <type>L</type>
+        <valeur>6</valeur>
+        <listval>4 - Visiteur enregistré;5 - Actes sans limites;6 - Import data</listval>
+        <libelle>Niveau des déposants</libelle>
+        <aide>Niveau à partir duquel un utilisteur peut être déposant (et apparaître dans les liste des déposants lors de l'import par l'administrateur).</aide>
+    </act_params>
+    <act_params>
+        <param>TXT_CONDIT_USAGE</param>
+        <groupe>Utilisateurs</groupe>
+        <ordre>700</ordre>
+        <type>T</type>
+        <valeur></valeur>
+        <libelle>Texte des conditions d'utilisation</libelle>
+        <aide>Ce texte est affiché et doit être explicitement approuvé par les nouveaux utilisateurs pour pouvoir créer un compte. Si cette zone reste vide, aucun texte n'est afiché et aucune confirmation n'est demandée.</aide>
+    </act_params>
+    <act_params>
+        <param>LOC_MAIL</param>
+        <groupe>Mail</groupe>
+        <ordre>110</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Adresse mail de l'administrateur</libelle>
+        <aide>Votre propre adresse e-mail : cette adresse sera l'adresse d'envoi par défaut ET le destinataire des messages internes pour l'administrateur (gestion des comptes, fitrage IP, ...)</aide>
+    </act_params>
+    <act_params>
+        <param>EMAIL_SIGN_ERR</param>
+        <groupe>Mail</groupe>
+        <ordre>112</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Mail pour signalements d'erreur</libelle>
+        <aide>Cette adresse mail désigne la personne qui recevra les signalements d'erreur dans les actes. L'absence d'adresse désactive la fonction de signalement.</aide>
+    </act_params>
+    <act_params>
+        <param>EMAIL_CONTACT</param>
+        <groupe>Mail</groupe>
+        <ordre>115</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Mail destinataire du formulaire de contact</libelle>
+        <aide>Cette adresse mail désigne la personne qui recevra les messages via le formulaire de contact. L'absence d'adresse désactive l'affichage du formulaire de contact.</aide>
+    </act_params>
+    <act_params>
+        <param>EXTERN_MAIL</param>
+        <groupe>Mail</groupe>
+        <ordre>120</ordre>
+        <type>B</type>
+        <valeur>0</valeur>
+        <libelle>Envoyer les mails via un serveur externe</libelle>
+        <aide>Indique au logiciel qu'il ne peut faire appel à la fonction mail intégrée de PHP qui est normalement préconfigurée par l'hébergeur (0).Si celle-ci ne fonctionne pas, il faut activer ce paramètre (1) et configurer les autres paramètres pour utiliser un compte mail personnel dont le serveur SMTP doit cependant être accessible au départ du lieu d'hébergement.</aide>
+    </act_params>
+    <act_params>
+        <param>SMTP_HOST</param>
+        <groupe>Mail</groupe>
+        <ordre>200</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Serveur SMTP</libelle>
+        <aide>Adresse du serveur SMTP</aide>
+    </act_params>
+    <act_params>
+        <param>SMTP_ACC</param>
+        <groupe>Mail</groupe>
+        <ordre>210</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Login du compte mail</libelle>
+        <aide>Votre code d'accès pour le compte mail (si le serveur SMTP exige une authentification de l'utilisateur)</aide>
+    </act_params>
+    <act_params>
+        <param>SMTP_PASS</param>
+        <groupe>Mail</groupe>
+        <ordre>220</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Mot de passe du compte SMTP</libelle>
+        <aide>Votre mot de passe pour le compte mail (si le serveur SMTP exige une authentification de l'utilisateur)</aide>
+    </act_params>
+    <act_params>
+        <param>LOC_HOST</param>
+        <groupe>Mail</groupe>
+        <ordre>250</ordre>
+        <type>C</type>
+        <valeur></valeur>
+        <libelle>Nom du serveur d'origine des mails</libelle>
+        <aide>Nom du serveur local expédiant les mails</aide>
+    </act_params>
+    <act_params>
+        <param>MAIL_NEWUSER</param>
+        <groupe>Mail</groupe>
+        <ordre>510</ordre>
+        <type>T</type>
+        <valeur>
+Bonjour #PRENOM#,\n
+Un compte vient d'être créé pour vous permettre de vous connecter au site #NOMSITE# :\n\n
+#URLSITE#\n
+Votre login : #LOGIN#\n
+Votre mot de passe : #PASSW#\n\n
+Cordialement,\n\n
+Votre webmestre.\n
+        </valeur>
+        <libelle>Message à un nouvel utilisateur</libelle>
+        <aide>Texte par defaut du mail envoyé aux nouveaux utilisateurs lors de la création du compte par l'administrateur</aide>
+    </act_params>
+    <act_params>
+        <param>MAIL_AUTOUSER</param>
+        <groupe>Mail</groupe>
+        <ordre>520</ordre>
+        <type>T</type>
+        <valeur>
+Bonjour #PRENOM#,\n
+Merci de vous être enregistré(e) sur le site #NOMSITE#.\n\n
+Pour valider votre adresse email et rendre votre compte opérationnel, vous devez ACTIVER le compte avec le lien suivant :\n\n
+#URLVALID#\n
+Au besoin votre code d'activation est : #KEYVALID#\n\n
+Cordialement,\n\n
+Votre webmestre.\n
+        </valeur>
+        <libelle>Message de demande d'activation &lt;br /&gt; SANS validation</libelle>
+        <aide>Texte automatique du mail envoyé aux candidats utilisateurs qui viennent de créer leur compte d'accès. &lt;br /&gt;&lt;b&gt;Attention à bien y laisser le code #URLVALID#&lt;/b&gt; qui permettra l'activation du compte.</aide>
+    </act_params>
+    <act_params>
+        <param>MAIL_VALIDUSER</param>
+        <groupe>Mail</groupe>
+        <ordre>530</ordre>
+        <type>T</type>
+        <valeur>
+Bonjour #PRENOM#,\n
+Merci de vous être enregistré(e) sur le site #NOMSITE#.\n\n
+Pour valider votre adresse email, vous devez ACTIVER le compte avec le lien suivant :\n\n
+#URLVALID#\n
+Au besoin votre code d'activation est : #KEYVALID#\n\n
+Votre demande de compte sera alors examinée par le gestionnaire du site dans les meilleurs délais.\n\n
+Cordialement,\n\n
+Votre webmestre.\n
+        </valeur>
+        <libelle>Message de demande d'activation &lt;br /&gt; AVEC validation</libelle>
+        <aide>Texte automatique du mail envoyé aux candidats utilisateurs qui viennent de créer leur compte d'accès. &lt;br /&gt;&lt;b&gt;Attention à bien y laisser le code #URLVALID#&lt;/b&gt; qui permettra l'activation du compte. Le texte doit aussi indiquer que le compte devra être approuvé par l'administrateur.</aide>
+    </act_params>
+    <act_params>
+        <param>MAIL_APPROBATION</param>
+        <groupe>Mail</groupe>
+        <ordre>540</ordre>
+        <type>T</type>
+        <valeur>
+Bonjour #PRENOM#,\n\n
+Votre demande de compte d'utilisateur du site #NOMSITE# a été approuvée.\n\n
+Votre compte "#LOGIN#" est à présent opérationnel à l'adresse\n 
+#URLSITE#\n\n
+Cordialement,\n\n
+Votre webmestre.
+        </valeur>
+        <libelle>Message d'approbation d'un utilisateur</libelle>
+        <aide>Texte par defaut du mail envoyé aux utilisateurs lors de l'approbation de leur compte par l'administrateur</aide>
+    </act_params>
+    <act_params>
+        <param>MAIL_REFUS</param>
+        <groupe>Mail</groupe>
+        <ordre>550</ordre>
+        <type>T</type>
+        <valeur>
+Bonjour #PRENOM#,\n\n
+Votre demande de compte d'utilisateur du site #NOMSITE# n'a pu être approuvée.\n\n
+Cordialement,\n\n
+Votre webmestre.
+        </valeur>
+        <libelle>Message de refus d'un utilisateur</libelle>
+        <aide>Texte par defaut du mail envoyé aux candidats utilisateurs refusés par l'administrateur</aide>
+    </act_params>
+    
+	<act_params>
+		<param>LEVEL_MAIL_LOGIN</param>
+		<groupe>Protection</groupe>
+		<ordre>50</ordre>
+		<type>L</type>
+		<valeur>10</valeur>
+		<listval>5 - Actes sans limite ;6 - Import données ;7 - Spécial;8 - Gestionnaire;9 - Administrateur;10 - Jamais</listval>
+		<libelle>Niveaux avec login confirmé par mail</libelle>
+		<aide>Ce paramètre indique le niveau à partir duquel le login est systématiquement confirmé par un envoir de mail.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_FILTRER</param>
+		<groupe>Protection</groupe>
+		<ordre>100</ordre>
+		<type>L</type>
+		<valeur>0</valeur>
+		<listval>0 - Aucun filtrage;1 - Compter toutes le pages;2 - Compter les actes seulement</listval>
+		<libelle>Utiliser l'anti-aspirateur IP</libelle>
+		<aide>Détermine si le module de filtrage des adresses IP doit être activé ou non et sur quels types de pages. Ce module permet de bloquer les visiteurs qui chargeraient en masse des actes sur le site.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_MAX_PAGE_COUNT</param>
+		<groupe>Protection</groupe>
+		<ordre>105</ordre>
+		<type>N</type>
+		<valeur>25</valeur>
+		<libelle>Nombre maximum par période</libelle>
+		<aide>Au dela de ce nombre de pages ou d'actes vus par un même visiteur (même adresse IP) l'adresse sera bloquée.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_DUREE</param>
+		<groupe>Protection</groupe>
+		<ordre>110</ordre>
+		<type>N</type>
+		<valeur>1</valeur>
+		<libelle>Durée de la période en minutes</libelle>
+		<aide>Durée en minutes de la période sur laquelle est compté le nombre de pages ou d'actes vus.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_MAIL_TO</param>
+		<groupe>Protection</groupe>
+		<ordre>200</ordre>
+		<type>C</type>
+		<valeur></valeur>
+		<libelle>Destinataire du mail d'alerte</libelle>
+		<aide>Adresse mail de la personne qui recevra les notifications lorsque des adresses IP seront bannies.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_MSG_BAN</param>
+		<groupe>Protection</groupe>
+		<ordre>300</ordre>
+		<type>T</type>
+		<valeur>Adresse IP interdite pour abus !</valeur>
+		<libelle>Texte renvoyé aux IP bannies</libelle>
+		<aide>Texte qui sera affiché aux visiteurs ayant une des adresses IP bannies.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_AUTOFREE</param>
+		<groupe>Protection</groupe>
+		<ordre>360</ordre>
+		<type>N</type>
+		<valeur>0</valeur>
+		<libelle>Durée du blocage en jours</libelle>
+		<aide>Nombre de jours où l'adresse reste bloquéef.&lt;br /&gt; ATTENTION : 0 = Pas de déblocage automatique.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_ALERT</param>
+		<groupe>Protection</groupe>
+		<ordre>400</ordre>
+		<type>N</type>
+		<valeur>1</valeur>
+		<libelle>Nbre d'alertes avant blocage</libelle>
+		<aide>Nombre de pages portant un avertissement avant blocage définitif. &lt;br /&gt; 0 = Aucun avertissement.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_MSG_ALERT</param>
+		<groupe>Protection</groupe>
+		<ordre>420</ordre>
+		<type>T</type>
+		<valeur>Attention : Vous ne pouvez plus consulter que #RESTE# actes avant le #TERME#.</valeur>
+		<libelle>Texte d'alerte avant blocage</libelle>
+		<aide>Texte qui sera affiché aux visiteurs approchant du nombre limite de pages par période. Le texte peut etre enrichi avec les codes #IPCLIENT# :Adresse IP, #COMPTE# : Nombre de pages/actes déjà vus, #RESTE# : Nombre de pages/actes restant, #TERME# : Date et heure de renouvellement du comptage.</aide>
+	</act_params>
+  <act_params>
+		<param>TIP_MODE_ALERT</param>
+		<groupe>Protection</groupe>
+		<ordre>425</ordre>
+		<type>L</type>
+		<valeur>1</valeur>
+		<listval>1 - Message en haut de page;2 - Boîte de dialogue; 3 - Message + Boîte de dialogue</listval>
+		<libelle>Mode d'affichage des alertes</libelle>
+		<aide>Détermine la manière dont les alertes sont affichées : &lt;br /&gt;
+		1 : Message de couleur rouge affiché en haut de page; &lt;br /&gt;
+		2 : Boîte de dialogue javascript avec bouton OK à cliquer obligatoirement; &lt;br /&gt;
+		3 : Combinaison des deux méthodes précédentes.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_LEVEL_NO_IP_TEST</param>
+		<groupe>Protection</groupe>
+		<ordre>450</ordre>
+		<type>L</type>
+		<valeur>9</valeur>
+		<listval>5 - Actes sans limite;6 - Import données;7 - Spécial;8 - Gestionnaire;9 - Administrateur</listval>
+		<libelle>Niveaux exemptés du contrôle IP</libelle>
+		<aide>Ce paramètre indique le niveau à partir duquel le visiteur enregistré est libéré du contrôle du nombre de page par minute. NB : le niveau 5 est TOUJOURS exempté !</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_WHITELIST</param>
+		<groupe>Protection</groupe>
+		<ordre>500</ordre>
+		<type>T</type>
+		<valeur></valeur>
+		<libelle>Agents affranchis</libelle>
+		<aide>Liste des signatures des agents qui sont autorisés (typiquement les signatures de robots). Les signatures doivent être séparées par des VIRGULES.</aide>
+	</act_params>
+	<act_params>
+		<param>TIP_MEMOWHITE</param>
+		<groupe>Protection</groupe>
+		<ordre>550</ordre>
+		<type>B</type>
+		<valeur>0</valeur>
+		<libelle>Mémoriser les IP auto-affranchies</libelle>
+		<aide>Mémorise et affiche les IP qui sont affranchies automatiquement via la liste des agents autorisés.</aide>
+	</act_params>
+	<act_params>
+		<param>GEO_MODE_PUBLIC</param>
+		<groupe>Géoloc</groupe>
+		<ordre>100</ordre>
+		<type>L</type>
+		<valeur>4</valeur>
+		<listval>1 - Carte seulement;2 - Tableau seulement;3 - Carte affichée et tableau masqué;4 - Tableau affiché et carte masquée;5 - Carte et tableau affichés</listval>
+		<libelle>Contenu de la page d'accueil</libelle>
+		<aide>Détermeine si la carte des communes est affichée, ou le tableau détaillé ou ces deux éléments à la fois.</aide>
+	</act_params>
+	<act_params>
+			<param>GEO_HAUT_CARTE</param>
+			<groupe>Géoloc</groupe>
+			<ordre>120</ordre>
+			<type>N</type>
+			<valeur>500</valeur>
+			<libelle>Hauteur de la carte en pixels</libelle>
+			<aide>Valeur classique = 500 pixels</aide>
+	</act_params>
+	<act_params>
+		<param>GEO_ZOOM_INITIAL</param>
+		<groupe>Géoloc</groupe>
+		<ordre>200</ordre>
+		<type>N</type>
+		<valeur>0</valeur>
+		<libelle>Niveau de zoom initial</libelle>
+		<aide>Détermine le niveau de zoom initial (généralement entre 6 et 10) ou 0 si automatique.</aide>
+	</act_params>
+	<act_params>
+		<param>GEO_CENTRE_CARTE</param>
+		<groupe>Géoloc</groupe>
+		<ordre>210</ordre>
+		<type>C</type>
+		<valeur></valeur>
+		<libelle>Centrage forcé de la carte sur</libelle>
+		<aide>Permet de préciser la localité qui doit occuper le centre de la carte. DOIT être une des communes ou paroisse géolocalisée.</aide>
+	</act_params>
+	<act_params>
+		<param>GEO_ZOOM_DEGROUPAGE</param>
+		<groupe>Géoloc</groupe>
+		<ordre>220</ordre>
+		<type>N</type>
+		<valeur>10</valeur>
+		<libelle>Niveau de zoom dégroupage </libelle>
+		<aide>Détermine le niveau de zoom où les points seront toujours dégroupés (ordinairement 10 à 12).</aide>
+	</act_params>
+	<act_params>
+		<param>GEO_LOCALITE</param>
+		<groupe>Géoloc</groupe>
+		<ordre>300</ordre>
+		<type>B</type>
+		<valeur>1</valeur>
+		<libelle>Géolocalisation des localités</libelle>
+		<aide>Fournit un lien pour localiser chaque localité à partir des tables.</aide>
+	</act_params>
+
+</expoactes>

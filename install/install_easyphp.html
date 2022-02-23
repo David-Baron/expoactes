@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-be">
+<head>
+
+  <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+  <title>install_easyphp.html</title>
+
+  <meta content="Delacharlerie Andre" name="author" />
+
+  <link rel="stylesheet" href="../_config/actes.css" type="text/css" />
+
+<style type="text/css">
+p { font-family: Verdana;
+font-size: 12px;
+}
+body { font-family: Verdana;
+font-size: 12px;
+}
+.cadre { border: 1px dashed rgb(255, 153, 102);
+padding: 15px;
+}
+</style>
+</head>
+
+
+
+<body>
+
+<h1>Installation d'ExpoActes en local avec EasyPHP ou WampServer.</h1>
+<p><br />
+  <strong>Pour ceux qui comptent personnaliser le logiciel de fa&ccedil;on plus importantes (modification de la feuille de style, modification des programmes, ...), il peut &ecirc;tre int&eacute;ressant de tester ExpoActes en lode local (c'est &agrave; dire sur votre ordinateur) avant 
+  de le mettre en place sur un site Internet.</strong></p>
+<p><strong>Cette op&eacute;ration n'est absolument pas indispensable si vous comptez utiliser le logiciel tel qu'il est livr&eacute;. Vous pourrez de toute fa&ccedil;on le personnaliser avec les multiples <a href="../admin/aide/config.html"> param&egrave;tres propos&eacute;s</a>.</strong></p>
+<p>Pour cela les logiciels EasyPHP ou WampServer sont tr&egrave;s pratiques car ils installent et configurent 
+  automatiquement sur votre PC un petit serveur web local (Apache) et tout l'environnement 
+  PHP et MySQL n&eacute;cessaire au test de ExpoActes (et de tout autre application 
+  PHP - MySQL). <br />
+</p>
+<div class="cadre"><span style="font-weight: bold;">Remarque importante :</span><br />
+<br />
+  Certains utilisateurs souhaitent aussi installer ExpoActes en local pour pouvoir 
+  modifier certaines fonctions du logiciel afin de les adapter &agrave; leurs 
+  besoins propres. &nbsp;Attention cependant : si vous modifiez le logiciel autrement 
+  qu'en adaptant la feuille de style et les autres fichiers pr&eacute;sents dans 
+  le r&eacute;pertoire "_config", il ne sera plus possible de b&eacute;n&eacute;ficier 
+  (facilement) des mises &agrave; jour du produit. En effet, le chargement d'une 
+  mise &agrave; jour supprimera automatiquement toutes les modifications que vous 
+  auriez apport&eacute;es !!!</div>
+
+<p><br />
+  L'installation avec EasyPHP se passe &agrave; peu pr&egrave;s comme une installation 
+  sur un h&eacute;bergement mais avec quelques diff&eacute;rences. &nbsp;</p>
+<p>Les &eacute;tapes pour une installation locale sont les suivantes :</p>
+<ol>
+  <li>Si ce n'est fait, t&eacute;l&eacute;charger <a href="http://www.easyphp.org/">EasyPHP</a> 
+    ou <a href="http://www.wampserver.com/">WampServer</a> et l'installer.</li>
+  <li><a href="#MySQL">D&eacute;clarer la base de donn&eacute;es MySQL</a> (voir 
+    ci-dessous),</li>
+  <li><a href="lisezmoi.html#maitre">Cr&eacute;er la"copie ma&icirc;tre" du site 
+    sur votre propre ordinateur</a> (m&ecirc;me proc&eacute;dure que pour un site 
+    h&eacute;berg&eacute;),</li>
+  <li><a href="#web">Activer le site web local</a> (voir ci-dessous),</li>
+  <li><a href="lisezmoi.html#bd">Lancer l'installation de la base de donn&eacute;es 
+    sur le serveur MySQL</a> et y placer les premi&egrave;res donn&eacute;es (m&ecirc;me 
+    proc&eacute;dure que pour un site h&eacute;berg&eacute;).</li>
+</ol>
+<p>NB : Si par la suite, le site local est destin&eacute; &agrave; &ecirc;tre 
+  transf&eacute;r&eacute; sur un h&eacute;bergement externe, il est judicieux 
+  d'utiliser les m&ecirc;mes param&egrave;tres de base de donn&eacute;es (nom, 
+  login, utilisateur) que ceux qui seront &nbsp;utilis&eacute;s sur le site public.<br />
+</p>
+<h3><a name="MySQL" id="MySQL"></a>D&eacute;claration de la base et de l'utilisateur MySQL</h3>
+<h4>Cas de EasyPHP :</h4>
+<blockquote>
+  <p>Lancer si ce n'est fait EasyPHP. Par un clic droit sur le " <big><big><span style="font-weight: bold;">e</span></big></big>" 
+    de la barre des t&acirc;ches, activer "<span style="font-weight: bold;">Administration</span>".</p>
+  <p>Dans la page &quot;Administration&quot;, cliquez sur le lien vers "<span style="font-weight: bold;">Gestion 
+    BDD</span>" qui lance le programme d'administration de la base de donn&eacute;es <span style="font-weight: bold;">PhpMyAdmin</span>.<br />
+  </p>
+</blockquote>
+<h4>Cas de WampServer :</h4>
+<blockquote>
+  <p>Lancer si ce n'est fait WampServer. Par un clic gauche sur le cadran de la barre des t&acirc;ches, puis dans le panneau propos&eacute;, cliquez sur le lien vers "phpmyadmon" qui lance le programme d'administration de la base de donn&eacute;es.<br />
+  </p>
+</blockquote>
+<p>La m&eacute;thode la plus simple consiste &agrave; cr&eacute;er imm&eacute;diatement un nouvel utilisateur et une base avec le m&ecirc;me nom en utilisant le nom par d&eacute;faut cr&eacute;&eacute; par expoactes &agrave; savoir &quot;expoactes_TEST&quot;. </p>
+<p>Pour cela, s&eacute;lectionnez l'onglet &quot;<strong>Privil&egrave;ges</strong>&quot; et cliquez sur &quot;<strong>Ajouter un utilisateur</strong>&quot; puis tapez &quot;<b>expoactes</b>&quot; dans les zones nom d'utilisateur et deux fois dans Mot de passe. (NB : ne plus utiliser &quot;expoactes_test&quot; qui pose parfois des problèmes)</p>
+<p align="center"><img src="../admin/aide/phpmyadmin-newuser.png" width="702" height="417" border="1" /> </p>
+<p>Cliquez en bas sur la ligne &quot;Cr&eacute;er une base portant son nom ...&quot; et allez en bas de l'&eacute;cran pour valider l'op&eacute;ration. </p>
+<p>L'utilisateur et la base sont cr&eacute;&eacute;s et associ&eacute;s l'un avec l'autre. </p>
+<h3><a name="web" id="web"></a>Activation du "site" web local</h3>
+<p>Cette t&acirc;che consiste &agrave; indiquer au serveur web (Apache) que le r&eacute;pertoire 
+  o&ugrave; ont &eacute;t&eacute; install&eacute;s les fichiers est celui d'un 
+  site web local. &nbsp;</p>
+<p><strong>Vous devrez d onnez un nom pour l'alias du site. Ce nom ne peut compter ni espace ni lettre accentu&eacute;e</strong>. Il est pr&eacute;f&eacute;rable de ne mettre que des minuscules. Vous devrez aussi donner le chemin d'acc&egrave;s Windows au fichiers .php du site. </p>
+<h4>Cas de EasyPHP :</h4>
+<blockquote>
+  <p>Dans la zone "Apache" de la page &quot;Administration&quot; de EasyPHP, vous 
+    avez la liste des sites web locaux. &nbsp;Chacun est identifi&eacute; par un 
+  "alias". Vous devez en cr&eacute;er un nouveau avec le lien "<strong>Ajouter</strong>". Il faut alors pr&eacute;ciser dans le formulaire propos&eacute; le nom d'alias et le chein d'acc&egrave;s Windows. Cliquez sur <span style="font-weight: bold;">Ok</span>. &nbsp;Le site est cr&eacute;&eacute;.</p>
+</blockquote>
+<h4>Cas de WampServer :</h4>
+<blockquote>
+  <p>S&eacute;lectionnez "Apache" de le panneau d'administration&quot; de WampServer, puis &quot;R&eacute;pertoires alias&quot; et enfin &quot;+ Ajouter un alias&quot;. Une fen&ecirc;tre en mode texte s'ouvre alors automatiquepment. Il faut d'abord taper le nom du site (par exemple &quot;expoactes&quot;) et valider. Il faut ensuite pr&eacute;ciser le chemin d'acc&egrave;s aux fichiers.</p>
+</blockquote>
+<p>N'oubliez pas que ExpoActes n'est pas dans le r&eacute;pertoire principal du 
+  site mais dans le sous r&eacute;pertoire <span style="font-weight: bold;">actes</span>. 
+  Cette disposition est pr&eacute;vue pour vous permettre d'ajouter une page d'accueil 
+  principale pour votre site.</p>
+<p>Si le nom de votre site est &quot;EXPOACTES&quot;, l'URL &agrave; taper dans 
+  le navigateur est alors :</p>
+<blockquote>
+  <p> http://127.0.0.1/EXPOACTES/actes/</p>
+</blockquote>
+<h3>Mise &agrave; jour des codes d'acc&egrave;s &agrave; la base de donn&eacute;es</h3>
+<p>Les codes d'acc&egrave;s donn&eacute;s lors de la proc&eacute;dure d'installation 
+  sont automatiquement rang&eacute;s dans le fichier connect.inc.php localis&eacute; 
+  dans le r&eacute;pertoire _config.</p>
+<p>Si vous avez choisi &quot;expoactes_TEST&quot; comme conseill&eacute;, il n'y a riend 'autre &agrave; faire. Sinon, il faut modifier les codes qui sont structur&eacute;s de la mani&egrave;re 
+  suivante dans le fichier coonect.inc.php:</p>
+<blockquote>
+  <pre>if ($_SERVER['SERVER_ADDR']&lt;&gt;'127.0.0.1')
+     {
+     // Param&egrave;tres d'acc&egrave;s &agrave; la base de donn&eacute;es CHEZ VOTRE HEBERGEUR
+     $dbaddr = &quot;....&quot;; // Adresse du serveur DISTANT
+     $dbname = &quot;....&quot;; // Nom de la base
+     $dbuser = &quot;....&quot;; // Login MySQL
+     $dbpass = &quot;....&quot;; // Mot de passe
+     }
+     else
+     {
+     // Param&egrave;tres d'acc&egrave;s &agrave; la base de donn&eacute;es locale (facultatif)
+     $dbaddr = &quot;localhost&quot;; // Adresse du serveur LOCAL
+     $dbname = &quot;expoactes_TEST&quot;; // Nom de la base
+     $dbuser = &quot;expoactes_TEST&quot;; // Login MySQL
+     $dbpass = &quot;expoactes_TEST&quot;; // Mot de passe
+   }</pre>
+</blockquote>
+<p>Il convient bien entendu de remplacer les &quot;expoactes_TEST&quot; par les codes adapt&eacute;s 
+  &agrave; vos bases de donn&eacute;es.</p>
+<p><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</p>
+</body>
+</html>

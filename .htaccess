@@ -1,0 +1,18 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+# Les lignes suivantes permettent d'interdire le listage des répertoires 
+# Malheuseursement elles ne fonctionent pas sur toutes les versions d'Apache,
+# En effet, il faut que le module "mod_index" soit activé. 
+# il faut donc retirer l'un ou l'autre # avec précaution et tester : Si Erreur 500, remettre le # immédiatement !
+# IndexIgnore */*
+# Options All -Indexes
+
+# Codes d'erreurs pour ExpoActes
+ErrorDocument 400 '<h1>Erreur 400 :<br /><font color="#FF0000">Mauvaise requ&ecirc;te !</font></h1>'
+ErrorDocument 401 '<h1>Erreur 401 :<br /><font color="#FF0000">Acc&egrave;s interdit &agrave; cette page !</font></h1>'
+ErrorDocument 403 '<h1>Erreur 403 :<br /><font color="#FF0000">Acc&egrave;s interdit &agrave; cette page !</font></h1>'
+ErrorDocument 404 '<h1>Erreur 404 :<br /><font color="#FF0000">Fichier non trouv&eacute; !</font></h1>'
+ErrorDocument 500 '<h1>Erreur 500 :<br /><font color="#FF0000">Erreur de traitement sur le serveur</font></h1>'
