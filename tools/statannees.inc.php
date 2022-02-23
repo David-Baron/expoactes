@@ -1,43 +1,42 @@
 <?php
-if (file_exists('tools/_COMMUN_env.inc.php')){
+if (file_exists('tools/_COMMUN_env.inc.php')) {
 	$EA_Appel_dOu = '';
 } else {
 	$EA_Appel_dOu = '../';
 }
-include($EA_Appel_dOu.'tools/_COMMUN_env.inc.php');
+include($EA_Appel_dOu . 'tools/_COMMUN_env.inc.php');
 
 function barre($valeur, $max)
-	{
+{
 	$lgmax = 100;
 	$chaine = "";
-	$long = $valeur/$max*$lgmax;
-	$chaine  = '<div class="histo"><strong class="barre" style="width:'.$long.'%;">'.$valeur.'</strong></div>';
+	$long = $valeur / $max * $lgmax;
+	$chaine  = '<div class="histo"><strong class="barre" style="width:' . $long . '%;">' . $valeur . '</strong></div>';
 	return $chaine;
-	}
-	
+}
+
 $root = "";
 $path = "";
 
 //**************************** ADMIN **************************
 
-$xcomm=$xpatr=$page="";
-pathroot($root,$path,$xcomm,$xpatr,$page);
+$xcomm = $xpatr = $page = "";
+pathroot($root, $path, $xcomm, $xpatr, $page);
 
-$userlogin="";
-if (ADM==10)
-	$lvl=5;
-	else
-	$lvl=2;
-$userlevel=logonok($lvl);
-while ($userlevel<$lvl)
-  {
-  login($root);
-  }
+$userlogin = "";
+if (ADM == 10)
+	$lvl = 5;
+else
+	$lvl = 2;
+$userlevel = logonok($lvl);
+while ($userlevel < $lvl) {
+	login($root);
+}
 
-$userid=current_user("ID");
+$userid = current_user("ID");
 
-$missingargs=false;
-$oktype=false;
+$missingargs = false;
+$oktype = false;
 
 $TypeActes  = getparam('xtyp');
 $xtdiv      = getparam('tdiv');
@@ -48,132 +47,117 @@ $Depart  = departementde($comdep);
 //{ print '<pre>';  print_r($_REQUEST); echo '</pre>'; }
 
 // Données postées
-if(empty($TypeActes))
-	{
+if (empty($TypeActes)) {
 	msg('Vous devez préciser le type des actes.');
-	$missingargs=true;
-	}
-if(empty($Commune))
-	{
+	$missingargs = true;
+}
+if (empty($Commune)) {
 	msg('Vous devez préciser une commune.');
-	$missingargs=true;
-	}
-if (! $missingargs)
-	{
-	$oktype=true;
-	$condtdiv="";
-	$soustype="";
-	$linkdiv="";
-	switch ($TypeActes)
-		{
+	$missingargs = true;
+}
+if (!$missingargs) {
+	$oktype = true;
+	$condtdiv = "";
+	$soustype = "";
+	$linkdiv = "";
+	switch ($TypeActes) {
 		case "N":
 			$ntype = "naissance";
-			$table = EA_DB."_nai3";
+			$table = EA_DB . "_nai3";
 			$program = "tab_naiss.php";
 			break;
 		case "V":
 			$ntype = "types divers";
-			$table = EA_DB."_div3";
+			$table = EA_DB . "_div3";
 			$program = "tab_bans.php";
-			$pos = isin($comdep,"];");
-			if (($pos>0))
-				{
-				$Depart  = departementde(mb_substr($comdep,1,$pos));
-				$stype = mb_substr($comdep,$pos+2);
-				$condtdiv = " and (LIBELLE='".sql_quote($stype)."')";
-				$soustype = " (".$stype.")";
-				$linkdiv = ";".$stype;
-				}
+			$pos = isin($comdep, "];");
+			if (($pos > 0)) {
+				$Depart  = departementde(mb_substr($comdep, 1, $pos));
+				$stype = mb_substr($comdep, $pos + 2);
+				$condtdiv = " and (LIBELLE='" . sql_quote($stype) . "')";
+				$soustype = " (" . $stype . ")";
+				$linkdiv = ";" . $stype;
+			}
 			break;
 		case "M":
 			$ntype = "mariage";
-			$table = EA_DB."_mar3";
+			$table = EA_DB . "_mar3";
 			$program = "tab_mari.php";
 			break;
 		case "D":
 			$ntype = "décès";
-			$table = EA_DB."_dec3";
+			$table = EA_DB . "_dec3";
 			$program = "tab_deces.php";
 			break;
-		}
-	$xcomm = $Commune.' ['.$Depart.']'.$linkdiv;;
- 
-	$title = $Commune." : Répartition des actes de ".$ntype.$soustype;
+	}
+	$xcomm = $Commune . ' [' . $Depart . ']' . $linkdiv;;
 
-	open_page($title,$root);
-	if (ADM<10)
-		navigation($root,ADM+2,'A',$Commune);
-		else
-		navadmin($root,$title);
-		
-	zone_menu(ADM,$userlevel);
+	$title = $Commune . " : Répartition des actes de " . $ntype . $soustype;
+
+	open_page($title, $root);
+	if (ADM < 10)
+		navigation($root, ADM + 2, 'A', $Commune);
+	else
+		navadmin($root, $title);
+
+	zone_menu(ADM, $userlevel);
 
 	echo '<div id="col_main_adm">';
-	echo '<h2>'.$title.'</h2>';
+	echo '<h2>' . $title . '</h2>';
 
-	$request = "select year(ladate) as ANNEE,count(*) as CPT from ".$table.
-						 " where COMMUNE='".sql_quote($Commune)."' and DEPART='".sql_quote($Depart)."'".$condtdiv." group by year(ladate) ;";
+	$request = "select year(ladate) as ANNEE,count(*) as CPT from " . $table .
+		" where COMMUNE='" . sql_quote($Commune) . "' and DEPART='" . sql_quote($Depart) . "'" . $condtdiv . " group by year(ladate) ;";
 	//echo $request;
 	$result = EA_sql_query($request);
 	$k = 0;
 	$annee = array(0);
 	$cptan = array(0);
 	$max = 0;
-	while ($ligne = EA_sql_fetch_array($result))
-		{
+	while ($ligne = EA_sql_fetch_array($result)) {
 		$k++;
-		$annee[$k]=$ligne['ANNEE'];
-		$cptan[$k]=$ligne['CPT'];
-		if ($cptan[$k]>$max) $max = $cptan[$k];
-		}
+		$annee[$k] = $ligne['ANNEE'];
+		$cptan[$k] = $ligne['CPT'];
+		if ($cptan[$k] > $max) $max = $cptan[$k];
+	}
 	$nban = $k;
 	$annee_limite_coherence = 1010;
 
-	echo '<table border="0">'."\n";
+	echo '<table border="0">' . "\n";
 	echo "<tr><th>Années</th><th>Nombres d'actes</th></tr>";
-	for ($k=1; $k<=$nban; $k++)
-		{
+	for ($k = 1; $k <= $nban; $k++) {
 		//echo $k."-".$annee[$k]."-".$cptan[$k];
-		if ($annee[$k] <= $annee_limite_coherence)
-			{
-			echo '<tr>'."\n";
-			echo '<td>'.'<b><a href="'.mkurl($path.'/'.$program,$xcomm,'!'.$annee[$k]).'">Improbable</a></b>'.'</td>'."\n";
-			echo '<td>'.barre($cptan[$k],$max).'</td>'."\n";
-			echo '</tr">'."\n";
+		if ($annee[$k] <= $annee_limite_coherence) {
+			echo '<tr>' . "\n";
+			echo '<td>' . '<b><a href="' . mkurl($path . '/' . $program, $xcomm, '!' . $annee[$k]) . '">Improbable</a></b>' . '</td>' . "\n";
+			echo '<td>' . barre($cptan[$k], $max) . '</td>' . "\n";
+			echo '</tr">' . "\n";
 			continue;
-			}
-		elseif ($annee[$k]>$annee[$k-1]+3 and $annee[$k-1] > $annee_limite_coherence)
-			{
+		} elseif ($annee[$k] > $annee[$k - 1] + 3 and $annee[$k - 1] > $annee_limite_coherence) {
 			echo '<tr><td>...</td><td></td></tr>';
-			echo '<tr><td>'.($annee[$k]-$annee[$k-1]-1).' années</td><td></td></tr>';
+			echo '<tr><td>' . ($annee[$k] - $annee[$k - 1] - 1) . ' années</td><td></td></tr>';
 			echo '<tr><td>...</td><td></td></tr>';
-			}
-		elseif ($annee[$k]>$annee[$k-1]+1 and $annee[$k-1] > $annee_limite_coherence)
-			{
-		  for ($kk=1;$kk<=($annee[$k]-$annee[$k-1]-1);$kk++)
-				{
-				echo '<tr>'."\n";
-				$anneezero = ($annee[$k-1]+$kk);
-				if ($anneezero%10==0)
-					echo '<td><b>'.$anneezero.'</b></td>'."\n";
-					else
-					echo '<td>'.$anneezero.'</td>'."\n";			
+		} elseif ($annee[$k] > $annee[$k - 1] + 1 and $annee[$k - 1] > $annee_limite_coherence) {
+			for ($kk = 1; $kk <= ($annee[$k] - $annee[$k - 1] - 1); $kk++) {
+				echo '<tr>' . "\n";
+				$anneezero = ($annee[$k - 1] + $kk);
+				if ($anneezero % 10 == 0)
+					echo '<td><b>' . $anneezero . '</b></td>' . "\n";
+				else
+					echo '<td>' . $anneezero . '</td>' . "\n";
 				//echo '<tr><td>'.($annee[$k-1]+$kk).'</td>';
-				echo '<td>'.barre(0,$max).'</td><td></td></tr>';
-				}
+				echo '<td>' . barre(0, $max) . '</td><td></td></tr>';
 			}
-		echo '<tr>'."\n";
-		$link = '<a href="'.mkurl($path.'/'.$program,$xcomm,'!'.$annee[$k]).'">'.$annee[$k].'</a>';
-		if ($annee[$k]%10==0)
-			echo '<td><b>'.$link.'</b></td>'."\n";
-			else
-			echo '<td>'.$link.'</td>'."\n";			
-		echo '<td>'.barre($cptan[$k],$max).'</td>'."\n";
-		echo '</tr>'."\n";
 		}
-	echo '</table>'."\n";
-
-  }
+		echo '<tr>' . "\n";
+		$link = '<a href="' . mkurl($path . '/' . $program, $xcomm, '!' . $annee[$k]) . '">' . $annee[$k] . '</a>';
+		if ($annee[$k] % 10 == 0)
+			echo '<td><b>' . $link . '</b></td>' . "\n";
+		else
+			echo '<td>' . $link . '</td>' . "\n";
+		echo '<td>' . barre($cptan[$k], $max) . '</td>' . "\n";
+		echo '</tr>' . "\n";
+	}
+	echo '</table>' . "\n";
+}
 echo '</div>';
-close_page(1,$root);
-?>
+close_page(1, $root);

@@ -38,7 +38,7 @@ $BD_EA_link = array();
 // Recherche la liaison avec le serveur. Mysqli en a toujours besoin alors que Mysql utilise toujours le dernier
 function EA_sql_which_link($link_identifier = null)
 {
-    // une liaison est indiqué, on la retourne
+	// une liaison est indiqué, on la retourne
 	if ($link_identifier !== null) {
 		return $link_identifier;
 	} else {
@@ -53,46 +53,48 @@ function EA_sql_which_link($link_identifier = null)
 	}
 }
 
-function EA_is_mysqli_or_resource($r) {
-  # get the type of the variable
-  switch(gettype($r)) {
-    # if it is a resource - could be mysql, file handle etc...
-    case 'resource':
-      return true;
-    # if it is an object - must be a mysqli object then
-    case 'object':
-      # is this an instance of mysqli?
-      if ($r instanceof mysqli) {
-        # make sure there is no connection error
-        return !($r->connect_error);
-      }
-      # or is this an instance of a mysqli result?
-      if ($r instanceof mysqli_result) {
-        return true;
-      }
-      return false;
-    # negative on all other variable types
-    default:
-      return false;
-  }
+function EA_is_mysqli_or_resource($r)
+{
+	# get the type of the variable
+	switch (gettype($r)) {
+			# if it is a resource - could be mysql, file handle etc...
+		case 'resource':
+			return true;
+			# if it is an object - must be a mysqli object then
+		case 'object':
+			# is this an instance of mysqli?
+			if ($r instanceof mysqli) {
+				# make sure there is no connection error
+				return !($r->connect_error);
+			}
+			# or is this an instance of a mysqli result?
+			if ($r instanceof mysqli_result) {
+				return true;
+			}
+			return false;
+			# negative on all other variable types
+		default:
+			return false;
+	}
 }
 
 // Ajout d'une liaison dans la table
 function BD_EA_link_add($ladbaddr, $ladbuser, $ladbpass, $new_link = false, $client_flags = 0, $is_mysql = false)
 {
-    // pas de nouveau lien, on vérifie si la connexion au serveur BD n'est pas déjà référencée
-    if (! $new_link) {
-      // il y a déjà des connexion dans le tableau
-      if (count($GLOBALS['BD_EA_link'])) {
-        $last = end($GLOBALS['BD_EA_link']); // dernière connexion faite
-        // si elle correspond à ladbaddr/ladbuser/ladbpass indiqué
-        if ( ($ladbaddr.'|'.$ladbuser.'|'.$ladbpass === $last['BD_sup']) &&
-          ( EA_is_mysqli_or_resource($last['link'])   ) ) {
-			// on la prend donc
-			return EA_sql_which_link(NULL);
-        }
-      }
-    }
+	// pas de nouveau lien, on vérifie si la connexion au serveur BD n'est pas déjà référencée
+	if (!$new_link) {
+		// il y a déjà des connexion dans le tableau
+		if (count($GLOBALS['BD_EA_link'])) {
+			$last = end($GLOBALS['BD_EA_link']); // dernière connexion faite
+			// si elle correspond à ladbaddr/ladbuser/ladbpass indiqué
+			if (($ladbaddr . '|' . $ladbuser . '|' . $ladbpass === $last['BD_sup']) &&
+				(EA_is_mysqli_or_resource($last['link']))
+			) {
+				// on la prend donc
+				return EA_sql_which_link(NULL);
+			}
+		}
+	}
 	// Ici nouvelle connexion au serveur, la tenter avec les données
 	if ($is_mysql) {
 		$link = @mysql_connect($ladbaddr, $ladbuser, $ladbpass, $new_link);
@@ -105,13 +107,13 @@ function BD_EA_link_add($ladbaddr, $ladbuser, $ladbpass, $new_link = false, $cli
 			return false;
 		}
 	}
-    // insère les infos de la connexion serveur dans la table et retourne la liaison
-    $GLOBALS['BD_EA_link'][] = array(
-      'thread_id' => $link->thread_id,
-      'BD_sup' => $ladbaddr.'|'.$ladbuser.'|'.$ladbpass,
-      'link' => $link
-    );
-    return $link;
+	// insère les infos de la connexion serveur dans la table et retourne la liaison
+	$GLOBALS['BD_EA_link'][] = array(
+		'thread_id' => $link->thread_id,
+		'BD_sup' => $ladbaddr . '|' . $ladbuser . '|' . $ladbpass,
+		'link' => $link
+	);
+	return $link;
 }
 // Retrait d'une liaison de la table
 function BD_EA_link_remove($LINK, $is_mysql = false)
@@ -139,22 +141,26 @@ function BD_EA_link_remove($LINK, $is_mysql = false)
 		if ($result === null) {
 			return false;
 		}
-	} echo 'ON FERME';exit;foreach( $GLOBALS['BD_EA_link'] as $k => $v) { print_r($v); }
+	}
+	echo 'ON FERME';
+	exit;
+	foreach ($GLOBALS['BD_EA_link'] as $k => $v) {
+		print_r($v);
+	}
 
 	return $result;
 }
 // == Fin des fonctions communes appelées dans les 2 cas mysql et mysqli
 
 $APPEL = 'mysqli_connect';
-if (! is_callable($APPEL))
-{
-    // definition des EA_sql_* pour mysql si mysqli n'existe pas
+if (!is_callable($APPEL)) {
+	// definition des EA_sql_* pour mysql si mysqli n'existe pas
 	function EA_sql_query($QUERY, $LINKS = null)
 	{
 		if ($LINKS !== null) {
-			return  mysql_query($QUERY, $LINKS);
+			return mysql_query($QUERY, $LINKS);
 		} else {
-			return  mysql_query($QUERY);
+			return mysql_query($QUERY);
 		}
 	}
 	function EA_sql_fetch_array($RESULT)
@@ -167,35 +173,35 @@ if (! is_callable($APPEL))
 	}
 	function EA_sql_fetch_assoc($RESULT)
 	{
-		return  mysql_fetch_assoc($RESULT);
+		return mysql_fetch_assoc($RESULT);
 	}
 	function EA_sql_fetch_row($RESULT)
 	{
-		return  mysql_fetch_row($RESULT);
+		return mysql_fetch_row($RESULT);
 	}
 	function EA_sql_get_server_info($dblink = null)
 	{
 		$dblink = EA_sql_which_link($dblink);
-		return    mysql_get_server_info($dblink);
+		return mysql_get_server_info($dblink);
 	}
 	function EA_sql_affected_rows($dblink = null)
 	{
 		$dblink = EA_sql_which_link($dblink);
-		return     mysql_affected_rows($dblink);
+		return mysql_affected_rows($dblink);
 	}
 	function EA_sql_stat($dblink = null)
 	{
 		$dblink = EA_sql_which_link($dblink);
-		return        mysql_stat($dblink);
+		return mysql_stat($dblink);
 	}
 	function EA_sql_error($dblink = null)
 	{
 		$dblink = EA_sql_which_link($dblink);
-		return      mysql_error($dblink);
+		return mysql_error($dblink);
 	}
 	function EA_sql_num_fields($RESULT)
 	{
-		return      mysql_num_fields($RESULT);
+		return mysql_num_fields($RESULT);
 	}
 	function EA_sql_free_result($RESULT)
 	{
