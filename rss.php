@@ -14,9 +14,9 @@ include("tools/actutils.php");
 include('tools/MakeRss/MakeRss.class.php');
 
 function antispam($email)
-	{
-	return str_replace(array("@"), array("@anti.spam.com@"),$email);
-	}
+{
+	return str_replace(array("@"), array("@anti.spam.com@"), $email);
+}
 
 $root = "";
 $path = "";
@@ -25,29 +25,28 @@ $max = 10;
 
 $xtyp = getparam('type');
 $xall = getparam('all');
-$xcomm=$xpatr=$page="";
-pathroot($root,$path,$xcomm,$xpatr,$page);
+$xcomm = $xpatr = $page = "";
+pathroot($root, $path, $xcomm, $xpatr, $page);
 
 $request = "";
-if ($xall=="") 
-		$limit = ' LIMIT '.$max;
-	else
-		{
-		$limit = '';
-		$max = 1E4;
-		}
+if ($xall == "")
+	$limit = ' LIMIT ' . $max;
+else {
+	$limit = '';
+	$max = 1E4;
+}
 
-if ($xtyp=="" or $xtyp=="A")
-  $condit = "";
- else
-  $condit = " WHERE TYPACT = '".$xtyp."'";
+if ($xtyp == "" or $xtyp == "A")
+	$condit = "";
+else
+	$condit = " WHERE TYPACT = '" . $xtyp . "'";
 
-$request  .="SELECT TYPACT as TYP, sum(NB_TOT) as CPT, COMMUNE, DEPART, concat(PRENOM,' ',u.NOM) as DEPO, EMAIL, DTDEPOT as DTE, AN_MIN as DEB, AN_MAX as FIN"
-					. " FROM ".EA_DB."_sums as a left join ".EA_UDB."_user3 as u on (a.deposant=u.id)"
-					. $condit
-					. ' GROUP BY COMMUNE, DEPART, TYP '
-					. ' ORDER BY DTE desc '
-					. $limit;
+$request  .= "SELECT TYPACT as TYP, sum(NB_TOT) as CPT, COMMUNE, DEPART, concat(PRENOM,' ',u.NOM) as DEPO, EMAIL, DTDEPOT as DTE, AN_MIN as DEB, AN_MAX as FIN"
+	. " FROM " . EA_DB . "_sums as a left join " . EA_UDB . "_user3 as u on (a.deposant=u.id)"
+	. $condit
+	. ' GROUP BY COMMUNE, DEPART, TYP '
+	. ' ORDER BY DTE desc '
+	. $limit;
 //echo $request;					
 
 $result = mysql_query($request);
@@ -60,11 +59,11 @@ $rss = new GenRSS();
 
 /* OUVERTURE DU FIL */
 $rss->Load();
-$titre = 'Actes de '.SITENAME;
+$titre = 'Actes de ' . SITENAME;
 
 /* LES PARAMETRES OBLIGATOIRES */
 $rss->SetTitre(htmlspecialchars($titre, ENTITY_REPLACE_FLAGS, ENTITY_CHARSET));
-$rss->SetLink('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].$root.'/index.php');
+$rss->SetLink('http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $root . '/index.php');
 $rss->SetDetails("Dépouillement de tables et actes d'état-civil ou de registres paroissiaux");
 /* LES PARAMETRES FACULTATIFS (Mettez // devant les paramètres que vous ne voulez pas renseigner) */
 $rss->SetLanguage('fr');
@@ -76,51 +75,49 @@ $rss->SetLanguage('fr');
 /* AJOUT DES ARTICLES AU FIL */
 
 $cpt = 0;
-while ($row = mysql_fetch_array($result) and $cpt<$max)
-  {
-  $cpt++;
-  $titre = $row["COMMUNE"];
-  if ($row["DEPART"] != "") $titre .= ' ['.$row["DEPART"].']' ;
+while ($row = mysql_fetch_array($result) and $cpt < $max) {
+	$cpt++;
+	$titre = $row["COMMUNE"];
+	if ($row["DEPART"] != "") $titre .= ' [' . $row["DEPART"] . ']';
 	$date_rss = date_rss($row["DTE"]);
-	switch ($row["TYP"])
-		{
-		case "N" :
-			$typ="Naissances/Baptêmes";
+	switch ($row["TYP"]) {
+		case "N":
+			$typ = "Naissances/Baptêmes";
 			$prog = "tab_naiss";
 			break;
-		case "D" :
-			$typ="Décès/Sépultures";
+		case "D":
+			$typ = "Décès/Sépultures";
 			$prog = "tab_deces";
 			break;
-		case "M" :
-			$typ="Mariages";
+		case "M":
+			$typ = "Mariages";
 			$prog = "tab_mari";
 			break;
-		case "V" :
-			$typ="Actes divers"; // : ".$row["LIBELLE"];
+		case "V":
+			$typ = "Actes divers"; // : ".$row["LIBELLE"];
 			$prog = "tab_bans";
 			break;
-		}
-  $titre = htmlspecialchars($row["COMMUNE"], ENTITY_REPLACE_FLAGS, ENTITY_CHARSET);
-  if ($row["DEPART"] != "") $titre .= ' ['.htmlspecialchars($row["DEPART"], ENTITY_REPLACE_FLAGS, ENTITY_CHARSET).']' ;
-  $titre .= ' : '.$typ;
-  $description = $row["CPT"].' '.$typ.' de '.$row["DEB"].' à '.$row["FIN"];
-  $auteur = "";
-  $url = $root.'/'.$prog.".php?args=".urlencode($row["COMMUNE"].' ['.$row["DEPART"].']');
-
-  /* $rss->AddItem('Titre','Descripton','Auteur','Catégorie','date','http://'); */
-  $rss->AddItem(	htmlspecialchars($titre),
-					htmlspecialchars($description),
-					htmlspecialchars($auteur),
-					$typ,
-				  	$date_rss,
-					'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].$url);
 	}
+	$titre = htmlspecialchars($row["COMMUNE"], ENTITY_REPLACE_FLAGS, ENTITY_CHARSET);
+	if ($row["DEPART"] != "") $titre .= ' [' . htmlspecialchars($row["DEPART"], ENTITY_REPLACE_FLAGS, ENTITY_CHARSET) . ']';
+	$titre .= ' : ' . $typ;
+	$description = $row["CPT"] . ' ' . $typ . ' de ' . $row["DEB"] . ' à ' . $row["FIN"];
+	$auteur = "";
+	$url = $root . '/' . $prog . ".php?args=" . urlencode($row["COMMUNE"] . ' [' . $row["DEPART"] . ']');
+
+	/* $rss->AddItem('Titre','Descripton','Auteur','Catégorie','date','http://'); */
+	$rss->AddItem(
+		htmlspecialchars($titre),
+		htmlspecialchars($description),
+		htmlspecialchars($auteur),
+		$typ,
+		$date_rss,
+		'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $url
+	);
+}
 
 /* FERMETURE DU FIL */
 $rss->Close();
 
 /* GENERATION DU RSS */
 $rss->Generer();
-
-?>

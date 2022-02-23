@@ -10,31 +10,31 @@ $path = "";
 $xcomm = "";
 $xpatr = "";
 $page = 1;
-define ("ADM",10); // *** Mode administration ***
+define("ADM", 10); // *** Mode administration ***
 
-pathroot($root,$path,$xcomm,$xpatr,$page);
+pathroot($root, $path, $xcomm, $xpatr, $page);
 
 $xord  = getparam('xord');
-if ($xord == "")
-  {$xord = "N";}   // N = Nom
+if ($xord == "") {
+	$xord = "N";
+}   // N = Nom
 $page  = getparam('pg');
 $init  = getparam('init');
 
 
-$userlogin="";
-$userlevel=logonok(9);
-while ($userlevel<9)
-  {
-  login($root);
-  }
+$userlogin = "";
+$userlevel = logonok(9);
+while ($userlevel < 9) {
+	login($root);
+}
 
-open_page(SITENAME." : Liste des localités (communes et paroisses)",$root);
+open_page(SITENAME . " : Liste des localités (communes et paroisses)", $root);
 
-navadmin($root,"Liste des localités");
+navadmin($root, "Liste des localités");
 
 echo '<div id="col_menu">';
 form_recherche($root);
-menu_admin($root,$userlevel);
+menu_admin($root, $userlevel);
 echo '</div>';
 
 echo '<div id="col_main_adm">';
@@ -43,118 +43,101 @@ echo '<div id="col_main_adm">';
 
 menu_datas('L');
 
-echo '<h2>Localités connues du site '.SITENAME.'</h2>';
+echo '<h2>Localités connues du site ' . SITENAME . '</h2>';
 
-$baselink = $root.'/admin/listgeolocs.php';
-$request = "select distinct upper(left(COMMUNE,1)) as init from ".EA_DB."_geoloc order by init";
+$baselink = $root . '/admin/listgeolocs.php';
+$request = "select distinct upper(left(COMMUNE,1)) as init from " . EA_DB . "_geoloc order by init";
 $result = mysql_query($request);
 $alphabet = "";
-while ($row = mysql_fetch_row($result))
-  {
-  if ($row[0]==$init)
-  	$alphabet .= '<b>'.$row[0].'</b> ';
-  else
-  	$alphabet .= '<a href="'.$baselink.'?xord='.$xord.'&init='.$row[0].'">'.$row[0].'</a> ';
-  }
-echo '<p align="center">'.$alphabet.'</p>';
+while ($row = mysql_fetch_row($result)) {
+	if ($row[0] == $init)
+		$alphabet .= '<b>' . $row[0] . '</b> ';
+	else
+		$alphabet .= '<a href="' . $baselink . '?xord=' . $xord . '&init=' . $row[0] . '">' . $row[0] . '</a> ';
+}
+echo '<p align="center">' . $alphabet . '</p>';
 
-if ($init=="")
-  $initiale = '';
- else
-  $initiale = '&init='.$init;
+if ($init == "")
+	$initiale = '';
+else
+	$initiale = '&init=' . $init;
 
-$hcommune = '<a href="'.$baselink.'?xord=C'.$initiale.'">Commune</a>';
-$hdepart  = '<a href="'.$baselink.'?xord=D'.$initiale.'">Département</a>';
-$hgeoloc  = '<a href="'.$baselink.'?xord=S'.$initiale.'">Géolocalisation</a>';
-$baselink = $baselink.'?xord='.$xord.$initiale;
-  
-if ($xord =="C")
-	{
+$hcommune = '<a href="' . $baselink . '?xord=C' . $initiale . '">Commune</a>';
+$hdepart  = '<a href="' . $baselink . '?xord=D' . $initiale . '">Département</a>';
+$hgeoloc  = '<a href="' . $baselink . '?xord=S' . $initiale . '">Géolocalisation</a>';
+$baselink = $baselink . '?xord=' . $xord . $initiale;
+
+if ($xord == "C") {
 	$order = "COMMUNE,DEPART";
 	$hcommune = '<b>Commune</b>';
-	}
- elseif ($xord =="D")
-	{
+} elseif ($xord == "D") {
 	$order = "DEPART, COMMUNE";
 	$hdepart = '<b>Département</b>';
-	}
- elseif ($xord =="S")
-	{
+} elseif ($xord == "S") {
 	$order = "find_in_set(STATUT,'N,M,A')";
 	$hgeoloc = '<b>Géolocalisation</b>';
-	}
- else
-	{
+} else {
 	$order = "COMMUNE,DEPART";
 	$hcommune = '<b>Commune</b>';
+}
+if ($init == "")
+	$condit = "";
+else
+	$condit = " where COMMUNE like '" . $init . "%' ";
+
+
+$request = "select ID,COMMUNE,DEPART,LON,LAT,STATUT"
+	. " from " . EA_DB . "_geoloc "
+	. $condit
+	. " order by " . $order;
+//echo $request;
+$result = mysql_query($request);
+$nbtot = mysql_num_rows($result);
+
+$limit = "";
+$listpages = "";
+pagination($nbtot, $page, $baselink, $listpages, $limit);
+
+if ($limit <> "") {
+	$request = $request . $limit;
+	$result = mysql_query($request, $u_db);
+	$nb = mysql_num_rows($result);
+} else {
+	$nb = $nbtot;
+}
+
+if ($nb > 0) {
+	if ($listpages <> "")
+		echo '<p>' . $listpages . '</p>';
+	$i = 1 + ($page - 1) * MAX_PAGE_ADM;
+	echo '<table summary="Liste des localités">';
+	echo '<tr class="rowheader">';
+	echo '<th> Tri : </th>';
+	echo '<th>' . $hcommune . '</th>';
+	echo '<th>' . $hdepart . '</th>';
+	echo '<th>' . $hgeoloc . '</th>';
+	echo '</tr>';
+
+
+	while ($ligne = mysql_fetch_array($result)) {
+		echo '<tr class="row' . (fmod($i, 2)) . '">';
+		echo '<td>' . $i . '. </td>';
+		$lenom = $ligne['COMMUNE'];
+		if (trim($lenom) == "") $lenom = '&lt;non précisé&gt;';
+		echo '<td><a href="' . $root . '/admin/gestgeoloc.php?id=' . $ligne['ID'] . '">' . $lenom . '</a> </td>';
+		echo '<td>' . $ligne['DEPART'] . ' </td>';
+		$ast = array("M" => "Manuelle", "N" => "Non définie", "A" => "Auto");
+		echo '<td align="center">' . $ast[$ligne['STATUT']] . '</td>';
+		echo '</tr>';
+		$i++;
 	}
-	if ($init=="")
-	  $condit = "";
-	 else
-	  $condit = " where COMMUNE like '".$init."%' ";
-	 
-
-	$request = "select ID,COMMUNE,DEPART,LON,LAT,STATUT"
-				." from ".EA_DB."_geoloc "
-				.$condit
-				." order by ".$order;
-  //echo $request;
-	$result = mysql_query($request);
-	$nbtot = mysql_num_rows($result);
-
-	$limit="";
-	$listpages="";
-	pagination($nbtot,$page,$baselink,$listpages,$limit);
-
-  if ($limit<>"")
-    {
-		$request = $request.$limit;
-		$result = mysql_query($request,$u_db);
-		$nb = mysql_num_rows($result);
-		}
-	else
-	  {
-	  $nb = $nbtot;
-	  }
-
-	if ($nb > 0)
-	  {
-	  if ($listpages<>"")
-	  	echo '<p>'.$listpages.'</p>';
-	  $i = 1+($page-1)*MAX_PAGE_ADM;
-	  echo '<table summary="Liste des localités">';
-	  echo '<tr class="rowheader">';
-	  echo '<th> Tri : </th>';
-	  echo '<th>'.$hcommune.'</th>';
-	  echo '<th>'.$hdepart.'</th>';
-	  echo '<th>'.$hgeoloc.'</th>';
-	  echo '</tr>';
-
-    
-	  while ($ligne = mysql_fetch_array($result))
-			{
-			echo '<tr class="row'.(fmod($i,2)).'">';
-			echo '<td>'.$i.'. </td>';
-			$lenom = $ligne['COMMUNE'];
-			if (trim($lenom)=="") $lenom = '&lt;non précisé&gt;';
-			echo '<td><a href="'.$root.'/admin/gestgeoloc.php?id='.$ligne['ID'].'">'.$lenom.'</a> </td>';
-			echo '<td>'.$ligne['DEPART'].' </td>';
-			$ast= array("M" => "Manuelle", "N" => "Non définie","A" => "Auto");
-			echo '<td align="center">'.$ast[$ligne['STATUT']].'</td>';
-			echo '</tr>';
-			$i++;
-			}
-	  echo '</table>';
-	  if ($listpages<>"")
-	  	echo '<p>'.$listpages.'</p>';
-	  }
-	 else
-	  {
-	  msg('Aucune localité géocodée');
-	  }
+	echo '</table>';
+	if ($listpages <> "")
+		echo '<p>' . $listpages . '</p>';
+} else {
+	msg('Aucune localité géocodée');
+}
 
 echo '</div>';
 
 close_page(1);
-?>
-
