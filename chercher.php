@@ -14,35 +14,35 @@ function sqlcomp($lazone, $valeur)
 	global $typ_compare, $txtcomp, $codecomp;
 	$valeur = sql_quote($valeur);
 	switch ($typ_compare) {
-		case "E"; // Exacte
+		case "E": // Exacte
 			$sql = $lazone . " = '" . $valeur . "'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' est la';
 			else
 				$txtcomp = ' est le';
 			break;
-		case "D"; // Débute par
+		case "D": // Débute par
 			$sql = $lazone . " like '" . $valeur . "%'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' au début de la';
 			else
 				$txtcomp = ' au debut du';
 			break;
-		case "F"; // Fini par
+		case "F": // Fini par
 			$sql = $lazone . " like '%" . $valeur . "'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' à la fin de la';
 			else
 				$txtcomp = ' à la fin du';
 			break;
-		case "C"; // Contient
+		case "C": // Contient
 			$sql = $lazone . " like '%" . $valeur . "%'";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' dans la';
 			else
 				$txtcomp = ' dans le';
 			break;
-		case "S"; // Soundex
+		case "S": // Soundex
 			$sql = "soundex(" . $lazone . ") = soundex('" . $valeur . "')";
 			if (isin("A", $codecomp) >= 0)
 				$txtcomp = ' sonne comme la';
@@ -66,8 +66,7 @@ function makecrit($nom, $pre, $zone, $comp)
 	$codecomp = $zone;
 
 	switch ($codecomp) {
-		case "1"; // recherche directe patronyme des intéressés
-			{
+		case "1":
 				if ($nom != "") {
 					$critX = sqlcomp("NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
@@ -87,9 +86,8 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom de la personne intéressée</li>\n";
 				}
 				break;
-			}
-		case "2"; // recherche via patronyme de la mère, des témoins, parrains, ...
-			{
+		
+		case "2":
 				if ($nom != "") {
 					$critX = sqlcomp("M_NOM", $nom) . " or " . sqlcomp("T1_NOM", $nom) . " or " . sqlcomp("T2_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
@@ -100,9 +98,9 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $nom . "</b> dans le patronyme de la mère, des témoins, du parrain ou de la marraine</li>\n";
 				}
 				break;
-			}
-		case "4"; // recherche sur le conjoint
-			{
+	
+		case "4": // recherche sur le conjoint
+	
 				if ($nom != "") {
 					$critX = sqlcomp("C_NOM", $nom);
 					$critD = sql_and($critD) . "(" . $critX . ")";
@@ -119,9 +117,9 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom de la (future) épouse</li>\n";
 				}
 				break;
-			}
-		case "5"; // recherche sur patronyme du père
-			{
+	
+		case "5": // recherche sur patronyme du père
+
 				if ($nom != "") {
 					$critX = sqlcomp("P_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
@@ -139,9 +137,9 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom du père</li>\n";
 				}
 				break;
-			}
-		case "6"; // recherche sur patronyme de la mère
-			{
+
+		case "6": // recherche sur patronyme de la mère
+
 				if ($nom != "") {
 					$critX = sqlcomp("M_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
@@ -159,10 +157,9 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom de la mère</li>\n";
 				}
 				break;
-			}
-		case "7"; // recherche sur les parrains / témoins et commentaires
-			{
-				if ($nom != "") {
+		
+		case "7": // recherche sur les parrains / témoins et commentaires
+						if ($nom != "") {
 					$critX = sqlcomp("T1_NOM", $nom) . " or " . sqlcomp("T2_NOM", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
 					$critD = sql_and($critD) . "(" . $critX . ")";
@@ -177,10 +174,9 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $pre . "</b>" . $txtcomp . " prénom des témoins ou des parrains et marraines</li>\n";
 				}
 				break;
-			}
-		case "8"; // recherche sur les commentaires
-			{
-				if ($nom != "") {
+	
+		case "8": // recherche sur les commentaires
+						if ($nom != "") {
 					$critX = sqlcomp("COM", $nom) . " or " . sqlcomp("P_COM", $nom) . " or " . sqlcomp("M_COM", $nom)
 						. " or " . sqlcomp("T1_COM", $nom) . " or " . sqlcomp("T2_COM", $nom) . " or " . sqlcomp("COMGEN", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
@@ -190,9 +186,8 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " texte des commentaires personnels et généraux</li>\n";
 				}
 				break;
-			}
-		case "9"; // recherche sur les origines
-			{
+			
+		case "9": // recherche sur les origines
 				if ($nom != "") {
 					$critN = ""; // pas d'origine dans les naissances
 					$critX = sqlcomp("ORI", $nom);
@@ -203,9 +198,8 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " lieu d'origine d'un des intéressés</li>\n";
 				}
 				break;
-			}
-		case "A"; // recherche sur les professions
-			{
+			
+		case "A": // recherche sur les professions
 				if ($nom != "") {
 					$critX = sqlcomp("P_PRO", $nom) . " or " . sqlcomp("M_PRO", $nom);
 					$critN = sql_and($critN) . "(" . $critX . ")";
@@ -215,7 +209,7 @@ function makecrit($nom, $pre, $zone, $comp)
 					$mes .= '<li><b>' . $nom . "</b>" . $txtcomp . " profession (intéressé et parents)</li>\n";
 				}
 				break;
-			}
+			
 	}
 }
 
@@ -489,16 +483,16 @@ if (current_user_solde() > 0 or RECH_ZERO_PTS == 1) {
 			echo '</tr>' . "\n";
 			while ($ligne = mysql_fetch_row($result)) {
 				switch ($ligne[1]) {
-					case "N";
+					case "N":
 						$url = "acte_naiss.php";
 						break;
-					case "D";
+					case "D":
 						$url = "acte_deces.php";
 						break;
-					case "M";
+					case "M":
 						$url = "acte_mari.php";
 						break;
-					case "V";
+					case "V":
 						$url = "acte_bans.php";
 						break;
 				}
